@@ -81,7 +81,14 @@ So far this post has focused on child protection rates, but the differences are 
 
 <br>
 
-![](lacplots.png)
+
+```{r, layout = "l-page", echo=FALSE}
+
+knitr::include_graphics("lacplots.png")
+
+```
+
+
 <br>
 
 
