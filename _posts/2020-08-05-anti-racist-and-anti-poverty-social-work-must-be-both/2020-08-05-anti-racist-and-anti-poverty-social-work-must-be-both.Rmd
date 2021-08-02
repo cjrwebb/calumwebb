@@ -14,7 +14,7 @@ tags:
 draft: no
 description: Our new research published in Children and Youth Services Review shows how the social gradient varies based on ethnic population, and what sociological theories and policy analysis might explain why this happens. This blog discusses some of the key messages for social work. 
 base_url: http:://calumwebb.uk
-preview: img/CLA_infographicv2.png
+preview: https://calumwebb.co.uk/posts/2020-08-05-anti-racist-and-anti-poverty-social-work-must-be-both/img/CLA_infographicv2.png
 twitter:
   creator: "@cjrwebb"
   image: http://calumwebb.uk/img/CLA_infographicv2.png
