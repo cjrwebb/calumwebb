@@ -23,6 +23,28 @@ output: distill::distill_article
 
 ---
 
+```{r setup, include = FALSE, echo = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "Anyone can now use and test the Child Welfare Inequalities App version 2. This blog post provides a link to the new version of the app, plus a brief description of its features."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "The Child Welfare Inequalities App Version 2: Now in Open Beta",
+    url = "https://calumwebb.co.uk/posts/2020-08-02-cwip-app-v2-launch/",
+    image = "https://calumwebb.co.uk/posts/2020-08-02-cwip-app-v2-launch/img/cwip-app-v2-launch/img1.jpeg",
+    image_alt = "Preview of the CWIP App",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
+
 **[Click here to go directly to the CWIP App Version 2 Beta.](https://webb.shinyapps.io/cwip-app-v2)** *For a brief overview, read on...*
 
 ![](img/cwip-app-v2-launch/img1.png)

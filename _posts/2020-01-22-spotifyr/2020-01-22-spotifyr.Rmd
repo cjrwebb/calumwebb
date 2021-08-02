@@ -15,7 +15,25 @@ preview: rock_poster_preview.png
 output: distill::distill_article
 ---
 
+
 ``` {r setup, include = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "Using audio features to create 'perfect pairings' of popular songs? Pretty dendrograms using ggdendro."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Spotifyr. Hierarchical clusters of popular songs by audio features",
+    url = "https://calumwebb.co.uk/posts/2020-01-22-spotifyr/",
+    image = "https://calumwebb.co.uk/posts/2020-01-22-spotifyr/rock_poster_preview.png",
+    image_alt = "Dendrogram of songs sorted by audio features.",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
 
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 100), tidy = TRUE)
 

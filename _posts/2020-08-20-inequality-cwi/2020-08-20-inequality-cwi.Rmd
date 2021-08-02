@@ -25,6 +25,30 @@ header:
 output: distill::distill_article
 ---
 
+```{r setup, include = FALSE, echo = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "One of the articles we had published in Children and Youth Services Review this year highlighted a new finding that the social gradient in child welfare interventions was predicted to be as much as five times stronger in local authorities with..."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Socioeconomic inequalities in child welfare interventions are five times stronger
+  in unequal and affluent local authorities than they are in equal and deprived local
+  authorities. Why?",
+    url = "https://calumwebb.co.uk/posts/2020-08-20-inequality-cwi/",
+    image = "https://calumwebb.co.uk/posts/2020-08-20-inequality-cwi/img/ineq/sweet-temptation.jpeg",
+    image_alt = "Dog looking at a cake",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
+
 ![](img/ineq/sweet-temptation.jpeg)
 <br>
 

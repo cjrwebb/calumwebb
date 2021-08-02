@@ -21,6 +21,29 @@ output: distill::distill_article
 
 ---
 
+```{r setup, include = FALSE, echo = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "It is a mathematical fact that the larger the gap between the resources needed and the resources provided is, the more inequitable a relative funding formula becomes, regardless of how accurate its proportioning is."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "The biggest problem with the funding formula for Children's Social Services
+  isn't that it's too inequitable, it's that it's too relative.",
+    url = "https://calumwebb.co.uk/posts/2020-04-25-the-biggest-problem-with-the-funding-formula/",
+    image = "https://calumwebb.co.uk/posts/2020-04-25-the-biggest-problem-with-the-funding-formula/dog-pie.jpeg",
+    image_alt = "Dog looking longingly at a meringue pie.",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
+
 ![](dog-pie.jpeg)
 *Photo from Unsplash*
 

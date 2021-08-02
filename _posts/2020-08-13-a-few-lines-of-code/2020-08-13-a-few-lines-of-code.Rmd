@@ -22,6 +22,29 @@ header:
 output: distill::distill_article
 ---
 
+```{r setup, include = FALSE, echo = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "The programming equivalent of a hair's breadth stands between the code required to analyse trends, associations, and inequalities in data and the code required to turn these into contextless, essentialist predictions."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "A few lines of code separate quantitative analysis from predictive analytics",
+    url = "https://calumwebb.co.uk/posts/2020-08-13-a-few-lines-of-code/",
+    image = "https://calumwebb.co.uk/posts/2020-08-13-a-few-lines-of-code/img/few-lines/img1_dog.jpeg",
+    image_alt = "Dog at a computer",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
+
+
 ![](img/few-lines/img1_dog.jpeg)
 <font size = 2>
 *An image of a dog wearing glasses, "typing" on a tablet computer.*

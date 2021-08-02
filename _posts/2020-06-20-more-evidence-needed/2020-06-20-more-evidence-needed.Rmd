@@ -13,7 +13,28 @@ description: How much time do you want for your progress?
 output: distill::distill_article
 
 ---
- 
+
+```{r setup, include = FALSE, echo = FALSE}
+library(metathis)
+
+meta() %>%
+  meta_description(
+    "'How much evidence do you want for your progress?' Evidence is time. Can-kicking progress and agreeing to a few more minutes on the treadmill. Most of the time more evidence isn't needed, other than for us to justify the existence of our jobs."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "'More evidence needed...' Pessimism of a sociologist in the age of justice procrastination.",
+    url = "https://calumwebb.co.uk/posts/2020-06-20-more-evidence-needed/",
+    image = "https://calumwebb.co.uk/posts/2020-06-20-more-evidence-needed/baldwin-prev.png",
+    image_alt = "A quote from James Baldwin",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
 
 > 'What is it you're wanting me to reconcile myself to? I was born here almost sixty years ago. I'm not going to live another sixty years. You always told me it takes time. It's taken my father's time, my mother's time. My uncle's time. My brothers' and my sisters' time. My nieces' and my nephews' time. How much time do you want for your "progress?"'
 > 

@@ -28,11 +28,11 @@ meta() %>%
   meta_social(
     title = "Home | Dr. Calum Webb",
     url = "https://calumwebb.co.uk",
-    image = "https://calumwebb.co.uk/data-cata.png",
+    image = "https://calumwebb.co.uk/data-cata-large.png",
     image_alt = "Preview image of homepage",
     og_type = "website",
     og_author = "Calum Webb",
-    twitter_card_type = "summary",
+    twitter_card_type = "summary_large_image",
     twitter_creator = "@cjrwebb"
   )
 
