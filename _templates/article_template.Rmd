@@ -31,7 +31,7 @@ meta() %>%
     url = "https://www.calumwebb.co.uk",
     og_type = "website",
     og_author = "Calum Webb",
-    twitter_card_type = "summary",
+    twitter_card_type = "summary_large_image",
     twitter_creator = "@cjrwebb"
   )
 

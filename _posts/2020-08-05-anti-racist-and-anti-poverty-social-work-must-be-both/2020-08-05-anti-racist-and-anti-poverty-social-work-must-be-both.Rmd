@@ -27,8 +27,27 @@ output: distill::distill_article
 
 
 ```{r, echo = FALSE}
+library(metathis)
 
 knitr::include_graphics("img/CLA_infographicv2.png")
+
+meta() %>%
+  meta_description(
+    "Our new research published in Children and Youth Services Review shows how the social gradient varies based on ethnic population, and what sociological theories and policy analysis might explain why this happens. This blog discusses some of the key messages for social work."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Anti-racist and anti-poverty social work must be both: Child Welfare Inequalities
+  at the intersection of race and class",
+    url = "https://calumwebb.co.uk/posts/2020-08-05-anti-racist-and-anti-poverty-social-work-must-be-both/",
+    image = "https://calumwebb.co.uk/posts/2020-08-05-anti-racist-and-anti-poverty-social-work-must-be-both/img/CLA_infographicv2.png",
+    image_alt = "Visualisation of intersectional inequalities",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
 
 ```
 
