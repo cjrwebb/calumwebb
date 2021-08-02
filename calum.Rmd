@@ -24,13 +24,13 @@ output:
 library(metathis)
 meta() %>%
   meta_description(
-    "The personal website of Dr. Calum Webb"
+    "Personal blog and website of Dr. Calum Webb. Quantitative social science, child welfare, social policy, and occassional Rstats."
   ) %>%
   meta_viewport() %>%
   meta_social(
-    title = "Dr. Calum Webb",
+    title = "Home | Dr. Calum Webb",
     url = "https://calumwebb.co.uk/calum.html",
-    image = "data-cata-large.png",
+    image = "https://calumwebb.co.uk/data-cata-large.png",
     image_alt = "A logo showing a black cat wearing oversized eyeglasses.",
     og_type = "website",
     og_author = c("Calum Webb"),
