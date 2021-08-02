@@ -27,8 +27,8 @@ meta() %>%
   meta_viewport() %>% 
   meta_social(
     title = "Home | Dr. Calum Webb",
-    url = "https://www.calumwebb.co.uk",
-    image = "https://www.calumwebb.co.uk/main-site-preview.png",
+    url = "https://calumwebb.co.uk",
+    image = "https://calumwebb.co.uk/data-cata.png",
     image_alt = "Preview image of homepage",
     og_type = "website",
     og_author = "Calum Webb",
