@@ -34,8 +34,9 @@ collections:
 twitter:
   site: "@cjrwebb"
   creator: "@cjrwebb"
-  image: data-cata-large.png
-preview: data-cata-large.png
+  image: "https://calumwebb.co.uk/data-cata-large.png"
+  type: summary_large_image
+preview: "https://calumwebb.co.uk/data-cata-large.png"
 output: 
   distill::distill_article:  
     includes: 
