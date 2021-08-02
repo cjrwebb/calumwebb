@@ -34,7 +34,8 @@ collections:
 twitter:
   site: "@cjrwebb"
   creator: "@cjrwebb"
-preview: data-cata.png
+  image: data-cata-large.png
+preview: data-cata-large.png
 output: 
   distill::distill_article:  
     includes: 

@@ -29,8 +29,8 @@ meta() %>%
   meta_viewport() %>%
   meta_social(
     title = "Dr. Calum Webb",
-    url = "https://calumwebb.co.uk/",
-    image = "data-cata.png",
+    url = "https://calumwebb.co.uk/calum.html",
+    image = "data-cata-large.png",
     image_alt = "A logo showing a black cat wearing oversized eyeglasses.",
     og_type = "website",
     og_author = c("Calum Webb"),
