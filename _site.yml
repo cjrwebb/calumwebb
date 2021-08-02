@@ -4,7 +4,7 @@ description: |
   Calum Webb
 output_dir: "_site"
 theme: calumwebb.css
-base_url: https:://calumwebb.co.uk
+base_url: https://calumwebb.co.uk
 navbar:
   logo:
     image: data-cata.png
