@@ -1,0 +1,47 @@
+---
+title: "Dr. Calum Webb"
+image: "cwebb_profile_picture.jpg"
+links:
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=CNYHo0IAAAAJ&hl=en"
+  - label: Twitter
+    url: "https://twitter.com/cjrwebb"
+  - label: GitHub
+    url: "https://github.com/cjrwebb"
+  - label: Email
+    url: "mailto:c.j.webb@sheffield.ac.uk"
+  - label: ORCID iD
+    url: "https://orcid.org/0000-0001-7521-2110"
+site: distill::distill_website
+theme: calumwebb.css
+output:
+  postcards::jolla:
+    includes: 
+      after_body: include_footer.html
+---
+
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(metathis)
+meta() %>%
+  meta_description(
+    "The personal website of Dr. Calum Webb"
+  ) %>%
+  meta_viewport() %>%
+  meta_social(
+    title = "Dr. Calum Webb",
+    url = "https://calumwebb.co.uk/",
+    image = "data-cata.png",
+    image_alt = "A logo showing a black cat wearing oversized eyeglasses.",
+    og_type = "website",
+    og_author = c("Calum Webb"),
+    twitter_card_type = "summary",
+    twitter_creator = "@cjrwebb"
+  )
+```
+
+
+I am a quantitative social scientist at the University of Sheffield and study child welfare inequalities, systems, and policy. My research focuses on the association between poverty, family support services, and child protection.
+
+I am a fellow of the Royal Statistical Society, a member of the Social Policy Association and British Society for Population Studies, and an associate fellow of the Higher Education Academy. I have a PhD in Sociology, an M.A. in Social Research, and a B.A.(Hons) degree in Sociology.
+
+I am a proficient user and teacher of R, Mplus, SPSS, and Stata, with specialism in structural equation modelling, multilevel modelling, and latent growth modelling with longitudinal secondary survey and administrative data.

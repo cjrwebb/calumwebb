@@ -1,0 +1,56 @@
+---
+title: The biggest problem with the funding formula for Children's Social Services
+  isn't that it's too inequitable, it's that it's too relative.
+author: Calum Webb
+date: '2020-04-25'
+slug: the-biggest-problem-with-the-funding-formula-for-children-s-social-services-isn-t-that-it-s-inequitable-it-s-that-it-s-relative
+categories:
+  - Social Work
+tags:
+  - funding
+draft: no
+base_url: https:://calumwebb.co.uk
+preview: dog-pie.jpeg
+twitter:
+  creator: "@cjrwebb"
+  image: dog-pie.jpeg
+header:
+  image: dog-pie.jpeg
+description: "It is a mathematical fact that the larger the gap between the resources needed and the resources provided is, the more inequitable a relative funding formula becomes, regardless of how accurate its proportioning is."
+output: distill::distill_article
+
+---
+
+![](dog-pie.jpeg)
+*Photo from Unsplash*
+
+In 2018, Paul Bywaters and I published a [paper about the funding of children's services under the austerity years of the coalition government](https://www.tandfonline.com/doi/abs/10.1080/03003930.2018.1430028?journalCode=flgs20) [(open access repository version here)](http://eprints.whiterose.ac.uk/127697/1/Austerity__Rationing__and_Inequity__Accepted_Draft__PDF.pdf). The headline finding from this research was that the term 'decimated' was a huge understatement for describing what had happened to funding for family support and early help between 2010 and 2015. Resources available to local authorities for providing these services could more accurately be described as having been obliterated, and that the cuts were far worse in the most deprived local authorities. 
+
+A finding that received less attention was that the funding formula for children's services had not only been simplified, but had been quietly changed from something with more 'absolute' components to a purely 'relative' formula. Before 2012, the formula used a way of determining funding that multiplied specific amounts by needs-related factors in a local authority [(DCLG, 2010: 7-10)](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/247955/0280.pdf). Despite calling itself a 'Relative Needs Formula' and having an upper ceiling on funding, this reflected a far more absolute level of need in each local authority.
+
+After 2012, amongst other direct cuts, the funding formula was made more relative, where the proportion of a local authorities level of need relative to other local authorities was calculated first before being multiplied by the total grant funding available, obscuring the real amount of need that would go unmet [(DCLG, 2013: 45-47)](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/229056/0948.pdf). To our knowledge, these changes flew mostly under the radar. Perhaps because local government financing is hardly the most thrilling of tasks. 
+
+
+
+## Baking the pie and slicing the pie: the difference between relative and absolute approaches to funding
+
+Imagine for a moment that each local authority is a dinner guest, the need for children's services is their level of hunger, and the funding of these services is a pie. The DCLG and Treasury, in this instance, play the role of the baker. 
+
+An absolute formula is primarily concerned with creating a large enough pie that every guest's hunger is sated equitable to their level of hunger. If the first guest says that 800g of pie is enough to satisfy their hunger, another that 400g is enough, and a third that believes 200g would suffice, the baker will create a pie that weighs 1,400g in total and then distribute it according to each person's reported hunger - guest one gets 800g of pie, guest two gets 400g, and guest three gets 200g. In this form, the formula serves the purpose of informing the baker of how much pie is needed *and* how it should be distributed. It equitably satisfies the needs of the table.
+
+In a purely relative formula, the only concern is apportioning a pie of pre-defined weight to the same people. The size of the pie is already decided. Regardless of whether the requested amounts are 800g, 400g, and 200g or 1,600g, 800g, and 400g, each of our dinner guests will receive an identical amount of pie should the proportions stay the same, even if in the latter context it is clearly insufficient to satisfy their hunger. The only concern is each guest's hunger relative to the others, not the total hunger around the dinner table. The only thing that matters in a purely relative funding formula is the slicing of the pie, not the baking, and making sure everyone leaves feeling well-fed plays no part in your decision on how much you're going to cook.
+
+Further, this relative approach will do *less* not *more* to satisfy the hungriest of our guests. If the pie were a predefined 1,000g split in a 8:4:2 ratio the hungriest of our guests would received around 570g of pie (230g less than their hunger requires) and the least hungry would receive around 140g (60g less than their reported hunger requirement). The person most in need of pie (insofar as anyone is in need of pie) is the most disadvantaged by the relative approach. This is the same reason why we found the most deprived local authorities had been the most disproportionately affected by funding cuts.
+
+
+## Fixing the funding formula
+
+This is the biggest problem in the funding of children's services. Efforts to improve equitability of funding are laudible, but will never improve the position of children's services if they remain linked to a purely relative funding formula. A more fundamental question needs to be asked about the purpose that a funding formula serves. Yes, it should equitably distribute funding to those most in need, but this should not be its primary purpose. 
+
+The purpose a funding formula should serve is to gauge the total need for services, calculate how much this should cost to meet, and ensure that adequate funding is in place to meet this need. Should the political will - and it is a lack of political will, not a lack of economic means - to fund services to the required amount fall short we must know explicitly how short it has fallen by.
+
+The further we refuse to engage with the absolute amount of funding that is required to meet the needs of communities, the more harm we cause. **It is a mathematical fact that the larger the gap between the resources needed and the resources provided is, the more inequitable a relative funding formula becomes, regardless of how accurate its proportioning is**. 
+
+
+
+

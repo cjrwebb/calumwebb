@@ -1,0 +1,40 @@
+---
+title: "'More evidence needed...' Pessimism of a sociologist in the age of justice procrastination."
+author: Calum Webb
+date: '2020-06-20'
+slug: more-evidence-needed
+categories:
+  - sociology
+tags:
+  - sociology
+draft: no
+preview: baldwin-prev.png
+description: How much time do you want for your progress?
+output: distill::distill_article
+
+---
+ 
+
+> 'What is it you're wanting me to reconcile myself to? I was born here almost sixty years ago. I'm not going to live another sixty years. You always told me it takes time. It's taken my father's time, my mother's time. My uncle's time. My brothers' and my sisters' time. My nieces' and my nephews' time. How much time do you want for your "progress?"'
+> 
+> James Baldwin, [The Price of a Ticket](https://www.youtube.com/watch?v=OCUlE5ldPvM) 
+
+At several points in my very short career I have written sentences in drafts of academic journal articles that feel wrong, but not in an empirical sense. My stomach crumples and contorts in panic as I review or think about what I've written, like someone is [tilting the cartridge of my soul](https://youtu.be/7DJQb_9CVHc?t=23). It's the result of going against the deep desire to doubt myself, to convince imaginary detractors who, at the sniff of insurrectionary sentiment, will dismiss whatever points I might have made as the ramblings of a revolutionary. Not 'proper' science. I back off to the safe comfort of concluding that 'this research has its limitations and more data is needed'.
+
+The first clear sense of this feeling came from about as milquetoast a sentiment that has ever been written. In a concluding section of an article I wanted to express that children and young people were especially disadvantaged in the policy sphere because they could not vote, they had no meaningful representation, and were easy to target because they are unable to hold anyone accountable. And that, as a consequence of this, it was our responsibility to amplify their voices and draw attention to the injustices they faced. 
+
+In the end, I pissed away the chance to express this argument clearly by reiterating some statistics and hoping the reader would come to the conclusion I was alluding to. Like some kind of academic 'nudge-nudge, wink-wink'. I had a sense that such things could not be said if I wanted to be taken seriously. "Children's services have been cut more than any other service and, well - you know - it's really *not on now, is it chaps*?" Epistemological Victorianism.
+
+Perhaps this is just a problem with me - the gutless subversive. But I feel that it goes deeper than that. There is a sense, in research and writing about research, that every finding that implies there should be a change against the status quo must be qualified with 'but of course, more evidence is needed before we *actually do anything about this*'. Always 'more evidence is needed'. 
+
+Of course, a certain amount of this is self-preservation from an existential threat. If we don't need any more evidence, what's the point of me? But I feel it goes much deeper than that. We're told that this is the way to make progress. That, if we follow the rules, do everything carefully, correctly, *scientifically*, then incremental change is not only logical but inevitable. 
+
+But the world only changes with the facts when ignoring them any longer would threaten those who benefit from the status quo. When the political ground of inaction becomes more unstable than that of action, and even then it only changes as much as needed to stop the shaking. The quantity of evidence, the quality of evidence, none of it matters much on the treadmill of justice procrastination. 
+
+We are kept busy collecting evidence that can be conveniently pointed to as a reason for social change to hide the fact that most of the time the only barrier to change was that the people in charge could get away with not doing it. No politician has ever sat in front of the jigsaw of policy saying 'Yes, we must do something, but I just need that last piece of evidence!', but they will happily say 'Well, we hadn't done anything about it before but *in light of this new evidence*...' In many cases, the evidence has existed for years and the 'new evidence' becomes a convenient retrospective excuse for inaction rather than a catalyst for action.
+
+There's perhaps no better example of this than Marcus Rashford's campaign that succeeded in creating a [U-turn on government free school meals policy](https://www.theguardian.com/politics/2020/jun/16/boris-johnson-faces-tory-rebellion-over-marcus-rashfords-school-meals-call). Rashford's success put the collective efforts of many social scientists over at least the last decade to shame. That is not a criticism of them, but of the relationship between evidence and politics. While people outwardly celebrated the success, I imagine many behind closed doors, myself included, felt pathetically ineffective. Some things we don't need more evidence about. We don't need more evidence to prove that allowing children to starve is wrong and harmful. 
+
+I'm afraid I don't have a satisfying conclusion to this post. I don't have a suggestion or solution. Less trepidation in our writing and more activism, I suppose, but even that feels like a cop out when faced with systemic indifference to evidence. And, as I say, maybe this is more of a 'me' problem than an a 'we' problem. 
+
+I would probably start by asking myself one thing every time I feel tempted to write that more evidence is needed, riffing off of the James Baldwin quote above. 'How much evidence do you want for your progress?' Evidence is time. Can-kicking progress and agreeing to a few more minutes on the treadmill. Most of the time more evidence isn't needed, other than for us to justify the existence of our jobs. 

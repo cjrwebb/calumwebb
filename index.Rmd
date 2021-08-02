@@ -1,0 +1,41 @@
+---
+title: ""
+description: |
+  Personal blog and website of Dr. Calum Webb. Quantitative social science, child welfare, social policy, and occassional Rstats.
+listing: posts
+site: distill::distill_website
+
+---
+
+
+
+```{r setup, include=FALSE}
+library(distill)
+library(postcards)
+library(metathis)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+
+meta() %>%
+  meta_description(
+    "Personal blog and website of Dr. Calum Webb. Quantitative social science, child welfare, social policy, and occassional Rstats."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Home | Dr. Calum Webb",
+    url = "https://www.calumwebb.co.uk",
+    image = "https://www.calumwebb.co.uk/main-site-preview.png",
+    image_alt = "Preview image of homepage",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary",
+    twitter_creator = "@cjrwebb"
+  )
+
+
+```
+

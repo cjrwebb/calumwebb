@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+description: |
+  A new article created using the Distill format.
+categories:
+  - Blank
+tags:
+  - Blank
+author:
+  - name: Calum Webb
+    url: https:://calumwebb.co.uk
+date: "`r Sys.Date()`"
+twitter:
+  creator: "@cjrwebb"
+preview: https:://calumwebb.co.uk/data-cata.png
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+library(metathis)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+meta() %>%
+  meta_description(
+    "Untitled"
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Untitled",
+    url = "https://www.calumwebb.co.uk",
+    og_type = "website",
+    og_author = "Calum Webb",
+    twitter_card_type = "summary",
+    twitter_creator = "@cjrwebb"
+  )
+
+```
+
+Distill is a publication format for scientific and technical writing, native to the web. 
+
+Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+
+
+
+
+

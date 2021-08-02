@@ -1,0 +1,41 @@
+name: "Calum Webb"
+title: "Calum Webb"
+description: |
+  Calum Webb
+output_dir: "_site"
+theme: calumwebb.css
+base_url: https:://calumwebb.co.uk
+navbar:
+  logo:
+    image: data-cata.png
+    href: index.html
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: calum.html
+    - text: "Datavis Portfolio"
+      href: https://cjrwebb.github.io/datavis/
+    - text: "CWIP App"
+      href: https://www.cwip-app.co.uk
+    - icon: fa fa-twitter
+      href: https://twitter.com/cjrwebb
+    - icon: fa fa-github
+      href: https://github.com/cjrwebb
+    - icon: ai ai-google-scholar
+      href: https://scholar.google.com/citations?user=CNYHo0IAAAAJ&hl=en 
+    - icon: ai ai-orcid
+      href: https://orcid.org/0000-0001-7521-2110
+  search: false
+collections:
+  posts:
+    share: twitter
+    authors_metadata: false
+twitter:
+  site: "@cjrwebb"
+  creator: "@cjrwebb"
+preview: data-cata.png
+output: 
+  distill::distill_article:  
+    includes: 
+      after_body: include_footer.html
