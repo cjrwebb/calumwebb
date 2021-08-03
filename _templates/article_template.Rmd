@@ -31,6 +31,8 @@ meta() %>%
     url = "https://www.calumwebb.co.uk",
     og_type = "website",
     og_author = "Calum Webb",
+    image = "https:://calumwebb.co.uk/data-cata-large.png", 
+    image_alt = "A new article", 
     twitter_card_type = "summary_large_image",
     twitter_creator = "@cjrwebb"
   )
