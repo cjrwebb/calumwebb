@@ -79,7 +79,7 @@ Sufficiency of resource is often a pre-requisite to being able to achieve an obj
 
 # Doing the right thing
 
-```{r, echo = FALSE, fig.alt = "A single panel cartoon shows a cat sat on the floor. Next to him is a ladder, but it's placed inside a seemingly endless hole in the ground. A caption reads: 'If you are doing the wrong thing then doing it better makes you wronger, not righter' (acreditted to Kathy Evans)"}
+```{r, echo = FALSE, fig.align='center',fig.alt = "A single panel cartoon shows a cat sat on the floor. Next to him is a ladder, but it's placed inside a seemingly endless hole in the ground. A caption reads: 'If you are doing the wrong thing then doing it better makes you wronger, not righter' (acreditted to Kathy Evans)"}
 
 knitr::include_graphics("wrong-thing-more.png")
 
