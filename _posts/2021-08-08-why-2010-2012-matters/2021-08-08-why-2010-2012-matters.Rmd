@@ -1,7 +1,7 @@
 ---
 title: "Nothing to see here! Why 2010-11 and 2011-12 matter when it comes to the recent history of local authority finances"
 description: |
-  Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles. 
+  Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Review of Children's Social Care's Case for Change, but also in internal and external reviews of academic journal articles. 
 categories:
   - Social Policy
   - Social Work
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 meta() %>%
   meta_description(
-    "Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles."
+    "Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Review of Children's Social Care's Case for Change, but also in internal and external reviews of academic journal articles."
   ) %>% 
   meta_viewport() %>% 
   meta_social(
@@ -48,7 +48,7 @@ knitr::include_graphics("nothing-to-see.png")
 
 
 
-Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles. 
+Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Review of Children's Social Care's Case for Change, but also in internal and external reviews of academic journal articles. 
 
 The argument basically comes down to whether we can reasonably include spending data from before the 2012-13 fiscal year in analyses of how children's services spending has changed, and how these changes have affected other factors like the numbers of children in need, or the rate of child protection plans, and so on. There are a couple of arguments for doing this, based on good reasons in theory, and an important contextual reason to not do this.
 
@@ -60,7 +60,7 @@ On one side, you have those who argue that data from before 2012-13 should not b
 
 The first is convenience. The spending lines for children's services (Table A1 in the Section 251 Returns) have been consistent since 2012/13, as has the underlying data format for the most recent years and, as such, one has the ability to quickly assess multiple years of data without having to wrangle with different data formats. This is particularly beneficial if you happen to need to do some analysis in haste.
 
-The second, more important reason often given is that before 2012-13 different numbers of, and differently named, categories were used for grouping together types of local authority expenditure. This is true, and is the reason given by the Independent Care Review for focusing on spending after 2012-13 in their [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 18]. For example, in 2010-11 one spending category was called "Sure Start Children's Centres" but, since 2012/13, after a significant funding formula change, the closest matching category was called "Sure Start Children's Centres **and Early Years**". 
+The second, more important reason often given is that before 2012-13 different numbers of, and differently named, categories were used for grouping together types of local authority expenditure. This is true, and is the reason given by the Independent Review of Children's Social Care for focusing on spending after 2012-13 in their [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 18]. For example, in 2010-11 one spending category was called "Sure Start Children's Centres" but, since 2012/13, after a significant funding formula change, the closest matching category was called "Sure Start Children's Centres **and Early Years**". 
 
 There would clearly be a risk if we were to treat these categorisations of spending as the same over time. Increases in expenditure between 2010-11 and 2012-13, for example, might be the result of local authority accountants recategorising some spending to account for the overt inclusion of early years in the spending category. 
 
@@ -92,7 +92,7 @@ This grouping does not advantage the arguments of those pushing a specific agend
 
 We have actually found in more recent studies that this grouping is quite conservative when it comes to the scale of the cuts to public services, and have started to recommend its use as a sensitivity test if a study relies on a more precarious grouping of categories (for example, when trying to delineate between services for teenagers as opposed to services for very young children).  What it does enable us to do is imperfectly bridge the differences in data between everything before 2012-13 and everything after 2012-13.
 
-Curiously, the footnotes of the Independent Care Review's [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 9] document imply that something almost identical to the above categorisation of expenditure was used to delineate between 'statutory' and 'non-statutory' spending.^[Though I strongly disagree with family support, Sure Start, and services for young people being called "Non-statutory", as one interpretation of Section 17 of the Children Act 1989 is that these services are a legal duty of local authorities.] It is not clear why, then, they chose not to integrate spending from 2010-11 and 2011-2012 when this harmonised grouping makes it possible, and was deliberately used in past studies like ours for this explicit purpose.
+Curiously, the footnotes of the Independent Review of Children's Social Care's [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 9] document imply that something almost identical to the above categorisation of expenditure was used to delineate between 'statutory' and 'non-statutory' spending.^[Though I strongly disagree with family support, Sure Start, and services for young people being called "Non-statutory", as one interpretation of Section 17 of the Children Act 1989 is that these services are a legal duty of local authorities.] It is not clear why, then, they chose not to integrate spending from 2010-11 and 2011-2012 when this harmonised grouping makes it possible, and was deliberately used in past studies like ours for this explicit purpose.
 
 ---
 
@@ -186,7 +186,7 @@ For non-safeguarding, non-children looked after services spending the pattern is
 
 ## Conclusion
 
-Intentionally or not, excluding the results of the actions of the Conservative-led coalition government in their first two years of power, as the Independent Care Review has in their Case for Change, paints a far more rosy picture of local authority children's services finances in the recent past. Even if there are legitimate reasons for these years to be excluded, which does not appear to be the case here, the distorting effect it has on the representation of the policy and funding landscape should at least be acknowledged. 
+Intentionally or not, excluding the results of the actions of the Conservative-led coalition government in their first two years of power, as the Independent Review of Children's Social Care has in their Case for Change, paints a far more rosy picture of local authority children's services finances in the recent past. Even if there are legitimate reasons for these years to be excluded, which does not appear to be the case here, the distorting effect it has on the representation of the policy and funding landscape should at least be acknowledged. 
 
 What we gain for excluding these years in terms of the comparability of spending categories is minimal and remains problematic when comparing local authorities or change over time. By contrast, what we lose from the picture is an enormous shock to local authority spending power in a very short time frame. The start of the decade saw swingeing cuts, the effects of which local authorities are still contending with. What follows 2013 often looks like mild bloodletting in comparison. 
 
