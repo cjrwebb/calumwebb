@@ -3,8 +3,8 @@ title: "Sufficiency is more important than efficiency if you want to improve pub
 description: |
  Things seemed to be going well. There was a general acknowledgment in the room that family support services and early help interventions were well worth investing in. And then, very slowly, the focus of the conversation started to change.
 categories:
-  - social policy
-  - social work
+  - Social Policy
+  - Social Work
 author:
   - name: Calum Webb
     url: https://calumwebb.co.uk/posts/2021-08-03-sufficiency-and-efficiency
