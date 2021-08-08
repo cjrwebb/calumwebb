@@ -1,0 +1,204 @@
+---
+title: "Nothing to see here! Why 2010-11 and 2011-12 matter when it comes to the recent history of local authority finances"
+description: |
+  Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles. 
+categories:
+  - Social Policy
+  - Social Work
+author:
+  - name: Calum Webb
+    url: https://calumwebb.co.uk/posts/2021-08-08-why-2010-2012-matters
+date: "2021-08-08"
+twitter:
+  creator: "@cjrwebb"
+preview: nothing-to-see.png
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+library(metathis)
+library(tidyverse)
+library(gt)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+meta() %>%
+  meta_description(
+    "Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "Nothing to see here! Why 2010-11 and 2011-12 matter when it comes to the recent history of local authority finances",
+    url = "https://www.calumwebb.co.uk/posts/2021-08-08-why-2010-2012-matters",
+    og_type = "website",
+    og_author = "Calum Webb",
+    image = "https://calumwebb.co.uk/posts/2021-08-08-why-2010-2012-matters/nothing-to-see-twitter.png", 
+    image_alt = "A cat in front of a bar chart covering up the first two bars.", 
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+```
+
+```{r, echo = FALSE, fig.align='center', fig.alt="A cat sits on top of a bar chart deliberately obscuring the first two bars. A speech bubble from the cat reads: 'Nothing to see here!'"}
+
+knitr::include_graphics("nothing-to-see.png")
+
+```
+
+
+
+Let's clear up some misconceptions about data on local authority children's services spending over the past ten years. I've seen this discussion pop up now and again in relation to the Independent Care Review's Case for Change, but also in internal and external reviews of academic journal articles. 
+
+The argument basically comes down to whether we can reasonably include spending data from before the 2012-13 fiscal year in analyses of how children's services spending has changed, and how these changes have affected other factors like the numbers of children in need, or the rate of child protection plans, and so on. There are a couple of arguments for doing this, based on good reasons in theory, and an important contextual reason to not do this.
+
+---
+
+## Why might we want to exclude data before 2012-13 from our analyses of children's services spending?
+
+On one side, you have those who argue that data from before 2012-13 should not be included in longitudinal analyses of local authority spending. There are two major reasons why you might want to do this that I am familiar with.
+
+The first is convenience. The spending lines for children's services (Table A1 in the Section 251 Returns) have been consistent since 2012/13, as has the underlying data format for the most recent years and, as such, one has the ability to quickly assess multiple years of data without having to wrangle with different data formats. This is particularly beneficial if you happen to need to do some analysis in haste.
+
+The second, more important reason often given is that before 2012-13 different numbers of, and differently named, categories were used for grouping together types of local authority expenditure. This is true, and is the reason given by the Independent Care Review for focusing on spending after 2012-13 in their [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 18]. For example, in 2010-11 one spending category was called "Sure Start Children's Centres" but, since 2012/13, after a significant funding formula change, the closest matching category was called "Sure Start Children's Centres **and Early Years**". 
+
+There would clearly be a risk if we were to treat these categorisations of spending as the same over time. Increases in expenditure between 2010-11 and 2012-13, for example, might be the result of local authority accountants recategorising some spending to account for the overt inclusion of early years in the spending category. 
+
+There is some evidence that this is a valid concern. For example, the total expenditure recorded in the "Other children and families services" category in the 2011 to 2012 fiscal year drops from £401 million to £110 million in the next fiscal year, while the total expenditure recorded in the "Sure Start Children's Centres/Sure Start Children's Centres and Early Years" grows from £1.1 billion to almost £1.2 billion. How can we be sure that these changes aren't just a result of changes in accounting practices? We can't. So, in theory, it's sensible to exclude the earlier 2010-11 and 2011-12 years to ensure a more valid comparison of how, say, children's centres expenditure has changed over time... Right?
+
+## Separating spending categories in theory and practice.
+
+Sadly, no. The boundaries between categories, especially those that encompass preventative and family support services, are so porous that there's really no way of knowing whether spending on services is recorded consistently between local authorities or even within the same local authority over time, even if you exclude 2010-11 and 2011-12. Anecdotally, we know that they are not.
+
+To take an example, Sheffield and Derby, which have very similar levels of deprivation, recorded dramatically different levels of expenditure per child for some of these categories in 2012/13. In Sheffield, the spend per child on 'Sure Start Centres and Early Years' was recorded as £115 per child but in Derby this figure was £63 per child. Meanwhile, spend on 'Other children and families services' was 3.25 times higher in Derby (£39.18 per child) than it was in Sheffield (£12.05 per child), and the spend on 'Family Support Services' per child was almost 25 per cent lower in Derby (£77.37 per child) than in Sheffield (£102.41).
+
+Are there real differences in policy and commissioning of services between Sheffield and Derby? Probably, yes. But depending on how we group these broad preventative and family support categories the difference between the two local authorities looks very different. If we compared them on just one category, for example, 'Sure Start Children's Centres and Early Years', we'd find that Derby spends only 55 per cent of what Sheffield does. But if we were to include everything, including their vast difference in spending on 'Other children and families services', this changes to Derby spending 67 per cent of what Sheffield does. This 12 percentage point difference is not a trivial amount.
+
+Even if we want to leverage the benefits of having more comparable categories of spending by limiting our analysis to 2012-13 onward, this still leaves us with unreliable comparisons that will vary depending on the value judgements made by the analyst. This includes, for example, whether to include or exclude 'Other children and families services' as preventative, early help, and family support provision, for which 40 out of 152 local authorities in 2012-13 recorded no expenditure at all. Perhaps these local authorities merely categorised the same expenditure under another heading, whereas others felt it could not be classified in this way. Some categories, like Youth Justice, are even more difficult to allocate to a larger group.
+
+It would be a great advantage for research if we were confidently able to precisely delineate spending between categories. We could, in theory, analyse whether some kinds of spending, for example, 'family support' as opposed to 'services for young people', are associated with better outcomes for some children and young people, e.g. teenagers. Sadly, this limitation of the data means we would not be able to be truly confident our results really showed this; at least some sensible grouping of expenditure is required regardless of whether we limit ourselves to data after 2012-13 or not.
+
+---
+
+## How can we group expenditure categories to compare change over time?
+
+In our [2018 article](https://doi.org/10.1080/03003930.2018.1430028), Paul Bywaters and I argued that the safest way to include data from before 2012-13 in analyses of children's services spending was to instead create three groups from the comparable meta-categories. These groupings of expenditure were: 'safeguarding expenditure'; 'children looked-after expenditure'; and 'non-safeguarding, non-children looked after related expenditure'. Safeguarding expenditure includes everything under the 'Safeguarding children and young people's services' heading and children looked-after expenditure includes everything under the 'Children looked after' heading.
+
+These two headings very specifically and consistently point towards local authority children and families social work functions, commissioning and children's services strategy, and local children's safeguarding boards for 'safeguarding expenditure' and towards all costs associated with children looked-after for 'children looked-after expenditure'. There is likely to be far less leakage between these two categories and everything else over time and between local authorities because of how closed their interpretation is.
+
+Everything else, on the other hand, is likely to leak between the remaining categories. What is considered a family support service in one local authority might be an 'Other children and families service' in another; what might have been a 'service for young people' at the start of the decade might be recast as something else by the end.
+
+This grouping does not advantage the arguments of those pushing a specific agendas that the cuts have been larger or those arguing they have been smaller in any way. One could selectively pick only the category that happens to show the largest or smallest decrease over time if they wanted to do that. 
+
+We have actually found in more recent studies that this grouping is quite conservative when it comes to the scale of the cuts to public services, and have started to recommend its use as a sensitivity test if a study relies on a more precarious grouping of categories (for example, when trying to delineate between services for teenagers as opposed to services for very young children).  What it does enable us to do is imperfectly bridge the differences in data between everything before 2012-13 and everything after 2012-13.
+
+Curiously, the footnotes of the Independent Care Review's [Case for Change](https://childrenssocialcare.independent-review.uk/wp-content/uploads/2021/06/case-for-change.pdf)^[Page 9] document imply that something almost identical to the above categorisation of expenditure was used to delineate between 'statutory' and 'non-statutory' spending.^[Though I strongly disagree with family support, Sure Start, and services for young people being called "Non-statutory", as one interpretation of Section 17 of the Children Act 1989 is that these services are a legal duty of local authorities.] It is not clear why, then, they chose not to integrate spending from 2010-11 and 2011-2012 when this harmonised grouping makes it possible, and was deliberately used in past studies like ours for this explicit purpose.
+
+---
+
+## Nothing to see here: Why shouldn't we exclude 2010-11 and 2011-12 from our analyses of children's services spending?
+
+As [Dr. Harriet Churchill documented in the _Journal of Children's Services_](https://doi.org/10.1108/JCS-05-2013-0020) far before we did in *Local Government Studies* in 2018, some of the largest cuts to children's services came immediately after the 2008 recession and at the start of the Conservative-led coalition government. By sheer virtue of the magnitude of these cuts, and how little was left in the local authority central grant by 2013, we see a significant levelling off after this and, as you can see in the [CWIP App](https://cwip-app.co.uk), well into the future.
+
+Our original analysis showed the median expenditure per child against the three categories above between 2010-11 and 2014-15. If we ignore 2010-11 and 2011-12 momentarily, the paper would show that there was a £17 per child cut in all children's services expenditure between 2012-13 and 2014-15 (around 2%),^[I did erroneously write this as a £15 cut per child in a tweet, because I was looking at the 2011-12 column and not the 2012-13 one.] and a £46 per child cut in non-safeguarding, non-children looked-after expenditure (around 15%).
+
+By contrast, if we changed our baseline to 2010-11, we would find that the decrease was £105 per child in all expenditure (around -11.35%) and £167 per child in non-safeguarding, non-children looked-after expenditure (a 38.3% reduction). In other words, __comparing 2014-15 to a baseline of 2012-13 as opposed to 2010-11 masks cuts to services that are between 3.6 and 6.2 times larger in magnitude than those after 2012-13__.
+
+Let's update these figures with data from the CWIP App through to 2018-19. The table below shows average expenditure per child in local authorities in England, adjusted for inflation:
+
+---
+
+```{r, layout = "l-page", echo=FALSE}
+
+all_exp <- tibble(
+  `Year` = c("2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19"),
+  `All expenditure per child` = c(1041, 920, 924, 913, 896, 880, 864, 866, 887)
+) %>%
+  mutate(
+    `Change (All, £-per-child) 2012-13 Baseline` = ifelse(`Year` %in% c("2010-11", "2011-12", "2012-13"), NA, `All expenditure per child`-924),
+    `Change (All, %) 2012-13 Baseline` = ifelse(`Year` %in% c("2010-11", "2011-12", "2012-13"), NA, round(`All expenditure per child`/924*100, 1) - 100),
+    `Change (All, £-per-child) 2010-11 Baseline` = ifelse(`Year` %in% c("2010-11"), NA, `All expenditure per child`-1041),
+    `Change (All, %) 2010-11 Baseline` = ifelse(`Year` %in% c("2010-11"), NA, round(`All expenditure per child`/1041*100, 1)-100),
+  )
+
+
+gt(all_exp) %>%
+  fmt_missing(columns = everything(), missing_text = "") %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_column_labels(everything())
+  ) %>%
+  cols_width(
+    `Year` ~ px(100),
+    everything() ~ px(150)
+  ) %>%
+  tab_options(table.font.size = 12, heading.align = "left") %>%
+  tab_header(title = md("**Table 1: Change in Spending on all Children's Services Depending on Baseline Year**")) %>%
+  fmt_markdown(columns = everything())
+
+
+```
+<br>
+
+```{r, layout = "l-page", echo = FALSE}
+
+nsnc <- tibble(
+  `Year` = c("2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19"),
+  `Non-SG, non-CLA expenditure per child` = c(483, 383, 354, 329, 309, 277, 251, 234, 229)
+) %>%
+  mutate(
+    `Change (Non-SG/CLA, £-per-child) 2012-13 Baseline` = ifelse(`Year` %in% c("2010-11", "2011-12", "2012-13"), NA, `Non-SG, non-CLA expenditure per child`-354),
+    `Change (Non-SG/CLA, %) 2012-13 Baseline` = ifelse(`Year` %in% c("2010-11", "2011-12", "2012-13"), NA, round(`Non-SG, non-CLA expenditure per child`/354*100, 1)-100),
+    `Change (Non-SG/CLA, £-per-child) 2010-11 Baseline` = ifelse(`Year` %in% c("2010-11"), NA, `Non-SG, non-CLA expenditure per child`-483),
+    `Change (Non-SG/CLA, %) 2010-11 Baseline` = ifelse(`Year` %in% c("2010-11"), NA, round(`Non-SG, non-CLA expenditure per child`/483*100, 1)-100),
+  ) %>%
+  mutate(
+    `Change (Non-SG/CLA, %) 2012-13 Baseline` = round(`Change (Non-SG/CLA, %) 2012-13 Baseline`, 1)
+  )
+
+gt(nsnc) %>%
+  fmt_missing(columns = everything(), missing_text = "") %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_column_labels(everything())
+  ) %>%
+  cols_width(
+    `Year` ~ px(100),
+    everything() ~ px(150)
+  ) %>%
+  tab_options(table.font.size = 12, heading.align = "left") %>%
+  tab_header(title = md("**Table 2: Change in Spending on Non-Safeguarding, Non-Children Looked-After Children's Services Depending on Baseline Year**")) %>%
+  fmt_markdown(columns = everything())
+
+
+```
+
+
+---
+
+Table 1 shows us that using 2012-13 as a baseline rather than 2010-11 hides around £117 in cuts in children's services per child from the preceding two fiscal years. This means our end figure in terms of £s-per-head is more than 4 times smaller than it would have been if the baseline had been 2010-11. Using 2012-13 as a baseline results in a much more modest 4 per cent decrease in expenditure per child than the 14.8 per cent decrease when comparing 2010-11 to 2018-19.
+
+For non-safeguarding, non-children looked after services spending the pattern is repeated. The absolute cuts to these services would be more than doubled from £125 per child to £254 per child if 2010-11 were set as the baseline. Similarly, the already dire 35.3 per cent relative decrease in spending would be inflated further to a 52.6 per cent one.
+
+## Conclusion
+
+Intentionally or not, excluding the results of the actions of the Conservative-led coalition government in their first two years of power, as the Independent Care Review has in their Case for Change, paints a far more rosy picture of local authority children's services finances in the recent past. Even if there are legitimate reasons for these years to be excluded, which does not appear to be the case here, the distorting effect it has on the representation of the policy and funding landscape should at least be acknowledged. 
+
+What we gain for excluding these years in terms of the comparability of spending categories is minimal and remains problematic when comparing local authorities or change over time. By contrast, what we lose from the picture is an enormous shock to local authority spending power in a very short time frame. The start of the decade saw swingeing cuts, the effects of which local authorities are still contending with. What follows 2013 often looks like mild bloodletting in comparison. 
+
+---
+
+Well done if you made it this far, you might enjoy this dramatisation I made of your average Twitter debate about local authority children's services finances as a Phoenix Wright case.
+
+
+```{r, layout = "l-page", echo = FALSE}
+
+html('<iframe width="1664" height="801" src="https://www.youtube.com/embed/IndFcDQmoyE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>')
+
+```
+
+
