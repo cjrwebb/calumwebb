@@ -21,14 +21,14 @@
       "description": "Personal blog and website of Dr. Calum Webb. Quantitative social science, child welfare, social policy, and occassional Rstats.\n",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-08T19:50:03+01:00"
+      "last_modified": "2021-08-08T20:19:16+01:00"
     },
     {
       "path": "posts.html",
       "title": "Blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-08T19:49:54+01:00"
+      "last_modified": "2021-08-08T20:18:35+01:00"
     }
   ],
   "collections": ["posts/posts.json"]
