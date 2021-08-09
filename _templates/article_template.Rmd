@@ -13,7 +13,10 @@ date: "`r Sys.Date()`"
 twitter:
   creator: "@cjrwebb"
 preview: https://calumwebb.co.uk/data-cata.png
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    includes: 
+      after_body: ../../include_footer.html
 ---
 
 ```{r setup, include=FALSE}

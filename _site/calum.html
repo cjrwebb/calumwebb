@@ -874,12 +874,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
           <!--radix_placeholder_site_after_body-->
-          <script type="text/javascript" src="links.js"></script>
+          <script type="text/javascript">
+            (function() {
+            for (const link of document.getElementsByTagName('a')) {
+              if (/^(https?:)?\/\//.test(link.getAttribute('href'))) link.target = '_blank';
+            }
+          })();
+          </script>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
           <!--/radix_placeholder_site_after_body-->
           <!--radix_placeholder_navigation_after_body-->
           <!--/radix_placeholder_navigation_after_body-->
-          <script type="text/javascript" src="links.js"></script>
+          <script type="text/javascript">
+            (function() {
+            for (const link of document.getElementsByTagName('a')) {
+              if (/^(https?:)?\/\//.test(link.getAttribute('href'))) link.target = '_blank';
+            }
+          })();
+          </script>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
   </body>

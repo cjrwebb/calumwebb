@@ -2192,7 +2192,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <!--radix_placeholder_site_after_body-->
-<script type="text/javascript" src="links.js"></script>
+<script type="text/javascript">
+  (function() {
+  for (const link of document.getElementsByTagName('a')) {
+    if (/^(https?:)?\/\//.test(link.getAttribute('href'))) link.target = '_blank';
+  }
+})();
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->

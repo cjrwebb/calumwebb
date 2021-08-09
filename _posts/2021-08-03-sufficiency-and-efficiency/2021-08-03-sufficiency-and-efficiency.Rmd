@@ -12,7 +12,10 @@ date: "2021-08-03"
 twitter:
   creator: "@cjrwebb"
 preview: sufficiency-and-efficiency-preview.png
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    includes: 
+      after_body: ../../include_footer.html
 ---
 
 ```{r setup, include=FALSE}

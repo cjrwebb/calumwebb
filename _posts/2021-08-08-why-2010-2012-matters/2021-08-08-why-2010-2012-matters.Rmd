@@ -15,7 +15,7 @@ preview: nothing-to-see.png
 output: 
   distill::distill_article:
     includes: 
-      after_body: https://calumwebb.co.uk/include_footer.html
+      after_body: ../../include_footer.html
 ---
 
 ```{r setup, include=FALSE}
