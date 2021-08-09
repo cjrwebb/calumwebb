@@ -12,7 +12,10 @@ date: "2021-08-08"
 twitter:
   creator: "@cjrwebb"
 preview: nothing-to-see.png
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    includes: 
+      after_body: https://calumwebb.co.uk/include_footer.html
 ---
 
 ```{r setup, include=FALSE}
@@ -192,7 +195,7 @@ What we gain for excluding these years in terms of the comparability of spending
 
 ---
 
-Well done if you made it this far, you might enjoy this dramatisation I made of your average Twitter debate about local authority children's services finances as a Phoenix Wright case.
+Well done if you made it this far, you might enjoy this dramatisation I made of your average Twitter debate about local authority children's services finances as a Phoenix Wright case. I created this using [objection.lol](https://objection.lol).
 
 
 ```{r, layout = "l-page", echo = FALSE}
