@@ -36,6 +36,9 @@ twitter:
 preview: cfc-response-preview.png
 output: 
   distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
     includes: 
       after_body: ../../include_footer.html
 ---
@@ -152,6 +155,8 @@ The financing of such aspirations was then, and continues to be, the elephant in
 Support has consistently played second fiddle to protection in a risk averse climate and, indeed, this is understandable in many ways. As Parton noted, as far back as 1996, in the context of the re-focusing debates, achieving a balanced set of activities required facing up to the very problematic implications of how successive child death tragedies had been discussed and dealt with by politicians and the media.[@parton1996child] This has not improved in subsequent decades.[@warner2015emotional] Indeed, there has been a failure to build respectful and thoughtful dialogue and cultural and political consensus around the needs of children, the responsibilities of their families, communities and local and national governments.[@featherstone2018protecting] Child deaths have, too often, proved a lightening-rod for the playing out of political divisions and the performance of moral outrage to secure short-term political advantage. Without careful and painstaking work on what is needed to protect children at all levels of society, work which requires courage, pendulum swings will continue and, indeed, are likely to jeopardise the aspirations of the review itself. 
 
 These courageous conversations must involve engaging with long standing attitudes towards those who are poor. The move away from the more universal provision of welfare services established in the post-war period towards increasingly targeted provision brought with it a renaissance of publicly accepted, or even encouraged, acrimonious sentiment towards those who happen to be, often transiently, on the recipient side of our social contract.[@van2017social]<sup>,</sup>[@shildrick2012poverty]<sup>,</sup>[@hills2017good] This is characterised by narratives of ‘deservingness’ and ‘undeservingness’ and ‘scrounging’ and ‘striving’ and is reflected in the opposition of risk with need, or protection with support.  It can be argued that these attitudes have existed since antiquity but had been ratcheted up as increasingly rationed provision of support and blame-laden political narratives stoked perceptions of undeserving groups: ‘benefits cheats’ or the ‘intergenerationally workless’, with such framings particularly targeting lone and working-class mothers.[@macdonald2014benefits]<sup>,</sup>[@tyler2013revolting] Social work and children’s social care do not exist in a vacuum outside of these attitudes and the policies that take advantage of them. What austerity policies and their flawed evidence-base achieved at the onset of the 2010 decade was a wholesale legitimisation and encouragement of such attitudes, and a strengthening of their institutionalisation in many public services, particularly in our benefits system.  Our research has found that social workers have been placed in the centre of this moral maze as they have faced a tsunami of unmet need and the hollowing out of support services.[@morris2018social] 
+
+Finally, we consider there is a curious silence on the possible contribution of Ofsted to the focus on investigations.  In our previous submission we noted that it was much more difficult for deprived local authorities to receive ‘good’ or ‘outstanding’ than more affluent local authorities, and, moreover, that judgments of ‘inadequate’ commonly led to more Section 47 enquiries, child protection plans and ‘heavy end’ interventions.[@hood2021evidence]  
 
 ## Removing burdens or reducing rights? 
 
