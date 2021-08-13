@@ -9,6 +9,7 @@ author:
   - name: Calum Webb
     url: https://calumwebb.co.uk/posts/2021-08-08-why-2010-2012-matters
 date: "2021-08-08"
+citation_url: https://calumwebb.co.uk/posts/2021-08-08-why-2010-2012-matters
 twitter:
   creator: "@cjrwebb"
 preview: nothing-to-see.png

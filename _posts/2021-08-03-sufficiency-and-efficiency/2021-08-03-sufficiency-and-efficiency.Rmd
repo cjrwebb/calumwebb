@@ -9,6 +9,7 @@ author:
   - name: Calum Webb
     url: https://calumwebb.co.uk/posts/2021-08-03-sufficiency-and-efficiency
 date: "2021-08-03"
+citation_url: https://calumwebb.co.uk/posts/2021-08-03-sufficiency-and-efficiency
 twitter:
   creator: "@cjrwebb"
 preview: sufficiency-and-efficiency-preview.png

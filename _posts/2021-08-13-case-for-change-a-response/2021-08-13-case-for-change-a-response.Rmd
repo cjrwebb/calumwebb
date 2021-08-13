@@ -1,0 +1,190 @@
+---
+title: "The Case for Change: A response"
+description: |
+  This submission has been compiled by a group of university researchers whose work has addressed similar themes and issues, with a common concern being the relationship between children’s social care services, socio-economic factors such as poverty and deprivation, and avoidable inequalities in child welfare interventions. It builds upon a previous submission made by the authors in response to the Call for Evidence.
+categories:
+  - Social Work
+  - Social Policy
+author:
+  - name: Brid Featherstone
+    affiliation: The University of Huddersfield
+    url: https://pure.hud.ac.uk/en/persons/brid-featherstone
+  - name: Calum Webb
+    affiliation: The University of Sheffield
+    url: https://calumwebb.co.uk
+  - name: Paul Bywaters
+    affiliation: The University of Huddersfield
+    url: https://pure.hud.ac.uk/en/persons/paul-bywaters
+  - name: Anna Gupta
+    affiliation: Royal Holloway University of London
+    url: https://pure.royalholloway.ac.uk/portal/en/persons/anna-gupta(0e6782f9-00e6-4cf7-bf64-e34eda2e3061).html
+  - name: Andy Bilson
+    affiliation: University of Central Lancashire
+    url: https://bilson.org.uk/?doing_wp_cron=1628794528.0747799873352050781250
+  - name: Kate Morris
+    affiliation: University of Sheffield
+    url: https://www.sheffield.ac.uk/socstudies/people/academic-staff/kate-morris
+  - name: Rick Hood
+    affiliation: Kingston University and St. George’s, University of London
+    url: https://www.kingston.ac.uk/staff/profile/professor-rick-hood-836/
+date: "2021-08-13"
+bibliography: case-for-change.bib
+csl: apa-numeric-superscript.csl
+citation_url: https://www.calumwebb.co.uk/posts/2021-08-13-case-for-change-a-response
+twitter:
+  creator: "@cjrwebb"
+preview: cfc-response-preview.png
+output: 
+  distill::distill_article:
+    includes: 
+      after_body: ../../include_footer.html
+---
+
+
+
+```{r setup, include=FALSE}
+library(metathis)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+meta() %>%
+  meta_description(
+    "This submission has been compiled by a group of university researchers whose work has addressed similar themes and issues, with a common concern being the relationship between children’s social care services, socio-economic factors such as poverty and deprivation, and avoidable inequalities in child welfare interventions."
+  ) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = "The Case for Change: A response",
+    url = "https://www.calumwebb.co.uk/posts/2021-08-13-case-for-change-a-response",
+    og_type = "website",
+    og_author = "Calum Webb",
+    image = "https://calumwebb.co.uk/posts/cfc-response-twitter.png", 
+    image_alt = "A cat floating along with the care review confetti.", 
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cjrwebb"
+  )
+
+```
+
+*This is a digital version of a [joint submission](https://www.pfan.uk/the-case-for-change-a-response/) to the Independent Review of Children's Social Care*
+
+This submission has been compiled by a group of university researchers whose work has addressed similar themes and issues, with a common concern being the relationship between children’s social care services, socio-economic factors such as poverty and deprivation, and avoidable inequalities in child welfare interventions. It builds upon a previous submission made by the authors in response to the Call for Evidence.[@hood2021evidence]
+
+---
+
+## Introduction 
+
+The Case for Change (CfC) offers an important opportunity to address fundamental questions about the kinds of systems and practices that have been developed over time under the rubric of child protection. It identifies some key tensions, most notably around protection and support, with a particular concern to explore the perception that the current system is too focused on investigations rather than help. It also highlights the very significant challenges faced by care-experienced children and young people.
+
+While there is much in the CfC that we find persuasive in its description of the impacts of contemporary practices and systems, we agree with those who have noted that an understanding of the present situation requires a clear analysis of the past and particularly of the policy choices that have led to the present and this is missing from the document.[@evans2021probing]
+
+In this response, we offer an analysis of why help is so often not available to families currently and identify the importance of offering such help. We also offer an analysis of some of the challenges facing those children and young people who enter the care system and our concerns about the lack of discussion about the complexities of adoption in the CfC.
+
+We start by highlighting why, if the Independent Review of Children’s Social Care (hereafter called the review) is to be truly transformative, it needs to engage much more fully with the lessons of Covid-19 than the CfC does.  
+
+
+## Covid-19: a game changer? 
+
+
+It is perhaps surprising that the CfC, with its promotion of a ‘once in a generation’ opportunity to engage in fundamental reform, pays so little attention to Covid-19 and the key messages that have emerged. 
+
+Michael Marmot and colleagues in public health have been particularly influential in highlighting how the pandemic has exposed and intensified long standing inequalities in economic and social conditions and the contribution these have made to the high and unequal death toll from Covid-19.[@marmot2020build]
+
+In February 2020, before the impacts of Covid-19 became evident, Marmot and his colleagues reported on health inequalities with the finding that, over the previous decade, life expectancy had fallen for some groups: 
+ 
+> England experienced continuous improvements in life expectancy but from 2011 these improvements slowed dramatically, almost grinding to a halt. For part of the decade 2010-2020 life expectancy actually fell in the most deprived communities outside London for women and in some regions for men. For men and women everywhere the time spent in poor health is increasing.[@marmot2020health] 
+
+Not only had the social gradient in mortality and morbidity become steeper over the decade, but years spent in ill-health went up. A subsequent report in December 2020[@marmot2020build] provided detailed data on the way in which pre-existing socioeconomic inequalities worsened the impact of the virus and argued for the need to ‘build back fairer’ and tackle the ‘causes of the causes’:
+
+* Age-standardised mortality rates were almost double in the most deprived areas for Covid-19 and for other causes. 
+* Those living in overcrowded housing, working in low-paid insecure work such as in public transport, leisure, hospitality, care work or service industries and their children had been disproportionately affected. They were also more likely to be from an ethnic minority background.
+
+The concept of the social gradient, the term used to describe the phenomenon whereby people who are less advantaged socio-economically have worse health than those who are more advantaged, has become much more accepted beyond public health as a result of the pandemic. Researchers have highlighted its relevance to mental health difficulties[@rose2020social] and very recently to domestic abuse.[@skafida2021prevalence]
+
+In the context of successive lockdowns and restrictions, housing issues achieved renewed significance. The disparities in living conditions became starkly apparent amid evidence of a crisis in sufficiency, quality and affordability that has been 30 years in the making. The impacts of poor housing conditions upon children’s safety, physical and mental health are considerable and becoming more fully recognised by those involved in research, policy and practice.[@cross2021housing]
+
+While children and young people have not been as vulnerable to illness and death, they have been disproportionately, and unequally, harmed by the impacts of restrictions and lockdown.[@marmot2021building] The closure of early years services, schools and youth facilities and disruption to universities, further education and apprenticeships have led to widening inequalities in children and young people’s development and education and in post-18 training and employment. This group is also experiencing rapid increases in unemployment and there has been a rise in mental health difficulties from a level that was already concerning.[@healthequityndgreater]
+
+Overall, the pandemic has highlighted the dynamic and shifting contours of deprivation and its impact on an array of social problems. It emphasises the importance of engaging with the reality that demand in areas such as Children’s Social Care will fluctuate in line with socio-economic changes and the wider policy choices that affect these, for better or ill. 
+
+The pandemic has also taught us a lot about what can be achieved when national and local government work together as well as the strengths to be found in communities. Mutual aid activities have been a feature of disasters historically[@solnit2010hope] and this pandemic has proved no exception.[@tiratelli2020second] Already existing developments around The Community Paradigm and the work of Hilary Cottam on Radical Help have been the subject of a renewed focus of attention and highlighted lessons for Children’s Social Care, as well as more widely, about the importance of working in, and with communities, post-pandemic.[@featherstone2021post]<sup>,</sup>[@featherstone2021thematic]
+
+In Children’s Social Care, there is growing interest in moving beyond reliance on top-down professional-led approaches to protecting children to those that that promote community and locality-based services, co-production and peer support. It is vital to locate these developments within the lessons we have learned, however, about the importance of a robust framework of rights and entitlements guaranteed by the local and national state.    
+
+Children’s Social Care is a key part of the collective endeavour that will be needed to ‘build back fairer’.  If it is to play its part well, it will need to be integrated with wider social efforts to tackle poverty and inequality so that we can tackle current challenges as well as prevent future difficulties.[@healthequityndgreater]  We would, therefore, urge the review to engage with contemporary debates and developments around ‘building back fairer’ and the implications.
+
+
+## Why do families not get the help they need currently? 
+
+We share the concerns outlined in the CfC in relation to the lack of timely accessible non- stigmatising help for families experiencing a range of difficulties.  However, the analysis in the CfC remains at the level of the descriptive promoting the dangerous illusion that all that is required is for social workers and local authorities to change their practices and simply reorient what they are doing. Understanding why the current system is not helping families in the way we would want requires an understanding of the political, economic, and social forces that have orchestrated the decline in availability and effectiveness of preventative and family support services[@featherstone2018protecting]<sup>,</sup>[@webbunderreviewausterity]<sup>,</sup>[@webbunderreviewdefence]. It also means a hard-headed look at the roles played by successive governments and wider cultural forces in fostering risk averse practices. 
+
+On the supply side, it is becoming clearer and clearer that the austerity policies of Conservative-led governments, over the last decade, cannot be disassociated from their consequences for children’s services. The review ignores the vast majority of cuts made to local authority children’s and young peoples’ services by the Conservative-led coalition government in the years immediately preceding the starting point of their analysis at its peril; analysing spending changes from a baseline of 2012-13 rather than 2010-11, for example, obscures just over 75 per cent of reductions in spending per child over the decade.[@webb2021nothing]<sup>,</sup>[@webb2018austerity] The Local Government Association reported that local authorities have lost more than 60 per cent of the central government funding they received in 2010/11, which equates to nearly £16 billion.[@adcs2018safeguarding] The average expenditure per child on children and young people’s services has fallen by 14.8 per cent between 2010/11 and 2018/19, and expenditure on family support services, services for young people, children’s centres, and other activities not directly related to children looked-after services or child protection safeguarding has fallen on average by 52.6 per cent.[@webb2021nothing] These spending reductions have been up to 1.5 times larger in the most deprived third of local authorities due to the regressive changes to the funding formula made in 2012 and the inequitable impact of central government core grant funding reductions due to more affluent local authorities’ greater capacity to raise revenue through local taxes and business rates.[@webb2018austerity]<sup>,</sup>[@ce2017safeguarding] It is estimated that over 750 youth centres and 1,000 registered children’s centres have been closed between 2010 and 2019, and 2009 and 2017, respectively.[@ymca2020out]<sup>,</sup>[@smith2018stop]
+
+The scale of investment needed to not only pull services back from the brink that ten years of austerity has pushed them towards, but to meet the rights and entitlements of children and families in England under the UNCRC and the Children Act 1989, is not acknowledged in the CfC.  Equally, the Department for Education and Secretary of State for Education’s response to the Case for Change is extremely concerning.  They promote a proposed £14 million investment in ‘Family Hubs’, and the £24 million regional recovery fund for children’s social care, as proactive progress towards investment in children’s services seemingly oblivious to the inadequacy of this sum, which, even when combined, amounts to £250,000 per local authority, less than £2.70 per child in England. By our estimates, this is less than 1.1 per cent of the average amount of funding cut from local authorities’ early help and family support spending alone over the past ten years. At this rate of re-investment, even if it were provided every year from this point onwards, it would take more than 55 years to see similar levels of spending in our children’s services as those last seen in 2010-11, and that is assuming the costs of services remain the same, no further cuts to central government funding are made, and the additional support made available each year is increased with inflation. As such, it is clearly an inadequate response to the issues raised by the CfC that the review should challenge.
+
+While the amount proffered by the Department for Education is grossly inadequate, we believe the direction of movement towards reinvestment in family support and early help that the CfC supports is right, so long as doing so does not erode children’s rights, exacerbate existing inequities in availability of support across the country, remove or diminish accountability and oversight, or otherwise fundamentally oppose the aspirations of the Children Act 1989 that sees support and protection as a continuum (discussed below) . Research suggests that investing in local authority family support and early help services may reverse unsustainable cycles of escalation into care that can stem from lack of available help when families face initial hardship.[@webbunderreviewdefence]<sup>,</sup>[@webbunderreviewausterity]<sup>,</sup>[@bennettunderreviewfunding]
+
+Causal statistical modelling has found that:
+
+* Over the past decade, each £100 increase in spending per child was associated with a reduction of between 12 and 13 children ‘in need’ per 10,000 the following year, around a 4 per cent reduction in an average local authority.  Average reductions in local authority spending equate to an estimated additional 13,000 to 16,500 children in need nationally for each year of the decade than there would be if spending had been retained at 2010-11 levels.
+* The effectiveness of family support and early help spending has been declining over the decade as services restrict their offerings and move to more targeted, less universal, forms of support as a result of underfunding and rationing.
+* Each additional £100 per child spent on preventative services for adolescents in a given year was associated with an average decrease of 1.9 per 10,000 in 16-17 year olds entering care the following year (a 3.6 to 7.3 per cent reduction depending on the year). Cuts to this expenditure can account for a significant proportion of entries into care in this age group, which have doubled since 2012.
+* The quality of Children’s Social Care Services, judged by Ofsted, is related to expenditure on preventative services. After controlling for deprivation, each £100 per child increase in preventative services expenditure was associated with a 1.7 times increase in the odds of a local authority being judged to be ‘Good’ or ‘Outstanding’ by Ofsted. 
+
+
+The alternative to investing in family support is to try and manage demand for services through existing and/or additional thresholds. Our analysis of feedback loops in the children’s social care system shows this to be counterproductive:
+
+* Local authorities that ration their services more strictly end up with more ‘failure demand’, i.e. re-referrals within 12 months.[@hood2020screen]
+* Family support services have adjusted to rising complexity of need by becoming more targeted, further reducing their ability to operate preventatively and reinforcing the negative feedback loop.[@hood2020screen]
+* The overall result is escalating demand for expensive late intervention, leading to higher costs in the medium to long term.
+
+On the demand side, government policies have increased relative child poverty, the depth of poverty experienced by families, and the extent of destitution in the country. The numbers of children living in families in destitution increased by 76% from 2015 so that, in 2019, 550,000 children had experienced destitution.[@fitzpatrick2020destitution]
+
+Overall, we accept that the CfC makes important statements about the significance of poverty as a central driver of demand for children’s social care and as a major cause of adversity in children’s lives. It rightly points to parallels with inequalities in children’s education and the positive actions successive governments have taken to level educational outcomes. We also agree that this is an issue for local government as well as central government to grapple with. But this is clearly an issue which local government alone cannot solve, and the argument about the significance of poverty in family life needs to be extended to demonstrate the connections between family poverty and a range of current policies covering employment, welfare, housing, health and criminal justice as well as education. The argument needs to recognise the intricate relationships between poverty and other key drivers of suffering in families, including domestic violence, substance use and mental ill-health. And it is important to incorporate understanding of the shame and stigma that families in poverty often feel and how that can be exacerbated by hostile attitudes in public debate and in print and social media.
+
+## How have we got here?
+
+Alongside a sober look at the current financial issues must also come a clear-eyed engagement with the past when trying to understand why, running alongside the lack of support for families, increasingly scarce resources continue to be devoted to investigations under Section 47, many of which appear to be episodic in nature. This is discussed in CfC almost as if it were a new issue, and one of poor decision-making in social work, ‘rather than being possibly the oldest systemic issue in the history of children’s social care’.[@evans2021probing] As Evans notes, the aspirations of the Children Act 1989 have never been realised in practice. Such aspirations were summarised by a key architect of the Act, Rupert Hughes:
+
+> This [Act] was designed to remind authorities that there is no sharp line between need and risk or between support and protection and that the services needed to be seen more as a continuum with a balanced provision targeted at the various degrees of need.
+
+The financing of such aspirations was then, and continues to be, the elephant in the room.[@evans2021probing] The Children Act was implemented without extra resources and at a time of growing demand in relation to child poverty.[@parton1996child] In practice, to manage the resource issues, sharp and often deeply divisive distinctions were drawn between protection and support, need and risk, distinctions which persist and are reproduced in CfC. These are deeply unhelpful and fly in the face of the evidence of the social gradient which highlights the fluid and shifting nature of needs and risks. 
+
+Support has consistently played second fiddle to protection in a risk averse climate and, indeed, this is understandable in many ways. As Parton noted, as far back as 1996, in the context of the re-focusing debates, achieving a balanced set of activities required facing up to the very problematic implications of how successive child death tragedies had been discussed and dealt with by politicians and the media.[@parton1996child] This has not improved in subsequent decades.[@warner2015emotional] Indeed, there has been a failure to build respectful and thoughtful dialogue and cultural and political consensus around the needs of children, the responsibilities of their families, communities and local and national governments.[@featherstone2018protecting] Child deaths have, too often, proved a lightening-rod for the playing out of political divisions and the performance of moral outrage to secure short-term political advantage. Without careful and painstaking work on what is needed to protect children at all levels of society, work which requires courage, pendulum swings will continue and, indeed, are likely to jeopardise the aspirations of the review itself. 
+
+These courageous conversations must involve engaging with long standing attitudes towards those who are poor. The move away from the more universal provision of welfare services established in the post-war period towards increasingly targeted provision brought with it a renaissance of publicly accepted, or even encouraged, acrimonious sentiment towards those who happen to be, often transiently, on the recipient side of our social contract.[@van2017social]<sup>,</sup>[@shildrick2012poverty]<sup>,</sup>[@hills2017good] This is characterised by narratives of ‘deservingness’ and ‘undeservingness’ and ‘scrounging’ and ‘striving’ and is reflected in the opposition of risk with need, or protection with support.  It can be argued that these attitudes have existed since antiquity but had been ratcheted up as increasingly rationed provision of support and blame-laden political narratives stoked perceptions of undeserving groups: ‘benefits cheats’ or the ‘intergenerationally workless’, with such framings particularly targeting lone and working-class mothers.[@macdonald2014benefits]<sup>,</sup>[@tyler2013revolting] Social work and children’s social care do not exist in a vacuum outside of these attitudes and the policies that take advantage of them. What austerity policies and their flawed evidence-base achieved at the onset of the 2010 decade was a wholesale legitimisation and encouragement of such attitudes, and a strengthening of their institutionalisation in many public services, particularly in our benefits system.  Our research has found that social workers have been placed in the centre of this moral maze as they have faced a tsunami of unmet need and the hollowing out of support services.[@morris2018social] 
+
+## Removing burdens or reducing rights? 
+
+Alongside the relative silence about Ofsted is a rather unclear and potentially dangerous narrative about removing burdens from social workers in order that they can work directly to help children and families. We agree that there has been a proliferation of audit and inspection regimes over the decades and, indeed, the review led by Eileen Munro spoke directly to the need to shift the focus of practice from meeting the requirements of audit towards direct work with children and families.   The CfC notes this shift has not occurred but does not interrogate why those who commissioned the Munro Review, and continue to be in government a decade later, have not addressed its recommendations fully.
+
+The CfC fails to promote discussion on the distinctions between unhelpful administrative requirements and vital safeguards that provide the kinds of robust challenge necessary in a democratic society when the state intervenes in family life. Indeed, it is extremely concerning that the document makes almost no reference to the role of law or international conventions on human rights and children’s rights. We support the calls by Article 39 and other organisations who have urged the review to adopt a framework based on the United Nations Convention on the Rights of the Child as the basis for policy recommendations.[@willow2021care]
+
+The CfC mentions “too many professional observers” yet no detail is provided about what roles are being referred to nor is there any acknowledgement that many were developed in order to safeguard and promote children’s welfare and rights (for example the statutory role of the Independent Reviewing Officer). The recent report of the Independent Inquiry into historic sexual abuse of children in care in Lambeth[@iicsa2021children] is a salutary reminder of the need for robust measures to hear the voices of, and provide, safeguards for children in care.
+
+It is recognised within the CfC that many young people aged 16 and 17 years old have complex needs and have experienced serious harms. It expresses support for the government’s plan to regulate semi-independent accommodation for them through a new set of national standards but fails to argue for them to receive care within such accommodation. It notes that a ban on semi-independent homes for young people aged 16 and 17 years old would be to the detriment of some young people. Alongside others[@willow2021care] we are not asking for a ban, but for high-quality semi-independent units to provide day-to-day care for these children in accordance with their needs and rights.
+
+We share the concern expressed in CfC that children in residential care currently do not have an equivalent legal entitlement to ‘Staying Put’ as children in foster care but would urge the review to go further and recommend parity for children in residential care to be able to ‘stay put’ until at least the age of 21.
+
+## Making not breaking relationships
+
+Finally, we welcome the CfC’s acknowledgement that care must build not break relationships and that the loss of valued relationships is a feature of so many children’s care experience. However, the CfC fails to address the role of adoption in its current form when considering the severance of relationships for care experienced children. Most of the children adopted in England are adopted from care, and many have siblings in care or living with their birth families.  The current model of adoption is most often closed, (with no direct contact with birth family), leading to the frequent loss of relationships with significant people, including siblings.[@monk2019siblings] The _Adoption Enquiry_[@featherstone2018role] concluded that the current model of adoption fails to adequately recognise multiple attachments and the complex identities of adopted children. We recommend a significant rethink of approaches to ‘contact’ and connection between adopted children and their families that do not sever relationships so starkly. There is rarely a ‘clean break’ or severance in real life; relationships endure in hearts and minds. 
+
+## Recommendations
+
+The Independent Review of Children’s Social Care should call for: 
+
+*	the principle of proportionate universalism to underpin central government funding allocations to local government. Funding should be proportionate to the scale of the problem, but universal in reach: more funding should be given to areas of greater deprivation and to communities experiencing high levels of poverty and exclusion. The scale of funding provided should reflect what is needed to meet the ambitions of the Children Act 1989 ensuring local authorities are able to offer a continuum of diverse forms of high-quality support and protection for all children who may need it.
+
+*	a framework of cross-departmental policies at national and local levels to address the major social problems which impact on children’s wellbeing and healthy development particularly in the light of the impact of Covid-19
+
+*	the adoption of a framework based on the United Nations Convention on the Rights of the Child to inform policy recommendations
+
+*	the alignment of services with what children, young people and families need to flourish, not just what they need to survive and be protected from harm
+
+*	the co-production of services with children, young people and families as part of the shift towards help
+
+*	the need for high-quality semi-independent units to provide day-to-day care for 16-17  year olds  in accordance with their needs and rights
+
+*	parity for children in residential care to be able to ‘stay put’ until the age of 21.
+
+*	a more open model of adoption 

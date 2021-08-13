@@ -1,7 +1,7 @@
-name: "Calum Webb"
-title: "Calum Webb"
+name: "calumwebb"
+title: "calumwebb"
 description: |
-  Calum Webb
+ 
 output_dir: "_site"
 theme: calumwebb.css
 base_url: https://calumwebb.co.uk

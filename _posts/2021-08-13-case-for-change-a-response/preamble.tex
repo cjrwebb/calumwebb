@@ -1,0 +1,26 @@
+
+% Allow for pubstate in date
+\usepackage[backend=biber,natbib=true,style=authoryear,language=english]{biblatex}
+
+\DeclareLabeldate{%
+  \field{date}
+  \field{eventdate}
+  \field{origdate}
+  \field{urldate}
+  \field{pubstate}
+  \literal{nodate}
+}
+
+\renewbibmacro*{date+extrayear}{%
+  \iffieldundef{\thefield{datelabelsource}year}
+    {\printtext[parens]{\printfield{labelyear}}}
+    {\printtext[parens]{%
+       \iffieldsequal{year}{\thefield{datelabelsource}year}
+         {\printlabeldateextra}%
+         {\printfield{labelyear}%
+          \printfield{extrayear}}}}}%
+
+\renewbibmacro*{addendum+pubstate}{%
+  \printfield{addendum}%
+  \iffieldundef{\thefield{datelabesource}year}{}
+  {\newunit\newblock\printfield{pubstate}}}
