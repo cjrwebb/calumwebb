@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>New Evidence on the Association between expenditure on Children’s Services and Ofsted Judgements, rates of CIN and rates of Children entering care</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2021-09-10" />
+    <script src="cwebb-new-evidence-ncctc_files/header-attrs/header-attrs.js"></script>
+    <link href="cwebb-new-evidence-ncctc_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="cwebb-new-evidence-ncctc_files/tile-view/tile-view.js"></script>
+    <link href="cwebb-new-evidence-ncctc_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="cwebb-new-evidence-ncctc_files/panelset/panelset.js"></script>
+    <script src="cwebb-new-evidence-ncctc_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <meta name="github-repo" content="cjrwebb/cjrwebb.github.io/tree/master/pres/smi"/>
+    <meta name="twitter:title" content="In Defence of Ordinary Help: The declining effectiveness of preventative children&#39;s services in England"/>
+    <meta name="twitter:description" content="On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."/>
+    <meta name="twitter:url" content="https://cjrwebb.github.io/pres/smi/smi-research"/>
+    <meta name="twitter:image" content="https://cjrwebb.github.io/pres/smi/idoh-card.png"/>
+    <meta name="twitter:image:alt" content="Title slide of In Defence of Ordinary Help"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@cjrwebb"/>
+    <meta name="twitter:site" content="@cjrwebb"/>
+    <meta property="og:title" content="In Defence of Ordinary Help: The declining effectiveness of preventative children&#39;s services in England"/>
+    <meta property="og:description" content="On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."/>
+    <meta property="og:url" content="https://cjrwebb.github.io/pres/smi/smi-research"/>
+    <meta property="og:image" content="https://cjrwebb.github.io/pres/smi/idoh-card.png"/>
+    <meta property="og:image:alt" content="Title slide of In Defence of Ordinary Help"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Calum Webb"/>
+    <script src="cwebb-new-evidence-ncctc_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="cwebb-new-evidence-ncctc_files/plotly-binding/plotly.js"></script>
+    <script src="cwebb-new-evidence-ncctc_files/typedarray/typedarray.min.js"></script>
+    <script src="cwebb-new-evidence-ncctc_files/jquery/jquery.min.js"></script>
+    <link href="cwebb-new-evidence-ncctc_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="cwebb-new-evidence-ncctc_files/crosstalk/js/crosstalk.min.js"></script>
+    <link href="cwebb-new-evidence-ncctc_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="cwebb-new-evidence-ncctc_files/plotly-main/plotly-latest.min.js"></script>
+    <script src="cwebb-new-evidence-ncctc_files/viz/viz.js"></script>
+    <link href="cwebb-new-evidence-ncctc_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="cwebb-new-evidence-ncctc_files/grViz-binding/grViz.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[New Evidence on the Association between expenditure on Children’s Services and Ofsted Judgements, rates of CIN and rates of Children entering care.]
+
+### Calum Webb .grey[.small[*British Academy Postdoctoral Fellow*]&lt;sup&gt;1&lt;/sup&gt;] &lt;br&gt; Davara Bennett .grey[.small[*National Institute for Health Research Doctoral Researcher*]&lt;sup&gt;2&lt;/sup&gt;]
+#### &lt;sup&gt;1&lt;/sup&gt;Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;&lt;sup&gt;2&lt;/sup&gt;Department of Public Health, Policy and Systems, University of Liverpool.
+#### c.j.webb@sheffield.ac.uk | davara.bennett@liverpool.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+---
+class: middle
+
+### .tuos_purple[Webb, C. J. (_In press_). 'In Defence of Ordinary Help: Estimating the effect of Early Help/Family Support Spending on Children in Need Rates in England using ALT-SR'. _Journal of Social Policy_.]
+
+### .tuos_purple[Webb, C., Bennett, D., &amp; Bywaters, P. (_Submitted and under review_) ‘Austerity, poverty, and children’s services quality in England: Consequences for child welfare and public services’. *Social Policy &amp; Society*.]
+
+### .tuos_purple[Bennett, D., Webb, C., Mason, K., et al. (_Submitted and under review_) ‘Funding for preventative Children’s Services and rates of children becoming looked after: a natural experiment using longitudinal area-level data in England’. _Children and Youth Services Review_.]
+
+---
+class: inverse, middle
+
+## Greater investment in preventative services (family support, early help, children's centres) in a given year* is associated with significant decreases in Children in Need rates and 16-17 year olds starting to be looked-after the following year, as well as increased odds of 'Good' or 'Outstanding' Ofsted ratings.
+
+\* with some caveats
+
+---
+
+## One of those scientific findings up there with...
+
+
+---
+
+## One of those scientific findings up there with...
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Bear sh— lives in woods
+
+]
+
+.pull-right[.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/bear.jpg" alt="Image by NH53, Flickr https://flic.kr/p/Lw9dsz" width="70%" height="70%" /&gt;
+&lt;p class="caption"&gt;Image by NH53, Flickr https://flic.kr/p/Lw9dsz&lt;/p&gt;
+&lt;/div&gt;
+
+]
+]
+
+---
+
+## One of those scientific findings up there with...
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Bear sh— lives in woods
+
+* Pope is Catholic
+
+]
+
+.pull-right[.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/bear-pope.png" alt="Image by NH53, Flickr https://flic.kr/p/Lw9dsz" width="70%" height="70%" /&gt;
+&lt;p class="caption"&gt;Image by NH53, Flickr https://flic.kr/p/Lw9dsz&lt;/p&gt;
+&lt;/div&gt;
+
+]
+]
+
+---
+
+## One of those scientific findings up there with...
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Bear sh— lives in woods
+
+* Pope is Catholic
+
+* Water is wet
+
+]
+
+.pull-right[.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/bear-pope-wet.png" alt="Image by marneejill, Flickr https://flic.kr/p/YAKiXm" width="70%" height="70%" /&gt;
+&lt;p class="caption"&gt;Image by marneejill, Flickr https://flic.kr/p/YAKiXm&lt;/p&gt;
+&lt;/div&gt;
+
+]
+]
+
+---
+
+## One of those scientific findings up there with...
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Bear sh— lives in woods
+
+* Pope is Catholic
+
+* Water is wet
+
+* ... But deceptively hard to prove to policymakers and resource gatekeepers!
+
+]
+
+.pull-right[.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/bear-pope-wet.png" alt="Image by marneejill, Flickr https://flic.kr/p/YAKiXm" width="70%" height="70%" /&gt;
+&lt;p class="caption"&gt;Image by marneejill, Flickr https://flic.kr/p/YAKiXm&lt;/p&gt;
+&lt;/div&gt;
+
+]
+]
+
+---
+class: inverse, middle
+
+## Not naïve enough to think that you don't already know and believe this.
+
+---
+class: inverse, middle
+
+## Am naïve enough to think that it could be useful for convincing policymakers and resource gatekeepers that these services are worth investing in.
+
+
+???
+
+I am going to focus on what each piece of research says and why it's better than the other claims that have been made by Ofsted and NAO.
+
+
+---
+
+class: inverse, middle
+
+&gt; # "Our inspectors have seen this across the country and we now know that: Inadequacy is __not a function of size, deprivation or funding__, but of the quality of leadership and management."
+
+&lt;br&gt;
+
+&gt; &gt;  ### Sir Michael Wilshaw, Chief Inspector, Ofsted, 2016: 5
+
+
+???
+
+Not fair of me to pick on Michael Wilshaw in this way, but this quote basically summarises some of the resource-holder's perspectives on the evidence. This has also been the line of various National Audit Office reports on the association between spending and outcomes.
+
+Plenty of research has shown the effectiveness of early help and family support services through a range of methods. 
+
+But often this effectiveness is expressed in terms of psychometric outcomes, self-assessed efficacy, or qualitative evaluation. 
+
+This is not the language of rates of intervention and therefore not a strong basis to build an economic case.
+
+These three papers use meaningful population outcomes that economically-driven decision-makers respond well to when building a case.
+
+---
+
+### **Why** is it critical that we can make this case in the language that we need to make it.* This is a crisis.
+
+
+&lt;div class="figure"&gt;
+<div id="htmlwidget-5eb6d13f1b91d04201e5" style="width:100%;height:380px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5eb6d13f1b91d04201e5">{"x":{"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[496.6,459.3,421.8,412.5,409.5,400.1,381.3,363.1,364.4,697.8,679.8,673.6,691.3,674.1,673.8,680.1,687.4,724.6,496.6],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(226,226,226,1)","hoveron":"points","name":"Looked-after","legendgroup":"Looked-after","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[662.2,567.7,542.9,509.7,516.7,488.8,459.1,438.4,423.9,855.7,855.7,849.5,868.6,890.6,872.6,889.3,867.1,982.2,662.2],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(226,226,226,1)","hoveron":"points","name":"Looked-after","legendgroup":"Looked-after","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[841.7,684.1,625.9,603,561.3,534.4,504.1,491.8,503.2,1044.8,990.1,980.3,1007.1,996.4,1025.9,1042.3,1058.6,1240.1,841.7],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(226,226,226,1)","hoveron":"points","name":"Looked-after","legendgroup":"Looked-after","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[173.4,167.7,159.4,162.3,176.7,181.5,193.1,183.4,186.3,364.4,363.1,381.3,400.1,409.5,412.5,421.8,459.3,496.6,173.4],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(176,201,228,1)","hoveron":"points","name":"Early Help etc.","legendgroup":"Early Help etc.","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[201.7,205.7,196.6,191.1,200.9,203.9,216.6,211,201,423.9,438.4,459.1,488.8,516.7,509.7,542.9,567.7,662.2,201.7],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(176,201,228,1)","hoveron":"points","name":"Early Help etc.","legendgroup":"Early Help etc.","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[247.1,233.1,226.4,229.8,234.8,237.2,235.8,232.8,242.7,503.2,491.8,504.1,534.4,561.3,603,625.9,684.1,841.7,247.1],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(176,201,228,1)","hoveron":"points","name":"Early Help etc.","legendgroup":"Early Help etc.","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[0,0,0,0,0,0,0,0,0,186.3,183.4,193.1,181.5,176.7,162.3,159.4,167.7,173.4,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(1,158,227,1)","hoveron":"points","name":"Safeguarding","legendgroup":"Safeguarding","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[0,0,0,0,0,0,0,0,0,201,211,216.6,203.9,200.9,191.1,196.6,205.7,201.7,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(1,158,227,1)","hoveron":"points","name":"Safeguarding","legendgroup":"Safeguarding","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2019,2019,2018,2017,2016,2015,2014,2013,2012,2011,2011],"y":[0,0,0,0,0,0,0,0,0,0,242.7,232.8,235.8,237.2,234.8,229.8,226.4,233.1,247.1,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(1,158,227,1)","hoveron":"points","name":"Safeguarding","legendgroup":"Safeguarding","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011.1,2013.1,2015.1,2017.1,2019.1],"y":[516.6,441.8,429.5,401.3,384.4],"text":[323,262,233,188,178],"hovertext":["","","","",""],"textfont":{"size":9.4488188976378,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011.1,2013.1,2015.1,2017.1,2019.1],"y":[682.2,562.9,536.7,479.1,443.9],"text":[460,346,316,242,223],"hovertext":["","","","",""],"textfont":{"size":9.4488188976378,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011.1,2013.1,2015.1,2017.1,2019.1],"y":[861.7,645.9,581.3,524.1,523.2],"text":[595,400,326,268,260],"hovertext":["","","","",""],"textfont":{"size":9.4488188976378,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[496.6,459.3,421.8,412.5,409.5,400.1,381.3,363.1,364.4],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(0,0,0,0.8)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[662.2,567.7,542.9,509.7,516.7,488.8,459.1,438.4,423.9],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(0,0,0,0.8)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[841.7,684.1,625.9,603,561.3,534.4,504.1,491.8,503.2],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(0,0,0,0.8)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":46.4761904761905,"r":7.30593607305936,"b":36.170795651094,"l":48.9497716894977},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,0.324877388804329],"automargin":true,"type":"linear","autorange":false,"range":[2010.595,2019.505],"tickmode":"array","ticktext":["2011","2013","2015","2017","2019"],"tickvals":[2011,2013,2015,2017,2019],"categoryorder":"array","categoryarray":["2011","2013","2015","2017","2019"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-62.005,1302.105],"tickmode":"array","ticktext":["0","400","800","1200"],"tickvals":[0,400,800,1200],"categoryorder":"array","categoryarray":["0","400","800","1200"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"Median Spending per Child","x":-0.0397429392863183,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"Least Deprived 50 LAs","x":0.162438694402165,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Average 50 LAs","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Most Deprived 50 LAs","x":0.837561305597835,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"<br /><br />Spending<br />Category","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.324877388804329,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.324877388804329,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.341789277862337,"x1":0.658210722137663,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.341789277862337,"x1":0.658210722137663,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.675122611195671,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.675122611195671,"x1":1,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[2010.595,2019.505],"tickmode":"array","ticktext":["2011","2013","2015","2017","2019"],"tickvals":[2011,2013,2015,2017,2019],"categoryorder":"array","categoryarray":["2011","2013","2015","2017","2019"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.341789277862337,0.658210722137663],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[2010.595,2019.505],"tickmode":"array","ticktext":["2011","2013","2015","2017","2019"],"tickvals":[2011,2013,2015,2017,2019],"categoryorder":"array","categoryarray":["2011","2013","2015","2017","2019"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.675122611195671,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.876265466816648},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false,"displayModeBar":false},"source":"A","attrs":{"a8e42c30e401":{"x":{},"y":{},"fill":{},"type":"scatter"},"a8e43dc91451":{"x":{},"y":{},"label":{}},"a8e45c54f187":{"x":{},"y":{}}},"cur_data":"a8e42c30e401","visdat":{"a8e42c30e401":["function (y) ","x"],"a8e43dc91451":["function (y) ","x"],"a8e45c54f187":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;.right[Data from &lt;a href=https://www.gov.uk/government/collections/section-251-materials&gt;S251 Outturns, DfE 2011-2020&lt;/a&gt;.]&lt;/p&gt;
+&lt;/div&gt;
+
+\* Though we should not lose sight of the fact the moral and legal (CA 1989) imperative to provide this support is **more important** than the financial case!
+
+???
+
+
+---
+class: middle
+
+### .tuos_purple[Webb, C. J. (_In press_). 'In Defence of Ordinary Help: Estimating the effect of Early Help/Family Support Spending on Children in Need Rates in England using ALT-SR'. _Journal of Social Policy_.]
+
+### .grey[Webb, C., Bennett, D., &amp; Bywaters, P. (_Submitted and under review_) ‘Austerity, poverty, and children’s services quality in England: Consequences for child welfare and public services’. *Social Policy &amp; Society*.]
+
+### .grey[Bennett, D., Webb, C., Mason, K., et al. (_Submitted and under review_) ‘Funding for preventative Children’s Services and rates of children becoming looked after: a natural experiment using longitudinal area-level data in England’. _Children and Youth Services Review_.]
+
+
+---
+
+### Children in Need rates and the Trouble with Thresholds (Devaney, 2019). Why we don't often look at CIN and why it's usually not reliable.
+###  
+
+.pull-left[
+
+&lt;br&gt;
+
+Local authorities interpret legislation for interventions, especially 'low-level' ones, differently. e.g.
+
+Section 17 (10) of the Children Act 1989: __Definition of a 'Child in Need'__:
+
+&gt; (a) he is unlikely to achieve or maintain ... a reasonable standard of health or development without the provision for him of services by a local authority .. 
+
+&gt; (b) his health or development is likely to be significantly impaired, or further impaired, without the provision for him of such services... or;
+
+&gt; (c) he is disabled.
+
+
+]
+
+.pull-right[.center[
+
+&lt;img src="cwebb-new-evidence-ncctc_files/figure-html/unnamed-chunk-5-1.png" width="500" height="400" /&gt;
+
+]
+]
+
+???
+
+However, this analysis was flawed because of some fundamental misunderstandings of how children become designated as Children in Need, and how services decide when to intervene.
+
+Firstly, there are definitional problems -- terms like Children in Need are subject to local authorities' interpretation of legislation and, in the specific case of Need, this interpretation can be quite broad.
+
+---
+
+### Children in Need rates and the Trouble with Thresholds (Devaney, 2019). Why we don't often look at CIN and why it's usually not reliable.
+###  
+
+.pull-left[
+
+&lt;br&gt;
+
+A significant factor in the numbers of interventions is the extent of __rationing of services__ within a local authority (Webb &amp; Bywaters, 2018; Devaney, 2019; Hood, 2020).
+
+* Local authorities with less funding (relative to need), or with decreasing funding, more strictly ration access to services (and therefore the numbers of children who can be 'in Need' at a given time).
+
+]
+
+.pull-right[.center[
+
+&lt;img src="cwebb-new-evidence-ncctc_files/figure-html/unnamed-chunk-6-1.png" width="500" height="400" /&gt;
+
+]
+]
+
+
+???
+
+In practice, then, local authorities often ration many of their services, especially preventative or early help services, depending on the total amount of funding they have available -- in other words, need rates might often go down or be stable not because need has gone down, but because they are no longer able to have such an inclusive definition of need.
+
+---
+
+### Children in Need rates and the Trouble with Thresholds (Devaney, 2019). Why we don't often look at CIN and why it's usually not reliable.
+###  
+
+.pull-left[
+
+&lt;br&gt;
+
+A significant factor in the numbers of interventions is the extent of __rationing of services__ within a local authority (Webb &amp; Bywaters, 2018; Devaney, 2019; Hood, 2020).
+
+* Local authorities with less funding (relative to need), or with decreasing funding, more strictly ration access to services (and therefore the numbers of children who can be 'in Need' at a given time).
+
+
+#### What we really want to analyse is what happens **within** a local authority when their spending on preventative services increases or decreases __above or below their normal level and trajectory__.
+
+]
+
+.pull-right[.center[
+
+&lt;img src="cwebb-new-evidence-ncctc_files/figure-html/unnamed-chunk-7-1.png" width="500" height="400" /&gt;
+
+]
+
+]
+
+???
+
+This means that relying on the relationships between cases may be unreliable -- higher levels of spending often correspond with higher rates of children in need, but using standard statistical models like those used by the National Audit Office does not recognise that that local authority may have a more inclusive defition of CIN and be more able to provide services.
+
+What we really want to know is what happens to CIN rates _within_ a local authority when their expenditure on these services fluctuates above or below their stable level and trajectory.
+
+
+---
+
+### The separation of between-'unit' and within-'unit' components of individual change over time using the ALT-SR model (Curran, et al. 2014)
+
+.pull-left[
+.middle[
+&lt;img src="images/figure_1.png" width="90%" /&gt;
+]
+]
+
+.pull-right[
+.middle[
+
+&lt;img src="images/figure_2.png" width="100%" /&gt;
+]
+]
+
+&lt;div style="text-align:right;"&gt;Figures from Webb, in press.&lt;/div&gt;
+
+???
+
+Fortunately, other observational studies in other research fields have been faced with this exact problem:
+
+* How do you measure the effect of dietary changes on children's development when they are developing at different rates due to a number of measurable and unmeasurable indivdiual-level characteristics, like genetics?
+
+* How do you measure the effect of alcohol consumption on wellbeing for a cohort that is ageing from late adolescence to adulthood?
+
+This is where Curran, et al. developed the ALT-SR model to separate between-unit and within-unit components of change over time, to better identify within-unit dynamics. 
+
+This partitions between-unit effects to a latent growth part of a structural equation model, and within-unit effects to a cross-lagged part of the model.
+
+To my knowledge, I am the first person to apply this to local public services and populations as opposed to individuals.
+
+
+---
+
+### Higher spending per child in a given year was associated with significant reductions of Children in Need *within* local authorities, but this effect has weakened over the decade.
+
+.pull-left[
+
+* On average over the decade, __each additional £100__ in spending per child was associated with __a reduction of between 12 and 13 children ‘in need’ per 10,000 the following year__, around a 4 per cent reduction a typical local authority. Each increase of 1% in spending was associated with a 0.11% decrease in CIN rate the following year.
+
+* After estimating this effect independently for each pair of years, __the effectiveness of spending on preventative services for children and young people was found to have declined to a point of non-significance beyond around 2015__.
+
+* Spending cuts since 2010/11 can account for __between 13,000 to 16,500 more children and young people each year between 2010 and 2015 kept at risk of developmental or health impairments nationally__. 
+
+]
+
+.pull-right[
+
+
+&lt;img src="cwebb-new-evidence-ncctc_files/figure-html/unnamed-chunk-10-1.png" width="500" height="400" /&gt;
+
+
+]
+
+
+???
+
+When we apply this model to rates of children in need and levels of spending on preventative services per child, we find a significant and contextually large effect that indicates higher spending per child within a local authority results in reductions in children in need the following year.
+
+On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000 (the average rate of children in need in a local authority is around 360 per 10,000, and the average expenditure per child over the decade was around £320).
+
+However, we also find that this effect has been decreasing over the decade: this is despite a significant investment in two 'What Works' centres, with over £15million of government grants provided to the Early Intervention Foundation and over £30million in grants provided to the What Works Centre for Children's Social Care over the decade.
+
+
+
+---
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+#### What has changed over the past ten years?
+
+
+]
+
+.pull-right[
+
+
+]
+
+???
+
+
+---
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+#### What has changed over the past ten years?
+
+* A __reduction in total expenditure__ on services. Professor Rick Hood, et al. (2020) and research [published by the Sutton Trust](https://www.suttontrust.com/wp-content/uploads/2018/04/StopStart-FINAL.pdf) highlighted that this has meant resources have been rationed to meet much more acute and complex, rather than universal or chronic, needs. The NCB highlighted this risks 'storing up trouble' in 2017.
+
+]
+
+.pull-right[
+
+]
+
+???
+
+
+---
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+#### What has changed over the past ten years?
+
+* A __reduction in total expenditure__ on services. Professor Rick Hood, et al. (2020) and research [published by the Sutton Trust](https://www.suttontrust.com/wp-content/uploads/2018/04/StopStart-FINAL.pdf) highlighted that this has meant resources have been rationed to meet much more acute and complex, rather than universal or chronic, needs. The NCB highlighted this risks 'storing up trouble' in 2017.
+
+* A focus on __'what works'__ and services that can be evaluated using Randomised Controlled Trials or Quasi-Experimental Designs may have crowded out universal services and those delivered in a community setting, which are harder or impossible to evaluate under RCTs/QEDs, especially when they are __community-led, designed, and delivered__.
+
+
+]
+
+.pull-right[
+
+]
+
+???
+
+---
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+#### What has changed over the past ten years?
+
+* A __reduction in total expenditure__ on services. Professor Rick Hood, et al. (2020) and research [published by the Sutton Trust](https://www.suttontrust.com/wp-content/uploads/2018/04/StopStart-FINAL.pdf) highlighted that this has meant resources have been rationed to meet much more acute and complex, rather than universal or chronic, needs. The NCB highlighted this risks 'storing up trouble' in 2017.
+
+* A focus on __'what works'__ and services that can be evaluated using Randomised Controlled Trials or Quasi-Experimental Designs may have crowded out universal services and those delivered in a community setting, which are harder or impossible to evaluate under RCTs/QEDs, especially when they are __community-led, designed, and delivered__.
+
+
+]
+
+.pull-right[
+
+#### &lt;br&gt;
+
+* Strong focus on 'early intervention' where early means 'first 1,000 days' or similar. The [YMCA's Out of Service](https://www.ymca.org.uk/wp-content/uploads/2020/01/YMCA-Out-of-Service-report.pdf) report suggests that services for older children and young people have been most strongly affected. 
+
+  Rates of children looked-after have grown most in the 16-17 year old age group (almost 2 times in 10 years), where rates for 1—4 year olds have been relatively stable.
+
+]
+
+???
+
+---
+
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+.center[
+
+&lt;img src="images/gillies.jpg" width="60%" /&gt;
+]
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="images/white.jpg" width="60%" /&gt;
+]
+
+]
+
+???
+
+
+---
+
+
+### Why has spending on preventative services become less effective at meeting Children and Families needs?
+
+.pull-left[
+
+.center[
+
+&lt;img src="images/gillies.jpg" width="60%" /&gt;
+]
+
+]
+
+.pull-right[
+
+* [Stewart‐Brown, S., et al. (2011). Should randomised controlled trials be the “gold standard” for research on preventive interventions for children?. _Journal of Children's Services_.](https://doi.org/10.1108/17466661111190929)
+* [Forrester, D. (2012). Are the people who take part in randomised controlled trials real? A response to Stewart‐Brown et al. _Journal of Children's Services_.](https://doi.org/10.1108/17466661211238691)
+* [Stewart‐Brown, S. (2012). More thoughts on the RCT question: a rejoinder to Forrester and Ritter. _Journal of Children's Services_.](https://doi.org/10.1108/17466661211238718)
+* [Featherstone, B., Morris, K., &amp; White, S. (2014). A marriage made in hell: Early intervention meets child protection. _British Journal of Social Work_, 44(7), 1735-1749.](https://doi.org/10.1093/bjsw/bct052)
+* [Axford, N., &amp; Berry, V. (2018). Perfect Bedfellows: Why Early Intervention Can Play a Critical Role in Protecting Children—A Response to Featherstone et al.(2014)‘A Marriage Made in Hell: Child Protection Meets Early Intervention’. _British Journal of Social Work_, 48(1), 254-273.](https://doi.org/10.1093/bjsw/bcx003)
+
+
+]
+
+???
+
+---
+
+class: inverse, middle
+
+
+## Your thoughts.
+
+---
+
+class: middle
+
+### .grey[Webb, C. J. (_In press_). 'In Defence of Ordinary Help: Estimating the effect of Early Help/Family Support Spending on Children in Need Rates in England using ALT-SR'. _Journal of Social Policy_.]
+
+### .tuos_purple[Webb, C., Bennett, D., &amp; Bywaters, P. (_Submitted and under review_) ‘Austerity, poverty, and children’s services quality in England: Consequences for child welfare and public services’. *Social Policy &amp; Society*.]
+
+### .grey[Bennett, D., Webb, C., Mason, K., et al. (_Submitted and under review_) ‘Funding for preventative Children’s Services and rates of children becoming looked after: a natural experiment using longitudinal area-level data in England’. _Children and Youth Services Review_.]
+
+
+---
+
+### The importance of quality
+
+* Reduced rates of intervention would be of little comfort if they meant that children and families were going *without* support in the first place, rather than them no longer needing it.
+
+--
+
+&gt; "Our inspectors have seen this across the country and we now know that: Inadequacy is __not a function of size, deprivation or funding__, but of the quality of leadership and management."
+
+.right[Sir Michael Wilshaw, Chief Inspector, Ofsted, 2016: 5]
+
+--
+
+.pull-left[
+
+## .tuos_purple[The existing evidence does currently support the idea that spending on services is not associated with Ofsted outcomes.]
+
+]
+
+.pull-right[
+
+* [Wilkins, D., &amp; Antonopoulou, V. (2020). Do performance indictors predict Ofsted ratings? An exploratory study of children’s services in England. _Journal of Children's Services_.](https://doi.org/10.1108/JCS-07-2019-0035)
+* [Wilkins, D., &amp; Antonopoulou, V. (2020). Ofsted and children’s services: what performance indicators and other factors are associated with better inspection results?. _The British Journal of Social Work_, 50(3), 850-867.](https://academic.oup.com/bjsw/article-abstract/50/3/850/5253800)
+* [National Audit Office (2019). _Pressures on Children's Social Care_.](https://www.nao.org.uk/wp-content/uploads/2019/01/Pressures-on-Childrens-Social-Care.pdf)
+
+]
+
+
+---
+class: middle
+
+.pull-left[
+
+## .tuos_purple[Limitations of these studies:]
+
+- #### Only consider outcomes under one framework at a time (max N = 152).
+- #### Have only used either total expenditure or safeguarding expenditure as predictors (as well as measures of service demand).
+
+]
+
+.pull-right[
+
+* [Wilkins, D., &amp; Antonopoulou, V. (2020). Do performance indictors predict Ofsted ratings? An exploratory study of children’s services in England. _Journal of Children's Services_.](https://doi.org/10.1108/JCS-07-2019-0035)
+* [Wilkins, D., &amp; Antonopoulou, V. (2020). Ofsted and children’s services: what performance indicators and other factors are associated with better inspection results?. _The British Journal of Social Work_, 50(3), 850-867.](https://academic.oup.com/bjsw/article-abstract/50/3/850/5253800)
+* [National Audit Office (2019). _Pressures on Children's Social Care_.](https://www.nao.org.uk/wp-content/uploads/2019/01/Pressures-on-Childrens-Social-Care.pdf)
+
+]
+
+---
+class: middle
+
+.pull-left[
+
+## .tuos_purple[Limitations of these studies:]
+
+- #### Only consider outcomes under one framework at a time (max N = 152).
+- #### Have only used either total expenditure or safeguarding expenditure as predictors (as well as measures of service demand).
+
+]
+
+.pull-right[
+
+## &amp;nbsp; 
+
+- #### .tuos_blue[Can use multilevel modelling to model autocorrelation within LA and year.]
+- #### .tuos_blue[Can break expenditure down over time into children looked-after related, 'safeguarding'-related, and non-safeguarding, non-CLA related.] 
+&lt;br&gt;
+
+
+]
+
+
+---
+
+### Findings
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+* Each __£100 increase__ in non-safeguarding, non-children looked after related expenditure per child was associated with a __1.7 times__ increase in the odds of a local authority receiving a 'Good' or 'Outstanding' rating.
+
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/plot_1_ehfs.png" width="100%" /&gt;
+
+]]
+
+]
+
+---
+
+### Findings
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+* Each __£100 increase__ in non-safeguarding, non-children looked after related expenditure per child was associated with a __1.7 times__ increase in the odds of a local authority receiving a 'Good' or 'Outstanding' rating.
+
+* __No significant effect for safeguarding expenditure__ per child.
+
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/plot_2_sg.png" width="100%" /&gt;
+
+]]
+
+]
+
+
+---
+
+### Findings
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+* Each __£100 increase__ in non-safeguarding, non-children looked after related expenditure per child was associated with a __1.7 times__ increase in the odds of a local authority receiving a 'Good' or 'Outstanding' rating.
+
+* __No significant effect for safeguarding expenditure__ per child.
+
+* __Each decile increase in deprivation__ (measured by IMD 2019 - data year ~2015) was associated with a __16% decrease__ in the odds of a 'Good' or 'Outstanding' judgement.
+
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/plot_3_imd.png" width="100%" /&gt;
+
+]]
+
+]
+
+
+---
+class: hide-logo, middle
+
+&lt;img src="images/sankey_all.png" width="100%" height="80%" /&gt;
+
+
+---
+class: hide-logo, middle
+
+&lt;img src="images/sankey_ofsted_1_lowdep.png" width="100%" /&gt;
+
+&lt;img src="images/sankey_legend.png" width="100%" /&gt;
+
+
+???
+
+Change in Ofsted judgements split by deprivation
+
+---
+class: hide-logo, middle
+
+&lt;img src="images/sankey_ofsted_2_middep.png" width="100%" /&gt;
+
+&lt;img src="images/sankey_legend.png" width="100%" /&gt;
+
+
+???
+
+Change in Ofsted judgements split by deprivation
+
+---
+class: hide-logo, middle
+
+&lt;img src="images/sankey_ofsted_3_highdep.png" width="100%" /&gt;
+
+&lt;img src="images/sankey_legend.png" width="100%" /&gt;
+
+
+???
+
+Change in Ofsted judgements split by deprivation
+
+
+---
+class: middle
+
+&gt; ### .tuos_purple[The result is what [Seddon] calls ‘‘failure demand’’, as issues that are not resolved straightaway keep reappearing and cumulatively start to overload the system’s ability to cope. ... The analogy in the context of children’s services is with prevention/early intervention and patterns of referral and re-referral to specialist agencies (Lord, Southcott, &amp; Sharp, 2011). ... In Seddon’s terms, ‘‘failure demand’’ will start to mount up and put pressure on services, if interprofessional networks have been unable to intervene quickly and effectively at the point that families start to experience problems. In an example of the kind of negative feedback loop examined by Munro (2010, p. 13), this eventually has the counterproductive effect of increasing the number and severity of cases entering the system.]
+
+.right[Rick Hood, 2015, 'A socio-technical critique of tiered services: implications for interprofessional care': 10]
+
+---
+
+class: middle
+
+### .grey[Webb, C. J. (_In press_). 'In Defence of Ordinary Help: Estimating the effect of Early Help/Family Support Spending on Children in Need Rates in England using ALT-SR'. _Journal of Social Policy_.]
+
+### .grey[Webb, C., Bennett, D., &amp; Bywaters, P. (_Submitted and under review_) ‘Austerity, poverty, and children’s services quality in England: Consequences for child welfare and public services’. *Social Policy &amp; Society*.]
+
+### .tuos_purple[Bennett, D., Webb, C., Mason, K., et al. (_Submitted and under review_) ‘Funding for preventative Children’s Services and rates of children becoming looked after: a natural experiment using longitudinal area-level data in England’. _Children and Youth Services Review_.]
+
+---
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Found __a statistically significant association between preventative services expenditure and rates of 16-17 year olds starting in care__, but not between preventative services expenditure and 1-4 year olds starting in care.
+
+* This age group (16-17) have seen their rates of *starting* in care __more than double__ between 2011 and 2019 — from around __26 per 10,000 to 53 per 10,000__.
+
+* __At least 1 in 20 entries into care__ in this age group can be __attributed to cuts__ in preventative services in the immediately preceding year (likely more as a cumulative effect).
+
+]
+
+.pull-right[
+
+&gt; ## .tuos_purple[Each additional £100 per child in expenditure on preventative and early help services for older children was associated with a decrease of nearly 2 per 10,000 in the rate of 16-17 year olds starting a period of time in care.]
+
+]
+
+
+---
+
+### The role of 'soft causality' at a population level for improving services offered to children, young people, and their families?
+
+<div id="htmlwidget-fc79644f4cbefb3dbf12" style="width:100%;height:400px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc79644f4cbefb3dbf12">{"x":{"diagram":"digraph {\n                  \n                  graph[layout = dot, rankdir = LR]\n                  \n                  RCT[label=\"What is being\ndone? By who?\nFor who?\nHow does it\nfit together?\n\", height=2.5, width=2.5, style=\"filled\", fillcolor=\"PowderBlue\", color=\"White\", fontname=\"Helvetica\"]\n                  MTA[label=\"Can other places\nlearn from this?\n(Impact & Change)\", height=2.5, width=2.5, style=\"filled\", fillcolor=\"PowderBlue\", color=\"White\", fontname=\"Helvetica\"]\n                  SYS[label=\"Where seems\nto have a\ngood system?\", height=2.5, width=2.5, style=\"filled\", fillcolor=\"PowderBlue\", color=\"White\", fontname=\"Helvetica\"]\n                  OBS[label=\"For whom\nis it\nworking?\n\", height=2.5, width=2.5, style=\"filled\", fillcolor=\"PowderBlue\", color=\"White\", fontname=\"Helvetica\"]\n                  \n                  SYS -> OBS -> RCT -> MTA\n                  \n                  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+.right[.small[\* Press p for presenter's notes explanation]]
+
+???
+
+Very often, we are focusing on the individual level and then generalising up to a population level -- assuming that if we do lots of what works for individuals we will make an overall effective system. The trouble is, it doesn't seem to work that way and the assumptions we make about the system itself - and how services work together - are often over simplistic. In reality, the children's social care system is much more like an ecosystem than a mechanical system — it should be approached more like a garden with an ecology that needs to be supported.
+
+Our argument is that better quality systemic and structural information on the efficacy of 'big picture' funding is needed to make the case for more investment. Improvement *after* sufficient investment is also likely to be better, and to be based on better studies, because there are fewer issues of rationing and failure demand to contend with. 
+
+
+
+---
+
+### References not already provided in full
+
+Allen, G. (2011). _Early intervention: the next steps, an independent report to Her Majesty's government by Graham Allen MP_. The Stationery Office.
+
+Curran, P. J., Howard, A. L., Bainter, S. A., Lane, S. T., &amp; McGinley, J. S. (2014). The separation of between-person and within-person components of individual change over time: a latent curve model with structured residuals. _Journal of Consulting and Clinical Psychology_, 82(5), 879.
+
+Devaney, J. (2019). The trouble with thresholds: Rationing as a rational choice in child and family social work. _Child &amp; Family Social Work_, 24(4), 458-466.
+
+Hood, R., Goldacre, A., Gorin, S., &amp; Bywaters, P. (2020). Screen, ration and churn: Demand management and the crisis in children’s social care. _The British Journal of Social Work_, 50(3), 868-889.
+
+Ofsted. (2016). _The report of Her Majesty’s Chief Inspector of Education, Children’s Services and Skills 2016_. Manchester: Ofsted. 
+
+Webb, C. J., &amp; Bywaters, P. (2018). Austerity, rationing and inequity: trends in children’s and young peoples’ services expenditure in England between 2010 and 2015. _Local Government Studies_, 44(3), 391-415.
+
+Webb, C. J. (Under review). In Defence of Ordinary Help: Estimating the effect of Early Help/Family Support Spending on Children in Need Rates in England using ALT-SR. _Journal of Social Policy_.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
