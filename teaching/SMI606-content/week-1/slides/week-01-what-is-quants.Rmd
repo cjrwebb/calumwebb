@@ -490,13 +490,12 @@ knitr::include_graphics("images/cat.svg")
 
 ### Exercise: It's normal for people to be coming to this course with wildly different experiences of statistics and software. 
 
-.center[[
+.center[
 ```{r, echo=FALSE, out.width="75%"}
 
 knitr::include_graphics("ex_1_bg_qr.png")
 
 ```
-](https://jamboard.google.com/d/1jFYCgK5wrihDK_Z7lOGvcTi6ZA8EQVJ5DsyHT0EX3Nw/edit?usp=sharing)
 ]
 
 .center[https://jamboard.google.com/d/1jFYCgK5wrihDK_Z7lOGvcTi6ZA8EQVJ5DsyHT0EX3Nw/edit?usp=sharing]
