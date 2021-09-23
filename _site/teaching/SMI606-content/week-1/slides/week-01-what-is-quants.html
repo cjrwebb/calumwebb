@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI606: Week 1 — What is quantitative social science?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2021-09-23" />
+    <script src="week-01-what-is-quants_files/header-attrs/header-attrs.js"></script>
+    <link href="week-01-what-is-quants_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week-01-what-is-quants_files/tile-view/tile-view.js"></script>
+    <link href="week-01-what-is-quants_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="week-01-what-is-quants_files/panelset/panelset.js"></script>
+    <script src="week-01-what-is-quants_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="week-01-what-is-quants_files/clipboard/clipboard.min.js"></script>
+    <link href="week-01-what-is-quants_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="week-01-what-is-quants_files/shareon/shareon.min.js"></script>
+    <link href="week-01-what-is-quants_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="week-01-what-is-quants_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[SMI606: Week 1&lt;br&gt;What is quantitative social science?]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+---
+class: middle
+
+.pull-left[
+&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
+]
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sign In
+
+]
+---
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Know where to find relevant information for participating in the module, including where to locate module resources and how to prepare for each week's class time.
+* Be able to differentiate between quantitative social research approaches and qualitative research approaches and the way they shape our view of the social/human world.
+* Be able to describe some of the reasons why quantitative research can be useful, while being cautious around the pitfalls of its methods and methodology.
+* Have installed `R` and Rstudio and be able to interact with the console, run scripts, check help documentation, distinguish between environmental object types, and read in data.
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Help you schedule your independent learning for the rest of the module to fit within the demands of the programme.
+* Give you an indication of when quantitative research projects (or components of projects) may be useful, and see how the content of SMI606 fits together with SMI607 Principles of Social Research I and Principles of Research Design II.
+* Introduce you to `R`, a flexible open-source statistical programming language that can be used for quantitative data analysis but also for presenting, reporting, and other purposes.
+
+]
+
+
+
+]
+
+
+
+???
+
+* Introduce you to the module and instructors, structure and timetable, resources and support available, contingencies for COVID and remote support
+* Introduce the concept of quantitative social science and the assumptions it makes about the human world: why do we use it? What do we assume when we use it? How do we make sense of it? These will be explored more in SMI607 Principles of Social Research I
+* Introduce `R`, install `R`, and talk about the layout of Rstudio, different kinds of variables in the R environment, and how to read in and manipulate data (basic filtering, subsetting).
+
+---
+
+class: middle
+
+
+.pull-left[
+
+.center[
+## Calum Webb
+
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+Research on poverty and the child welfare system in the UK using secondary survey and administrative data in `R`. British Academy Postdoctoral Fellow researching how investment in services for children improves their welfare and safety.
+
+
+]
+
+]
+
+
+.pull-right[
+
+.center[
+## Rhiannon Williams
+
+[rswilliams2@sheffield.ac.uk](mailto:rswilliams2@sheffield.ac.uk)
+
+Rhiannon Williams  is a PhD student and part of the Data Analytics &amp; Society Centre for Doctoral Training. Her research is about housing insecurity.
+
+]
+
+]
+
+
+
+
+---
+
+class: middle
+
+## Module design, timetable, and support
+
+* Introductions to important statistical principles and methods in quantitative social science.
+  * Intuition *over* equations.
+
+--
+
+* 'Hands-on' experience putting these principles into practice in `R` using real-world data. 
+
+--
+
+* Assessment on two small quantitative research projects where the topic is decided by you.
+
+---
+
+class: middle
+
+## Module design, timetable, and support
+
+__Time__: 9:00-10:45 Wednesdays (Week 1-5, 7-11)  
+__Location__: Hicks Building G25
+
+__Consultation &amp; Feedback Hours__: 15:00-16:00 Wednesdays (Week 1-12)  
+*Can be booked online or face-to-face. See: [how to book](https://calumwebb.co.uk/teaching/appointments/).*
+
+__Weekly Drop-in Sessions__: 16:00-17:00 Thursdays (Week 1-5, 7-12)  
+*Virtual only initially. No booking required. Meeting room:* [meet.google.com/qvo-cpkp-ndz](https://meet.google.com/qvo-cpkp-ndz) 
+
+---
+class: middle
+
+## Responsibilities and expectations
+
+As a rough guideline you __should expect to devote around 10 hours of study time per week to this module__ during a typical 15-week semester.
+
+--
+
+__It is up to you to identify your learning needs__ and use the resources provided to meet them. I am happy to help you with this process.
+
+--
+
+To ensure your independent learning is productive, you should __regularly think about what parts of the module are challenging you__. Examples of this might be:
+
+* Reading and manipulating data in `R`.
+* Interpreting the output of statistical tests.
+* Creating graphs.
+
+--
+
+And lastly, remember to **ask for help if you need it!** There is no such thing as a stupid question.
+
+
+---
+
+## What will we learn?
+
+<div id="xytlwzhnrf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xytlwzhnrf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xytlwzhnrf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xytlwzhnrf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xytlwzhnrf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xytlwzhnrf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xytlwzhnrf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xytlwzhnrf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xytlwzhnrf .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xytlwzhnrf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xytlwzhnrf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xytlwzhnrf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xytlwzhnrf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xytlwzhnrf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xytlwzhnrf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xytlwzhnrf .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xytlwzhnrf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xytlwzhnrf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xytlwzhnrf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xytlwzhnrf .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xytlwzhnrf .gt_left {
+  text-align: left;
+}
+
+#xytlwzhnrf .gt_center {
+  text-align: center;
+}
+
+#xytlwzhnrf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xytlwzhnrf .gt_font_normal {
+  font-weight: normal;
+}
+
+#xytlwzhnrf .gt_font_bold {
+  font-weight: bold;
+}
+
+#xytlwzhnrf .gt_font_italic {
+  font-style: italic;
+}
+
+#xytlwzhnrf .gt_super {
+  font-size: 65%;
+}
+
+#xytlwzhnrf .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:50px;"/>
+    <col style="width:300px;"/>
+    <col style="width:750px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Week</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Topic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Recommended Reading</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">1</td>
+<td class="gt_row gt_left">What is quantitative social science?</td>
+<td class="gt_row gt_left">Walter, M. '<em>The Nature of Social Science Research</em>' &amp; Powell, T. C. (2019). '<em>Can Quantitative Research Solve Social Problems?</em>'</td></tr>
+    <tr><td class="gt_row gt_left">2</td>
+<td class="gt_row gt_left">Types of quantification</td>
+<td class="gt_row gt_left">Rowntree, D. Chapter 2, 3, &amp; 4. '<em>Statistics without Tears</em>'</td></tr>
+    <tr><td class="gt_row gt_left">3</td>
+<td class="gt_row gt_left">Relationships between variables</td>
+<td class="gt_row gt_left">Fogarty, B. Chapter 8 &amp; 10. '<em>Quantitative Social Science Data with R</em>'</td></tr>
+    <tr><td class="gt_row gt_left">4</td>
+<td class="gt_row gt_left">Inference</td>
+<td class="gt_row gt_left">Rowntree, D. Chapter 5. '<em>Statistics without Tears</em>'</td></tr>
+    <tr><td class="gt_row gt_left">5</td>
+<td class="gt_row gt_left">Causality</td>
+<td class="gt_row gt_left">Imai, K. Chapter 2 <em>'Quantitative Social Science: An introduction'</em>. &amp; Goldthorpe, J. H. '<em>Causation, Statistics and Sociology</em>'</td></tr>
+    <tr><td class="gt_row gt_left">6</td>
+<td class="gt_row gt_left">Reading Week</td>
+<td class="gt_row gt_left">Rowntree, D. Chapter 6, 7 &amp; 8. '<em>Statistics without Tears</em>'</td></tr>
+    <tr><td class="gt_row gt_left">7</td>
+<td class="gt_row gt_left">Bivariate Linear Regression</td>
+<td class="gt_row gt_left">Wheelan, C. Chapter 11, 12. '<em>Naked Statistics</em>'</td></tr>
+    <tr><td class="gt_row gt_left">8</td>
+<td class="gt_row gt_left">Multiple Linear Regression</td>
+<td class="gt_row gt_left">Fogarty, B. Chapter 11 &amp; 12. '<em>Quantitative Social Science Data with R</em>' or Imai, K. Chapter 4.2. and 4.3.2 '<em>Quantitative Social Science: An introduction</em> (Available online through the library)'</td></tr>
+    <tr><td class="gt_row gt_left">9</td>
+<td class="gt_row gt_left">Logistic Regression</td>
+<td class="gt_row gt_left">Schumacker, R. (2021). Chapter 18. <em>Learning Statistics Using R</em> (Available online through the library)</td></tr>
+    <tr><td class="gt_row gt_left">10</td>
+<td class="gt_row gt_left">Cluster Analysis</td>
+<td class="gt_row gt_left">Imai, K. Chapter 3.7. <em>Quantitative Social Science: An introduction</em> &amp; UC Business Analytics <code>R</code> Programming Guide '<em>Hierarchical Cluster Analysis</em>' (<a href="https://uc-r.github.io/hc_clustering">Available free online</a>)</td></tr>
+    <tr><td class="gt_row gt_left">11</td>
+<td class="gt_row gt_left">Spatial Analysis</td>
+<td class="gt_row gt_left">Imai, K. Chapter 5.3 '<em>Quantitative Social Science: An introduction</em> (Available online through the library)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+---
+class: middle
+
+## Why `R`?
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* `R` has a __steep learning curve__.
+* `R`, mostly, __does not use menus__.
+* `R` can have __unhelpful error messages__.
+* `R` requires __learning how to code at the same time as learning methods and statistical theory__.
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="images/r_first_then.png" width="80%" /&gt;
+
+*Illustration by Allison Horst*
+
+]
+
+]
+
+
+---
+class: middle
+
+## Why `R`?
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* `R` has a __steep learning curve__.
+* `R`, mostly, __does not use menus__.
+* `R` can have __unhelpful error messages__.
+* `R` requires __learning how to code at the same time as learning methods and statistical theory__.
+
+
+* `R` is __free__.
+* `R` is __flexible__: there are dozens of different ways to do the same thing. No way to use a certain method? You can even program it yourself.
+* `R` promotes __reproducibility__ through the use of script.
+* `R` has a __great community__ and a lot of __free resources__.
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="images/r_first_then.png" width="80%" /&gt;
+
+*Illustration by Allison Horst*
+
+]
+
+]
+
+
+---
+
+class: middle
+
+
+## Base `R`
+
+
+```r
+data$log_income &lt;- log(data$income)
+summary(lm(data = subset(data, age &gt; 15), formula = log_income ~ age))
+```
+
+
+## Tidyverse
+
+
+```r
+data %&gt;%
+  filter(age &gt; 15) %&gt;%
+  mutate(log_income = log(income)) %&gt;%
+  lm(., formula = log_income ~ age) %&gt;%
+  summary(.)
+```
+
+
+
+
+
+---
+class: middle 
+
+.center[
+&lt;img src="images/r_rollercoaster.png" width="90%" /&gt;
+]
+
+.center[*Illustration by Allison Horst.*]
+
+
+
+---
+class: middle
+
+## How to use the reading/resource list?
+
+.pull-left[
+
+* Probably at least 50% of module conveners effort goes towards putting together a __good quality reading &amp; resource list__. But not all students use it!
+
+]
+
+
+.pull-right[
+
+.center[
+&lt;img src="images/cat.svg" width="100%" /&gt;
+]
+
+]
+
+
+---
+class: middle
+
+## How to use the [reading/resource list](https://calumwebb.co.uk/teaching/SMI606-reading-list/)?
+
+.pull-left[
+
+* Probably at least 50% of module conveners effort goes towards putting together a __good quality reading &amp; resource list__. But not all students use it!
+
+
+The reading and resource list for this module includes:
+
+* Detailed information about the topic each week as well as __strongly suggested/required preparatory reading__ as well as additional or alternative reading.
+* Contains extra resources for:
+  * Learning `R`
+  * Open data to practice on or use for your assessment
+
+]
+
+
+.pull-right[
+
+.center[
+&lt;img src="images/cat.svg" width="100%" /&gt;
+]
+
+]
+
+
+---
+
+### Exercise: It's normal for people to be coming to this course with wildly different experiences of statistics and software. 
+
+.center[[
+&lt;img src="ex_1_bg_qr.png" width="75%" /&gt;
+](https://jamboard.google.com/d/1jFYCgK5wrihDK_Z7lOGvcTi6ZA8EQVJ5DsyHT0EX3Nw/edit?usp=sharing)
+]
+
+.center[https://jamboard.google.com/d/1jFYCgK5wrihDK_Z7lOGvcTi6ZA8EQVJ5DsyHT0EX3Nw/edit?usp=sharing]
+
+???
+
+Jamboard for students to map their experience with statistics and anything they are anxious about
+
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* The identification of __social patterns__ through the quantification of data.
+* .grey[__Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).]
+* .grey[Checking the __validity__ and __reliability__ of that concept.]
+* .grey[Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.]
+* .grey[__Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.]
+* .grey[Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.]
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="week-01-what-is-quants_files/figure-html/unnamed-chunk-11-1.png" alt="Data from &amp;lt;a href='https://doi-org.sheffield.idm.oclc.org/10.2307/2286971'&amp;gt;Goodman, 1979&amp;lt;/a&amp;gt; via Glass, 1954. Social Mobility in Britain. Data from 1949." width="400" height="450" /&gt;
+&lt;p class="caption"&gt;Data from &lt;a href='https://doi-org.sheffield.idm.oclc.org/10.2307/2286971'&gt;Goodman, 1979&lt;/a&gt; via Glass, 1954. Social Mobility in Britain. Data from 1949.&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+
+]
+
+
+???
+
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* .grey[The identification of __social patterns__ through the quantification of data.]
+* __Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).
+* .grey[Checking the __validity__ and __reliability__ of that concept.]
+* .grey[Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.]
+* .grey[__Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.]
+* .grey[Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.]
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;img src="images/operationalisation.png" width="100%" /&gt;
+
+]]
+
+]
+
+
+???
+
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* .grey[The identification of __social patterns__ through the quantification of data.]
+* .grey[__Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).]
+* Checking the __validity__ and __reliability__ of that concept.
+* .grey[Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.]
+* .grey[__Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.]
+* .grey[Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.]
+
+]
+
+.pull-right[
+
+.middle[.center[
+&lt;br&gt;
+
+&lt;img src="week-01-what-is-quants_files/figure-html/unnamed-chunk-13-1.png" width="425" height="425" /&gt;
+
+]]
+
+]
+
+
+???
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* .grey[The identification of __social patterns__ through the quantification of data.]
+* .grey[__Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).]
+* .grey[Checking the __validity__ and __reliability__ of that concept.]
+* Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.
+* .grey[__Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.]
+* .grey[Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.]
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;br&gt;
+
+&lt;img src="images/waffle.png" width="425" height="425" /&gt;
+
+]]
+
+]
+
+
+???
+
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* .grey[The identification of __social patterns__ through the quantification of data.]
+* .grey[__Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).]
+* .grey[Checking the __validity__ and __reliability__ of that concept.]
+* .grey[Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.]
+* __Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.
+* .grey[Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.]
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;img src="week-01-what-is-quants_files/figure-html/unnamed-chunk-15-1.png" width="425" height="425" /&gt;
+
+
+
+`$$\hat{Destination} = 3 + 0.46 \cdot Origin$$`
+
+]]
+
+]
+
+
+???
+
+
+---
+
+## What is quantitative social science?
+
+.pull-left[
+
+&lt;br&gt;
+
+* .grey[The identification of __social patterns__ through the quantification of data.]
+* .grey[__Operationalising__ a concept so that it can be measured (on a numeric scale or codified with finite classifications).]
+* .grey[Checking the __validity__ and __reliability__ of that concept.]
+* .grey[Designing studies with __samples__ that allow us to make __generalisations__ about populations of interest, and/or claims about __causality__.]
+* .grey[__Collecting data__ that can be organised, __explored__ and __analysed__ using a wide range of statistical methods.]
+* Make use of standardised, "__objective__" tools for collecting data, doing analysis, and answering research questions.
+
+]
+
+.pull-right[
+
+.middle[.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/reproducibility_court.png" width="100%" /&gt;
+
+.center[*Illustration by Allison Horst*]
+
+]]
+
+]
+
+
+???
+
+
+
+
+---
+
+
+## Positivism
+
+
+.pull-left[
+
+&lt;img src="images/Auguste_Comte.jpg" width="80%" /&gt;
+
+]
+
+.pull-right[
+
+The way we research something reflects (implicitly or explicitly) __how we understand the human world__. You will explore this in much more detail in SMI607 Principles of Social Research I. 
+
+* Quantitative research has a long association with Positivism: the __idea that we can apply the same scientific principles we use to study the natural world to understand the human/social world__.
+
+]
+
+
+---
+
+
+## Positivism
+
+
+.pull-left[
+
+&lt;img src="images/Auguste_Comte.jpg" width="80%" /&gt;
+
+]
+
+.pull-right[
+
+The way we research something reflects (implicitly or explicitly) __how we understand the human world__. You will explore this in much more detail in SMI607 Principles of Social Research I. 
+
+* Quantitative research has a long association with Positivism: the __idea that we can apply the same scientific principles we use to study the natural world to understand the human/social world__.
+
+* "__Qualitative and quantitative research methods are now regarded as forming different, but equally vital, aspects of the social science research endeavour.__" Walter, 2006: 25. While quantitative research can be useful for establishing consistent __social patterns__ and challenging conventional wisdom, it is limited in developing **social meaning**. 
+
+]
+
+
+
+---
+
+## Beyond Positivism: Pragmatism, social problems, and politics
+
+.pull-left[
+
+Can quantitative social research solve social problems?
+
+* Quantitative research as __activism__ and __counter-storytelling__ epitomised by __W.E.B. Du Bois__.
+
+&gt; #### .big["The twisted logic ran if the black man was inferior he was not oppressed-his place in society was appropriate to his meager talent and intellect. Dr. Du Bois recognized that the keystone in the arch of oppression was the myth of inferiority and he dedicated his brilliant talents to demolish it."]
+
+.right[Dr. Martin Luther King Jr., cited in [Morris, n.d.](https://www.ucpress.edu/blog/25526/whats-in-a-name-w-e-b-du-bois-vs-w-e-b-debois/)]
+
+]
+
+
+.pull-right[
+
+.center[
+&lt;img src="images/dubois_1.jpg" width="70%" /&gt;
+]
+
+]
+
+???
+
+WEB Du Bois, Florence Nightingale, participatory quants
+
+
+---
+
+## Beyond Positivism: Pragmatism, social problems, and politics
+
+.pull-left[
+
+__Du Bois engaged in the continuous systemic collection, analysis, interpretation and dissemination of public health-related data in people of various racial groups__ [between 1896 and 1897] ... Du Bois' analysis and interpretation of racism led to his summative pronouncement that __systemic inequality was associated with increasing health risks and high mortality rates__ .grey[... When he connected the systemic inequality of racism to education, criminal justice, poverty, and employment, Du Bois demonstrated the importance of a multidisciplinary collaborative lens of social epidemiological research. ... Du Bois' recommended interventions and strategies to confront the determinants of health and determinants of death in the 7th Ward would have been well posed for policy development aimed at combating racism and eliminating health disparities.]
+
+.right[Jones-Eversley &amp; Dean. (2018). *After 121 Years, It's Time to Recognize W.E.B. Du Bois as a Founding Father of Social Epidemiology*]
+
+]
+
+
+.pull-right[
+
+.center[
+&lt;img src="images/duboi_2.jpg" width="70%" /&gt;
+]
+
+.small[.center[One of Du Bois' Data Portraits presented at the 1900 Paris Exhibition.]]
+
+]
+
+???
+
+WEB Du Bois, Florence Nightingale, participatory quants
+
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/nightingale.jpg" width="85%" /&gt;
+
+Florence Nightingale's famous 1850s data visualiation showing the impact of the Sanitary Commission on reducing the deaths of front line soldiers in the Crimean War.
+
+]
+
+
+---
+
+class: inverse, middle
+
+# "Whenever I am infuriated, I revenge myself with a new diagram."
+
+#### .right[Florence Nightingale (August 1857), cited in [Gupta, 2020](https://www.sciencenews.org/article/florence-nightingale-birthday-power-visualizing-science) ]
+
+
+???
+
+When no one else will listen to you, they can't ignore hard, (quantitative) data and robust analysis.
+
+---
+
+class: middle
+
+.pull-left[
+
+### .tuos_purple[Value Objectivity]
+
+* Can we ever be free of all bias and political motivation in our research, as historical Positivism promoted (__dispassionate social inquiry__)? 
+
+* Would we even enjoy or want to do research if we were? __What would the point be?__
+
+]
+
+.pull-right[
+
+### .tuos_purple[Methodological Objectivity]
+
+* What we *can* do is ensure the methods we use, our data, and the steps we went through are __transparent, replicable, and well-communicated__.
+&lt;br&gt;&lt;br&gt;
+
+* What do we lose by accepting and making our values explicit but retaining our methodological objectivity? What do we gain? (e.g. see: Indigenous Methodologies in Walter, 2006 and Andersen &amp; Walter, 2013). 
+
+
+]
+
+&lt;br&gt;
+
+.right[__Bifurcation of objectivity__:  Jenkins, 2018; Powell, 2020.]
+
+
+---
+
+## References
+
+&lt;br&gt;&lt;br&gt;
+* __Battle-Baptiste, W., &amp; Rusert, B. (Eds.). (2018).__ WEB Du Bois's data portraits: Visualizing black America. Chronicle Books.
+* __Goodman, L. A. (1979).__ Simple models for the analysis of association in cross-classifications having ordered categories. _Journal of the American Statistical Association_, 74(367), 537-552.
+* [__Gupta, S. (2020).__](https://www.sciencenews.org/article/florence-nightingale-birthday-power-visualizing-science) Florence Nightingale understood the power of visualizing science. _ScienceNews._
+* __Jenkins, R. (2018).__ Foundations of sociology: Towards a better understanding of the human world. _Macmillan International Higher Education_.
+* __Jones-Eversley, S. D., &amp; Dean, L. T. (2018).__ After 121 years, it’s time to recognize WEB Du Bois as a founding father of social epidemiology. _The Journal of Negro Education_, 87(3), 230-245.
+* [__Morris, A. (n.d.)__](https://www.ucpress.edu/blog/25526/whats-in-a-name-w-e-b-du-bois-vs-w-e-b-debois/) What’s in a Name? W. E. B. Du Bois vs. W.E.B. DeBois. _UC Press Blog_.
+* __Powell, T. C. (2020).__ Can quantitative research solve social problems? Pragmatism and the ethics of social research. _Journal of Business Ethics_, 167(1), 41-48.
+* __Walter, M. (2006).__ The nature of social science research. _Social research methods: An Australian perspective_, 1-28.
+* __Walter, M., &amp; Andersen, C. (2016).__ Indigenous statistics: A quantitative research methodology. _Routledge._
+
+---
+
+class: middle
+
+## Getting set up in `R`
+
+
+* .big[Go to the __SMI606 Blackboard page -&gt; Learning Materials -&gt; Week 1__, and follow the tutorial for downloading and installing `R` and Rstudio.]
+* .big[Use the __visual tour of Rstudio sheet__ to familiarise yourself with the software.]
+* .big[Follow the __"Creating a New R Project and Script" tutorial__ to create a new project called "week-1-exercise"]
+
+
+## Week 1 `R` Exercise
+
+
+* .big[Copy the files in the "__Week 1 R Exercise__" folder in R into your new project directory.]
+* .big[Open `week-1.R` in Rstudio and follow the tutorial written into the script to take your first steps programming in `R`!]
+* .big[_You may not have time to finish this entire tutorial before the end of this session, but should try and complete it during your independent study time_.]
+
+
+???
+
+* Installing R and Rstudio
+* A tour of RStudio
+* Setting up a project in Rstudio (inc good practice)
+* Different types of 'objects' in the global environment
+  * Character strings
+  * Factors
+  * Numeric
+  * Logical
+  * Vectors
+  * Dataframes/tibbles
+* How to tell what type an object is using class()
+* Reading in different kinds of datasets
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -227,7 +227,7 @@ class: middle
 
 ## Module design, timetable, and support
 
-__Time__: 9:00-10:50 Wednesdays (Week 1-5, 7-11)  
+__Time__: 9:00-10:45 Wednesdays (Week 1-5, 7-11)  
 __Location__: Hicks Building G25
 
 __Consultation & Feedback Hours__: 15:00-16:00 Wednesdays (Week 1-12)  
