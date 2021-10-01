@@ -11,6 +11,7 @@ site: distill::distill_website
 
 ```{r, include=FALSE, results='asis'}
 library(distill)
+library(tidyverse)
 library(postcards)
 library(metathis)
 
