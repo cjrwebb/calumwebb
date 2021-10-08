@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI606: Week 3 — Relationships between Variables</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2021-10-08" />
+    <script src="week-03-relationships-between-variables_files/header-attrs/header-attrs.js"></script>
+    <link href="week-03-relationships-between-variables_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/tile-view/tile-view.js"></script>
+    <link href="week-03-relationships-between-variables_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/panelset/panelset.js"></script>
+    <script src="week-03-relationships-between-variables_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="week-03-relationships-between-variables_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/clipboard/clipboard.min.js"></script>
+    <link href="week-03-relationships-between-variables_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/shareon/shareon.min.js"></script>
+    <link href="week-03-relationships-between-variables_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-03-relationships-between-variables_files/jquery/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="week-03-relationships-between-variables_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="week-03-relationships-between-variables_files/bootstrap/js/bootstrap.min.js"></script>
+    <script src="week-03-relationships-between-variables_files/bootstrap/shim/html5shiv.min.js"></script>
+    <script src="week-03-relationships-between-variables_files/bootstrap/shim/respond.min.js"></script>
+    <style>h1 {font-size: 34px;}
+           h1.title {font-size: 38px;}
+           h2 {font-size: 30px;}
+           h3 {font-size: 24px;}
+           h4 {font-size: 18px;}
+           h5 {font-size: 16px;}
+           h6 {font-size: 12px;}
+           code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+           pre:not([class]) { background-color: white }</style>
+    <script src="week-03-relationships-between-variables_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="week-03-relationships-between-variables_files/formattable_widget-binding/formattable_widget.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[SMI606: Week 3&lt;br&gt;Relationships between variables]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+class: middle
+
+.pull-left[
+&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
+]
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sign In
+
+[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
+
+]
+---
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Learn how to __use variable types to select appropriate bivariate data visualisations and descriptive statistics__.
+
+* Be able to create and interpret __bivariate bar charts, heatmaps, boxplots, ridgeplots, scatterplots, and hexbin plots__ using `R`.
+
+* Be able to calculate and interpret several __bivariate descriptive statistics including__ __contingency tables, Cramer's V, Mean/Median differences, Spearman's `\(\rho\)`, and Pearson's R__ in `R`.
+
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Bivariate statistics an be important parts of research studies themselves, especially research studies with *a priori* controls (e.g. randomised controlled trials).
+
+* Bivariate statistics and data visualisations are important for checking assumptions and for communicating findings in research. 
+
+* Bivariate statistics can also be used to develop the rationale behind case studies in mixed methods research.
+
+
+]
+
+
+]
+
+
+
+???
+
+* Grid of variable types and relevant visualisations and descriptive statistics (no tests yet)
+
+
+
+---
+
+class: middle
+
+## Visualisations for Exploring Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-99074fbb84db5449f3cc" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-99074fbb84db5449f3cc">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+
+
+
+---
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-c69d736c4bd625c2a0fb" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-c69d736c4bd625c2a0fb">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+
+
+
+
+---
+
+class: middle
+
+## Visualisations for Exploring Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-416b6d93698bf5b7089c" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-416b6d93698bf5b7089c">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: middle
+
+.center[
+&lt;img src="images/drake-1.png" width="55%" /&gt;
+]
+
+.center[
+*One classic (bivariate bar chart), one 'modern' (heatmap)*
+]
+
+---
+
+class: middle
+
+.center[
+&lt;img src="images/diamonds-bar.jpg" width="90%" /&gt;
+]
+
+---
+
+class: middle
+
+.center[
+&lt;br&gt;
+
+&lt;img src="images/jb_plot1_rates.png" width="85%" /&gt;
+]
+
+---
+
+class: middle, inverse
+
+# .tuos_purple[Is there a relationship between peoples' attitudes towards the adequacy of benefits (welfare) payments and their attitudes towards immigration in Scotland?]
+
+
+---
+
+## Grouped bar chart
+
+&lt;br&gt;
+
+.pull-left[
+
+
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  # Plot bar chart
+  ggplot() +
+  geom_bar(aes(x = imig_fct, fill = dole_fct), 
+           position = "dodge") +
+  theme(legend.position = "bottom")
+ 
+# imig_fct = views on how immigration should change
+
+# dole_fct = views on whether benefits are too high, too low, or neither
+```
+
+]
+
+.pull-right[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-10-1.png" width="550" height="500" /&gt;
+
+
+]
+
+
+---
+
+## Heatmap
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-11-1.png" width="550" height="550" /&gt;
+
+]
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;%
+  as_tibble() %&gt;%
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;%
+  mutate(
+    dole_fct = factor(dole_fct, 
+                      levels = c("Too low", "Neither", "Too high"))
+  ) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) +
+  theme(legend.position = "bottom") +
+  coord_fixed(1) +
+  scale_fill_gradient2(low = "white", high = "seagreen")
+```
+
+
+]
+
+---
+
+## Heatmap
+
+.pull-left[
+
+
+```
+##            imig_fct Too low Neither Too high
+##       Reduced a lot     168      86      308
+##    Reduced a little      99      62      203
+##     Remain the same     141      76      115
+##  Increased a little      30      12       19
+##     Increased a lot      18       5        7
+```
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) # Get crosstab
+```
+
+]
+
+
+---
+
+## Heatmap
+
+.pull-left[
+
+
+```
+## # A tibble: 5 × 4
+##   imig_fct           `Too low` Neither `Too high`
+##   &lt;fct&gt;                  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Reduced a lot            168      86        308
+## 2 Reduced a little          99      62        203
+## 3 Remain the same          141      76        115
+## 4 Increased a little        30      12         19
+## 5 Increased a lot           18       5          7
+```
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() # Convert to tibble
+```
+
+]
+
+---
+
+## Heatmap
+
+.pull-left[
+
+
+```
+## # A tibble: 15 × 3
+##    imig_fct           dole_fct value
+##    &lt;fct&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1 Reduced a lot      Too low    168
+##  2 Reduced a lot      Neither     86
+##  3 Reduced a lot      Too high   308
+##  4 Reduced a little   Too low     99
+##  5 Reduced a little   Neither     62
+##  6 Reduced a little   Too high   203
+##  7 Remain the same    Too low    141
+##  8 Remain the same    Neither     76
+##  9 Remain the same    Too high   115
+## 10 Increased a little Too low     30
+## 11 Increased a little Neither     12
+## 12 Increased a little Too high    19
+## 13 Increased a lot    Too low     18
+## 14 Increased a lot    Neither      5
+## 15 Increased a lot    Too high     7
+```
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() %&gt;% # Convert to tibble
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") # Create 'long' data
+```
+
+]
+
+---
+
+## Heatmap
+
+.pull-left[
+
+
+```
+## # A tibble: 15 × 3
+##    imig_fct           dole_fct value
+##    &lt;fct&gt;              &lt;fct&gt;    &lt;dbl&gt;
+##  1 Reduced a lot      Too low    168
+##  2 Reduced a lot      Neither     86
+##  3 Reduced a lot      Too high   308
+##  4 Reduced a little   Too low     99
+##  5 Reduced a little   Neither     62
+##  6 Reduced a little   Too high   203
+##  7 Remain the same    Too low    141
+##  8 Remain the same    Neither     76
+##  9 Remain the same    Too high   115
+## 10 Increased a little Too low     30
+## 11 Increased a little Neither     12
+## 12 Increased a little Too high    19
+## 13 Increased a lot    Too low     18
+## 14 Increased a lot    Neither      5
+## 15 Increased a lot    Too high     7
+```
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() %&gt;% # Convert to tibble
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  mutate( # re-factorise dole_fct
+    dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
+  )
+```
+
+]
+
+---
+
+## Heatmap
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-21-1.png" width="550" height="550" /&gt;
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() %&gt;% # Convert to tibble
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  mutate( # re-factorise dole_fct
+    dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
+  ) %&gt;%
+  ggplot() + # plot data
+  geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) # create heatmap
+```
+
+]
+
+---
+
+## Heatmap
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-23-1.png" width="550" height="550" /&gt;
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() %&gt;% # Convert to tibble
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  mutate( # re-factorise dole_fct
+    dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
+  ) %&gt;%
+  ggplot() + # plot data
+  geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) +  # create heatmap
+  theme(legend.position = "bottom") + # move legend to bottom
+  coord_fixed(1) # force squares
+```
+
+]
+
+
+---
+
+## Heatmap
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-25-1.png" width="550" height="550" /&gt;
+
+]
+
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
+  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
+  as_tibble() %&gt;% # Convert to tibble
+  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  mutate( # re-factorise dole_fct
+    dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
+  ) %&gt;%
+  ggplot() + # plot data
+  geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) +  # create heatmap
+  theme(legend.position = "bottom") + # move legend to bottom
+  coord_fixed(1) + # force squares
+  scale_fill_gradient2(low = "white", high = "seagreen") # change colour scheme
+```
+
+]
+
+---
+
+class: middle, inverse
+
+## .tuos_purple[How do we effectively summarise and communicate this relationship in a standardised way?]
+
+
+---
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-ecc8d2030aceed18837c" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-ecc8d2030aceed18837c">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Spearman's Rho/<br>Contingency Table<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Contingency tables ("Crosstabs")
+
+&lt;br&gt;
+
+.pull-left[
+
+Contingency tables show the __frequency of responses that fall within all combinations of categories within two variables__ with mutually exclusive categories.
+
+]
+
+.pull-right[
+
+
+```r
+library(janitor)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct)
+```
+
+```
+##            imig_fct Too low Neither Too high NA_
+##       Reduced a lot     168      86      308  49
+##    Reduced a little      99      62      203  36
+##     Remain the same     141      76      115  29
+##  Increased a little      30      12       19   5
+##     Increased a lot      18       5        7   2
+##                &lt;NA&gt;       9      11        9   2
+```
+
+
+]
+
+
+---
+
+## Contingency tables ("Crosstabs")
+
+&lt;br&gt;
+
+.pull-left[
+
+Contingency tables show the __frequency of responses that fall within all combinations of categories within two variables__ with mutually exclusive categories.
+
+Most visualisations rely on contingency but assign aesthetic elements (e.g. height of a bar or fill of a square) to illustrate variation.
+
+]
+
+.pull-right[
+
+
+```r
+library(janitor)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct)
+```
+
+```
+##            imig_fct Too low Neither Too high NA_
+##       Reduced a lot     168      86      308  49
+##    Reduced a little      99      62      203  36
+##     Remain the same     141      76      115  29
+##  Increased a little      30      12       19   5
+##     Increased a lot      18       5        7   2
+##                &lt;NA&gt;       9      11        9   2
+```
+
+
+]
+
+---
+
+## Contingency tables ("Crosstabs")
+
+&lt;br&gt;
+
+.pull-left[
+
+Contingency tables show the __frequency of responses that fall within all combinations of categories within two variables__ with mutually exclusive categories.
+
+Most visualisations rely on contingency but assign aesthetic elements (e.g. height of a bar or fill of a square) to illustrate variation.
+
+* Interpreting and communicating dependence between two categorical or ordinal variables using a contingency table __often requires the use of percentages__. 
+
+  * These can be calculated based on the rows
+
+]
+
+.pull-right[
+
+
+```r
+library(janitor)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct) %&gt;%
+  adorn_percentages(denominator = "row") %&gt;%
+  adorn_totals(where = c("col")) %&gt;%
+  adorn_pct_formatting() 
+```
+
+```
+##            imig_fct Too low Neither Too high  NA_  Total
+##       Reduced a lot   27.5%   14.1%    50.4% 8.0% 100.0%
+##    Reduced a little   24.8%   15.5%    50.7% 9.0% 100.0%
+##     Remain the same   39.1%   21.1%    31.9% 8.0% 100.0%
+##  Increased a little   45.5%   18.2%    28.8% 7.6% 100.0%
+##     Increased a lot   56.2%   15.6%    21.9% 6.2% 100.0%
+##                &lt;NA&gt;   29.0%   35.5%    29.0% 6.5% 100.0%
+```
+
+
+]
+
+---
+
+## Contingency tables ("Crosstabs")
+
+&lt;br&gt;
+
+.pull-left[
+
+Contingency tables show the __frequency of responses that fall within all combinations of categories within two variables__ with mutually exclusive categories.
+
+Most visualisations rely on contingency but assign aesthetic elements (e.g. height of a bar or fill of a square) to illustrate variation.
+
+* Interpreting and communicating dependence between two categorical or ordinal variables using a contingency table __often requires the use of percentages__. 
+
+  * These can be calculated based on the rows
+  
+  * Or based on columns
+
+]
+
+.pull-right[
+
+
+```r
+library(janitor)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct) %&gt;%
+  adorn_percentages(denominator = "col") %&gt;%
+  adorn_totals(where = c("row")) %&gt;%
+  adorn_pct_formatting() 
+```
+
+```
+##            imig_fct Too low Neither Too high    NA_
+##       Reduced a lot   36.1%   34.1%    46.6%  39.8%
+##    Reduced a little   21.3%   24.6%    30.7%  29.3%
+##     Remain the same   30.3%   30.2%    17.4%  23.6%
+##  Increased a little    6.5%    4.8%     2.9%   4.1%
+##     Increased a lot    3.9%    2.0%     1.1%   1.6%
+##                &lt;NA&gt;    1.9%    4.4%     1.4%   1.6%
+##               Total  100.0%  100.0%   100.0% 100.0%
+```
+
+
+]
+
+---
+
+## Contingency tables ("Crosstabs")
+
+&lt;br&gt;
+
+.pull-left[
+
+Contingency tables show the __frequency of responses that fall within all combinations of categories within two variables__ with mutually exclusive categories.
+
+Most visualisations rely on contingency but assign aesthetic elements (e.g. height of a bar or fill of a square) to illustrate variation.
+
+* Interpreting and communicating dependence between two categorical or ordinal variables using a contingency table __often requires the use of percentages__. 
+
+  * These can be calculated based on the rows
+  
+  * Or based on columns
+
+* However, this should **always be clearly labelled** and actual frequency counts should **always be available** to be transparent about small numbers of respondents.
+
+]
+
+.pull-right[
+
+
+```r
+library(janitor)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct) %&gt;%
+  adorn_percentages(denominator = "col") %&gt;%
+  adorn_totals(where = c("row")) %&gt;%
+  adorn_pct_formatting() 
+```
+
+```
+##            imig_fct Too low Neither Too high    NA_
+##       Reduced a lot   36.1%   34.1%    46.6%  39.8%
+##    Reduced a little   21.3%   24.6%    30.7%  29.3%
+##     Remain the same   30.3%   30.2%    17.4%  23.6%
+##  Increased a little    6.5%    4.8%     2.9%   4.1%
+##     Increased a lot    3.9%    2.0%     1.1%   1.6%
+##                &lt;NA&gt;    1.9%    4.4%     1.4%   1.6%
+##               Total  100.0%  100.0%   100.0% 100.0%
+```
+
+
+```
+##            imig_fct Too low Neither Too high NA_
+##       Reduced a lot     168      86      308  49
+##    Reduced a little      99      62      203  36
+##     Remain the same     141      76      115  29
+##  Increased a little      30      12       19   5
+##     Increased a lot      18       5        7   2
+##                &lt;NA&gt;       9      11        9   2
+```
+
+
+]
+
+---
+
+## Cramer's V
+
+&lt;br&gt;
+
+.pull-left[
+
+Measure of asymmetry/dependence.
+
+* 0 = Total independence
+* 1 = Total dependence
+
+Does knowing the value of one of the variables help you know the value of the other variable (dependence), or does it make no difference (independence)?
+
+]
+
+.pull-right[
+
+
+```r
+library(rcompanion)
+
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct)
+```
+
+```
+##            imig_fct Too low Neither Too high NA_
+##       Reduced a lot     168      86      308  49
+##    Reduced a little      99      62      203  36
+##     Remain the same     141      76      115  29
+##  Increased a little      30      12       19   5
+##     Increased a lot      18       5        7   2
+##                &lt;NA&gt;       9      11        9   2
+```
+
+```r
+cramerV(x = ssa$dole_fct, y = ssa$imig_fct) 
+```
+
+```
+## Cramer V 
+##   0.1169
+```
+
+]
+
+---
+
+## Cramer's V
+
+&lt;br&gt;
+
+.pull-left[
+
+Measure of asymmetry/dependence.
+
+* 0 = Total independence
+* 1 = Total dependence
+
+Does knowing the value of one of the variables help you know the value of the other variable (dependence), or does it make no difference (independence)?
+
+]
+
+.pull-right[
+
+
+```r
+zero_dep &lt;- matrix(c(50, 50, 50, 50), nrow = 2, ncol = 2) 
+
+zero_dep
+```
+
+```
+##      [,1] [,2]
+## [1,]   50   50
+## [2,]   50   50
+```
+
+
+```r
+cramerV(zero_dep)
+```
+
+```
+## Cramer V 
+##        0
+```
+
+]
+
+---
+
+## Cramer's V
+
+&lt;br&gt;
+
+.pull-left[
+
+Measure of asymmetry/dependence.
+
+* 0 = Total independence
+* 1 = Total dependence
+
+Does knowing the value of one of the variables help you know the value of the other variable (dependence), or does it make no difference (independence)?
+
+]
+
+.pull-right[
+
+
+```r
+total_dep &lt;- matrix(c(0, 100, 100, 0), nrow = 2, ncol = 2) 
+
+total_dep
+```
+
+```
+##      [,1] [,2]
+## [1,]    0  100
+## [2,]  100    0
+```
+
+
+```r
+cramerV(total_dep)
+```
+
+```
+## Cramer V 
+##        1
+```
+
+]
+
+---
+
+## Cramer's V
+
+&lt;br&gt;
+
+.pull-left[
+
+Measure of asymmetry/dependence.
+
+* 0 = Total independence
+* 1 = Total dependence
+
+Does knowing the value of one of the variables help you know the value of the other variable (dependence), or does it make no difference (independence)?
+
+]
+
+.pull-right[
+
+
+```r
+partial_dep &lt;- matrix(c(25, 75, 75, 25), nrow = 2, ncol = 2) 
+
+partial_dep
+```
+
+```
+##      [,1] [,2]
+## [1,]   25   75
+## [2,]   75   25
+```
+
+
+```r
+cramerV(partial_dep)
+```
+
+```
+## Cramer V 
+##      0.5
+```
+
+]
+
+---
+
+## Spearman's rho ( `\(\rho\)` ): Rank order correlation
+
+&lt;br&gt;
+
+
+.pull-left[
+
+
+```r
+# Change factors to be ordered
+ssa &lt;- ssa %&gt;%
+  mutate(
+    imig_fct = factor(imig_fct, ordered = TRUE),
+    dole_fct = factor(dole_fct, ordered = TRUE)
+  )
+
+# Immigration should be...
+# 5 Levels: Reduced a lot &lt; Reduced a little &lt; ... &lt; Increased a lot
+
+# Benefits payments are...
+# Levels: Too low &lt; Neither &lt; Too high
+
+cor(x = as.numeric(ssa$imig_fct), # Must be numeric
+    y = as.numeric(ssa$dole_fct), # Must be numeric
+    use = "complete.obs", # Remove missing values
+    method = "spearman" # Use spearman's rho
+    )
+```
+
+```
+## [1] -0.1664359
+```
+]
+
+.pull-right[
+
+How closely do the orders of the two variables match up when ranked?
+
+* 1 = Ranks increase at exactly the same rate
+* 0 = Ranks neither increase or decrease consistently between the two variables
+* -1 = As the rank of one variable increases, the other decreases.
+
+]
+
+---
+
+## Spearman's rho ( `\(\rho\)` ): Rank order correlation
+
+&lt;br&gt;
+
+
+.pull-left[
+
+
+```r
+# Change factors to be ordered
+ssa &lt;- ssa %&gt;%
+  mutate(
+    imig_fct = factor(imig_fct, ordered = TRUE),
+    dole_fct = factor(dole_fct, ordered = TRUE)
+  )
+
+# Immigration should be...
+# 5 Levels: Reduced a lot &lt; Reduced a little &lt; ... &lt; Increased a lot
+
+# Benefits payments are...
+# Levels: Too low &lt; Neither &lt; Too high
+
+cor(x = as.numeric(ssa$imig_fct), # Must be numeric
+    y = as.numeric(ssa$dole_fct), # Must be numeric
+    use = "complete.obs", # Remove missing values
+    method = "spearman" # Use spearman's rho
+    )
+```
+
+```
+## [1] -0.1664359
+```
+]
+
+.pull-right[
+
+How closely do the orders of the two variables match up when ranked?
+
+* 1 = Ranks increase at exactly the same rate
+* 0 = Ranks neither increase or decrease consistently between the two variables
+* __-1 = As the rank of one variable increases, the other decreases.__
+
+__As the rank of immigration attitudes increases__ (people feel more that it should immigration should be increased and less that it should be reduced), __the rank of attitudes towards benefits tends to decrease__ (people feel more that benefits are too low rather than too high).
+
+People who are pro-immigration are also more likely to support greater welfare generosity, though this is only a weak association. 
+
+]
+
+---
+
+class: middle, inverse
+
+## .tuos_purple[Are attitudes towards immigration associated with age?]
+
+---
+
+
+class: middle
+
+## Visualisations for Exploring Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-2d2ac19eca9d79fde47b" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-2d2ac19eca9d79fde47b">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Data preparation: Recoding
+
+&lt;br&gt;
+
+
+```r
+ssa &lt;- ssa %&gt;%
+  mutate(
+    imig_fct_3 = case_when(imig_fct == "Reduced a lot" ~ "Reduced",
+                           imig_fct == "Reduced a little" ~ "Reduced",
+                           imig_fct == "Remain the same" ~ "Same",
+                           imig_fct == "Increased a little" ~ "Increased",
+                           imig_fct == "Increased a lot" ~ "Increased",
+                           TRUE ~ NA_character_)
+  ) %&gt;%
+  mutate(
+    imig_fct_3 = factor(imig_fct_3, 
+                        levels = c("Reduced", "Same", "Increased"), 
+                        ordered = TRUE)
+  ) 
+
+ssa %&gt;%
+  tabyl(imig_fct, imig_fct_3)
+```
+
+```
+##            imig_fct Reduced Same Increased NA_
+##       Reduced a lot     611    0         0   0
+##    Reduced a little     400    0         0   0
+##     Remain the same       0  361         0   0
+##  Increased a little       0    0        66   0
+##     Increased a lot       0    0        32   0
+##                &lt;NA&gt;       0    0         0  31
+```
+
+---
+
+## Boxplot 
+
+&lt;br&gt;
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-45-1.png" width="1000" height="550" /&gt;
+
+---
+
+## Boxplot 
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(rage) &amp; !is.na(imig_fct_3)) %&gt;%
+  # Start plotting
+  ggplot() +
+  geom_boxplot(aes(x = imig_fct_3, y = rage))
+
+# rage = Respondent's Age
+```
+
+&lt;br&gt;
+
+* Whiskers = Minimum and Maximum
+* Box = 25th to 75th percentile (50% of observations)
+* Medial = Median
+
+]
+
+.pull-right[
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-47-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+## Ridgeplot
+
+&lt;br&gt;
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-48-1.png" width="1000" height="550" /&gt;
+
+---
+
+## Ridgeplot
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+library(ggridges)
+
+ssa %&gt;%
+  filter(!is.na(rage) &amp; !is.na(imig_fct_3)) %&gt;%
+  ggplot() +
+  geom_density_ridges(
+    aes(x = rage, y = imig_fct_3, fill = imig_fct_3),
+    alpha = 0.5
+    )
+
+# rage = Respondent's Age
+```
+
+&lt;br&gt;
+
+* Shows distribution across the range - makes it easy to assess the distribution across groups (e.g. whether the variable is normally distributed across all groups).
+
+]
+
+.pull-right[
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-50-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-d4563e44681c1d3f6e72" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-d4563e44681c1d3f6e72">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Mean/Median Differences (and Ranges)
+
+&lt;br&gt;
+
+
+
+```r
+ssa %&gt;%
+  group_by(imig_fct_3) %&gt;%
+  summarise(
+    mean_age      = mean(rage, na.rm = TRUE),
+    median_age    = median(rage, na.rm = TRUE),
+    min_age       = min(rage, na.rm = TRUE),
+    percentile_25 = quantile(rage, probs = 0.25),
+    percentile_75 = quantile(rage, probs = 0.75),
+    max_age       = max(rage, na.rm = TRUE)
+  )
+```
+
+
+#### __Age summary statistics by attitudes towards future immigration policy __
+
+
+```
+## # A tibble: 4 × 7
+##   imig_fct_3 mean_age median_age min_age percentile_25 percentile_75
+##   &lt;ord&gt;         &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Reduced        53.9         55      18          40            68  
+## 2 Same           49.4         48      18          36            62  
+## 3 Increased      46.7         46      18          33.2          58.8
+## 4 &lt;NA&gt;           50.6         52      24          35.5          64  
+## # … with 1 more variable: max_age &lt;dbl&gt;
+```
+
+
+---
+
+## Mean/Median Differences (and Ranges)
+
+&lt;br&gt;
+
+
+
+```r
+ssa %&gt;%
+  group_by(dole_fct) %&gt;%
+  summarise(
+    mean_age      = mean(rage, na.rm = TRUE),
+    median_age    = median(rage, na.rm = TRUE),
+    min_age       = min(rage, na.rm = TRUE),
+    percentile_25 = quantile(rage, probs = 0.25),
+    percentile_75 = quantile(rage, probs = 0.75),
+    max_age       = max(rage, na.rm = TRUE)
+  )
+```
+
+
+#### __Age summary statistics by attitudes towards welfare generousity__
+
+
+```
+## # A tibble: 4 × 7
+##   dole_fct mean_age median_age min_age percentile_25 percentile_75 max_age
+##   &lt;ord&gt;       &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Too low      52.4         53      18          41            65        90
+## 2 Neither      53.2         53      18          40            66        99
+## 3 Too high     51.8         52      18          37            67        98
+## 4 &lt;NA&gt;         52.2         51      19          37.5          67.5      90
+```
+
+---
+
+class: middle, inverse
+
+## .tuos_purple[Is a person's age associated with their position on an Authoritarian-Libertarian scale?]
+
+---
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/political-compass.png" width="50%" /&gt;
+]
+
+---
+
+&lt;br&gt;&lt;br&gt;
+
+__'Young people today don't have enough respect for traditional British values'__
+
+1. Agree strongly
+2. Agree
+3. Neither agree nor disagree
+4. Disagree
+5. Disagree strongly
+8. (Don't know)
+9. (Refusal)
+
+__'People who break the law should be given stiffer sentences'__
+
+__'For some crimes, the death penalty is the most appropriate sentence'__
+
+__'Schools should teach children to obey authority'__
+
+__'The law should always be obeyed, even if a particular law is wrong'__
+
+__'Censorship of films and magazines is necessary to uphold moral standards'__
+
+__'Gay or lesbian couples should have the right to marry one another if they want to.'__
+
+--
+
+.center[Variable `libauth` is a scale based on responses where the value 1 represents the most libertarian position and 5 the most authoritarian.]
+
+---
+
+class: middle
+
+
+
+## Visualisations for Exploring Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-03d16255bf481645a926" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-03d16255bf481645a926">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> <strong>Scatterplot/<br>Hex Bin Plot<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Scatterplot
+
+&lt;br&gt;
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-59-1.png" width="1000" height="550" /&gt;
+
+---
+
+## Scatterplot
+
+&lt;br&gt;
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-60-1.png" width="550" height="550" /&gt;
+
+]
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  ggplot() +
+  geom_point(aes(x = rage, y = libauth))
+```
+
+
+]
+
+---
+
+## Scatterplot
+
+&lt;br&gt;
+
+.pull-left[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-62-1.png" width="550" height="550" /&gt;
+
+]
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  ggplot() +
+  geom_point(aes(x = rage, y = libauth))
+```
+
+&lt;br&gt;
+
+* Can easily end up with overplotting - especially with discrete variables.
+
+Possible solutions:
+
+* Add jitter to points (artificially spread them out from their true value) - not great as it manipulates data.
+* Make points smaller - useful for overplotting with continuous variables but less useful for discrete
+* Add transparency - same as above
+
+Or...
+
+* Use a hexbin plot.
+
+]
+
+---
+
+## Hexbin plot
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  ggplot() +
+  geom_hex(aes(x = rage, y = libauth), bins = 25)
+```
+
+]
+
+.pull-right[
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-65-1.png" width="550" height="550" /&gt;
+
+]
+
+---
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-44df8b7b7d9e3f2e1f27" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-44df8b7b7d9e3f2e1f27">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson's R or<br>Spearman's Rho<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Correlation: Pearson's R
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+cor(x = ssa$rage, y = ssa$libauth,
+    use = "complete.obs",
+    method = "pearson")
+```
+
+```
+## [1] 0.1236948
+```
+
+
+```r
+cor(x = ssa$rage, y = ssa$libauth,
+    use = "complete.obs",
+    method = "spearman")
+```
+
+```
+## [1] 0.1194041
+```
+
+]
+
+.pull-right[
+
+Pearson's correlation coefficient R, is a measure of __how closely associated the variance in one variable is with the variance in another variable__, relative to the maximum possible covariance they could share.
+
+* `-1` = Perfect negative correlation - as the value of one variable increases the other decreases.
+* `0 ` = No correlation - changes in the value of one variable are not associated with changes in the other.
+* `1` = Perfect positive correlation - as the value of one variable increases the other also increases.
+
+__Rules of thumb__:
+
+* ±0.01 - 0.19 = Very weak/Negligible correlation
+* ±0.20 - 0.39 = Weak correlation
+* ±0.40 - 0.59 = Moderate correlation
+* ±0.60 - 0.79 = Strong correlation
+* ±0.80 - 0.99 = Very strong correlation
+
+]
+
+---
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/correl-ex.svg" width="100%" /&gt;
+
+---
+
+## Difference between Spearman &amp; Pearson
+
+&lt;br&gt;
+
+.pull-left[
+
+* Pearson's correlation relies on the use of means and variance (__assuming normal distribution__), and therefore can be sensitive to outliers or non-linearity (relationships that aren't a straight line).
+
+* Spearman's correlation uses the __rank__ order association, so outliers will not affect it if the rank order remains the same.
+
+
+]
+
+.pull-right[
+
+
+```r
+x &lt;- c(1, 2, 3, 4, 15)
+y &lt;- c(1, 2, 3, 4, 5)
+
+cor(x, y, method = "pearson")
+```
+
+```
+## [1] 0.8320503
+```
+
+```r
+cor(x, y, method = "spearman")
+```
+
+```
+## [1] 1
+```
+
+]
+
+---
+
+&lt;br&gt;
+
+.pull-left[
+
+## Pearson (raw values)
+
+
+```r
+ggplot() +
+  geom_point(
+    aes(x = x, y = y), size = 5
+  )
+```
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-71-1.png" width="400" height="400" /&gt;
+
+]
+
+.pull-right[
+
+## Spearman (ranks)
+
+
+```r
+ggplot() +
+  geom_point(
+    aes(x = rank(x), y = rank(y)), size = 5
+  )
+```
+
+&lt;img src="/Users/calumwebb/Library/Mobile Documents/com~apple~CloudDocs/r/teaching-introduction-quants-pg/week-03-relationships-between-variables/slides/week-03-relationships-between-variables_files/figure-html/unnamed-chunk-72-1.png" width="400" height="400" /&gt;
+
+]
+
+---
+
+class: middle
+
+# Summary
+
+&lt;br&gt;
+
+* There are a large range of ways to visualise and statistically describe relationships between variables in `R`; __appropriate methods can be chosen by considering the type of variables we wish to analyse using what we learned in Week 2.__ 
+
+--
+
+* __Visualisations of relationships__ between variables can help us get a full and proportionate picture of relationships, whereas __bivariate descriptive statistics__ (contingency tables, Spearman's Rho, Cramer's V, and Pearson's R) can give us a standardised, shorthand way of describing what these relationships are.
+
+
+---
+
+class: middle
+
+# R Exercise
+
+&lt;br&gt;
+
+* This week, the focus is on __interpreting output__ from `R` in a quantitative research context - not on writing `R` code.
+
+* In the process, you will also learn how a new type of `R` file - __R markdown__ - can be used to create documents (including pdfs and web pages).
+
+&lt;br&gt;
+&lt;hr&gt;
+&lt;br&gt;
+
+* __Download and unzip the Week 3 R Exercise files from the Blackboard page and open the .Rproj and week-3.Rmd files in Rstudio.__
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
