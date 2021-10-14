@@ -1,0 +1,77 @@
+---
+title: "How to Run a Shiny App in R"
+author:
+  - name: Sheffield Methods Institute
+    url:  https://www.sheffield.ac.uk/smi
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    self-contained: false
+    toc: false
+    includes:
+      in_header: header/header_logo.html
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+options(tinytex.verbose = TRUE)
+```
+
+### Download and unzip the Shiny app files
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-1.jpg")
+
+```
+
+### Open the app's associated .Rproj file
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-2.jpg")
+
+```
+
+### Open the install.R file
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-3.jpg")
+
+```
+
+### Highlight all of the code used for installing packages and click Run. 
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-4.jpg")
+
+```
+
+### Now open either the ui.R or the server.R file.
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-5.jpg")
+
+```
+
+### While viewing the ui.R or server.R script, click the 'Run App' button that appears in Rstudio
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-6.jpg")
+
+```
+
+### This should open the App in a new window. You can now use the app. 
+
+``` {r echo = FALSE, layout = "l-page"}
+
+knitr::include_graphics("images/shiny-7.jpg")
+
+```

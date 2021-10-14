@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI606: Week 4 — Inference</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2021-10-14" />
+    <script src="week-04-inference_files/header-attrs/header-attrs.js"></script>
+    <link href="week-04-inference_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week-04-inference_files/tile-view/tile-view.js"></script>
+    <link href="week-04-inference_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="week-04-inference_files/panelset/panelset.js"></script>
+    <script src="week-04-inference_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="week-04-inference_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="week-04-inference_files/clipboard/clipboard.min.js"></script>
+    <link href="week-04-inference_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="week-04-inference_files/shareon/shareon.min.js"></script>
+    <link href="week-04-inference_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="week-04-inference_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-04-inference_files/jquery/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="week-04-inference_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="week-04-inference_files/bootstrap/js/bootstrap.min.js"></script>
+    <script src="week-04-inference_files/bootstrap/shim/html5shiv.min.js"></script>
+    <script src="week-04-inference_files/bootstrap/shim/respond.min.js"></script>
+    <style>h1 {font-size: 34px;}
+           h1.title {font-size: 38px;}
+           h2 {font-size: 30px;}
+           h3 {font-size: 24px;}
+           h4 {font-size: 18px;}
+           h5 {font-size: 16px;}
+           h6 {font-size: 12px;}
+           code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+           pre:not([class]) { background-color: white }</style>
+    <script src="week-04-inference_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="week-04-inference_files/formattable_widget-binding/formattable_widget.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[SMI606: Week 4&lt;br&gt;Inference]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+class: middle
+
+.pull-left[
+&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
+]
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sign In
+
+[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
+
+]
+---
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Get to grips with the intuition behind using inferential statistics for hypothesis testing.
+* Be able to interpret a p-value from a hypothesis test, in conjunction with a critical value. 
+* Be able to judge when the use of hypothesis testing for generalisation of findings is appropriate depending on the kind of sample our data is from.
+* Understand the intuition of some common statistical tests for testing the relationship between two variables.
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Hypothesis testing is an essential skill for doing quantitative social research, and plays to the strengths of quantitative methods for identifying social patterns.
+* In order to accurately assess the results from reading other social science research publications, you must be able to interpret the results from statistical significance tests (and p-values) — even if you don't do quantitative research yourself!
+* You should have a good sense of the theory behind hypothesis testing to ensure that you use it responsibly and effectively in a research career, including if you are in a leadership role.
+
+
+]
+
+
+]
+
+
+
+???
+
+
+
+---
+
+class: middle
+
+## Inferential statistics for hypothesis testing
+
+<div id="htmlwidget-d20dfff6db4d71c5e673" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-d20dfff6db4d71c5e673">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: inverse, middle
+
+# Over the last two week we have learned how to describe the different types of variables in data and relationships between them.
+
+
+---
+
+class: inverse, middle
+
+# But how can we be confident that a relationship or pattern in our data applies to the entire population we are interested in, and isn't just an artefact of our specific sample?
+
+???
+
+But this week we are interested in how we can generalise the kinds of patterns, or tendencies, or relationships in our data to the population as a whole. 
+
+How can we be confident that something we find in a random sample is generalisable knowledge? 
+
+Statistical methods that help us do this are called Inferential Statistics.
+
+
+---
+
+class: inverse, middle
+
+# We could...
+
+&lt;hr&gt;
+
+## &lt;li&gt;Collect data from the entire population (very expensive, often unfeasible)&lt;/li&gt;
+
+--
+
+## &lt;li&gt;Collect more random samples and see if we get the same results consistently (good option, but how many before we can be sure? When do we stop?)&lt;/li&gt;
+
+--
+
+## &lt;li&gt;Use inferential statistics&lt;/li&gt;
+
+
+---
+
+
+# Getting a feel for inferential statistics
+
+&lt;br&gt;
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+]
+
+.pull-right[
+
+![](images/chisq-preview.png)
+
+]
+
+
+???
+
+Before we talk about how inferential statistics are used and expressed in practice, I'd like you to join in with a practical activity with me. 
+
+If you can start by loading up the Shiny app either on your phone by scanning the QR code, or by clicking the link in the chat, and giving it a couple of minutes to load while I explain what we'll be doing.
+
+
+---
+
+# Getting a feel for inferential statistics
+
+&lt;br&gt;
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+* We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+]
+
+.pull-right[
+
+![](images/chisq-preview.png)
+
+]
+
+???
+
+So, imagine for a moment that we've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded and do not roll numbers fairly. The problem is, they don't know which of their dice are loaded and which of them are fair.
+
+---
+
+# Getting a feel for inferential statistics
+
+&lt;br&gt;
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+* We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+* Each of you have been given a (virtual) die that you can roll as many times as you like. You don't know whether you have a **fair** die or a **loaded die**. A loaded die will roll some numbers more often than others. &lt;svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+]
+
+.pull-right[
+
+![](images/chisq-preview.png)
+
+]
+
+
+???
+
+As you load up the app, you will have been given either a fair or a loaded die that you can roll as many times as you like. 
+
+---
+
+# Getting a feel for inferential statistics
+
+&lt;br&gt;
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+* We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+* Each of you have been given a (virtual) die that you can roll as many times as you like. You don't know whether you have a **fair** die or a **loaded die**. A loaded die will roll some numbers more often than others. &lt;svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+* Our task is to use our data analysis skills to determine whether we have a fair or loaded die. &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
+]
+
+.pull-right[
+
+![](images/chisq-preview.png)
+
+]
+
+
+???
+
+Our task is to roll the die and use our data analysis skills to determine whether the die each of us has been been allocated is fair or unfair. 
+
+[Start practical activity: show 20 rolls as an example, inspect outcomes, ask participants to roll die twenty times and inspect their outcome, then do 'hands up' confidence check before repeating two more times. Remember to mention that at the end I would ask people to reflect on what happened to their confidence as they increased the size of their sample. ]
+
+---
+
+class: inverse, middle
+
+# .tuos_purple[Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.] 
+
+#### (e.g. that a die is fair, or that there is no relationship between two variables)
+
+
+---
+
+# Hypothesis testing
+
+&lt;br&gt;
+
+.pull-left[
+
+**.tuos_purple[What are the chances we would see a sample of rolls like this...]**
+
+![](images/observed.png)
+
+&lt;center&gt;(Observed)&lt;/center&gt;
+
+]
+
+.pull-right[]
+
+???
+
+What we are doing, in a very unconcious way in our heads with this task is looking at what we were rolling and comparing the chances that we would see something like this... 
+
+
+---
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+**.tuos_purple[What are the chances we would see a sample of rolls like this...]**
+
+![](images/observed.png)
+
+&lt;center&gt;(Observed)&lt;/center&gt;
+
+]
+
+.pull-right[
+
+**.tuos_purple[When we know if the die were fair we would expect to see something like this...? (Null hypothesis)]**
+
+![](images/expected.png)
+
+&lt;center&gt;(Expected)&lt;/center&gt;
+
+
+]
+
+???
+
+With what we would expect if the die were fair -- we know already what kind of distribution we would expect to see if a die were completely fair, we'd call this our null hypothesis, but we also know there is a lot of randomness in the world and that our dice rolls would very very rarely ever look exactly like this.
+
+---
+
+# Hypothesis testing
+
+&lt;br&gt;
+.pull-left[
+
+We can express how unlikely we were to get results like this if the die was fair using a **p-value**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data. The one we use here is called a __chi-squared goodness-of-fit test__ but don't worry about how it's calculated at this point!
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+
+???
+
+We can quantify how likely we are to see something like this using a *p-value*.
+
+There are many different kinds of tests that produce p-values, and as we go forward into the next few weeks you will learn which ones should be used for what kinds of research questions and types of data. For the exercise we're doing here, we can use a very simple test called a chi-squared test -- don't worry about what that means or how it's calculated for now! Right now, we just want to focus on the p-value.
+
+
+---
+
+
+# Hypothesis testing
+
+&lt;br&gt;
+.pull-left[
+
+We can express how unlikely we were to get results like this if the die was fair using a **p-value**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data. The one we use here is called a __chi-squared goodness-of-fit test__ but don't worry about how it's calculated at this point!
+
+* An inferential statistic gives us a __p-value__.
+
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+
+???
+
+So - an inferential statistic gives us something called a p-value.
+
+
+---
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+We can express how unlikely we were to get results like this if the die was fair using a **p-value**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data. The one we use here is called a __chi-squared goodness-of-fit test__ but don't worry about how it's calculated at this point!
+
+* An inferential statistic gives us a __p-value__.
+
+* The p-value tells us the probability of seeing the kind of results we got __if the null hypothesis__ (that the die is fair) __is the best explanation for the distribution of the data__.
+
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+???
+
+The p-value tells us the probability of seeing the kind of results we got *if the null hypothesis that the die is fair were true*
+
+
+---
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+We can express how unlikely we were to get results like this if the die was fair using a **p-value**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data. The one we use here is called a __chi-squared goodness-of-fit test__ but don't worry about how it's calculated at this point!
+
+* An inferential statistic gives us a __p-value__.
+
+* The p-value tells us the probability of seeing the kind of results we got __if the null hypothesis__ (that the die is fair) __is the best explanation for the distribution of the data__.
+
+* For the above example, __our p-value was 0.1355__.
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+???
+
+For the above example of rolls, our p-value was 0.1355
+
+
+---
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+We can express how unlikely we were to get results like this if the die was fair using a **p-value**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data. The one we use here is called a __chi-squared goodness-of-fit test__ but don't worry about how it's calculated at this point!
+
+* An inferential statistic gives us a __p-value__.
+
+* The p-value tells us the probability of seeing the kind of results we got __if the null hypothesis__ (that the die is fair) __is the best explanation for the distribution of the data__.
+
+* For the above example, __our p-value was 0.1355__.
+
+* This means we would see results at least this different to what we would expect around __13.55% of the time or less__, when a die is fair (when the null hypothesis is an accurate description).
+
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+???
+
+This means we would see results at least this different to what we would expect around 13.55% of the time or less, when a die is fair.
+
+
+---
+
+class: inverse, middle
+
+# So, what do we think?
+
+# 13.55% is quite a low probability of something happening. Should we report this die as unfair or not?
+
+???
+
+So how do we use that information.
+
+13.55% is quite a low probability of something happening, but it's not completely unreasonable. Should we report this die as unfair or not? 
+
+
+---
+
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+In applied statistics, we compare our p-value with a pre-chosen '__critical value__' (sometimes called *alpha*) below which we decide to reject the null hypothesis. 
+
+* Conventionally, our critical value, **below which we reject the null hypothesis**, is __0.05__.
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+???
+
+In applied social statistics, we often pick a pre-defined critical value in conjunction with the p-value from our test to make that judgement call.
+
+In social science, we usually say that if the p-value is less than 0.05 (or 5%), we reject the null hypothesis, because the results we got are sufficiently unlikely to have happened if it were true.
+
+
+---
+
+# Hypothesis testing
+&lt;br&gt;
+
+.pull-left[
+
+In applied statistics, we compare our p-value with a pre-chosen 'critical value' (sometimes called *alpha*) below which we decide to reject the null hypothesis. 
+
+* Conventionally, our critical value, **below which we reject the null hypothesis**, is __0.05__.
+
+There is no strong reason why 5% is used in the social sciences, and sometimes 10%, 1% or 0.1% are used instead, but it can depend on the following:
+  * What are the risks if we set our critical value too high and incorrectly reject the null hypothesis? __(Type I error; false positive)__
+  * What are the risks if we set our critical value too low and incorrectly fail to reject the null hypothesis? __(Type II error; false negative)__
+  
+5%, or 0.05, is often seen as a good compromise between these two risks.
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+???
+
+Why do we pick 5%?
+
+There is not really any strong reason, but it is conventionally considered to be a good balance between the risk of us wrongly rejecting the null hypothesis - wrongly reporting that the dice isn't fair when it is - which is called a type 1 error; and us wrongly failing to reject the null hypotheiss - wrongly claiming the dice is fair when it actually isn't.
+
+It's common to see critical values of 10%, 5%, 1% or 0.1% chosen, and this should depend on the specific risk of making an error in a given research context. 
+
+For example, in drug testing we might want to set a much lower critical value so we don't inadvertantly give people ineffective treatments, but we wouldn't want to make it so low that we end up rejecting potentially beneficial treatments.
+
+
+---
+
+
+
+# Hypothesis testing
+
+&lt;br&gt;
+
+.pull-left[
+
+.middle[
+
+* Our p-value is __0.1355__
+
+* Our critical value is __0.05__
+
+* __0.1355 is greater than 0.05__ (p &gt; 0.05), and therefore we __should not reject our null hypothesis__ (that the die is fair) based on this evidence. 
+
+* We conclude that __our data does not support the idea__ that the die is unfair.
+
+&lt;br&gt;
+
+*Don't worry if this is difficult to grasp immediately! No one is comfortable interpreting p-values the first time they come across them!*
+
+*We will practice using them and interpreting them many many times over the next few weeks!*
+
+
+]
+
+
+]
+
+.pull-right[
+
+![](images/difference.png)
+![](images/chi-sq-small.png)
+
+
+]
+
+
+???
+
+So, to recap, for this set of dice rolls our p-value was 0.1355.
+
+Our critical value to reject the hypothesis that the die is fair is 0.05.
+
+0.1355 is more than 0.05, and therefore, based on the criteria we set we should not reject our hypothesis that the die is fair. 
+
+We use these tools to make our decision that our data does not support the idea that this particular die is unfair.
+
+Don't worry if this this difficult to grasp right away! It is difficult stuff and no one is comfortable understanding or interpreting p-values correctly the first time they see them. The best way to learn is through practice and repetition. 
+
+We will be doing this multiple times over this week and in the following weeks with different tests - the majority of them will use p-values so you will become very familiar with them!
+
+
+---
+
+class: inverse, middle
+
+
+# Can you see how this statistic performs a similar function to our intuition when raising our hand when we feel confident that the die is or is not fair?
+
+*Now I want you to roll your dice as many times as you think would be a good sample, use the Chi-Square test calculated on the last tab to decide whether you think it is fair or not, and then check if you got it right!*
+
+???
+
+The main thing I want you to think about at the end of this session is this:
+
+* Can you see how this statistic helps quantify the confidence we have in something based on what we observe in our data? Can you see how it gives us a tool to make those decisions about turning something we observe into a more general claim?
+
+
+
+
+---
+
+class: middle
+
+## When should we use inferential statistics in social research?
+
+* When we wish to make generalisations beyond our sample of data to a wider population.
+
+---
+class: middle
+
+## When can we use inferential statistics in social research?
+
+* When our data __does not violate any of the assumptions made about it__ by the tests (e.g. bivariate normal distrubution).
+
+--
+
+* When our sample is __proportionally representative__ of the population we wish to generalise to.
+
+--
+
+* The easiest way to know a sample is proportionally representative of the population is if it is **randomly selected** (a random sample). If a sample is truly randomly selected it means that __every 'thing' in the sample had an equal chance of being selected__.
+
+--
+
+* However, __this is quite difficult to achieve with human beings__ — they are annoying and do some of the following things:
+  * Ignore your invitations to join the sample
+  * Refuse to answer questions
+  * Withdraw from the study
+  * Die
+  * And other things.
+
+---
+
+class: middle
+
+# Sampling methods
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+--
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+
+--
+&lt;br&gt;
+* __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
+  * Who decides which demographic categories are meaningful and should be strata and who decides which are unimportant?
+  
+  
+---
+
+class: middle
+
+# _Post-hoc_ adjustment for representativeness
+
+* __Sample weighting__: researchers calculate 'survey weights' which can be used to 're-balance' each observation so that the overall sample proportionally matches the population of interest.
+
+--
+
+  * For example, __imagine we wanted a representative sample of England &amp; Wales.__
+
+--
+
+  * __Approximately 5%__ of people in England &amp; Wales live in Wales.
+
+--
+
+  * We used a stratified sampling method to __survey 1,000 people__ in England and Wales. Ideally, we want 950 English respondents and 50 Welsh respondents.
+
+--
+
+  * However, we ended up with 100 Welsh respondents and 900 English.
+
+--
+
+  * We could count each of those Welsh respondents as only 0.5 of a respondent, and every one of the English respondents as 1.055 of a respondent to "re-balance" our sample to be proportionate to the population.
+  
+--
+
+In reality this process is far more complicated but that's the basic jist of it! In reality, survey data will come with weights already calculated. You can apply them in analysis using the [`survey` package](https://cran.r-project.org/web/packages/survey/survey.pdf) in `R`, but this is more something to worry about for a PhD project. For now, don't worry about weighting data.
+  
+
+---
+
+class: middle
+
+# _Post-hoc_ adjustment for representativeness&lt;br&gt;(Non-response)
+
+We can also have a scenario where we get a proportionally representative sample from our population, but then __not all of this sample respond to all questions or have data for all variables__ (e.g. some might refuse). This would mean that some analyses will end up 'unbalanced' due to this __missing data__ (usually coded as `NA` in `R`) when it is removed.
+
+--
+
+* Multiple ways of dealing with missing data: most common are *listwise* and *pairwise* deletion — where entire observations are deleted if they have missing data in a variable of interest. __This unbalances our sample__.
+
+--
+
+* However, we can try to **impute** missing data — e.g. fill in all of the missing values with our 'best guess' of what it would have been based on responses from respondents who are the most similar to them.
+
+--
+
+* Some methods have specific procedures for handling missing data (e.g. FIML).
+
+--
+
+__Imputation__ and __maximum likelihood__ is too complex a topic to cover here, but is something to be aware of if you are doing a quantitative PhD.
+
+
+---
+
+class: middle
+
+# Inference in experimental designs
+
+If your research uses an **experimental** design (e.g. a survey experiment or a randomised controlled trial), you are usually aiming to test the significant differences between the groups *within* your sample. You might try and make your sample representative, but this is often difficult due to cost.
+
+--
+
+This is handled through **a priori randomisation** of conditions (randomly assigning participants to either 'treatment' or 'control' conditions). Because the __assignment is random__, statistical significance/inferential statistics can be used to generalise to the group who participated in the study as a whole. 
+
+--
+
+In other words, inferential statistics can be used to determine __whether the difference between the 'treatment' group and 'control' group would have been different to what would be expected under the null hypothesis if the groups were reverse, or if the random assignment was different__. 
+
+---
+
+class: middle
+
+## Inferential statistics for hypothesis testing
+
+<div id="htmlwidget-54dbccf7cc99619a6b25" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-54dbccf7cc99619a6b25">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: middle
+
+# ANOVA/t-test
+
+&lt;br&gt;
+
+__Use case__:
+
+* One 'grouping' __nominal/categorical/ordinal__ variable and one __continuous__ variable.
+* For t-test, 'grouping' variable must only have two groups. For ANOVA, grouping variable may have any number of groups.
+
+--
+
+__Null hypothesis__:
+
+* __H&lt;sub&gt;0&lt;/sub&gt;__: The mean value of all groups is equal. (There are no significant differences between group averages).
+
+--
+ 
+
+__Assumptions__:
+
+* __Independence of observations__: Each observation has no bearing on the value of other observations (e.g. if there were multiple observations of the same person, this assumption would be violated)
+* __Normality__: Normality of *residuals*; in reality, the means from multiple resamples from each group should be normally distributed in the population ([Glass et al. 1972](https://journals.sagepub.com/doi/10.3102/00346543042003237), [Harwell et al. 1992](https://journals.sagepub.com/doi/10.3102/10769986017004315), [Lix et al. 1996](https://www.jstor.org/stable/1170654)). 
+* __Homogeneity of variances__: the variance of the continuous variable should be approximately the same in all groups. 
+
+
+---
+
+class: middle
+
+# ANOVA/t-test Example
+&lt;br&gt;
+
+.pull-left[
+
+__Exercise __
+
+* Load up the __`anova-sig`__ `R` Shiny App following the hand-out steps (hopefully you did this in advance!)
+* If you can't get this working, you can use the online version:  [https://webb.shinyapps.io/anova-sig/](https://webb.shinyapps.io/anova-sig/)
+
+]
+
+.pull-right[
+
+&lt;img src="images/anova-preview.png" width="100%" /&gt;
+
+]
+
+
+---
+
+class: middle
+
+## Inferential statistics for hypothesis testing
+
+<div id="htmlwidget-80d30d8100e279bc13e5" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-80d30d8100e279bc13e5">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson/Spearman Correlation t-test<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+
+class: middle
+
+# Correlation Coefficient Significance Tests
+
+&lt;br&gt;
+
+__Use case__:
+
+* Testing the significance of an association between two continuous variables.
+
+--
+
+__Null hypothesis__:
+
+* __H&lt;sub&gt;0&lt;/sub&gt;__: The correlation coefficient for the association between the two variables is equal to zero. (That there is no relationship between them).
+
+--
+ 
+
+__Assumptions__:
+
+* __Independence of observations__.
+* __Linearity__: there is a linear association between the two variables. In other words, if you were to draw a line of best fit through a scatterplot of them, the best fit would be a straight line.
+* __No significant outliers__: any large outliers should be identified and removed.
+* **Bivariate normal distribution**: the variables should have a bivariate normal distribution. This is always the case if both variables are normally distributed and their relationship is linear, but can also be the case if one or both are non-normally distributed if, for example, the residuals around a line of best fit between them are normally distributed. 
+
+
+---
+
+class: middle
+
+# Correlation Coefficient Significance Tests
+&lt;br&gt;
+
+.pull-left[
+
+__Exercise __
+
+* Load up the __`cor-sig`__ `R` Shiny App following the hand-out steps (hopefully you did this in advance!)
+* If you can't get this working, you can use the online version:  [https://webb.shinyapps.io/cor-sig/](https://webb.shinyapps.io/cor-sig/)
+
+]
+
+.pull-right[
+
+&lt;img src="images/cor-preview.png" width="100%" /&gt;
+
+]
+
+---
+class: middle
+
+# Summary
+
+* Hypothesis tests are one important way we can make broader __generalisations about our findings__ from the data. This can be very powerful.
+* _p-values_ and _critical/alpha values_ can be used to make judgements about whether we have enough evidence to reject a given null hypothesis; __if our p-value is lower than our critical value (usually 0.05), we can reject the null hypothesis__.
+* The __results of hypothesis tests are determined by sample size__ and by the __strength of the association__ between variables.
+* However, their use requires considerable caution to ensure that:
+  * We select __the correct kind of hypothesis test__ for our data.
+  * p-values are __interpreted correctly__.
+  * Hypothesis tests are __used appropriately__ (on a suitable kind of sample or within an appropriate study design).
+  * We report any possible __violations of assumptions__.
+
+
+
+---
+
+class: middle 
+
+# R Exercise
+
+There is no `R` exercise this week, instead (if we have any time remaining) you should:
+
+- Look at the __assessment 1 details__ that are now on Blackboard
+- Go back and finish any exercises you've not been able to finish
+- Next week we will practice doing these tests in `R`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
