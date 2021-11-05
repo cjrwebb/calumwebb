@@ -1,0 +1,1562 @@
+---
+title: "SMI606: Week 7 — Bivariate Linear Regression"
+subtitle: ""  
+author: 
+  - "Calum Webb"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "custom.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      sealed: false
+      ratio: 16:9
+      self_contained: true
+      countIncrementalSlides: true
+---
+
+class: middle
+background-size: contain
+
+# .tuos_purple[SMI606: Week 7<br>Bivariate Linear Regression]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(icons)
+library(tidyverse)
+library(xaringanExtra)
+library(xaringanthemer)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "images/uni-sheffield.png",
+  exclude_class = c("inverse", "hide_logo")
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#019EE3",
+  secondary_color = "#FCF281",
+  colors = c(tuos_purple = "#030043", grey = "#a8a8a8", tuos_blue ="#019EE3"),
+  header_font_google = xaringanthemer::google_font("Playfair Display", "600", "600i"),
+  text_font_google   = xaringanthemer::google_font("Work Sans", "300", "300i"),
+  code_font_google   = xaringanthemer::google_font("Lucida Console"),
+  header_h1_font_size = "2.25rem",
+  header_h2_font_size = "1.75rem",
+  header_h3_font_size = "1.5rem", code_font_size = "0.65rem"
+)
+
+tuos_blue <- "#019EE3"
+tuos_yellow <- "#FCF281"
+tuos_purple <- "#030043"
+
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#019EE3", location = "top")
+```
+
+```{r xaringan-extra-styles, echo = FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+```{r share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
+
+```{r metathis, echo=FALSE}
+# Add metadata
+
+# library(metathis)
+# meta() %>%
+#   meta_name("github-repo" = "cjrwebb/cjrwebb.github.io/tree/master/pres/smi") %>% 
+#   meta_social(
+#     title = "In Defence of Ordinary Help: The declining effectiveness of preventative children's services in England",
+#     description = paste(
+#       "On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."
+#     ),
+#     url = "https://cjrwebb.github.io/pres/smi/smi-research",
+#     image = "https://cjrwebb.github.io/pres/smi/idoh-card.png",
+#     image_alt = paste(
+#       "Title slide of In Defence of Ordinary Help"
+#     ),
+#     og_type = "website",
+#     og_author = "Calum Webb",
+#     twitter_card_type = "summary_large_image",
+#     twitter_creator = "@cjrwebb",
+#     twitter_site = "@cjrwebb"
+#   )
+```
+
+---
+class: middle
+
+.pull-left[
+```{r, echo=FALSE, out.width = "80%"}
+
+knitr::include_graphics("images/pg-sign-in.png")
+
+```
+]
+.pull-right[
+
+<br><br><br><br><br><br>
+
+# Sign In
+
+[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
+
+]
+---
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Understand how to interpret and report simple bivariate linear regression models.
+
+* Be able to estimate simple bivariate linear regression models in `R` using the `lm()` function.
+
+* Be able to plot a simple linear regression line using the `geom_smooth()` function in `ggplot()` (with `method = "lm"` argument).
+
+* Be able to check whether data meets the assumptions of simple linear regression.
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Regression is the workhorse of contemporary quantitative social science research, and incorporates within it many of the concepts we've learned.
+
+* This week will prepare you for extending bivariate linear regression to multiple linear regression (week 8), and logistic regression (week 9), to answer more complex (and more interesting!) social science research questions.
+
+* A good understanding of regression will create a foundation for understanding cutting-edge advanced methods for longitudinal and multilevel models (In Advanced Quants module).
+
+
+]
+
+
+]
+
+
+
+???
+
+
+
+---
+
+```{r, include = FALSE}
+
+# Data setup
+
+library(ggrepel)
+
+un_data <- read_csv("un-gender-extract.csv")
+
+
+un_data %>% ggplot() +
+  geom_point(aes(x = sec_ed_women, y = lab_force_women)) +
+  geom_text_repel(aes(x = sec_ed_women, y = lab_force_women,
+                label = country), size = 3)
+
+lm(data = un_data, formula = lab_force_women ~ sec_ed_women) %>%
+  summary()
+
+
+```
+
+
+
+## What is linear regression?
+
+.pull-left[
+
+#### Code for UN Data plot
+
+```{r, eval=FALSE}
+
+library(tidyverse)
+library(ggrepel)
+
+un_data <- read_csv("un-gender-extract.csv")
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_text_repel(
+    aes(x = sec_ed_women, y = lab_force_women, label = country), 
+    size = 3) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", 
+       caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_text_repel(
+    aes(x = sec_ed_women, y = lab_force_women, label = country), 
+    size = 3) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+]
+
+---
+
+## What is linear regression?
+
+.pull-left[
+
+<br>
+
+#### Which of the following statements is more informative?
+
+* There was a moderate correlation of R = 0.5 between rates of women completing at least some secondary education and women's labour market participation.
+
+*Or*
+
+* Every additional 1 percent of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+
+]
+
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data <- read_csv("un-gender-extract.csv")
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+]
+
+
+---
+
+## What is linear regression?
+
+.pull-left[
+
+<br>
+
+#### Which of the following statements is more informative?
+
+* There was a moderate correlation of R = 0.5 between rates of women completing at least some secondary education and women's labour market participation.
+
+*Or*
+
+* Every additional 1 percent of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+
+]
+
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data <- read_csv("un-gender-extract.csv")
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_smooth(aes(x = sec_ed_women, y = lab_force_women),
+              method = "lm", se = FALSE) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = mx + b$$]
+
+*Equation for a Straight line*
+
+*"y is equal to m times by x (the slope) plus b (the intercept)"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = b + mx$$]
+
+*Shift the intercept over*
+
+*"y is equal to b (the intercept) plus m times by x (the slope)"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = b_0 + b_1x$$]
+
+*Change all estimates to b with a subscript to differentiate*
+
+*"y is equal to b<sub>0</sub> plus b<sub>1</sub> times by x"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$\bar{y} = b_0 + b_1x$$]
+
+*Put a bar over Y to indicate that it's the mean of Y, not the exact value.*
+
+*"The mean of y is equal to b<sub>0</sub> plus b<sub>1</sub> times by x"*
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{y} = b_0 + b_1x$$]
+
+*"The mean of y is equal to b<sub>0</sub> plus b<sub>1</sub> times by x"*
+
+]]
+
+.pull-right[
+
+
+__Substitute our variables of interest__
+
+Every additional 1 percent of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1x$$]
+
+*Change Y to be our dependent variable.*
+
+*"The mean of women's labour market participation is equal to b<sub>0</sub> plus b<sub>1</sub> times by x"*
+
+]]
+
+.pull-right[
+
+__Identify our dependent (y) variable__
+
+Every additional 1 percent of women completing at least some secondary education was associated with an increase in __women's labour market participation__ of 0.3 percentage points.
+
+]
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1\text{womenSER}$$]
+
+*Change X to be our independent variable.*
+
+*"The mean of women's labour market participation is equal to b<sub>0</sub> plus b<sub>1</sub> times by women's secondary education rate"*
+
+]]
+
+.pull-right[
+
+__Identify our independent (x) variable__
+
+Every additional 1 percent of __women completing at least some secondary education__ was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1\text{womenSER}$$]
+
+*Change X to be our independent variable.*
+
+*"The mean of women's labour market participation is equal to b<sub>0</sub> plus b<sub>1</sub> times by women's secondary education rate"*
+
+]]
+
+.pull-right[
+
+<br><br><br>
+
+* Find __ $b_0$ __ ?
+
+* Find __ $b_1$ __ ?
+
+]
+
+---
+class: middle
+
+## Finding the best fitting line
+
+.pull-left[
+
+#### How do we find the best fitting line? A competition!
+
+* Honour system - no cheating!
+
+* Open the [Shiny app](https://webb.shinyapps.io/find-line/) in your web browser, or download and run the source code in `R`
+
+* In pairs, your task is to get the best fitting line to the data that the app has generated for you by manipulating the intercept and slope values with the sliders.
+
+* Once you've decided on the best fitting line, check the actual results from the linear regression and see how far off you were. Check the residuals plot and see how it changes between your estimate and the linear regression one.
+
+* Whoever gets the closest guess wins!
+
+
+]
+
+
+.pull-right[
+
+```{r, echo = FALSE, height = 450, width = 500}
+
+knitr::include_graphics("images/find-line-app.png")
+
+```
+
+[https://webb.shinyapps.io/find-line/](https://webb.shinyapps.io/find-line/)
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  # geom_smooth(aes(x = sec_ed_women, y = lab_force_women),
+  #             method = "lm", se = FALSE) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_smooth(aes(x = sec_ed_women, y = lab_force_women),
+              method = "lm", se = FALSE, fullrange = TRUE) +
+  coord_cartesian() +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+* It also tells us the __intercept__ of the line (the point at which the line crosses the Y-axis)
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  stat_smooth(aes(x = sec_ed_women, y = lab_force_women),
+              method = "lm", se = FALSE, fullrange = TRUE) +
+  scale_x_continuous(limits = c(-1, 100)) +
+  coord_cartesian(xlim = c(-1, 100)) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+* It also tells us the __intercept__ of the line (the point at which the line crosses the Y-axis)
+
+We can estimate a **linear regression model** in `R` using the inbuilt `lm()` function. 
+
+```{r, eval=FALSE}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+```
+
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  stat_smooth(aes(x = sec_ed_women, y = lab_force_women),
+              method = "lm", se = FALSE, fullrange = TRUE) +
+  #scale_x_continuous(limits = c(-1, 100)) +
+  #coord_cartesian(xlim = c(-1, 100)) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+
+```
+
+
+]
+
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(>|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(>|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(>|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(>|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+  * .small[__Effect size__: Exactly how much change in Y would be expect to see on average for a 1-unit increase in X?]
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(>|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+  * .small[__Effect size__: Exactly how much change in Y would be expect to see on average for a 1-unit increase in X?]
+  * .small[__Confidence Intervals__: A 95% confidence interval around the effect size can be calculated by adding and subtracting 1.96 times the standard error to the estimate.]
+
+
+]
+
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+```{r}
+
+lab_model <- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+
+```
+
+
+
+
+]
+
+.pull-right[
+
+.center[
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg">
+  <path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
+</svg>
+]
+
+<br>
+
+> Overall, the percentage of women with at least some secondary school education could explain approximately 25 per cent of the variance in women's labour market participation. The relationship between the two variables was statistically significant (p<0.05). As the percentage of women with at least some secondary school education increased, the percentage of women participating in the labour market also increased. A 1 percentage point increase in women with secondary school education was associated with a 0.3 percentage point increase in women's labour market participation, on average. 
+
+]
+
+---
+
+## Note: Pretty regression output
+
+.pull-left[
+
+If using Rmarkdown, you can make prettier regression results tables using the `stargazer` package. For example:
+
+```{r, eval = FALSE}
+
+library(stargazer)
+
+stargazer::stargazer(lab_model, type = "html")
+
+```
+
+<br>
+
+#### .tuos_purple[$$\bar{\text{womenLMP}} = 28.6 + 0.3\text{womenSER}$$]
+
+]
+
+```{r, results = 'asis', echo = FALSE}
+
+library(stargazer)
+stargazer(lab_model, type = "html")
+
+```
+
+---
+
+## Binary categorical predictors
+
+```{r, include = FALSE}
+
+eu <- c("Austria", "Italy", "Belgium", "Latvia", "Bulgaria", "Lithuania", "Croatia", "Luxembourg", "Cyprus", "Malta", "Czechia", "Netherlands", "Denmark", "Poland", "Estonia", "Portugal", "Finland", "Romania", "France", "Slovakia", "Germany", "Slovenia", "Greece", "Spain", "Hungary", "Sweden", "Ireland")
+
+
+un_data <- un_data %>%
+  mutate(
+    in_eu = ifelse(country %in% eu, 1, 0)
+  )
+
+```
+
+<center>
+
+```{r, echo = FALSE, fig.height=5, fig.width=8, out.height=500, out.width=800}
+
+un_data %>%
+  ggplot() +
+  geom_point(aes(x = in_eu, y = lab_force_women), pch = 1, size = 2) +
+  scale_x_continuous(limits = c(-0.5, 1.5), breaks = c(0, 1)) +
+  theme(text = element_text(size = 16))
+
+```
+
+</center>
+
+
+---
+
+## Binary categorical predictors
+
+<center>
+
+```{r, echo = FALSE, fig.height=5, fig.width=8, out.height=500, out.width=800}
+
+un_data %>%
+  ggplot() +
+  geom_point(aes(x = in_eu, y = lab_force_women), pch = 1, size = 2) +
+  geom_smooth(aes(x = in_eu, y = lab_force_women), method = "lm", se = FALSE) +
+  scale_x_continuous(limits = c(-0.5, 1.5), breaks = c(0, 1)) +
+  theme(text = element_text(size = 16))
+
+```
+
+</center>
+
+---
+
+## Binary categorical predictors
+
+.pull-left[
+
+```{r}
+
+eu_model <- lm(data = un_data, 
+                formula = lab_force_women ~ in_eu)
+
+summary(eu_model)
+
+```
+
+"An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."
+
+]
+
+.pull-right[
+<center>
+
+```{r, echo = FALSE, fig.height=5, fig.width=5, out.height=500, out.width=500}
+
+un_data %>%
+  ggplot() +
+  geom_point(aes(x = in_eu, y = lab_force_women), pch = 1, size = 2) +
+  geom_smooth(aes(x = in_eu, y = lab_force_women), method = "lm", se = FALSE) +
+  scale_x_continuous(limits = c(-0.5, 1.5), breaks = c(0, 1)) +
+  theme(text = element_text(size = 16))
+
+```
+
+
+
+</center>
+]
+
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+The most appropriate approximation of the relationship in the data is a straight line.
+
+Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple regression, next week).
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, include = FALSE}
+
+set.seed(223)
+x <- rnorm(100, 10, 5)
+x2 <- x^2
+y <- 0 + 2*x + -0.08*x2
+
+y <- y + rnorm(100, 5, 2)
+
+
+```
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+
+ggplot() +
+  geom_point(
+    aes(x = x, y = y)
+  ) +
+  geom_smooth(
+    aes(x = x, y = y),
+    method = "lm", se = FALSE
+  ) +
+  theme_minimal()
+
+```
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+The most appropriate approximation of the relationship in the data is a straight line.
+
+Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple regression, next week).
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+
+ggplot() +
+  geom_point(
+    aes(x = x, y = y)
+  ) +
+  stat_smooth(
+    aes(x = x, y = y),
+    method = "lm", formula = y ~ x + I(x^2), se = FALSE
+  ) +
+  theme_minimal()
+
+```
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+The spread of points around the regression line is approximately the same size at all points in the regression line.
+
+Checked with: Scatterplot (bivariate); spread-location plot (multiple regression, next week).
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+
+set.seed(785)
+x <- rnorm(100, 10, 4)
+y <- 10+0.5*x
+y <- y + rnorm(100, 0, 1)
+
+ggplot() +
+  geom_point(aes(x = x, y = y)) +
+  geom_smooth(aes(x = x, y = y), method = "lm", se = FALSE) +
+  theme_minimal()
+
+```
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+The spread of points around the regression line is approximately the same size at all points in the regression line.
+
+Checked with: Scatterplot (bivariate); spread-location plot (multiple regression, next week).
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+
+set.seed(22)
+x = rnorm(200,1,1)
+b0 = 1 # intercept chosen at your choice
+b1 = 1 # coef chosen at your choice
+h = function(x) 1+.5*x # h performs heteroscedasticity function (hereI used a linear one)
+eps = rnorm(200,0,h(x))
+y = b0 + b1*x + eps
+
+ggplot() +
+  geom_point(aes(x = x, y = y)) +
+  geom_smooth(aes(x = x, y = y), method = "lm", se = FALSE) +
+  theme_minimal()
+
+```
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can have an undue influence on the slope of the line. Outliers deviate far from the general pattern whereas leverage points tend to follow the trend (somewhat) but be far away from the general cluster. Can be **true** outliers, or artefacts/errors.
+
+Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 4.5, out.height=450, out.width=500}
+
+un_data %>% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_text_repel(
+    data = un_data %>% filter(country %in% c("Oman", "Saudi Arabia", "Turkey")),
+    aes(x = sec_ed_women, y = lab_force_women, label = country), 
+    size = 3) +
+  ylim(c(15, 75)) +
+  xlim(c(45, 105)) +
+  geom_smooth(aes(x = sec_ed_women, y = lab_force_women), method = "lm", se = FALSE) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", 
+       caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii") +
+  theme_minimal()
+
+```
+
+
+$$Y = 28.62 + 0.29X$$
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can have an undue influence on the slope of the line. Outliers deviate far from the general pattern whereas leverage points tend to follow the trend (somewhat) but be far away from the general cluster. Can be **true** outliers, or artefacts/errors.
+
+Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 4.5, out.height=450, out.width=500}
+
+un_data %>% 
+  filter(!country %in% c("Oman", "Turkey", "Saudi Arabia")) %>%
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  ylim(c(15, 75)) +
+  xlim(c(45, 105)) +
+  geom_smooth(aes(x = sec_ed_women, y = lab_force_women), method = "lm", se = FALSE) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", 
+       caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii") +
+  theme_minimal()
+
+```
+
+$$Y = 38.39 + 0.19X$$
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+The residuals from the regression line have an approximately normal distribution around the line (e.g. there are not more points closer together on one side of the line than there are on the other).
+
+Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple regression)
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 4.5, out.height=450, out.width=500}
+
+set.seed(40)
+x <- rnorm(200, 0 , 5)
+y <- -5 + 1*x
+y <- y + (rbeta(200,10,2) - 0.5) * 100
+
+dat <- tibble(x, y)
+
+breaks <- seq(min(dat$x), max(dat$x), len=5)
+dat$section <- cut(dat$x, breaks)
+
+## Get the residuals
+dat$res <- residuals(lm(y ~ x, data=dat))
+
+dens <- do.call(rbind, lapply(split(dat, dat$section), function(x) {
+    d <- density(x$res, n=50)
+    res <- data.frame(x=max(x$x)- d$y*150, y=d$x+mean(x$y))
+    res <- res[order(res$y), ]
+    ## Get some data for normal lines as well
+    xs <- seq(min(x$res), max(x$res), len=50)
+    res <- rbind(res, data.frame(y=xs + mean(x$y),
+                                 x=max(x$x) - 150*dnorm(xs, 0, sd(x$res))))
+    res$type <- rep(c("empirical", "normal"), each=50)
+    res
+}))
+dens$section <- rep(levels(dat$section), each=100)
+
+ggplot(dat, aes(x, y)) +
+  geom_point() +
+  geom_smooth(method="lm", fill=NA, lwd=1, colour = "grey") +
+  theme_minimal() +
+  ylim(c(-25, 55))
+
+
+```
+
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+The residuals from the regression line have an approximately normal distribution around the line (e.g. there are not more points closer together on one side of the line than there are on the other).
+
+Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple regression)
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 4.5, out.height=450, out.width=500}
+
+ggplot(dat, aes(x, y)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method="lm", fill=NA, lwd=1, colour = "grey") +
+  geom_path(data=dens %>% filter(type == "empirical"), 
+            aes(x, y, group=section), lwd=0.9, colour = tuos_blue) +
+  theme_minimal() +
+  ylim(c(-25, 55)) +
+  geom_vline(xintercept=breaks, lty=2, size = 0.5, colour = "grey")
+
+
+
+```
+
+
+]
+
+
+---
+
+
+## Diagnostics: What happens and what to do when assumptions are violated? Cheat sheet.
+
+.pull-left[
+
+* __Linearity__
+
+This means that your estimates will be over- and under-estimated at different parts of the line. If your dependent variable is right-skewed (long tail of observations in the + direction), you can transform it to its log value using `log()`. Alternatively, you can fit a curvilinear model — bit more advanced but not too difficult!
+
+* __Homoscedasticity__
+
+Heteroscedasticity means that the standard errors will be biased (in different ways depending on the shape) — this can be resolved using robust standard errors and/or a weighted least squares estimator.
+
+
+]
+
+.pull-right[
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can generally have an undue influence on the slope in a regression. Remove any error-based outliers (e.g. someone enters their age as 400 instead of 40). Compare results with 'true' outliers included and excluded to see how they differ, present both. 
+
+* __Normality of residuals__
+
+Non-normality of residuals can mean that standard errors are smaller than they should be, which can effect decisions made in hypothesis testing in marginal cases — but this is not generally a big problem outside of very small studies (N < 10 per variable) ([Schmidt & Finan, 2018](https://pubmed.ncbi.nlm.nih.gov/29258908/)). Make this clear if either is true.
+
+
+]
+
+
+---
+
+class: middle
+
+# Summary<br>Bivariate Linear Regression
+
+* Simple bivariate linear regression can be expressed as a line through the data points in our scatterplot.
+
+--
+
+* This line can be expressed very efficiently in the form of an equation ( $\bar{y} = b_0+b_1x$ ), and can be interpreted in an often meaningful way (as $X$ increases by 1, the mean value of $Y$ increases by $b_1$ )
+
+--
+
+* Regression models include inferential statistics (where $H_0$ = the slope of the regression line is not significantly different from what we would expect if it were 0 in the entire population, a.k.a. a flat line).
+
+--
+
+* Regression provides us with a highly flexible and descriptive form of statistical modelling, able to incorporate binary and non-normally distributed predictors of a continuous dependent variable.
+
+--
+
+* As we will see next week, regression models are even more useful as they allow us to include more than one predictor to explore conditional associations.
+
+---
+class: middle
+
+# R Exercise<br>Bivariate Linear Regression
+
+### .tuos_purple[Research question: To what extent are female secondary school education rates, women's workforce participation rates, and societal bias against women associated with the proportion of seats in parliament held by women?]
+
+* Download `week-7-exercise.zip` and open the `week-7-exercise` Rproject file and R script.
+
+```{r, include = FALSE}
+
+# Include Gender Social Norms Index for countries where it is available in this dataset
+
+gsni <- readxl::read_xlsx("gsni_tables.xlsx", skip = 5) %>%
+  slice(-1:-2) %>%
+  janitor::clean_names() %>%
+  mutate_at(vars(gsni:physical_integrity), ~round(as.numeric(.), 2)) %>%
+  select(-x2) %>%
+  rename(country = x1) %>%
+  rename(gsni_1_bias = 2, gsni_2_bias = 3, gsni_no_bias = 4,
+         political_bias = 5, economic_bias = 6, educational_bias = 7,
+         physical_bias = 8)
+
+
+anti_join(un_data, gsni, by = "country")
+
+un_gii_gsni <- left_join(un_data, gsni, by = "country")
+
+lm(un_gii_gsni, formula = parl_seats_women ~ educational_bias) %>% summary()
+lm(un_gii_gsni, formula = parl_seats_women ~ lab_force_women) %>% summary()
+lm(un_gii_gsni, formula = parl_seats_women ~ educational_bias + lab_force_women + sec_ed_women) %>% summary()
+
+un_gii_gsni %>%
+  ggplot() +
+  geom_point(aes(y = parl_seats_women, x = educational_bias))
+
+write_csv(un_gii_gsni, "un_gii_gsni.csv")
+
+
+```
