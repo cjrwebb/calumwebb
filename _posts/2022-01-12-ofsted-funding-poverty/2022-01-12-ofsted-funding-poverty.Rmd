@@ -10,8 +10,6 @@ author:
     affiliation: The University of Sheffield
     url: https://calumwebb.co.uk
 date: "2022-03-04"
-bibliography: ofsted-funding-poverty.bib
-csl: apa-numeric-superscript.csl
 citation_url: https://www.calumwebb.co.uk/posts/2021-01-12-ofsted-funding-poverty
 twitter:
   creator: "@cjrwebb"
