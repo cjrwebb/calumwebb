@@ -6,14 +6,14 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-08-31T13:46:08+01:00"
+      "last_modified": "2022-09-15T12:01:38+01:00"
     },
     {
       "path": "calum.html",
       "title": "Dr. Calum Webb",
       "author": [],
       "contents": "\n\n          \n          \n          \n          \n          calumwebb\n          \n          \n          Home\n          About\n          Datavis Portfolio\n          CWIP App\n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          ☰\n          \n          \n      \n        \n          \n            Dr. Calum Webb\n          \n          \n            \n              I am a quantitative social scientist at the University\n              of Sheffield and study child welfare inequalities,\n              systems, and policy. My research focuses on the\n              association between poverty, family support services, and\n              child protection.\n              I am a fellow of the Royal Statistical Society, a\n              member of the Social Policy Association and British\n              Society for Population Studies, and an associate fellow of\n              the Higher Education Academy. I have a PhD in Sociology,\n              an M.A. in Social Research, and a B.A.(Hons) degree in\n              Sociology.\n              I am a proficient user and teacher of R, Mplus, SPSS,\n              and Stata, with specialism in structural equation\n              modelling, multilevel modelling, and latent growth\n              modelling with longitudinal secondary survey and\n              administrative data.\n            \n            \n              I am a quantitative social scientist at the University\n              of Sheffield and study child welfare inequalities,\n              systems, and policy. My research focuses on the\n              association between poverty, family support services, and\n              child protection.\n              I am a fellow of the Royal Statistical Society, a\n              member of the Social Policy Association and British\n              Society for Population Studies, and an associate fellow of\n              the Higher Education Academy. I have a PhD in Sociology,\n              an M.A. in Social Research, and a B.A.(Hons) degree in\n              Sociology.\n              I am a proficient user and teacher of R, Mplus, SPSS,\n              and Stata, with specialism in structural equation\n              modelling, multilevel modelling, and latent growth\n              modelling with longitudinal secondary survey and\n              administrative data.\n            \n          \n\n          \n            \n              \n                  \n                    \n                      Google Scholar\n                    \n                  \n                \n                                \n                  \n                    \n                      Twitter\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                                \n                  \n                    \n                      ORCID iD\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    Google Scholar\n                  \n                \n                                \n                  \n                    Twitter\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                                \n                  \n                    ORCID iD\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    \n            (function() {\n            for (const link of document.getElementsByTagName('a')) {\n              if (/^(https?:)?\\/\\//.test(link.getAttribute('href'))) link.target = '_blank';\n            }\n          })();\n          \n            (function() {\n            for (const link of document.getElementsByTagName('a')) {\n              if (/^(https?:)?\\/\\//.test(link.getAttribute('href'))) link.target = '_blank';\n            }\n          })();\n          ",
-      "last_modified": "2022-08-31T13:46:09+01:00"
+      "last_modified": "2022-09-15T12:01:39+01:00"
     },
     {
       "path": "index.html",
@@ -21,14 +21,14 @@
       "description": "Personal blog and website of Dr. Calum Webb. Quantitative social science, child welfare, social policy, and occassional Rstats.\n",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-08-31T13:46:11+01:00"
+      "last_modified": "2022-09-15T12:01:42+01:00"
     },
     {
       "path": "posts.html",
       "title": "Blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-08-31T13:46:11+01:00"
+      "last_modified": "2022-09-15T12:01:43+01:00"
     }
   ],
   "collections": ["posts/posts.json"]

@@ -68,7 +68,7 @@ style_duo_accent(
   code_font_google   = xaringanthemer::google_font("Lucida Console"),
   header_h1_font_size = "2.25rem",
   header_h2_font_size = "1.75rem",
-  header_h3_font_size = "1.5rem"
+  header_h3_font_size = "1.5rem", code_font_size = "0.7rem"
 )
 
 tuos_blue <- "#019EE3"
@@ -123,13 +123,6 @@ xaringanExtra::use_share_again()
 ---
 class: middle
 
-.pull-left[
-```{r, echo=FALSE, out.width = "80%"}
-
-knitr::include_graphics("images/pg-sign-in.png")
-
-```
-]
 .pull-right[
 
 <br><br><br><br><br><br>
@@ -357,6 +350,7 @@ head(idaci$idaci, 200)
 ]
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -375,6 +369,25 @@ idaci %>%
 ```
 
 ---
+
+class: middle
+
+## Side note: How did I create this plot?
+
+```{r, echo = TRUE, eval=FALSE}
+
+idaci %>% # My data
+  ggplot() + # start up ggplot
+  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") + # create a histogram
+  theme_minimal() + # make a nice background
+  xlab("Income Deprivation Affecting Children Index (% in low income)") + # Add an x axis label
+  ylab("Frequency") # add a y axis label
+
+```
+
+
+---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -401,6 +414,7 @@ idaci %>%
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -431,6 +445,7 @@ idaci %>%
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -579,6 +594,7 @@ hse_cleaned %>%
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -599,6 +615,7 @@ hse_cleaned %>%
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -623,6 +640,7 @@ hse_cleaned %>%
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -656,10 +674,11 @@ hse_cleaned %>%
 class: inverse, middle
 
 
-## When a continuous/integer variable is normally distributed, the mean, median, and mode should all align.
+## When a continuous/integer variable is normally distributed, the mean, median, and mode should all agree.
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -701,7 +720,38 @@ knitr::include_graphics("images/summary_statistics.png")
 class: inverse, middle
 
 
-## When a continuous/integer variable is __.tuos_purple[not]__ normally distributed (it is skewed), the mean, median, and mode do not align.
+## When a continuous/integer variable is __.tuos_purple[not]__ normally distributed (for example, if it is skewed), the mean, median, and mode will often not align and some will not end up on the 'most likely value'. 
+
+## This is why it's __always__ important to visualise your data.
+
+---
+
+
+.pull-left[
+
+<br><br><br><br><br><br><br>
+
+### .tuos_blue[Univariate Descriptive Statistics]<br>.tuos_purple[Measures of Central Tendency]
+
+* Summarising data using the most frequent response: categorical and ordinal variables.
+
+]
+
+.pull-right[
+
+#### How do we effectively communicate this?
+
+Self-rated health
+ 
+```{r, out.width=200, echo = FALSE}
+
+head(hse_cleaned$health, 50)
+
+```
+
+
+]
+
 
 ---
 
@@ -858,6 +908,129 @@ hse_cleaned %>%
 
 ---
 
+class: middle
+
+## Aside: How did I create this bar plot in R?
+
+```{r, echo = TRUE, eval = FALSE}
+
+hse_cleaned %>% # my data
+  ggplot(aes(econact)) + # the variable I want to create a bar plot of
+  geom_bar(aes(y = ..count../sum(..count..), fill = econact)) + # bar plot as a percentage
+  scale_y_continuous(labels=scales::percent_format()) + # formatting my axis as percentages
+  theme_minimal() + # change the theme to one I think looks nice
+  coord_flip() + # make it a horizontal bar plot
+  ylab("Percentage of Survey Sample") + # an informative y label
+  theme(legend.position = "none") # hide the legend it creates by default
+
+```
+
+
+---
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
+
+.pull-left[
+
+#### What about nominal/categorical variables?
+
+1. .grey[For more than two categories, we can still use the mode.]
+
+2. .grey[For two categories stored as a logical variable (a binary variable), we can use the mean to calculate the proportion of each category.]
+
+3. .grey[We can use this same logic to create the proportion of all possible options in the categories (your typical percentages).]
+
+4. Alternatively, we can use a simple table of __frequency counts__ — best practice is usually to show **both** frequency counts **and** percentages, in case our sample is small.
+
+]
+
+.pull-right[
+
+
+```{r, include=FALSE}
+
+hse_cleaned <- hse_cleaned %>%
+  mutate(econact_s = case_when(econact == "In employment" ~ "Employed",
+                               econact == "Unemployed" ~ "Unemployed",
+                               econact == "Retired" ~ "Retired",
+                               econact == "Other economically inactive" ~ "Inactive",
+                               TRUE ~ NA_character_))
+
+```
+
+```{r, echo = TRUE, out.height=450, out.width = 500, dpi = 72, fig.height=4.5, fig.width=5}
+
+library(janitor)
+
+tabyl(hse_cleaned$econact_s) %>% 
+  adorn_rounding(digits = 3)
+
+```
+
+
+]
+
+
+---
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
+
+.pull-left[
+
+#### What about nominal/categorical variables?
+
+1. .grey[For more than two categories, we can still use the mode.]
+
+2. .grey[For two categories stored as a logical variable (a binary variable), we can use the mean to calculate the proportion of each category.]
+
+3. .grey[We can use this same logic to create the proportion of all possible options in the categories (your typical percentages).]
+
+4. Alternatively, we can use a simple table of __frequency counts__ — best practice is usually to show **both** frequency counts **and** percentages, in case our sample is small.
+
+]
+
+.pull-right[
+
+
+```{r, echo = FALSE, out.height=450, out.width = 500, dpi = 72, fig.height=4.5, fig.width=5}
+
+hse_cleaned %>%
+  ggplot(aes(econact)) +
+  geom_bar(aes(y = ..count.., fill = econact)) +
+  scale_xaringan_fill_discrete() +
+  theme_minimal() +
+  coord_flip() +
+  ylab("Frequency") +
+  theme(legend.position = "none")
+
+```
+
+
+]
+
+
+---
+
+
+class: middle
+
+## Aside: How did I create this bar plot in R?
+
+```{r, echo = TRUE, eval = FALSE}
+
+hse_cleaned %>%
+  ggplot(aes(econact)) +
+  geom_bar(aes(y = ..count.., fill = econact)) + # no longer a percentage
+  theme_minimal() +
+  coord_flip() +
+  ylab("Frequency") +
+  theme(legend.position = "none")
+
+```
+
+
+---
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
 .pull-left[
@@ -930,11 +1103,75 @@ hse_cleaned %>%
 
 ]
 
+
+
+---
+
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
+
+.pull-left[
+
+#### What about ordinal variables?
+
+1. .grey[You can still use the mean, but it is unlikely to give a 'valid' value.]
+
+2. .grey[You can use the median for the numeric equivalent for the value.]
+
+3. .grey[You can use the mode for either the character equivalent or the numeric equivalent.]
+
+4. As before, a table is also an appropriate way to summarise the variable.
+
+]
+
+.pull-right[
+
+```{r, echo = TRUE}
+
+tabyl(hse_cleaned$health) %>% 
+  adorn_rounding(digits = 3)
+
+```
+
+
+]
+
+
 ```{r, echo = FALSE}
 
 options(width = 45)
 
 ```
+
+
+---
+
+class: inverse
+
+.pull-left[
+
+<br><br><br><br><br><br><br>
+
+### .tuos_blue[Univariate Descriptive Statistics]<br>.tuos_purple[Measures of Dispersion]
+
+* We've summarised the most likely outcomes: but how can we effectively describe the range of responses in continuous data?
+
+]
+
+.pull-right[
+
+#### How do we effectively communicate the variation?
+ 
+Percentage of children in poverty
+ 
+```{r, out.width=200, echo = FALSE}
+
+head(idaci$idaci, 200)
+
+```
+
+
+]
 
 
 ---
@@ -981,7 +1218,7 @@ sd(idaci$idaci)
 ```
 
 ---
-
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1027,6 +1264,7 @@ ggplot(data = normal_dist, aes(x)) +
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1073,6 +1311,7 @@ ggplot(data = normal_dist, aes(x)) +
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1118,6 +1357,7 @@ ggplot(data = normal_dist, aes(x)) +
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1164,6 +1404,7 @@ ggplot(data = normal_dist, aes(x)) +
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1196,6 +1437,7 @@ idaci %>%
 ```
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1239,6 +1481,7 @@ idaci2 %>%
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1274,6 +1517,7 @@ idaci2 %>%
 
 
 ---
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1351,6 +1595,198 @@ idaci %>%
 #### The Empirical Rule states that within __1 standard deviation__ should be approx __68%__ of observations, within __2 standard deviations__ should be around __95%__ of observations, within __3 standard deviations__ should be around __99.7%__ of observations.
 
 ---
+
+class: inverse, middle
+
+### .tuos_purple[However, we know from the example of income we saw before that sometimes variables are not normally distributed. How can we summarise their distribution?]
+
+
+---
+class: middle
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion: Quantiles]
+
+So what happens if we use the empirical rule with non-normally distributed data?
+
+```{r, echo = FALSE}
+
+set.seed(1000)
+sim_idaci <- tibble(x = rnorm(n = 371, mean = 15.3, sd = 5.977357))
+bw <- 5000
+n_obs <- sum(!is.na(hse_cleaned$eqvinc))
+
+
+
+hse_cleaned %>%
+  ggplot() +
+  geom_histogram(aes(x = eqvinc), col = "darkgrey", fill = "transparent", binwidth = 5000) +
+  stat_function(fun = function(x) 
+      dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
+                       sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  #scale_y_continuous(limits = c(0, 31)) +
+  scale_x_continuous(limits = c(-1e+05, 3e+05)) +
+  theme_minimal() +
+  xlab("Equivalised Household Income") +
+  ylab("Frequency")
+
+```
+
+
+---
+class: middle
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion: Quantiles]
+
+So what happens if we use the empirical rule with non-normally distributed data?
+
+```{r, echo = FALSE}
+
+mu <- mean(hse_cleaned$eqvinc, na.rm = TRUE)
+sd <- sd(hse_cleaned$eqvinc, na.rm = TRUE)
+
+hse_cleaned2 <- hse_cleaned %>%
+  mutate(
+    eqvinc_3sd = ifelse(eqvinc > (mu-(3*sd)) & eqvinc < (mu+(3*sd)), TRUE, FALSE)
+  )
+
+hse_cleaned2 %>%
+  ggplot() +
+  geom_histogram(aes(x = eqvinc, fill = eqvinc_3sd), col = "darkgrey", binwidth = 5000, alpha = 0.4) +
+  stat_function(fun = function(x) 
+      dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
+                       sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  #scale_y_continuous(limits = c(0, 31)) +
+  scale_x_continuous(limits = c(-1e+05, 3e+05)) +
+  theme_minimal() +
+  scale_fill_manual(values = c("NA", tuos_blue)) +
+  xlab("Equivalised Household Income") +
+  ylab("Frequency") +
+  theme(legend.position = "none")
+
+```
+
+
+---
+class: middle
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion: Quantiles]
+
+Instead of relying on the Empirical Rule, we can use **quantiles/percentiles** to describe any arbitrary range of our data. 
+
+```{r}
+
+# Default quantiles
+quantile(hse_cleaned$eqvinc, na.rm = TRUE)
+
+```
+
+By default, this gives us a minimum, maximum, and "quartiles". This means, for instance, we can tell that 50% of our data lies between £14,300 (the 25th percentile) and £43,624 (the 75th percentile) .grey[because there are 50 percentiles between 25 and 75].
+
+
+
+---
+class: middle
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion: Quantiles]
+
+If we wanted a 95% range we would want to take the 2.5th percentile and the 97.5th percentile (as a probability, this would be 0.025 and 0.975). We can do this by editing our quantiles function. 
+
+```{r}
+
+# Default quantiles
+quantile(hse_cleaned$eqvinc, probs = c(0.025, 0.975), na.rm = TRUE)
+
+```
+
+It's useful to provide both quartiles (25th & 75th) and deciles (10th and 90th) to give an idea of a common range and an extreme range.
+
+--
+class: middle
+
+.pull-left[
+.center[<br><br>Quantiles can be used for any kind of continuous data. But you should always plot your continuous data as a histogram because it might have yet stranger features (like bimodal distributions!)]
+]
+
+.pull-right[
+
+```{r, echo=FALSE, fig.width=3, fig.height=2, out.width=300, out.height=200, fig.align='center'}
+
+set.seed(100)
+dat <- c(rnorm(1000, -2, 1), rnorm(1000, 2, 1))
+
+ggplot() +
+  geom_histogram(aes(x = dat)) +
+  theme_minimal()
+
+```
+
+]
+
+---
+class: middle
+
+## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion: Quantiles]
+
+Here are the results if we used quantiles set at pr = 0.025 and pr = 97.5 (95% central distribution of the data)
+
+```{r, echo = FALSE}
+
+hse_cleaned2 <- hse_cleaned %>%
+  mutate(
+    eqvinc_95q = ifelse(eqvinc > 4062.5 & eqvinc < 115000.0, TRUE, FALSE)
+  )
+
+hse_cleaned2 %>%
+  ggplot() +
+  geom_histogram(aes(x = eqvinc, fill = eqvinc_95q), col = "darkgrey", binwidth = 5000, alpha = 0.4) +
+  stat_function(fun = function(x) 
+      dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
+                       sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  #scale_y_continuous(limits = c(0, 31)) +
+  scale_x_continuous(limits = c(-1e+05, 3e+05)) +
+  theme_minimal() +
+  scale_fill_manual(values = c("NA", tuos_blue)) +
+  xlab("Equivalised Household Income") +
+  ylab("Frequency") +
+  theme(legend.position = "none")
+
+```
+
+
+---
+
+class: middle
+
+```{r, echo = FALSE}
+
+library(formattable)
+
+visuals <- tibble(
+  `Variable Type` = c("Nominal", "Ordinal", "Continuous"),
+  `Central Tendency` = c("Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()",
+                         "Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()<br>Means/Median/Mode<br>mean(), median(), modeest::mfv()",
+                         "Mean/Median/Mode<br>mean(), median(), modeest::mfv()"),
+  `Dispersion` = c("Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()",
+                   "Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()",
+                   "Standard Deviation +<br>Empirical Rule (if approx normally distributed)<br>sd()<br>Quantiles/Percentiles<br>quantile()"),
+  `Data Vis` = c("Bar Chart<br>geom_bar()/barplot()", "Bar Chart<br>geom_bar()/barplot()", "Histogram<br>geom_histogram()/hist()")
+)
+
+visuals_tab <- formattable::formattable(visuals,
+                         list(
+                           `Variable Type` = formatter("span", style = formattable::style(font.weight = "bold"))
+                         ))
+
+as.htmlwidget(visuals_tab, width = "100%")
+
+```
+
+
+
+---
 class: middle
 
 ```{r, include=FALSE}
@@ -1371,8 +1807,8 @@ options(width = 100)
 
 ## Week 2 `R` Exercises
 
-* Today we will be using a different kind of tutorial that can be accessed through a web browser, e.g. by clicking [here](https://webb.shinyapps.io/week-2/) or clicking the link on the Blackboard page.
+* Today we will be using a different kind of tutorial using an Rmarkdown document. Check the files below the lecture slides in Week 2 under the learning materials menu.
 
-* __Follow this tutorial__ to learn how to calculate univariate descriptive statistics and visualise single variables in `R` using a few different methods.
+* __Follow the worksheet__ to learn how to calculate univariate descriptive statistics and visualise single variables in `R` using a few different methods.
 
-* If you finish the tutorial with a lot of time remaining, __try out the Week 2 challenge__!
+* If you finish the tutorial with a lot of time remaining, __try out the Week 2 challenge__! Make sure you finish this workbook and the challenge, as well as your required reading in your own independent study time!

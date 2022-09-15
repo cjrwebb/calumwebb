@@ -116,13 +116,6 @@ xaringanExtra::use_share_again()
 ---
 class: middle
 
-.pull-left[
-```{r, echo=FALSE, out.width = "80%"}
-
-knitr::include_graphics("images/pg-sign-in.png")
-
-```
-]
 .pull-right[
 
 <br><br><br><br><br><br>
@@ -227,14 +220,15 @@ class: middle
 
 ## Module design, timetable, and support
 
-__Time__: 9:00-10:45 Wednesdays (Week 1-5, 7-11)  
-__Location__: Hicks Building G25
+__Time__: 12:00-13:50 Tuesdays (Week 1-5, 7-11)  
+__Location__: Room C28 in the Portobello Centre
 
-__Consultation & Feedback Hours__: 15:00-16:00 Wednesdays (Week 1-12)  
+__Consultation & Feedback Hours__: 16:00-17:00 Tuesdays (Week 1-12)  
 *Can be booked online or face-to-face. See: [how to book](https://calumwebb.co.uk/teaching/appointments/).*
 
-__Weekly Drop-in Sessions__: 16:00-17:00 Thursdays (Week 1-5, 7-12)  
-*Virtual only initially. No booking required. Meeting room:* [meet.google.com/qvo-cpkp-ndz](https://meet.google.com/qvo-cpkp-ndz) 
+### Maths and Statistics Help (MASH)
+
+The Maths and Statistics Help (MASH) service on Glossop Road provide 1:1 and group support on learning statistics in `R`. You can book a tutorial by [visiting their webpages](https://www.sheffield.ac.uk/mash).
 
 ---
 class: middle
@@ -249,11 +243,11 @@ __It is up to you to identify your learning needs__ and use the resources provid
 
 --
 
-To ensure your independent learning is productive, you should __regularly think about what parts of the module are challenging you__. Examples of this might be:
+To ensure your independent learning is productive, you should __regularly think about what parts of the module are challenging you__.
 
-* Reading and manipulating data in `R`.
-* Interpreting the output of statistical tests.
-* Creating graphs.
+--
+
+But as a general rule you should follow the reading list and **work through ~1 chapter of the textbook per week**, as well as **finish any practical work started in the class**.
 
 --
 
@@ -281,28 +275,28 @@ outline <- tibble(
               "Logistic Regression",
               "Cluster Analysis",
               "Spatial Analysis"),
-  `Recommended Reading` = c("Walter, M. '_The Nature of Social Science Research_' & Powell, T. C. (2019). '_Can Quantitative Research Solve Social Problems?_'",
-                "Rowntree, D. Chapter 2, 3, & 4. '_Statistics without Tears_'",
-                "Fogarty, B. Chapter 8 & 10. '_Quantitative Social Science Data with R_'",
-                "Rowntree, D. Chapter 5. '_Statistics without Tears_'",
-                "Imai, K. Chapter 2 _'Quantitative Social Science: An introduction'_. & Goldthorpe, J. H. '_Causation, Statistics and Sociology_'",
-                "Rowntree, D. Chapter 6, 7 & 8. '_Statistics without Tears_'",
-                "Wheelan, C. Chapter 11, 12. '_Naked Statistics_'",
-                "Fogarty, B. Chapter 11 & 12. '_Quantitative Social Science Data with R_' or Imai, K. Chapter 4.2. and 4.3.2 '_Quantitative Social Science: An introduction_ (Available online through the library)'",
-                "Schumacker, R. (2021). Chapter 18. _Learning Statistics Using R_ (Available online through the library)",
-                "Imai, K. Chapter 3.7. _Quantitative Social Science: An introduction_ & UC Business Analytics `R` Programming Guide '_Hierarchical Cluster Analysis_' ([Available free online](https://uc-r.github.io/hc_clustering))",
+  `Required Reading` = c("Powell, T. C. (2019). '_Can Quantitative Research Solve Social Problems?_' & Mehmetoglu & Mittner (2022) _Chapter 1, 2 & 3, Applied Statistics Using R_",
+                "Mehmetoglu & Mittner (2022) _Chapter 4, Applied Statistics Using R_",
+                "Mehmetoglu & Mittner (2022) _Chapter 5, Applied Statistics Using R_",
+                "Mehmetoglu & Mittner (2022) _Chapter 6, Applied Statistics Using R_",
+                "Goldthorpe, J. H. '_Causation, Statistics and Sociology_'",
+                "Catch up reading week",
+                "Mehmetoglu & Mittner (2022) _Chapter 7, Applied Statistics Using R_",
+                "Mehmetoglu & Mittner (2022) _Chapter 8 & 9, Applied Statistics Using R_",
+                "Mehmetoglu & Mittner (2022) _Chapter 11, Applied Statistics Using R_",
+                "UC Business Analytics `R` Programming Guide 'k-means Cluster Analysis' ([Available free online](https://uc-r.github.io/kmeans_clustering)) '_Hierarchical Cluster Analysis_' ([Available free online](https://uc-r.github.io/hc_clustering))",
                 "Imai, K. Chapter 5.3 '_Quantitative Social Science: An introduction_ (Available online through the library)")
 )
 
 outline %>%
   mutate(
-    `Recommended Reading` = map(`Recommended Reading`, gt::md)
+    `Required Reading` = map(`Required Reading`, gt::md)
   ) %>%
   gt() %>%
   cols_width(
     `Week` ~ px(50),
     `Topic` ~ px(300),
-    `Recommended Reading` ~ px(750)
+    `Required Reading` ~ px(750)
   ) %>%
   cols_align(
     align = "left"
@@ -435,7 +429,7 @@ class: middle
 
 .pull-left[
 
-* Probably at least 50% of module conveners effort goes towards putting together a __good quality reading & resource list__. But not all students use it!
+* Probably at least 50% of module conveners effort goes towards putting together a [good quality reading & resource list](https://calumwebb.co.uk/teaching/SMI606-reading-list/). But not all students use it!
 
 ]
 
@@ -460,7 +454,7 @@ class: middle
 
 .pull-left[
 
-* Probably at least 50% of module conveners effort goes towards putting together a __good quality reading & resource list__. But not all students use it!
+* Probably at least 50% of module conveners effort goes towards putting together a [good quality reading & resource list](https://calumwebb.co.uk/teaching/SMI606-reading-list/). But not all students use it!
 
 
 The reading and resource list for this module includes:
@@ -488,7 +482,7 @@ knitr::include_graphics("images/cat.svg")
 
 ---
 
-### Exercise: It's normal for people to be coming to this course with wildly different experiences of statistics and software. 
+### Exercise: It's normal for people to be coming to this course with wildly <nbsp;>different experiences of statistics and software. 
 
 .center[
 ```{r, echo=FALSE, out.width="75%"}
@@ -1007,7 +1001,8 @@ class: middle
 
 * .big[Copy the files in the "__Week 1 R Exercise__" folder in R into your new project directory.]
 * .big[Open `week-1.R` in Rstudio and follow the tutorial written into the script to take your first steps programming in `R`!]
-* .big[_You may not have time to finish this entire tutorial before the end of this session, but should try and complete it during your independent study time_.]
+* .big[_You may not have time to finish this entire tutorial before the end of this session, but should complete it during your independent study time_.]
+* .big[_In your own time, complete the challenge at the end and post about any errors in `R` you experienced on the class discussion board (link on Blackboard)._.]
 
 
 ???
