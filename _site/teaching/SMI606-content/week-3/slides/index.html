@@ -4,7 +4,7 @@
     <title>SMI606: Week 3 — Relationships between Variables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2021-10-08" />
+    <meta name="date" content="2022-09-26" />
     <script src="week-03-relationships-between-variables_files/header-attrs/header-attrs.js"></script>
     <link href="week-03-relationships-between-variables_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-03-relationships-between-variables_files/tile-view/tile-view.js"></script>
@@ -34,6 +34,8 @@
            pre:not([class]) { background-color: white }</style>
     <script src="week-03-relationships-between-variables_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="week-03-relationships-between-variables_files/formattable_widget-binding/formattable_widget.js"></script>
+    <script src="week-03-relationships-between-variables_files/kePrint/kePrint.js"></script>
+    <link href="week-03-relationships-between-variables_files/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -122,16 +124,11 @@ top:1em;right:1em;
 ---
 class: middle
 
-.pull-left[
-&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
-]
 .pull-right[
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 # Sign In
-
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -182,8 +179,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-c9186aa2b804341f1bfb" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-c9186aa2b804341f1bfb">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-aa2a2303e06e0b168f71" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-aa2a2303e06e0b168f71">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -194,8 +191,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-9006728524a72ac64293" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-9006728524a72ac64293">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d4e4add121cccd30dda1" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-d4e4add121cccd30dda1">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -207,20 +204,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-d589d09a31de9ef9576d" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-d589d09a31de9ef9576d">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
-
----
-
-class: middle
-
-.center[
-&lt;img src="images/drake-1.png" width="55%" /&gt;
-]
-
-.center[
-*One classic (bivariate bar chart), one 'modern' (heatmap)*
-]
+<div id="htmlwidget-dbbc16cf04c4a8065973" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-dbbc16cf04c4a8065973">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -278,9 +263,298 @@ ssa %&gt;%
 
 .pull-right[
 
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-8-1.png" width="550" height="500" /&gt;
+
+
+]
+
+
+---
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row") %&gt;%
+  pivot_longer(-1) %&gt;%
+  mutate(name = factor(name, 
+                       levels = c("Too low", "Neither", "Too high"))
+         ) %&gt;%
+  # Plot bar chart
+  ggplot() +
+  geom_col(aes(x = imig_fct, y = value, fill = name), 
+           position = "dodge") +
+  theme(legend.position = "bottom") +
+  ylab("Proportion within group") +
+  xlab("People who feel that immigration should [be]...") +
+  labs(fill = "Benefits are currently...")
+```
+
+]
+
+.pull-right[
 &lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-10-1.png" width="550" height="500" /&gt;
+]
 
 
+
+---
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) 
+```
+
+Filter out the missing values and then create a __two-way contingency table__ using `janitor`, which shows the __frequency__ of responses in every combination of categories across the two variables.
+
+]
+
+.pull-right[
+
+```
+##            imig_fct Too low Neither Too high
+##       Reduced a lot     168      86      308
+##    Reduced a little      99      62      203
+##     Remain the same     141      76      115
+##  Increased a little      30      12       19
+##     Increased a lot      18       5        7
+```
+]
+
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row")
+```
+
+Now, we use the `adorn_percentages()` function from the `janitor` package to convert these responses into __proportions within each row__. 
+
+For example, the first row would read as: "For all of the survey respondents who said imigration should be reduced a lot, 30.4% said that benefits were too low, 14.5% said that benefits were neither too high nor too low, and 54.9% said that benefits were too high". 
+
+The percentage here is based on the __row total__, because we specified "row" in the `adorn_percentages` function. 
+
+
+]
+
+.pull-right[
+
+```
+##            imig_fct   Too low   Neither  Too high
+##       Reduced a lot 0.2989324 0.1530249 0.5480427
+##    Reduced a little 0.2719780 0.1703297 0.5576923
+##     Remain the same 0.4246988 0.2289157 0.3463855
+##  Increased a little 0.4918033 0.1967213 0.3114754
+##     Increased a lot 0.6000000 0.1666667 0.2333333
+```
+]
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row") %&gt;%
+  pivot_longer(-1)
+```
+
+To turn this table into something ggplot can plot as a bar chart, we need to do a kind of confusing transformation.
+
+We want all of the categories from our two variables to be in their own columns, with every valid combination, and then all of our proportions to be in their own column. For now, don't worry about what is going on with `pivot_longer`, just know that we can get from a janitor contingency tabyl into a structure we can plot using `pivot_longer(1)`.
+
+]
+
+.pull-right[
+
+```
+## # A tibble: 15 × 3
+##    imig_fct           name     value
+##    &lt;fct&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1 Reduced a lot      Too low  0.299
+##  2 Reduced a lot      Neither  0.153
+##  3 Reduced a lot      Too high 0.548
+##  4 Reduced a little   Too low  0.272
+##  5 Reduced a little   Neither  0.170
+##  6 Reduced a little   Too high 0.558
+##  7 Remain the same    Too low  0.425
+##  8 Remain the same    Neither  0.229
+##  9 Remain the same    Too high 0.346
+## 10 Increased a little Too low  0.492
+## 11 Increased a little Neither  0.197
+## 12 Increased a little Too high 0.311
+## 13 Increased a lot    Too low  0.6  
+## 14 Increased a lot    Neither  0.167
+## 15 Increased a lot    Too high 0.233
+```
+]
+
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row") %&gt;%
+  pivot_longer(-1) %&gt;%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) 
+```
+
+The last thing we do before plotting is reset the benefits column (now called `name`, thanks to `pivot_longer`) back to a factor type with the levels in the correct order ("Too low", "Neither", "Too high"). This will help ggplot arrange them in an intuitive way. 
+
+
+]
+
+.pull-right[
+
+```
+## # A tibble: 15 × 3
+##    imig_fct           name     value
+##    &lt;fct&gt;              &lt;fct&gt;    &lt;dbl&gt;
+##  1 Reduced a lot      Too low  0.299
+##  2 Reduced a lot      Neither  0.153
+##  3 Reduced a lot      Too high 0.548
+##  4 Reduced a little   Too low  0.272
+##  5 Reduced a little   Neither  0.170
+##  6 Reduced a little   Too high 0.558
+##  7 Remain the same    Too low  0.425
+##  8 Remain the same    Neither  0.229
+##  9 Remain the same    Too high 0.346
+## 10 Increased a little Too low  0.492
+## 11 Increased a little Neither  0.197
+## 12 Increased a little Too high 0.311
+## 13 Increased a lot    Too low  0.6  
+## 14 Increased a lot    Neither  0.167
+## 15 Increased a lot    Too high 0.233
+```
+]
+
+
+---
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row") %&gt;%
+  pivot_longer(-1) %&gt;%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %&gt;%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge")
+```
+
+Now we can plot the results. Note that with this kind of data format, where ggplot isn't doing any processing of statistics itself (we've already given it the proportions and are just telling them what they are), we switch to `geom_col` rather than using `geom_bar`.
+
+]
+
+.pull-right[
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-20-1.png" width="550" height="500" /&gt;
+]
+
+---
+
+## Grouped bar chart (Within Group %)
+
+&lt;br&gt;
+
+.pull-left[
+
+
+```r
+ssa %&gt;%
+  # Remove missing
+  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)
+    ) %&gt;% 
+  janitor:: tabyl(imig_fct, dole_fct) %&gt;%
+  janitor::adorn_percentages("row") %&gt;%
+  pivot_longer(-1) %&gt;%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %&gt;%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge") + 
+   theme(legend.position = "bottom") +
+   ylab("Proportion within group") +
+   xlab("People who feel that immigration should [be]...") +
+   labs(fill = "Benefits are currently...")
+```
+
+Finally, we can add some custom labels and formatting changes to make our plot look nicer and make it so that anyone can interpret it. 
+
+]
+
+.pull-right[
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-22-1.png" width="550" height="500" /&gt;
 ]
 
 
@@ -290,7 +564,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-11-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-23-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -301,8 +575,7 @@ ssa %&gt;%
 ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;%
-  as_tibble() %&gt;%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;%
+  pivot_longer(-1, names_to = "dole_fct") %&gt;%
   mutate(
     dole_fct = factor(dole_fct, 
                       levels = c("Too low", "Neither", "Too high"))
@@ -345,41 +618,10 @@ ssa %&gt;%
   janitor::tabyl(imig_fct, dole_fct) # Get crosstab
 ```
 
-]
-
-
----
-
-## Heatmap
-
-.pull-left[
-
-
-```
-## # A tibble: 5 × 4
-##   imig_fct           `Too low` Neither `Too high`
-##   &lt;fct&gt;                  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
-## 1 Reduced a lot            168      86        308
-## 2 Reduced a little          99      62        203
-## 3 Remain the same          141      76        115
-## 4 Increased a little        30      12         19
-## 5 Increased a lot           18       5          7
-```
+Filter the missing data out of the dataset using `filter()` and then create a contingency table using `janitor::tabyl()`.
 
 ]
 
-
-.pull-right[
-
-
-```r
-ssa %&gt;%
-  filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
-  janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
-  as_tibble() # Convert to tibble
-```
-
-]
 
 ---
 
@@ -419,9 +661,10 @@ ssa %&gt;%
 ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
-  as_tibble() %&gt;% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") # Create 'long' data
 ```
+
+Here I've used the `pivot_longer` trick again, but I've also used the optional argument `names_to` to make the names of the columns be placed in a new column called "dole_fct", which makes the plotting a little clearer. 
 
 ]
 
@@ -464,11 +707,13 @@ ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
   as_tibble() %&gt;% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %&gt;% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   )
 ```
+
+Here, I am mutating the `dole_fct` variable to put the levels in the correct order (because it is an ordinal variable).  
 
 ]
 
@@ -478,7 +723,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-21-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-31-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -491,7 +736,7 @@ ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
   as_tibble() %&gt;% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %&gt;% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %&gt;%
@@ -499,6 +744,8 @@ ssa %&gt;%
   geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) # create heatmap
 ```
 
+And now we can use `geom_tile` to create a heatmap. `geom_tile` essentially just draws squares on a grid, using the x and y variables as guides for locations. The `fill` optional argument can be used colour the tiles according to their value (here we are using frequencies, but we could have added the intermediate `adorn_percentages("row")` or `adorn_percentages("col")` function from `janitor` to make these row or column proportions)
+
 ]
 
 ---
@@ -507,7 +754,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-23-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-33-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -520,7 +767,7 @@ ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
   as_tibble() %&gt;% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %&gt;% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %&gt;%
@@ -530,6 +777,8 @@ ssa %&gt;%
   coord_fixed(1) # force squares
 ```
 
+We can use the `coord_fixed(1)` function to force a 1 to 1 relationship between the X and Y axis, this will make the tiles display as perfect squares (which looks quite nice!)
+
 ]
 
 
@@ -539,7 +788,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-25-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-35-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -552,7 +801,7 @@ ssa %&gt;%
   filter(!is.na(imig_fct) &amp; !is.na(dole_fct)) %&gt;% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %&gt;% # Get crosstab
   as_tibble() %&gt;% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %&gt;% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %&gt;% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %&gt;%
@@ -562,6 +811,8 @@ ssa %&gt;%
   coord_fixed(1) + # force squares
   scale_fill_gradient2(low = "white", high = "seagreen") # change colour scheme
 ```
+
+Finally, we can use `scale_fill_gradient2()` to set any arbitrary fill colour scale between two colours we choose (here, a white and a green). `R` has a list of pre-named colours (you can see all of these by running `colors()` in your console), or you can use any hex code colour (e.g. &lt;span style="color:#B00100"&gt;#B00100&lt;/span&gt;)
 
 ]
 
@@ -578,8 +829,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-fd23a707d55b8da929e1" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-fd23a707d55b8da929e1">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Spearman's Rho/<br>Contingency Table<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ce552c3282c590ffc240" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-ce552c3282c590ffc240">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -987,6 +1238,117 @@ cramerV(partial_dep)
 
 ---
 
+
+## Cramer's V
+
+&lt;br&gt;
+
+.pull-left[
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df* &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Negligible &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Weak &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Moderate &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Strong &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &amp;lt; .10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .10 &amp;lt; .30 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .30 &amp;lt; .50 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .50 or more &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &amp;lt; .07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .07 &amp;lt; .21 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .21 &amp;lt; .35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .35 or more &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &amp;lt; .06 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .06 &amp;lt; .17 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .17 &amp;lt; .29 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .29 or more &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &amp;lt; .05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .05 &amp;lt; .15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .15 &amp;lt; .25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .25 or more &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &amp;lt; .05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .05 &amp;lt; .13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .13 &amp;lt; .22 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .22 or more &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+The degrees of freedom (df) are calculated by subtracting 1 from the smallest number of rows or columns in our crosstab.
+
+For example here we have 6 rows and 4 columns; 4 is smaller than 6; so our "df" is equal to 4 minus 1, which equals 3.
+
+For 3 degrees of freedom a result of 0.1169 could be interpreted as a __weak__ association between attitudes towards immigration and benefits policies.
+
+
+
+]
+
+.pull-right[
+
+
+```r
+ssa %&gt;%
+  tabyl(imig_fct, dole_fct)
+```
+
+```
+##            imig_fct Too low Neither Too high NA_
+##       Reduced a lot     168      86      308  49
+##    Reduced a little      99      62      203  36
+##     Remain the same     141      76      115  29
+##  Increased a little      30      12       19   5
+##     Increased a lot      18       5        7   2
+##                &lt;NA&gt;       9      11        9   2
+```
+
+```r
+cramerV(x = ssa$dole_fct, y = ssa$imig_fct) 
+```
+
+```
+## Cramer V 
+##   0.1169
+```
+
+
+]
+
+---
+
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+<div id="htmlwidget-497e188c8e74436da44e" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-497e188c8e74436da44e">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> <strong>Spearman's Rho/<br>Contingency Table<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
 ## Spearman's rho ( `\(\rho\)` ): Rank order correlation
 
 &lt;br&gt;
@@ -1083,6 +1445,60 @@ People who are pro-immigration are also more likely to support greater welfare g
 
 ---
 
+## Spearman's rho ( `\(\rho\)` ): Rank order correlation
+
+&lt;br&gt;
+
+
+.pull-left[
+
+
+```r
+# Change factors to be ordered
+ssa &lt;- ssa %&gt;%
+  mutate(
+    imig_fct = factor(imig_fct, ordered = TRUE),
+    dole_fct = factor(dole_fct, ordered = TRUE)
+  )
+
+# Immigration should be...
+# 5 Levels: Reduced a lot &lt; Reduced a little &lt; ... &lt; Increased a lot
+
+# Benefits payments are...
+# Levels: Too low &lt; Neither &lt; Too high
+
+cor(x = as.numeric(ssa$imig_fct), # Must be numeric
+    y = as.numeric(ssa$dole_fct), # Must be numeric
+    use = "complete.obs", # Remove missing values
+    method = "spearman" # Use spearman's rho
+    )
+```
+
+```
+## [1] -0.1664359
+```
+]
+
+.pull-right[
+
+Spearman's Rank Order Correlation is __directional__, Cramer's V is __not__.
+
+Cohen's (1988) commonly used effect sizes for rho:
+
+* 0 to 0.1 or 0 to -0.1: Negligible
+* 0.1 to 0.3 or -0.1 to -0.3: Weak
+* 0.3 to 0.5 or -0.3 to -0.5: Moderate
+* 0.5 to 1 or -0.5 to -1: Strong
+
+However, __context matters most__: if you are looking for things that might affect an outcome __at scale__, or __when assessing a potentially cheap intervention__ even a relatively weak effect size is important.
+
+* If the evidence suggested giving students a free notepad and pen at the start of a semester had a weak effect on their grades, would we do it?
+* If the evidence suggested giving students £1million at the start of a semester had a strong effect on their grades, would we do it?
+
+]
+
+---
+
 class: middle, inverse
 
 ## .tuos_purple[Are attitudes towards immigration associated with age?]
@@ -1094,8 +1510,37 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-8f0c6a175a71a9e0c411" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-8f0c6a175a71a9e0c411">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c11c4c0fc18ee6684aad" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-c11c4c0fc18ee6684aad">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: middle
+
+## Data preparation: Recoding
+
+It's sometimes necessary to "recode" variables. Some reasons why you may want to do this are:
+
+--
+
+* To combine some related groups within each there are __too small a number of cases to be statistically informative__ (generally, fewer than 30 is not very informative for frequentist hypothesis testing)
+
+--
+
+* To compress certain groups to make a __data visualisation more clear or appealing__, or to use a different type of visualisation.
+
+--
+
+* __To remove missing data categories__ that were placed in the data to be informative but are not needed for your analysis
+
+--
+
+* Example of ways you might recode a variable:
+  * Recoding a 7-point Likert scale to a 5-point scale; 
+  * Turning a continuous variable like age into an ordinal variable like 'age group'; 
+  * Turning an ordinal variable into a binary variable, e.g. simplifying a five point scale from Strongly Agree -- Strongly Disagree into a simple "Agree / Does not agree" binary;
+  * Changing the categorical responses "Refused to answer", "Not applicable", and "Not sure" into `NA`.
+
 
 ---
 
@@ -1140,7 +1585,7 @@ ssa %&gt;%
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-45-1.png" width="1000" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-59-1.png" width="1000" height="550" /&gt;
 
 ---
 
@@ -1171,7 +1616,7 @@ ssa %&gt;%
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-47-1.png" width="500" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-61-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -1181,7 +1626,7 @@ ssa %&gt;%
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-48-1.png" width="1000" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-62-1.png" width="1000" height="550" /&gt;
 
 ---
 
@@ -1213,7 +1658,7 @@ ssa %&gt;%
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-50-1.png" width="500" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-64-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -1223,8 +1668,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-99cd469cf93570c118d7" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-99cd469cf93570c118d7">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d8ffd0150ba9afd8589e" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-d8ffd0150ba9afd8589e">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1264,6 +1709,12 @@ ssa %&gt;%
 
 ---
 
+class: middle
+
+.big[.center["The median age of someone who answered immigration should be reduced was 54 years, while the median age if participants who responded that immigration should be increased was 46 years. The interquartile range between those who believed immigration should be Reduced and those who believed it should be increased had some degree of overlap, but those who felt immigration should be reduced had a considerably younger range. The inter-quartile range was between age 39 and age 67 for those who felt immigration should be reduced and from 33 to 58 for those who felt it should be increased."]]
+
+---
+
 ## Mean/Median Differences (and Ranges)
 
 &lt;br&gt;
@@ -1296,6 +1747,8 @@ ssa %&gt;%
 ## 3 Too high     51.8         52      18          37            67        98
 ## 4 &lt;NA&gt;         52.2         51      19          37.5          67.5      90
 ```
+
+.center[How would you summarise this table in text form?]
 
 ---
 
@@ -1349,8 +1802,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-a421c954e32dab19ee2a" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-a421c954e32dab19ee2a">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> <strong>Scatterplot/<br>Hex Bin Plot<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d3be88b89f893c2eee66" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-d3be88b89f893c2eee66">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> <strong>Scatterplot/<br>Hex Bin Plot<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1358,7 +1811,7 @@ class: middle
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-59-1.png" width="1000" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-73-1.png" width="1000" height="550" /&gt;
 
 ---
 
@@ -1368,7 +1821,7 @@ class: middle
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-60-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-74-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -1392,7 +1845,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-62-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-76-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -1439,7 +1892,7 @@ ssa %&gt;%
 
 .pull-right[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-65-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-79-1.png" width="550" height="550" /&gt;
 
 ]
 
@@ -1449,8 +1902,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-d05326ff2636afa54e6a" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-d05326ff2636afa54e6a">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson's R or<br>Spearman's Rho<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9397fc712642f0e39603" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-9397fc712642f0e39603">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson's R or<br>Spearman's Rho<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1553,7 +2006,7 @@ cor(x, y, method = "spearman")
 
 .pull-left[
 
-## Pearson (raw values)
+## Pearson (raw values) = 0.832
 
 
 ```r
@@ -1563,13 +2016,13 @@ ggplot() +
   )
 ```
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-71-1.png" width="400" height="400" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-85-1.png" width="400" height="400" /&gt;
 
 ]
 
 .pull-right[
 
-## Spearman (ranks)
+## Spearman (ranks) = 1
 
 
 ```r
@@ -1579,9 +2032,27 @@ ggplot() +
   )
 ```
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-72-1.png" width="400" height="400" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-86-1.png" width="400" height="400" /&gt;
 
 ]
+
+---
+
+class: middle
+
+## Summary
+
+<div id="htmlwidget-3ad78423f0793b08bb93" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-3ad78423f0793b08bb93">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: middle
+
+## Summary
+
+<div id="htmlwidget-1e20e75d36acf9f4a378" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-1e20e75d36acf9f4a378">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1597,6 +2068,10 @@ class: middle
 
 * __Visualisations of relationships__ between variables can help us get a full and proportionate picture of relationships, whereas __bivariate descriptive statistics__ (contingency tables, Spearman's Rho, Cramer's V, and Pearson's R) can give us a standardised, shorthand way of describing what these relationships are.
 
+--
+
+* Note: I don't expect you to remember all of these different methods: __Use the table and the slides as a cheat sheet__! When viewing the slides on your computer you can press "o" on your keyboard to quickly browse through them all.
+
 
 ---
 
@@ -1606,9 +2081,7 @@ class: middle
 
 &lt;br&gt;
 
-* This week, the focus is on __interpreting output__ from `R` in a quantitative research context - not on writing `R` code.
-
-* In the process, you will also learn how a new type of `R` file - __R markdown__ - can be used to create documents (including pdfs and web pages).
+* This week, the focus is on __interpreting output__ from `R` in a quantitative research context - not on writing `R` code. This is an opportunity to take a bit of a break from code-writing in class, but I would encourage you to experiment on your own or through textbook examples. 
 
 &lt;br&gt;
 &lt;hr&gt;
@@ -1669,6 +2142,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

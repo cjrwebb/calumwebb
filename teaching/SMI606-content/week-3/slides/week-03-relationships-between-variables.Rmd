@@ -29,6 +29,8 @@ background-size: contain
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+Sys.setenv(PAGEDOWN_CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+Sys.setenv(CHROMOTE_CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 library(icons)
 library(tidyverse)
 library(xaringanExtra)
@@ -122,20 +124,11 @@ xaringanExtra::use_share_again()
 ---
 class: middle
 
-.pull-left[
-```{r, echo=FALSE, out.width = "80%"}
-
-knitr::include_graphics("images/pg-sign-in.png")
-
-```
-]
 .pull-right[
 
 <br><br><br><br><br><br>
 
 # Sign In
-
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -272,22 +265,6 @@ as.htmlwidget(visuals_tab, width = "100%")
 class: middle
 
 .center[
-```{r, echo=FALSE, out.width="55%"}
-
-knitr::include_graphics("images/drake-1.png")
-
-```
-]
-
-.center[
-*One classic (bivariate bar chart), one 'modern' (heatmap)*
-]
-
----
-
-class: middle
-
-.center[
 ```{r, echo=FALSE, out.width="90%"}
 
 knitr::include_graphics("images/diamonds-bar.jpg")
@@ -402,6 +379,393 @@ ssa %>%
 
 ---
 
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+                       levels = c("Too low", "Neither", "Too high"))
+         ) %>%
+  # Plot bar chart
+  ggplot() +
+  geom_col(aes(x = imig_fct, y = value, fill = name), 
+           position = "dodge") +
+  theme(legend.position = "bottom") +
+  ylab("Proportion within group") +
+  xlab("People who feel that immigration should [be]...") +
+  labs(fill = "Benefits are currently...")
+
+```
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+                       levels = c("Too low", "Neither", "Too high"))
+         ) %>%
+  # Plot bar chart
+  ggplot() +
+  geom_col(aes(x = imig_fct, y = value, fill = name), 
+           position = "dodge") +
+  theme(legend.position = "bottom") +
+  ylab("Proportion within group") +
+  xlab("People who feel that immigration should [be]...") +
+  labs(fill = "Benefits are currently...")
+
+```
+]
+
+
+
+---
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) 
+
+```
+
+Filter out the missing values and then create a __two-way contingency table__ using `janitor`, which shows the __frequency__ of responses in every combination of categories across the two variables.
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) #%>%
+  # janitor::adorn_percentages("row") %>%
+  # pivot_longer(-imig_fct) %>%
+  # mutate(name = factor(name, 
+  #                      levels = c("Too low", "Neither", "Too high"))
+  #        ) %>%
+  # # Plot bar chart
+  # ggplot() +
+  # geom_col(aes(x = imig_fct, y = value, fill = name), 
+  #          position = "dodge") +
+  # theme(legend.position = "bottom") +
+  # ylab("Proportion within group") +
+  # xlab("People who feel that immigration should [be]...") +
+  # labs(fill = "Benefits are currently...")
+
+```
+]
+
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row")
+
+```
+
+Now, we use the `adorn_percentages()` function from the `janitor` package to convert these responses into __proportions within each row__. 
+
+For example, the first row would read as: "For all of the survey respondents who said imigration should be reduced a lot, 30.4% said that benefits were too low, 14.5% said that benefits were neither too high nor too low, and 54.9% said that benefits were too high". 
+
+The percentage here is based on the __row total__, because we specified "row" in the `adorn_percentages` function. 
+
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") #%>%
+  # pivot_longer(-imig_fct) %>%
+  # mutate(name = factor(name, 
+  #                      levels = c("Too low", "Neither", "Too high"))
+  #        ) %>%
+  # # Plot bar chart
+  # ggplot() +
+  # geom_col(aes(x = imig_fct, y = value, fill = name), 
+  #          position = "dodge") +
+  # theme(legend.position = "bottom") +
+  # ylab("Proportion within group") +
+  # xlab("People who feel that immigration should [be]...") +
+  # labs(fill = "Benefits are currently...")
+
+```
+]
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1)
+
+```
+
+To turn this table into something ggplot can plot as a bar chart, we need to do a kind of confusing transformation.
+
+We want all of the categories from our two variables to be in their own columns, with every valid combination, and then all of our proportions to be in their own column. For now, don't worry about what is going on with `pivot_longer`, just know that we can get from a janitor contingency tabyl into a structure we can plot using `pivot_longer(1)`.
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) #%>%
+  # mutate(name = factor(name, 
+  #                      levels = c("Too low", "Neither", "Too high"))
+  #        ) %>%
+  # # Plot bar chart
+  # ggplot() +
+  # geom_col(aes(x = imig_fct, y = value, fill = name), 
+  #          position = "dodge") +
+  # theme(legend.position = "bottom") +
+  # ylab("Proportion within group") +
+  # xlab("People who feel that immigration should [be]...") +
+  # labs(fill = "Benefits are currently...")
+
+```
+]
+
+
+---
+
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) 
+
+```
+
+The last thing we do before plotting is reset the benefits column (now called `name`, thanks to `pivot_longer`) back to a factor type with the levels in the correct order ("Too low", "Neither", "Too high"). This will help ggplot arrange them in an intuitive way. 
+
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) #%>%
+  # # Plot bar chart
+  # ggplot() +
+  # geom_col(aes(x = imig_fct, y = value, fill = name), 
+  #          position = "dodge") +
+  # theme(legend.position = "bottom") +
+  # ylab("Proportion within group") +
+  # xlab("People who feel that immigration should [be]...") +
+  # labs(fill = "Benefits are currently...")
+
+```
+]
+
+
+---
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %>%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge")
+
+```
+
+Now we can plot the results. Note that with this kind of data format, where ggplot isn't doing any processing of statistics itself (we've already given it the proportions and are just telling them what they are), we switch to `geom_col` rather than using `geom_bar`.
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %>%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge") #+
+  # theme(legend.position = "bottom") +
+  # ylab("Proportion within group") +
+  # xlab("People who feel that immigration should [be]...") +
+  # labs(fill = "Benefits are currently...")
+
+```
+]
+
+---
+
+## Grouped bar chart (Within Group %)
+
+<br>
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %>%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge") + 
+   theme(legend.position = "bottom") +
+   ylab("Proportion within group") +
+   xlab("People who feel that immigration should [be]...") +
+   labs(fill = "Benefits are currently...")
+
+```
+
+Finally, we can add some custom labels and formatting changes to make our plot look nicer and make it so that anyone can interpret it. 
+
+]
+
+.pull-right[
+```{r, echo = FALSE, dpi = 200, fig.height=5, fig.width=5.5, out.height=500, out.width=550}
+
+ssa %>%
+  # Remove missing
+  filter(!is.na(imig_fct) & !is.na(dole_fct)
+    ) %>% 
+  janitor:: tabyl(imig_fct, dole_fct) %>%
+  janitor::adorn_percentages("row") %>%
+  pivot_longer(-1) %>%
+  mutate(name = factor(name, 
+     levels = c("Too low", "Neither", "Too high"))
+        ) %>%
+  # Plot bar chart
+   ggplot() +
+   geom_col(aes(x = imig_fct, y = value, fill = name), 
+            position = "dodge") +
+   theme(legend.position = "bottom") +
+   ylab("Proportion within group") +
+   xlab("People who feel that immigration should [be]...") +
+   labs(fill = "Benefits are currently...")
+
+```
+]
+
+
+---
+
 ## Heatmap
 
 .pull-left[
@@ -411,8 +775,7 @@ ssa %>%
 ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
-  as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate(
     dole_fct = factor(dole_fct, 
                       levels = c("Too low", "Neither", "Too high"))
@@ -434,8 +797,7 @@ ssa %>%
 ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
-  as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate(
     dole_fct = factor(dole_fct, 
                       levels = c("Too low", "Neither", "Too high"))
@@ -478,6 +840,8 @@ ssa %>%
 
 ```
 
+Filter the missing data out of the dataset using `filter()` and then create a contingency table using `janitor::tabyl()`.
+
 ]
 
 
@@ -492,39 +856,6 @@ ssa %>%
 ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
-  as_tibble() 
-
-```
-
-]
-
-
-.pull-right[
-
-```{r, eval=FALSE}
-
-ssa %>%
-  filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
-  janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
-  as_tibble() # Convert to tibble
-
-
-```
-
-]
-
----
-
-## Heatmap
-
-.pull-left[
-
-```{r, echo=FALSE}
-
-ssa %>%
-  filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
-  janitor::tabyl(imig_fct, dole_fct) %>%
-  as_tibble() %>%
   pivot_longer(`Too low`:`Too high`, names_to = "dole_fct")
 
 ```
@@ -539,10 +870,11 @@ ssa %>%
 ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
-  as_tibble() %>% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") # Create 'long' data
 
 ```
+
+Here I've used the `pivot_longer` trick again, but I've also used the optional argument `names_to` to make the names of the columns be placed in a new column called "dole_fct", which makes the plotting a little clearer. 
 
 ]
 
@@ -558,7 +890,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
   as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate( # re-factorise dole_fct
     dole_fct = 
       factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
@@ -577,12 +909,14 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
   as_tibble() %>% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %>% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   )
   
 ```
+
+Here, I am mutating the `dole_fct` variable to put the levels in the correct order (because it is an ordinal variable).  
 
 ]
 
@@ -598,7 +932,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
   as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate( # re-factorise dole_fct
     dole_fct = 
       factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
@@ -619,7 +953,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
   as_tibble() %>% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %>% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %>%
@@ -627,6 +961,8 @@ ssa %>%
   geom_tile(aes(x = imig_fct, y = dole_fct, fill = value)) # create heatmap
   
 ```
+
+And now we can use `geom_tile` to create a heatmap. `geom_tile` essentially just draws squares on a grid, using the x and y variables as guides for locations. The `fill` optional argument can be used colour the tiles according to their value (here we are using frequencies, but we could have added the intermediate `adorn_percentages("row")` or `adorn_percentages("col")` function from `janitor` to make these row or column proportions)
 
 ]
 
@@ -642,7 +978,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
   as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate( # re-factorise dole_fct
     dole_fct = 
       factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
@@ -665,7 +1001,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
   as_tibble() %>% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %>% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %>%
@@ -675,6 +1011,8 @@ ssa %>%
   coord_fixed(1) # force squares
   
 ```
+
+We can use the `coord_fixed(1)` function to force a 1 to 1 relationship between the X and Y axis, this will make the tiles display as perfect squares (which looks quite nice!)
 
 ]
 
@@ -691,7 +1029,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>%
   as_tibble() %>%
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>%
+  pivot_longer(-1, names_to = "dole_fct") %>%
   mutate( # re-factorise dole_fct
     dole_fct = 
       factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
@@ -715,7 +1053,7 @@ ssa %>%
   filter(!is.na(imig_fct) & !is.na(dole_fct)) %>% # Remove missing
   janitor::tabyl(imig_fct, dole_fct) %>% # Get crosstab
   as_tibble() %>% # Convert to tibble
-  pivot_longer(`Too low`:`Too high`, names_to = "dole_fct") %>% # Create 'long' data
+  pivot_longer(-1, names_to = "dole_fct") %>% # Create 'long' data
   mutate( # re-factorise dole_fct
     dole_fct = factor(dole_fct, levels = c("Too low", "Neither", "Too high"))
   ) %>%
@@ -726,6 +1064,8 @@ ssa %>%
   scale_fill_gradient2(low = "white", high = "seagreen") # change colour scheme
   
 ```
+
+Finally, we can use `scale_fill_gradient2()` to set any arbitrary fill colour scale between two colours we choose (here, a white and a green). `R` has a list of pre-named colours (you can see all of these by running `colors()` in your console), or you can use any hex code colour (e.g. <span style="color:#B00100">#B00100</span>)
 
 ]
 
@@ -749,7 +1089,7 @@ library(formattable)
 descripts <- tibble(
   `Variable Type` = c("Nominal", "Ordinal", "Continuous"),
   Nominal = c("<strong>Contingency Table +<br>Cramer's V</strong>", "<strong>Contingency Table +<br>Cramer's V</strong>", "Mean/<br>Median Difference"),
-  Ordinal = c("", "<strong>Spearman's Rho/<br>Contingency Table</strong>", "Mean/<br>Median Difference"),
+  Ordinal = c("", "Spearman's Rho/<br>Contingency Table", "Mean/<br>Median Difference"),
   Continuous = c("", "", "Pearson's R or<br>Spearman's Rho")
 )
 
@@ -1070,6 +1410,87 @@ cramerV(partial_dep)
 
 ---
 
+
+## Cramer's V
+
+<br>
+
+.pull-left[
+
+```{r, echo = FALSE, fig.cap="Interpretation Guide for Cramér's V, Cohen (1988)"}
+
+cramerVint <- tibble::tribble(
+  ~`df*`, ~Negligible,      ~Weak,     ~Moderate,        ~Strong,
+      1L,   "0 < .10", ".10 < .30", ".30 < .50", ".50 or more",
+      2L,   "0 < .07", ".07 < .21", ".21 < .35", ".35 or more",
+      3L,   "0 < .06", ".06 < .17", ".17 < .29", ".29 or more",
+      4L,   "0 < .05", ".05 < .15", ".15 < .25", ".25 or more",
+      5L,   "0 < .05", ".05 < .13", ".13 < .22", ".22 or more"
+  )
+
+knitr::kable(cramerVint) %>% kableExtra::kable_styling(font_size = 14)
+
+
+```
+
+<br>
+
+The degrees of freedom (df) are calculated by subtracting 1 from the smallest number of rows or columns in our crosstab.
+
+For example here we have 6 rows and 4 columns; 4 is smaller than 6; so our "df" is equal to 4 minus 1, which equals 3.
+
+For 3 degrees of freedom a result of 0.1169 could be interpreted as a __weak__ association between attitudes towards immigration and benefits policies.
+
+
+
+]
+
+.pull-right[
+
+```{r}
+
+ssa %>%
+  tabyl(imig_fct, dole_fct)
+
+cramerV(x = ssa$dole_fct, y = ssa$imig_fct) 
+
+```
+
+
+]
+
+---
+
+
+class: middle
+
+## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
+
+```{r, echo = FALSE}
+
+library(formattable)
+
+descripts <- tibble(
+  `Variable Type` = c("Nominal", "Ordinal", "Continuous"),
+  Nominal = c("Contingency Table +<br>Cramer's V", "Contingency Table +<br>Cramer's V", "Mean/<br>Median Difference"),
+  Ordinal = c("", "<strong>Spearman's Rho/<br>Contingency Table</strong>", "Mean/<br>Median Difference"),
+  Continuous = c("", "", "Pearson's R or<br>Spearman's Rho")
+)
+
+descripts_tab <- formattable::formattable(descripts,
+                         list(
+                           `Variable Type` = formatter("span", style = formattable::style(font.weight = "bold"))
+                         ))
+
+
+as.htmlwidget(descripts_tab, width = "100%")
+
+
+```
+
+
+---
+
 ## Spearman's rho ( $\rho$ ): Rank order correlation
 
 <br>
@@ -1160,6 +1581,57 @@ People who are pro-immigration are also more likely to support greater welfare g
 
 ---
 
+## Spearman's rho ( $\rho$ ): Rank order correlation
+
+<br>
+
+
+.pull-left[
+
+```{r}
+
+# Change factors to be ordered
+ssa <- ssa %>%
+  mutate(
+    imig_fct = factor(imig_fct, ordered = TRUE),
+    dole_fct = factor(dole_fct, ordered = TRUE)
+  )
+
+# Immigration should be...
+# 5 Levels: Reduced a lot < Reduced a little < ... < Increased a lot
+
+# Benefits payments are...
+# Levels: Too low < Neither < Too high
+
+cor(x = as.numeric(ssa$imig_fct), # Must be numeric
+    y = as.numeric(ssa$dole_fct), # Must be numeric
+    use = "complete.obs", # Remove missing values
+    method = "spearman" # Use spearman's rho
+    )
+
+```
+]
+
+.pull-right[
+
+Spearman's Rank Order Correlation is __directional__, Cramer's V is __not__.
+
+Cohen's (1988) commonly used effect sizes for rho:
+
+* 0 to 0.1 or 0 to -0.1: Negligible
+* 0.1 to 0.3 or -0.1 to -0.3: Weak
+* 0.3 to 0.5 or -0.3 to -0.5: Moderate
+* 0.5 to 1 or -0.5 to -1: Strong
+
+However, __context matters most__: if you are looking for things that might affect an outcome __at scale__, or __when assessing a potentially cheap intervention__ even a relatively weak effect size is important.
+
+* If the evidence suggested giving students a free notepad and pen at the start of a semester had a weak effect on their grades, would we do it?
+* If the evidence suggested giving students £1million at the start of a semester had a strong effect on their grades, would we do it?
+
+]
+
+---
+
 class: middle, inverse
 
 ## .tuos_purple[Are attitudes towards immigration associated with age?]
@@ -1190,6 +1662,35 @@ visuals_tab <- formattable::formattable(visuals,
 as.htmlwidget(visuals_tab, width = "100%")
 
 ```
+
+---
+
+class: middle
+
+## Data preparation: Recoding
+
+It's sometimes necessary to "recode" variables. Some reasons why you may want to do this are:
+
+--
+
+* To combine some related groups within each there are __too small a number of cases to be statistically informative__ (generally, fewer than 30 is not very informative for frequentist hypothesis testing)
+
+--
+
+* To compress certain groups to make a __data visualisation more clear or appealing__, or to use a different type of visualisation.
+
+--
+
+* __To remove missing data categories__ that were placed in the data to be informative but are not needed for your analysis
+
+--
+
+* Example of ways you might recode a variable:
+  * Recoding a 7-point Likert scale to a 5-point scale; 
+  * Turning a continuous variable like age into an ordinal variable like 'age group'; 
+  * Turning an ordinal variable into a binary variable, e.g. simplifying a five point scale from Strongly Agree -- Strongly Disagree into a simple "Agree / Does not agree" binary;
+  * Changing the categorical responses "Refused to answer", "Not applicable", and "Not sure" into `NA`.
+
 
 ---
 
@@ -1409,6 +1910,12 @@ ssa %>%
 
 ---
 
+class: middle
+
+.big[.center["The median age of someone who answered immigration should be reduced was 54 years, while the median age if participants who responded that immigration should be increased was 46 years. The interquartile range between those who believed immigration should be Reduced and those who believed it should be increased had some degree of overlap, but those who felt immigration should be reduced had a considerably younger range. The inter-quartile range was between age 39 and age 67 for those who felt immigration should be reduced and from 33 to 58 for those who felt it should be increased."]]
+
+---
+
 ## Mean/Median Differences (and Ranges)
 
 <br>
@@ -1446,6 +1953,8 @@ ssa %>%
   )
 
 ```
+
+.center[How would you summarise this table in text form?]
 
 ---
 
@@ -1766,7 +2275,7 @@ cor(x, y, method = "spearman")
 
 .pull-left[
 
-## Pearson (raw values)
+## Pearson (raw values) = 0.832
 
 ```{r, out.height=400, out.width=400, fig.height=4, fig.width=4}
 
@@ -1781,7 +2290,7 @@ ggplot() +
 
 .pull-right[
 
-## Spearman (ranks)
+## Spearman (ranks) = 1
 
 ```{r, out.height=400, out.width=400, fig.height=4, fig.width=4}
 
@@ -1798,6 +2307,60 @@ ggplot() +
 
 class: middle
 
+## Summary
+
+```{r, echo = FALSE}
+
+library(formattable)
+
+descripts <- tibble(
+  `Variable Type` = c("Nominal", "Ordinal", "Continuous"),
+  Nominal = c("Contingency Table +<br>Cramer's V", "Contingency Table +<br>Cramer's V", "Mean/<br>Median Difference"),
+  Ordinal = c("", "Spearman's Rho/<br>Contingency Table", "Mean/<br>Median Difference"),
+  Continuous = c("", "", "Pearson's R or<br>Spearman's Rho")
+)
+
+descripts_tab <- formattable::formattable(descripts,
+                         list(
+                           `Variable Type` = formatter("span", style = formattable::style(font.weight = "bold"))
+                         ))
+
+
+as.htmlwidget(descripts_tab, width = "100%")
+
+
+```
+
+---
+
+class: middle
+
+## Summary
+
+```{r, echo = FALSE}
+
+library(formattable)
+
+visuals <- tibble(
+  `Variable Type` = c("Nominal", "Ordinal", "Continuous"),
+  Nominal = c("Heatmap/<br>Bivariate Bar Chart", "Heatmap/<br>Bivariate Bar Chart", "Boxplot/<br>Ridgeplot"),
+  Ordinal = c("", "Heatmap/<br>Bivariate Bar Chart", "Boxplot/<br>Ridgeplot"),
+  Continuous = c("", "", "Scatterplot/<br>Hex Bin Plot")
+)
+
+visuals_tab <- formattable::formattable(visuals,
+                         list(
+                           `Variable Type` = formatter("span", style = formattable::style(font.weight = "bold"))
+                         ))
+
+as.htmlwidget(visuals_tab, width = "100%")
+
+```
+
+---
+
+class: middle
+
 # Summary
 
 <br>
@@ -1808,6 +2371,10 @@ class: middle
 
 * __Visualisations of relationships__ between variables can help us get a full and proportionate picture of relationships, whereas __bivariate descriptive statistics__ (contingency tables, Spearman's Rho, Cramer's V, and Pearson's R) can give us a standardised, shorthand way of describing what these relationships are.
 
+--
+
+* Note: I don't expect you to remember all of these different methods: __Use the table and the slides as a cheat sheet__! When viewing the slides on your computer you can press "o" on your keyboard to quickly browse through them all.
+
 
 ---
 
@@ -1817,9 +2384,7 @@ class: middle
 
 <br>
 
-* This week, the focus is on __interpreting output__ from `R` in a quantitative research context - not on writing `R` code.
-
-* In the process, you will also learn how a new type of `R` file - __R markdown__ - can be used to create documents (including pdfs and web pages).
+* This week, the focus is on __interpreting output__ from `R` in a quantitative research context - not on writing `R` code. This is an opportunity to take a bit of a break from code-writing in class, but I would encourage you to experiment on your own or through textbook examples. 
 
 <br>
 <hr>
