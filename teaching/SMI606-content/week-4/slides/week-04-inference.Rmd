@@ -122,20 +122,12 @@ xaringanExtra::use_share_again()
 ---
 class: middle
 
-.pull-left[
-```{r, echo=FALSE, out.width = "80%"}
-
-knitr::include_graphics("images/pg-sign-in.png")
-
-```
-]
 .pull-right[
 
 <br><br><br><br><br><br>
 
 # Sign In
 
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -339,7 +331,13 @@ As you load up the app, you will have been given either a fair or a loaded die t
 
 .pull-right[
 
-![](images/chisq-preview.png)
+
+```{r, echo = FALSE, fig.alt="The image shows a preview of the app that will be being used. On the left hand side are buttons for rolling dice and a drop down details list which will reveal whether the dice is loaded or not. On the right hand side is the results of the dice rolls, both as a vector of roll results and as a table. On the far left is a navigation pane with labels for rolling the dice, visualising the result, comparing the rolled numbers versus the expected rolls, and running a chi-squared test."}
+
+knitr::include_graphics("images/chisq-preview.png")
+
+```
+
 
 ]
 
@@ -369,7 +367,11 @@ class: inverse, middle
 
 **.tuos_purple[What are the chances we would see a sample of rolls like this...]**
 
-![](images/observed.png)
+```{r, echo = FALSE, fig.alt="The figure shows a histogram of dice roll outcomes that appears to be skewed more towards the numbers 2 and 6. The number 1 was rolled 5 times. The number 2 was rolled 14 times. The number 3 was rolled 11 times. The number 4 was rolled 6 times. The number 5 was rolled 7 times. The number 6 was rolled 15 times."}
+
+knitr::include_graphics("images/observed.png")
+
+```
 
 <center>(Observed)</center>
 
@@ -391,7 +393,11 @@ What we are doing, in a very unconcious way in our heads with this task is looki
 
 **.tuos_purple[What are the chances we would see a sample of rolls like this...]**
 
-![](images/observed.png)
+```{r, echo = FALSE, fig.alt="The figure shows a histogram of dice roll outcomes that appears to be skewed more towards the numbers 2 and 6. The number 1 was rolled 5 times. The number 2 was rolled 14 times. The number 3 was rolled 11 times. The number 4 was rolled 6 times. The number 5 was rolled 7 times. The number 6 was rolled 15 times."}
+
+knitr::include_graphics("images/observed.png")
+
+```
 
 <center>(Observed)</center>
 
@@ -401,7 +407,11 @@ What we are doing, in a very unconcious way in our heads with this task is looki
 
 **.tuos_purple[When we know if the die were fair we would expect to see something like this...? (Null hypothesis)]**
 
-![](images/expected.png)
+```{r, echo = FALSE, fig.alt="The figure shows a histogram of dice roll outcomes where all of the outcomes were rolled exactly the same amount of times. Every single possible outcome from 1 to 6 was rolled 10 times."}
+
+knitr::include_graphics("images/expected.png")
+
+```
 
 <center>(Expected)</center>
 
@@ -427,9 +437,16 @@ There are many different kinds of inferential statistics and tests we can use fo
 
 .pull-right[
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 ]
 
@@ -459,9 +476,16 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -491,9 +515,16 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -523,9 +554,16 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -558,9 +596,16 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -600,9 +645,16 @@ In applied statistics, we compare our p-value with a pre-chosen '__critical valu
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -634,9 +686,16 @@ There is no strong reason why 5% is used in the social sciences, and sometimes 1
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -685,9 +744,16 @@ For example, in drug testing we might want to set a much lower critical value so
 ]
 
 .pull-right[
+```{r, echo = FALSE, fig.alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. "}
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
+knitr::include_graphics("images/difference.png")
+
+```
+```{r, echo=FALSE, fig.alt = "The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355."}
+
+knitr::include_graphics("images/chi-sq-small.png")
+
+```
 
 
 ]
@@ -747,7 +813,7 @@ class: middle
 
 --
 
-* The easiest way to know a sample is proportionally representative of the population is if it is **randomly selected** (a random sample). If a sample is truly randomly selected it means that __every 'thing' in the sample had an equal chance of being selected__.
+* The easiest way to know a sample is proportionally representative of the population is by finding out how the sample was collected. If it is **randomly selected** (a random sample), it is likely to be representative of the population because __every 'thing' in the sample had an equal chance of being selected__.
 
 --
 
@@ -764,18 +830,199 @@ class: middle
 
 # Sampling methods
 
-* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
-  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).<br>
+<br>
 
---
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+
+---
+
+# Opportunity sampling (60% of pixels)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The picture shows an older man and woman in a park. The man is pointing at something not shown on the right side of the screen. The image has a dashed border around it which shows that some of the total picture is not visible to the viewer (around 40% of it)."}
+
+knitr::include_graphics("images/opportunity-sample-600-600-60pc.png")
+
+```
+]
+
+---
+
+# Population
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The picture from before has now been expanded. It now shows the woman and man on the left hand side and the former British Prime Minister Boris Johnson on the right hand side. The man is pointing at the former prime minister in an accusatory way. The prime minister was previously obscured because the sample of the picture did not include him."}
+
+knitr::include_graphics("images/base-img.jpg")
+
+```
+]
+
+---
+
+class: middle
+
+# Sampling methods
+
 <br>
 
 * __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
   * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?<br>
 
-
 --
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+
+---
+
+# Random sampling (60% of pixels)
+
 <br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image is the same as the previous picture in the park: two people stand pointing at the former British prime minister. However, now the image is fuzzy because 60% of the pixels have been selected at random. While it is still easy to roughly make out the 'whole picture', some of the details might be fuzzy - but they are not missing."}
+
+knitr::include_graphics("images/random-sample-60pc.png")
+
+```
+]
+
+---
+
+# Random sampling (30% of pixels)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image now includes a sample of only 30% of the pixels. Even though the image is much grainier than before, the random sampling of pixels still seems to do a good job of helping us infer what the overall image is showing."}
+
+knitr::include_graphics("images/random-sample-30pc.png")
+
+```
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+<br>
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?<br>
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).<br>
+
+
+---
+
+# Random sampling (with non-response)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image now shows what would happen if one part of the image is less likely to respond to the random selection than another. In the left hand side of the image, the two people are shown in a high degree of clarity as a large number of pixels has been selected. On the right hand side of the image, where the former Prime Minister stands, there are hardly any pixels shown at all. As a result, the left hand side of the image is much clearer than the right hand side."}
+
+knitr::include_graphics("images/stratefied-1.5-0.2-1.png")
+
+```
+]
+
+---
+
+# Random sampling (with non-response)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image is the same as the previous image but now includes the caption '50% more likely than average to respond to a survey' on the left hand side and '80% less likely than average to respond to a survey' on the right hand side."}
+
+knitr::include_graphics("images/stratefied-1.5-0.2-2.png")
+
+```
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+<br>
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?<br>
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).<br>
+
+* __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image shows the result of a sample of pixels where the left hand side is 50% more likely to respond and the right hand side is 80% less likely to respond. Now an additional caption on the left hand side reads: 'send out only 2/3rds of the surveys than random sampling dictates would be needed for a sample of 60%' and an additional caption on the right hand side reads 'send out five times the number of surveys than random sampling dictates would be needed for a sample of 60%'"}
+
+knitr::include_graphics("images/stratefied-1.5-0.2-3.png")
+
+```
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The left hand side and the right hand side are now closer to being in the same level of clarity, but there is still less clarity on the right hand side of the image compared to the left. The caption on the left hand side reads: 3/4s as many surveys sent out. The caption on the right hand side reads: 3 times as many surveys sent out."}
+
+knitr::include_graphics("images/stratefied-1.5-0.2-4.png")
+
+```
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+<br>
+
+.center[
+```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The left hand side and the right hand side are now displayed in about the same level of clarity. The caption on the left hand side reads: 2/3rds as many surveys sent out. The caption on the right hand side reads: 5 times as many surveys sent out."}
+
+knitr::include_graphics("images/stratefied-1.5-0.2-5.png")
+
+```
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+<br>
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?<br>
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).<br>
+
 * __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
   * Who decides which demographic categories are meaningful and should be strata and who decides which are unimportant?
   
@@ -858,6 +1105,56 @@ In other words, inferential statistics can be used to determine __whether the di
 
 class: middle
 
+.center[
+```{r, echo = FALSE, fig.alt="The picture shows a scatterplot of a random spread of three different types of shapes, all of which are across five different colours. There is no order to or sorting of the points.", out.width="70%"}
+
+knitr::include_graphics("images/experiment-1.png")
+
+```
+]
+
+---
+
+class: middle
+
+.center[
+```{r, echo = FALSE, fig.alt="A line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line.", out.width="70%"}
+
+knitr::include_graphics("images/experiment-2.png")
+
+```
+]
+
+
+---
+
+class: middle
+
+.center[
+```{r, echo = FALSE, fig.alt="A different line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line.", out.width="70%"}
+
+knitr::include_graphics("images/experiment-3.png")
+
+```
+]
+
+---
+
+class: middle
+
+.center[
+```{r, echo = FALSE, fig.alt="The points are now sorted into those on the 'control' side of the line and those on the 'experiment' side of the line. They have also been sorted into colour and shape.  The random split has resulted in 5 cross shaped points being in the control group and 7 cross shaped points being in the experimental group. 6 square shaped points are in the control group and 7 are in the experimental group. 7 triangles are in the control group and 5 are in the experimental group. 6 circles are in the control group and 7 are in the experimental group. The colours are also fairly evenly represented in both the control group and experimental group. There are 4 green points in both the control and experimental groups. Both groups have at least three of all of the 7 possible colours.", out.width="90%"}
+
+knitr::include_graphics("images/experiment-random-split-2.png")
+
+```
+]
+
+
+---
+
+class: middle
+
 ## Inferential statistics for hypothesis testing
 
 ```{r, echo = FALSE}
@@ -927,7 +1224,7 @@ __Exercise __
 
 .pull-right[
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.alt="A screenshot is shown of the ANOVA app. It shows the user interface."}
 
 knitr::include_graphics("images/anova-preview.png")
 
@@ -1010,7 +1307,7 @@ __Exercise __
 
 .pull-right[
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.alt = "A screenshow is shown of the correlation app. The user interface is shown."}
 
 knitr::include_graphics("images/cor-preview.png")
 

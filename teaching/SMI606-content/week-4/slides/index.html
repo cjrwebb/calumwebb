@@ -4,7 +4,7 @@
     <title>SMI606: Week 4 — Inference</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2021-10-14" />
+    <meta name="date" content="2022-10-04" />
     <script src="week-04-inference_files/header-attrs/header-attrs.js"></script>
     <link href="week-04-inference_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-04-inference_files/tile-view/tile-view.js"></script>
@@ -122,16 +122,12 @@ top:1em;right:1em;
 ---
 class: middle
 
-.pull-left[
-&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
-]
 .pull-right[
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 # Sign In
 
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -176,8 +172,8 @@ class: middle
 
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-d20dfff6db4d71c5e673" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-d20dfff6db4d71c5e673">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-496a8e57e0b0d5922d5f" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-496a8e57e0b0d5922d5f">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -318,7 +314,9 @@ As you load up the app, you will have been given either a fair or a loaded die t
 
 .pull-right[
 
-![](images/chisq-preview.png)
+
+&lt;img src="images/chisq-preview.png" alt="The image shows a preview of the app that will be being used. On the left hand side are buttons for rolling dice and a drop down details list which will reveal whether the dice is loaded or not. On the right hand side is the results of the dice rolls, both as a vector of roll results and as a table. On the far left is a navigation pane with labels for rolling the dice, visualising the result, comparing the rolled numbers versus the expected rolls, and running a chi-squared test." width="100%" /&gt;
+
 
 ]
 
@@ -348,7 +346,7 @@ class: inverse, middle
 
 **.tuos_purple[What are the chances we would see a sample of rolls like this...]**
 
-![](images/observed.png)
+&lt;img src="images/observed.png" alt="The figure shows a histogram of dice roll outcomes that appears to be skewed more towards the numbers 2 and 6. The number 1 was rolled 5 times. The number 2 was rolled 14 times. The number 3 was rolled 11 times. The number 4 was rolled 6 times. The number 5 was rolled 7 times. The number 6 was rolled 15 times." width="100%" /&gt;
 
 &lt;center&gt;(Observed)&lt;/center&gt;
 
@@ -370,7 +368,7 @@ What we are doing, in a very unconcious way in our heads with this task is looki
 
 **.tuos_purple[What are the chances we would see a sample of rolls like this...]**
 
-![](images/observed.png)
+&lt;img src="images/observed.png" alt="The figure shows a histogram of dice roll outcomes that appears to be skewed more towards the numbers 2 and 6. The number 1 was rolled 5 times. The number 2 was rolled 14 times. The number 3 was rolled 11 times. The number 4 was rolled 6 times. The number 5 was rolled 7 times. The number 6 was rolled 15 times." width="100%" /&gt;
 
 &lt;center&gt;(Observed)&lt;/center&gt;
 
@@ -380,7 +378,7 @@ What we are doing, in a very unconcious way in our heads with this task is looki
 
 **.tuos_purple[When we know if the die were fair we would expect to see something like this...? (Null hypothesis)]**
 
-![](images/expected.png)
+&lt;img src="images/expected.png" alt="The figure shows a histogram of dice roll outcomes where all of the outcomes were rolled exactly the same amount of times. Every single possible outcome from 1 to 6 was rolled 10 times." width="100%" /&gt;
 
 &lt;center&gt;(Expected)&lt;/center&gt;
 
@@ -406,9 +404,8 @@ There are many different kinds of inferential statistics and tests we can use fo
 
 .pull-right[
 
-![](images/difference.png)
-![](images/chi-sq-small.png)
-
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 ]
 
@@ -438,9 +435,8 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -470,9 +466,8 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -502,9 +497,8 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -537,9 +531,8 @@ There are many different kinds of inferential statistics and tests we can use fo
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -579,9 +572,8 @@ In applied statistics, we compare our p-value with a pre-chosen '__critical valu
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -613,9 +605,8 @@ There is no strong reason why 5% is used in the social sciences, and sometimes 1
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -664,9 +655,8 @@ For example, in drug testing we might want to set a much lower critical value so
 ]
 
 .pull-right[
-
-![](images/difference.png)
-![](images/chi-sq-small.png)
+&lt;img src="images/difference.png" alt="The image shows a histogram split into dark blue, light blue, and pink parts on the top of the image and some R output on the bottom of the image. The pink areas of the plot show where the observed number of rolls was lower than what we would have expected. The light blue areas show the areas where the number of rolls were higher than expected. The first bar of the histogram, for roll outcomes of 1, shows that there were 5 observed rolls which was 5 below what we expected (10). The second bar for outcomes of 2 shows that there were 4 rolls more than the expected 10. The third bar for outcomes of 3 shows that there was 1 roll more than expected. The fourth bar for outcomes of 4 shows that there were 4 rolls less than expected. The fifth bar for outcomes of 5 shows that there was one roll less than expected. The sixth bar shows that there was five rolls more than expected. " width="100%" /&gt;
+&lt;img src="images/chi-sq-small.png" alt="The lower part of the image shows the output: 'Chi-squared test for given probabilities. data: dice_rolls_summary$n. Chi-squared value = 8.4. df (degrees of freedom) = 5. p-value = 0.1355." width="100%" /&gt;
 
 
 ]
@@ -726,7 +716,7 @@ class: middle
 
 --
 
-* The easiest way to know a sample is proportionally representative of the population is if it is **randomly selected** (a random sample). If a sample is truly randomly selected it means that __every 'thing' in the sample had an equal chance of being selected__.
+* The easiest way to know a sample is proportionally representative of the population is by finding out how the sample was collected. If it is **randomly selected** (a random sample), it is likely to be representative of the population because __every 'thing' in the sample had an equal chance of being selected__.
 
 --
 
@@ -743,18 +733,163 @@ class: middle
 
 # Sampling methods
 
-* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
-  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+&lt;br&gt;
 
---
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+
+---
+
+# Opportunity sampling (60% of pixels)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/opportunity-sample-600-600-60pc.png" alt="The picture shows an older man and woman in a park. The man is pointing at something not shown on the right side of the screen. The image has a dashed border around it which shows that some of the total picture is not visible to the viewer (around 40% of it)." width="770" height="502" /&gt;
+]
+
+---
+
+# Population
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/base-img.jpg" alt="The picture from before has now been expanded. It now shows the woman and man on the left hand side and the former British Prime Minister Boris Johnson on the right hand side. The man is pointing at the former prime minister in an accusatory way. The prime minister was previously obscured because the sample of the picture did not include him." width="770" height="502" /&gt;
+]
+
+---
+
+class: middle
+
+# Sampling methods
+
 &lt;br&gt;
 
 * __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
   * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
 
-
 --
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+
+---
+
+# Random sampling (60% of pixels)
+
 &lt;br&gt;
+
+.center[
+&lt;img src="images/random-sample-60pc.png" alt="The image is the same as the previous picture in the park: two people stand pointing at the former British prime minister. However, now the image is fuzzy because 60% of the pixels have been selected at random. While it is still easy to roughly make out the 'whole picture', some of the details might be fuzzy - but they are not missing." width="770" height="502" /&gt;
+]
+
+---
+
+# Random sampling (30% of pixels)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/random-sample-30pc.png" alt="The image now includes a sample of only 30% of the pixels. Even though the image is much grainier than before, the random sampling of pixels still seems to do a good job of helping us infer what the overall image is showing." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+
+---
+
+# Random sampling (with non-response)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-1.png" alt="The image now shows what would happen if one part of the image is less likely to respond to the random selection than another. In the left hand side of the image, the two people are shown in a high degree of clarity as a large number of pixels has been selected. On the right hand side of the image, where the former Prime Minister stands, there are hardly any pixels shown at all. As a result, the left hand side of the image is much clearer than the right hand side." width="770" height="502" /&gt;
+]
+
+---
+
+# Random sampling (with non-response)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-2.png" alt="The image is the same as the previous image but now includes the caption '50% more likely than average to respond to a survey' on the left hand side and '80% less likely than average to respond to a survey' on the right hand side." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+* __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-3.png" alt="The image shows the result of a sample of pixels where the left hand side is 50% more likely to respond and the right hand side is 80% less likely to respond. Now an additional caption on the left hand side reads: 'send out only 2/3rds of the surveys than random sampling dictates would be needed for a sample of 60%' and an additional caption on the right hand side reads 'send out five times the number of surveys than random sampling dictates would be needed for a sample of 60%'" width="770" height="502" /&gt;
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-4.png" alt="The left hand side and the right hand side are now closer to being in the same level of clarity, but there is still less clarity on the right hand side of the image compared to the left. The caption on the left hand side reads: 3/4s as many surveys sent out. The caption on the right hand side reads: 3 times as many surveys sent out." width="770" height="502" /&gt;
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+&lt;br&gt;
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-5.png" alt="The left hand side and the right hand side are now displayed in about the same level of clarity. The caption on the left hand side reads: 2/3rds as many surveys sent out. The caption on the right hand side reads: 5 times as many surveys sent out." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
 * __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
   * Who decides which demographic categories are meaningful and should be strata and who decides which are unimportant?
   
@@ -837,10 +972,44 @@ In other words, inferential statistics can be used to determine __whether the di
 
 class: middle
 
+.center[
+&lt;img src="images/experiment-1.png" alt="The picture shows a scatterplot of a random spread of three different types of shapes, all of which are across five different colours. There is no order to or sorting of the points." width="70%" /&gt;
+]
+
+---
+
+class: middle
+
+.center[
+&lt;img src="images/experiment-2.png" alt="A line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="70%" /&gt;
+]
+
+
+---
+
+class: middle
+
+.center[
+&lt;img src="images/experiment-3.png" alt="A different line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="70%" /&gt;
+]
+
+---
+
+class: middle
+
+.center[
+&lt;img src="images/experiment-random-split-2.png" alt="The points are now sorted into those on the 'control' side of the line and those on the 'experiment' side of the line. They have also been sorted into colour and shape.  The random split has resulted in 5 cross shaped points being in the control group and 7 cross shaped points being in the experimental group. 6 square shaped points are in the control group and 7 are in the experimental group. 7 triangles are in the control group and 5 are in the experimental group. 6 circles are in the control group and 7 are in the experimental group. The colours are also fairly evenly represented in both the control group and experimental group. There are 4 green points in both the control and experimental groups. Both groups have at least three of all of the 7 possible colours." width="90%" /&gt;
+]
+
+
+---
+
+class: middle
+
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-54dbccf7cc99619a6b25" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-54dbccf7cc99619a6b25">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e04e4305f85889a480ee" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-e04e4305f85889a480ee">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -889,7 +1058,7 @@ __Exercise __
 
 .pull-right[
 
-&lt;img src="images/anova-preview.png" width="100%" /&gt;
+&lt;img src="images/anova-preview.png" alt="A screenshot is shown of the ANOVA app. It shows the user interface." width="100%" /&gt;
 
 ]
 
@@ -900,8 +1069,8 @@ class: middle
 
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-80d30d8100e279bc13e5" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-80d30d8100e279bc13e5">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson/Spearman Correlation t-test<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1855d3208ff4b15e8f88" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-1855d3208ff4b15e8f88">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson/Spearman Correlation t-test<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -951,7 +1120,7 @@ __Exercise __
 
 .pull-right[
 
-&lt;img src="images/cor-preview.png" width="100%" /&gt;
+&lt;img src="images/cor-preview.png" alt="A screenshow is shown of the correlation app. The user interface is shown." width="100%" /&gt;
 
 ]
 
@@ -1033,6 +1202,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
