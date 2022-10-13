@@ -122,20 +122,12 @@ xaringanExtra::use_share_again()
 ---
 class: middle
 
-.pull-left[
-```{r, echo=FALSE, out.width = "80%"}
 
-knitr::include_graphics("images/pg-sign-in.png")
-
-```
-]
 .pull-right[
 
 <br><br><br><br><br><br>
 
 # Sign In
-
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -151,9 +143,11 @@ By the end of this week you will:
 
 * Be able to describe what we mean by causality and how we can use statistical methods to explore probabilistic causation.
 
-* Be able to explain two bases upon which causal inference can be made: robust dependence and consequential manipulation.
+* Be able to explain three bases upon which causal inference can be made: robust dependence, consequential manipulation, and generative process.
 
 * Be able to critically assess these foundations of causal inference.
+
+* Be introduced to some tools for developing causal models (Directed Acyclic Graphs).
 
 * Be able to identify which types of research design and data are appropriate for making causal inference. 
 
@@ -302,7 +296,7 @@ class: middle
 
 # Causation as Robust Dependence
 
-__Weaknesses__
+__Weaknesses of Granger causality__
 
 * **Easy for this approach to end up being atheoretical**, with causality claimed purely on the basis of statistical models.
   * "[S]ociologists have strongly criticized the supposition that statistical techniques can in them- selves provide adequate causal explanations of social phenomena"
@@ -310,7 +304,7 @@ __Weaknesses__
 --
 
 * Is it possible to __fully incorporate all of the possible confounding variables__, or to adequately measure some causes.
-  * "[A]vailable sociological theory may just not be strong enough to help produce models that can be treated as genuinely 'structural' — i.e. so parameterized that their co- e¤cients are su¤ciently invariant and autonomous to sustain claims about the consequences of changes in the variables deemed to be 'exogenous'."
+  * "[A]vailable sociological theory may just not be strong enough to help produce models that can be treated as genuinely 'structural' — i.e. so parameterized that their co-efficients are sufficiently invariant and autonomous to sustain claims about the consequences of changes in the variables deemed to be 'exogenous'."
 
 
 ---
@@ -343,7 +337,7 @@ __Exercise__
 
 At the beginning of this session, chocolate buttons were randomly allocated behind the computer lab computers.
 
-If you got chocolate buttons, you are the treatment group. If you did not get chocolate buttons, you are the control group (sorry, remote learners!).
+If you got chocolate buttons, you are the treatment group. If you did not get chocolate buttons, you are the control group.
 
 * H<sub>0</sub>: Being given chocolate buttons will have no effect on students' enjoyment of learning quantitative methods.
 
@@ -383,6 +377,11 @@ experiment_data %>%
 
 anova_sweets <- aov(enjoy_quants ~ sweet, data = experiment_data)
 
+experiment_data %>% 
+  ggplot() +
+  geom_histogram(aes(x = enjoy_quants)) +
+  facet_grid(~sweet)
+
 summary(anova_sweets)
 TukeyHSD(anova_sweets)
 
@@ -418,6 +417,7 @@ knitr::include_graphics("images/qr-ex-2.png")
 
 
 ---
+class: middle
 
 # Causation as Generative Process
 
@@ -456,22 +456,453 @@ Exercise: DAG walkthrough on Jamboard
 
 ---
 
-# Causation as Generative Process
+# DAGS: The Total Effect (Estimand)
 
-.center[
 
-```{r, echo = FALSE, out.width="60%"}
+```{r, echo = FALSE}
 
-knitr::include_graphics("images/exercise-3.png")
+library(dagitty)
+
+dag1_spec <- 'dag{
+
+  "Prior Education" -> "Degree Classification"
+   
+}'
+
+dag1_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0))
+
+dag1 <- dagitty(dag1_spec)
+coordinates(dag1) <- dag1_coord
+
+rethinking::drawdag(dag1, xlim = c(-2, 6), ylim = c(-3, 3))
 
 ```
 
-__Split into groups and build up your own generative process map on a topic you're interested in__ (feel free to add your own or duplicate one).
+.center[We start with the thing we want to estimate (our estimand), in this case the strength of the association between a person's secondary school outcomes and their university degree classification.]
 
-[Jamboard Link](https://jamboard.google.com/d/1mche67Zb04RcmOFqawWklUZ9ANJIX31ekt_dJLjVEs0/edit?usp=sharing)
+
+---
+
+# DAGS: Confounders and the Direct Effect
+
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Prior Education" -> "Degree Classification"
+  "Subject(s) Studied" -> {"Prior Education" "Degree Classification"}
+   
+}'
+
+dag_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4, "Subject(s) Studied" = 2),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0, "Subject(s) Studied" = -2)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center[We know that there will be certain confounders in our data: things that influence both the predictor/cause (Prior Education) and the outcome/effect (Degree Classification). We need to control for these things to get an unbiased estimate of the effect. For example, here, we might want to only include people who studied the same subjects.]
+
+
+---
+
+# DAGS: Pipes, Direct and Indirect Effects
+
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Prior Education" -> "Degree Classification"
+  "Prior Education" -> "Study Skills" -> "Degree Classification"
+   
+}'
+
+dag_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4, "Study Skills" = 2),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0, "Study Skills" = 2)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center["Pipes" occur when the effects of the 'cause' operates through some mechanism(s), for example, the effect of prior education on degree outcome is partially mediated through prior education teaching more effective study skills. You may or may not want to condition effects based on mediators.]
+
+---
+
+# DAGS: "Blocked" Pipes: Post-treatment Bias
+
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Prior Education" -> "Test Scores" -> "Degree Classification"
+   
+}'
+
+dag_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4, "Test Scores" = 2),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0, "Test Scores" = 0)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center[We can also imagine some of these pipes being 'blockers' rather than mediators — test scores will obviously dictate degree classification and may fully mediate prior education, so conditioning on test scores as well as degree classification would incorrectly negate any effect of prior education.]
+
+---
+
+# DAGS: Collider Bias
+
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Prior Education" -> "Degree Classification"
+  {"Prior Education" "Degree Classification"} -> "Self-rated Academic Ability"
+   
+}'
+
+dag_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4, "Self-rated Academic Ability" = 4),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0, "Self-rated Academic Ability" = -2)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center[Collider bias is an often overlooked source of bias that occurs where the relationship between a cause and an outcome is conditioned on something that is a common consequence of both; e.g. here past educational performance will likely impact a person's self-rated academic ability.]
+
+
+---
+
+class: middle
+
+# Collider Bias
+
+```{r, echo = FALSE}
+
+set.seed(100)
+
+scores <- MASS::mvrnorm(n = 100, mu = c(0, 0), Sigma = matrix(c(1, 0.7^2, 1, 0.7^2), nrow = 2, ncol = 2),
+                        empirical = TRUE)
+prior_ed <- scores[,1]*10 + 70 
+degree_ed <- scores[,2]*15 + 60 
+
+inv_logit <- function (x) 
+{
+    p <- 1/(1 + exp(-x))
+    p <- ifelse(x == Inf, 1, p)
+    p
+}
+
+prob_high <- numeric()
+for (i in 1:100) {
+  prob_high[i] <- inv_logit(rnorm(1, mean = -1.108663 + 2.5*scores[,1][i] + 5*scores[,2][i], sd = 0.3))
+}
+
+prob_mid <- numeric()
+for (i in 1:100) {
+  prob_mid[i] <- inv_logit(rnorm(1, mean = -1, sd = 0.1))
+}
+
+prob_low <- numeric()
+for (i in 1:100) {
+  prob_low[i] <- inv_logit(rnorm(1, mean = -1.108663 - 2.5*scores[,1][i] + - 5*scores[,2][i], sd = 0.3))
+}
+
+acad_probs <- tibble(prob_low, prob_mid, prob_high) %>%
+  mutate(
+    sum_prob = rowSums(across(prob_low:prob_high))
+  ) %>%
+  mutate_at(vars(prob_low:prob_high), ~./sum_prob) 
+
+acad_abil <- character()
+for (i in 1:100) {
+  acad_abil[i] <- sample(c("Low", "Medium", "High"), 1, replace = TRUE, prob = acad_probs[i,][1:3])
+}
+
+acad_sim <- tibble(prior_ed, degree_ed, acad_abil)
+
+```
+
+```{r, echo = FALSE}
+
+acad_sim %>%
+  ggplot() +
+  geom_point(aes(x = prior_ed, y = degree_ed)) +
+  theme_minimal() +
+  ylab("Degree Average Score") +
+  xlab("A-level Average Score") +
+  scale_x_continuous(limits = c(40,100)) +
+  scale_y_continuous(limits = c(25,100)) +
+  ggtitle(paste("Correlation = ", round(cor(acad_sim$prior_ed, acad_sim$degree_ed), 2)) )
+  
+
+```
+
+
+---
+
+class: middle
+
+# Collider Bias
+
+```{r, echo = FALSE}
+
+acad_sim %>%
+  mutate(acad_abil = factor(acad_abil, levels = c("Low", "Medium", "High"))) %>%
+  ggplot() +
+  geom_point(aes(x = prior_ed, y = degree_ed, col = acad_abil)) +
+  theme_minimal() +
+  ylab("Degree Average Score") +
+  xlab("A-level Average Score") +
+  labs(col = "Self-Rated\nAcademic\nAbility") +
+  scale_x_continuous(limits = c(40,100)) +
+  scale_y_continuous(limits = c(25,100)) +
+  ggtitle(paste("Correlation = ", round(cor(acad_sim$prior_ed, acad_sim$degree_ed), 2)) ) +
+  ggthemes::scale_color_colorblind()
+  
+
+```
+
+---
+
+class: middle
+
+# Collider Bias
+
+```{r, echo = FALSE}
+
+high_ab <- acad_sim %>% filter(acad_abil == "High")
+med_ab <- acad_sim %>% filter(acad_abil == "Medium")
+low_ab <- acad_sim %>% filter(acad_abil == "Low")
+
+#round(cor(high_ab$prior_ed, high_ab$degree_ed), 2)
+#round(cor(med_ab$prior_ed, med_ab$degree_ed), 2)
+#round(cor(low_ab$prior_ed, low_ab$degree_ed), 2)
+
+acad_sim %>%
+  mutate(acad_abil = case_when(acad_abil == "High" ~ "High (R = 0.43)",
+                               acad_abil == "Medium" ~ "Medium (R = 0.57)",
+                               acad_abil == "Low" ~ "Low (R = 0.56)",
+                               )) %>%
+  mutate(acad_abil = factor(acad_abil, levels = c("Low (R = 0.56)", "Medium (R = 0.57)", "High (R = 0.43)"))) %>%
+  ggplot() +
+  geom_point(aes(x = prior_ed, y = degree_ed, col = acad_abil)) +
+  theme_minimal() +
+  ylab("Degree Average Score") +
+  xlab("A-level Average Score") +
+  labs(col = "Self-Rated\nAcademic\nAbility") +
+  facet_wrap(~acad_abil) +
+  ggthemes::scale_color_colorblind() +
+  theme(legend.position = "none")
+
+
+```
+
+
+---
+
+# Collider Bias
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Location Quality" -> "Food Quality"
+  {"Location Quality" "Food Quality"} -> "Restaurant Still Open"
+   
+}'
+
+dag_coord <- list(x = c("Location Quality" = 0, "Food Quality" = 4, "Self-rated Academic Ability" = 4, "Restaurant Still Open" = 2),
+                   y = c("Location Quality" = 0, "Food Quality" = 0, "Self-rated Academic Ability" = -2, "Restaurant Still Open" = -2)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center[What can happen when we have a collider that determines selection?]
+
+---
+
+class: inverse, middle
+
+# .tuos_purple[Do restaurants in better locations have better quality food?]
+
+
+---
+class: middle
+
+# Collider Bias
+
+```{r, echo = FALSE}
+
+set.seed(2022)
+location_q <- rnorm(1000)
+food_q <- rnorm(1000)
+
+rest_open <- inv_logit(rnorm(1000, -1.203973 + 1*location_q + 1*food_q, 0.5))
+
+restaurant_data <- tibble(location_quality = location_q*12 + 50, 
+       food_quality = food_q*12+50, 
+       open_status = ifelse(rest_open > 0.5, "Open", "Closed"
+                            )
+       )
+
+```
+
+.pull-left[
+
+```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+
+restaurant_data %>%
+  ggplot() +
+  geom_point(aes(x = location_quality, y = food_quality), size = 0.7) +
+  theme_minimal() +
+  xlab("Food Quality /100") +
+  ylab("Location Quality /100") +
+  ggtitle("Correlation = 0.009")
+
+```
 
 ]
 
+.pull-right[
+
+```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+
+ggplot() +
+  theme_void()
+
+```
+
+]
+
+.center[Before including whether a restaurant is open or closed we find no relationship.]
+
+---
+class: middle
+
+# Collider Bias
+
+.pull-left[
+
+```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+
+restaurant_data %>%
+  ggplot() +
+  geom_point(aes(x = location_quality, y = food_quality), size = 0.7) +
+  theme_minimal() +
+  xlab("Location Quality /100") +
+  ylab("Food Quality /100") +
+  ggtitle("Correlation = 0.009")
+
+```
+
+]
+
+.pull-right[
+```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+
+restaurant_data %>%
+  ggplot() +
+  geom_point(aes(x = location_quality, y = food_quality, alpha = open_status), size = 0.7) +
+  scale_alpha_manual(values = c(0.1, 1)) +
+  theme_minimal() +
+  xlab("Location Quality /100") +
+  ylab("Food Quality /100") +
+  ggtitle("Correlation = -0.56") +
+  theme(legend.position = "none")
+
+```
+]
+
+.center[But when only including currently open restaurants...]
+
+
+---
+
+# DAGS: Putting it all together
+
+```{r, echo = FALSE}
+
+dag_spec <- 'dag{
+
+  "Prior Education" -> "Degree Classification"
+  {"Prior Education" "Degree Classification"} -> "Self-rated Academic Ability"
+  "Subject(s) Studied" -> {"Prior Education" "Degree Classification"}
+  "Prior Education" -> "Study Skills" -> "Degree Classification"
+   
+}'
+
+dag_coord <- list(x = c("Prior Education" = 0, "Degree Classification" = 4, "Self-rated Academic Ability" = 4, "Subject(s) Studied" = 2, "Study Skills" = 2),
+                   y = c("Prior Education" = 0, "Degree Classification" = 0, "Self-rated Academic Ability" = -2, "Subject(s) Studied" = -2, "Study Skills" = 2)
+                   )
+
+dag <- dagitty(dag_spec)
+coordinates(dag) <- dag_coord
+
+rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
+
+```
+
+.center[You can follow the rules of '*do*-calculus' to create adjustment sets to find out what kinds of confounding variables you should condition on to identify the total and/or direct effects; the model and findings can then be developed, and their causal claims challenged.]
+
+
+---
+
+class: middle
+
+# DAGS: Dagitty and Further Reading
+
+```{r}
+
+dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "total")
+dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "direct")
+
+```
+
+.pull-left-big[
+
+* Peters, J, et al. "Elements of Causal Inference". [Open Access Version Available](https://mitpress.mit.edu/9780262037310/elements-of-causal-inference/) from MIT Press.
+* Pearl, J. et al. "Causal Inference in Statistics: A Primer", or "The Book of Why". 
+* McElreath, R. "Statistical Rethinking: A Bayesian course with examples in R and Stan. 2nd Edition" 
+
+]
+
+.pull-right-small[
+
+.center[
+```{r, echo = FALSE, out.width="30%", fig.alt = "Book cover of The Book of Why by Pearl and Mackenzie"}
+
+knitr::include_graphics("images/book-why.jpg")
+
+```
+]
+
+]
 
 ---
 
@@ -826,20 +1257,50 @@ Example:
 ---
 class: middle
 
-# Summary
+# Inference
+> #### Can we generalise from our sample to the population of interest?
 
-* __Causality__ has been conceptualised in different ways and the way that it is established in quantitative research is often through either "__robust dependence__" or "__consequential manipulation__".
+#### Is our data a sample or is it the entire population?
 
-* Critics of these approaches have highlighted that they __risk__ __researchers taking an__ **atheoretical stance** and relying too heavily on statistics to determine causality.
+* If the data is of the entire population of interest inference (p-values) **are usually not meaningful** because we have nothing larger than our sample we can generalise to.
 
-* Any causal claims should also be __based on theory derived from a range of sources__.
+--
 
-* Viewing __causality as a generative process__ can be more conducive to understanding the __complexity__ in social science.
+#### Is our sample a random sample or otherwise *representative* of our population?
 
-* A __falsificationist__ approach to establishing causal processes, mechanisms, and patterns, is generally preferable to having to wait for a __'once-and-for-all'__ study that verifies a given causal relationship.
+* If our sample *is not* representative of our population then __we cannot safely make inferences about the whole population from it__, and should not use p-values, *unless* our data is from an experimental design where we are making inferences based on comparing control and treatment group.
 
-* The kinds of causal analysis that can be done __depends on the data that is available, the research design, and the method that was used to collect it.__
+.center[If our data *is* a sample *and* that sample is representative of the wider population of interest, or a result of an experiment, we can use hypothesis testing (p-values).]
 
+--
+
+.center[<strong>The answers are not in the data!</strong>]
+
+---
+class: middle
+
+# Causality
+> #### Can we say anything about whether changes in one variable *causes* changes in another?
+
+#### Does our study/analysis look at how *preceding* changes in one variable are associated with _subsequent_ changes in another variable? (Robust Dependence/Granger Causality)
+
+* For example, lagged panel models, cross-lagged panel models. If no, we __cannot infer anything about causality.__
+
+--
+
+#### Does our study use an experimental design or leverage a natural experiment? (Consequential Manipulation)
+
+* If it does, then we __can__ make causal inferences about the __effect of the treatment on the outcome__.
+
+--
+
+#### Does our study present a theoretically-sound causal model and condition appropriately on possible confounders/colliders and other 'backdoor paths'? (Generative Process)
+
+* If it does, then we can __accept the evidence as causal but encourage falsification and development of our model__.
+
+--
+
+.center[<strong>The answers are not in the data!</strong>]
 
 ---
 

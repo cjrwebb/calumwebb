@@ -4,7 +4,7 @@
     <title>SMI606: Week 5 — Causality</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2021-10-22" />
+    <meta name="date" content="2022-10-13" />
     <script src="week-05-causality_files/header-attrs/header-attrs.js"></script>
     <link href="week-05-causality_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-05-causality_files/tile-view/tile-view.js"></script>
@@ -105,16 +105,12 @@ top:1em;right:1em;
 ---
 class: middle
 
-.pull-left[
-&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
-]
+
 .pull-right[
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 # Sign In
-
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -130,9 +126,11 @@ By the end of this week you will:
 
 * Be able to describe what we mean by causality and how we can use statistical methods to explore probabilistic causation.
 
-* Be able to explain two bases upon which causal inference can be made: robust dependence and consequential manipulation.
+* Be able to explain three bases upon which causal inference can be made: robust dependence, consequential manipulation, and generative process.
 
 * Be able to critically assess these foundations of causal inference.
+
+* Be introduced to some tools for developing causal models (Directed Acyclic Graphs).
 
 * Be able to identify which types of research design and data are appropriate for making causal inference. 
 
@@ -273,7 +271,7 @@ class: middle
 
 # Causation as Robust Dependence
 
-__Weaknesses__
+__Weaknesses of Granger causality__
 
 * **Easy for this approach to end up being atheoretical**, with causality claimed purely on the basis of statistical models.
   * "[S]ociologists have strongly criticized the supposition that statistical techniques can in them- selves provide adequate causal explanations of social phenomena"
@@ -281,7 +279,7 @@ __Weaknesses__
 --
 
 * Is it possible to __fully incorporate all of the possible confounding variables__, or to adequately measure some causes.
-  * "[A]vailable sociological theory may just not be strong enough to help produce models that can be treated as genuinely 'structural' — i.e. so parameterized that their co- e¤cients are su¤ciently invariant and autonomous to sustain claims about the consequences of changes in the variables deemed to be 'exogenous'."
+  * "[A]vailable sociological theory may just not be strong enough to help produce models that can be treated as genuinely 'structural' — i.e. so parameterized that their co-efficients are sufficiently invariant and autonomous to sustain claims about the consequences of changes in the variables deemed to be 'exogenous'."
 
 
 ---
@@ -314,7 +312,7 @@ __Exercise__
 
 At the beginning of this session, chocolate buttons were randomly allocated behind the computer lab computers.
 
-If you got chocolate buttons, you are the treatment group. If you did not get chocolate buttons, you are the control group (sorry, remote learners!).
+If you got chocolate buttons, you are the treatment group. If you did not get chocolate buttons, you are the control group.
 
 * H&lt;sub&gt;0&lt;/sub&gt;: Being given chocolate buttons will have no effect on students' enjoyment of learning quantitative methods.
 
@@ -356,6 +354,7 @@ Please now fill out the following form: https://forms.gle/sigw2jprMohiaBZM8
 
 
 ---
+class: middle
 
 # Causation as Generative Process
 
@@ -390,18 +389,181 @@ Exercise: DAG walkthrough on Jamboard
 
 ---
 
-# Causation as Generative Process
+# DAGS: The Total Effect (Estimand)
 
-.center[
 
-&lt;img src="images/exercise-3.png" width="60%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
 
-__Split into groups and build up your own generative process map on a topic you're interested in__ (feel free to add your own or duplicate one).
+.center[We start with the thing we want to estimate (our estimand), in this case the strength of the association between a person's secondary school outcomes and their university degree classification.]
 
-[Jamboard Link](https://jamboard.google.com/d/1mche67Zb04RcmOFqawWklUZ9ANJIX31ekt_dJLjVEs0/edit?usp=sharing)
+
+---
+
+# DAGS: Confounders and the Direct Effect
+
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+
+.center[We know that there will be certain confounders in our data: things that influence both the predictor/cause (Prior Education) and the outcome/effect (Degree Classification). We need to control for these things to get an unbiased estimate of the effect. For example, here, we might want to only include people who studied the same subjects.]
+
+
+---
+
+# DAGS: Pipes, Direct and Indirect Effects
+
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+
+.center["Pipes" occur when the effects of the 'cause' operates through some mechanism(s), for example, the effect of prior education on degree outcome is partially mediated through prior education teaching more effective study skills. You may or may not want to condition effects based on mediators.]
+
+---
+
+# DAGS: "Blocked" Pipes: Post-treatment Bias
+
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-10-1.png" width="100%" /&gt;
+
+.center[We can also imagine some of these pipes being 'blockers' rather than mediators — test scores will obviously dictate degree classification and may fully mediate prior education, so conditioning on test scores as well as degree classification would incorrectly negate any effect of prior education.]
+
+---
+
+# DAGS: Collider Bias
+
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+
+.center[Collider bias is an often overlooked source of bias that occurs where the relationship between a cause and an outcome is conditioned on something that is a common consequence of both; e.g. here past educational performance will likely impact a person's self-rated academic ability.]
+
+
+---
+
+class: middle
+
+# Collider Bias
+
+
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-13-1.png" width="100%" /&gt;
+
+
+---
+
+class: middle
+
+# Collider Bias
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+
+---
+
+class: middle
+
+# Collider Bias
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
+
+
+---
+
+# Collider Bias
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-16-1.png" width="100%" /&gt;
+
+.center[What can happen when we have a collider that determines selection?]
+
+---
+
+class: inverse, middle
+
+# .tuos_purple[Do restaurants in better locations have better quality food?]
+
+
+---
+class: middle
+
+# Collider Bias
+
+
+
+.pull-left[
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-18-1.png" width="500" height="450" /&gt;
 
 ]
 
+.pull-right[
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-19-1.png" width="500" height="450" /&gt;
+
+]
+
+.center[Before including whether a restaurant is open or closed we find no relationship.]
+
+---
+class: middle
+
+# Collider Bias
+
+.pull-left[
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-20-1.png" width="500" height="450" /&gt;
+
+]
+
+.pull-right[
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-21-1.png" width="500" height="450" /&gt;
+]
+
+.center[But when only including currently open restaurants...]
+
+
+---
+
+# DAGS: Putting it all together
+
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-22-1.png" width="100%" /&gt;
+
+.center[You can follow the rules of '*do*-calculus' to create adjustment sets to find out what kinds of confounding variables you should condition on to identify the total and/or direct effects; the model and findings can then be developed, and their causal claims challenged.]
+
+
+---
+
+class: middle
+
+# DAGS: Dagitty and Further Reading
+
+
+```r
+dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "total")
+```
+
+```
+## { Subject(s) Studied }
+```
+
+```r
+dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "direct")
+```
+
+```
+## { Study Skills, Subject(s) Studied }
+```
+
+.pull-left-big[
+
+* Peters, J, et al. "Elements of Causal Inference". [Open Access Version Available](https://mitpress.mit.edu/9780262037310/elements-of-causal-inference/) from MIT Press.
+* Pearl, J. et al. "Causal Inference in Statistics: A Primer", or "The Book of Why". 
+* McElreath, R. "Statistical Rethinking: A Bayesian course with examples in R and Stan. 2nd Edition" 
+
+]
+
+.pull-right-small[
+
+.center[
+&lt;img src="images/book-why.jpg" alt="Book cover of The Book of Why by Pearl and Mackenzie" width="30%" /&gt;
+]
+
+]
 
 ---
 
@@ -756,20 +918,50 @@ Example:
 ---
 class: middle
 
-# Summary
+# Inference
+&gt; #### Can we generalise from our sample to the population of interest?
 
-* __Causality__ has been conceptualised in different ways and the way that it is established in quantitative research is often through either "__robust dependence__" or "__consequential manipulation__".
+#### Is our data a sample or is it the entire population?
 
-* Critics of these approaches have highlighted that they __risk__ __researchers taking an__ **atheoretical stance** and relying too heavily on statistics to determine causality.
+* If the data is of the entire population of interest inference (p-values) **are usually not meaningful** because we have nothing larger than our sample we can generalise to.
 
-* Any causal claims should also be __based on theory derived from a range of sources__.
+--
 
-* Viewing __causality as a generative process__ can be more conducive to understanding the __complexity__ in social science.
+#### Is our sample a random sample or otherwise *representative* of our population?
 
-* A __falsificationist__ approach to establishing causal processes, mechanisms, and patterns, is generally preferable to having to wait for a __'once-and-for-all'__ study that verifies a given causal relationship.
+* If our sample *is not* representative of our population then __we cannot safely make inferences about the whole population from it__, and should not use p-values, *unless* our data is from an experimental design where we are making inferences based on comparing control and treatment group.
 
-* The kinds of causal analysis that can be done __depends on the data that is available, the research design, and the method that was used to collect it.__
+.center[If our data *is* a sample *and* that sample is representative of the wider population of interest, or a result of an experiment, we can use hypothesis testing (p-values).]
 
+--
+
+.center[&lt;strong&gt;The answers are not in the data!&lt;/strong&gt;]
+
+---
+class: middle
+
+# Causality
+&gt; #### Can we say anything about whether changes in one variable *causes* changes in another?
+
+#### Does our study/analysis look at how *preceding* changes in one variable are associated with _subsequent_ changes in another variable? (Robust Dependence/Granger Causality)
+
+* For example, lagged panel models, cross-lagged panel models. If no, we __cannot infer anything about causality.__
+
+--
+
+#### Does our study use an experimental design or leverage a natural experiment? (Consequential Manipulation)
+
+* If it does, then we __can__ make causal inferences about the __effect of the treatment on the outcome__.
+
+--
+
+#### Does our study present a theoretically-sound causal model and condition appropriately on possible confounders/colliders and other 'backdoor paths'? (Generative Process)
+
+* If it does, then we can __accept the evidence as causal but encourage falsification and development of our model__.
+
+--
+
+.center[&lt;strong&gt;The answers are not in the data!&lt;/strong&gt;]
 
 ---
 
@@ -833,6 +1025,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
