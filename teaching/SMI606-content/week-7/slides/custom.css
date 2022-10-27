@@ -24,3 +24,23 @@
   flex: 1 1 auto;
 }
 
+.pull-left-big {
+  width: 65%;
+  float: left;
+}
+
+.pull-right-small {
+  width: 30%;
+  float: right;
+}
+
+
+.pull-left-small {
+  width: 30%;
+  float: left;
+}
+
+.pull-right-big {
+  width: 65%;
+  float: right;
+}
