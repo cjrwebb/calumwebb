@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI606: Assessment 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2022-11-01" />
+    <script src="week-x-assessment-1-walkthrough_files/header-attrs/header-attrs.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/tile-view/tile-view.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/panelset/panelset.js"></script>
+    <script src="week-x-assessment-1-walkthrough_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/clipboard/clipboard.min.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/shareon/shareon.min.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[SMI606: Assessment 1&lt;br&gt;Top tips &amp; Walkthrough]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+# Assessment Guidance
+
+.pull-left[
+
+[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/pid-6071227-dt-content-rid-43961412_1/xid-43961412_1).
+
+* Pick and dataset and research question
+
+* Write a rationale
+
+* Describe the dataset
+
+* Describe the data using univariate and bivariate statistics
+
+* Estimate a bivariate linear regression and describe the findings
+
+* Check for violations of assumptions
+
+* Make appropriate statements about inference and causality throughout
+
+* Discuss the findings and conclude the report
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="images/assess1.png" width="70%" /&gt;
+]
+
+]
+
+
+---
+
+### Pick and dataset and research question
+
+.pull-left[
+
+&gt; What is your research about?
+
+
+* Look in the description of datasets file found on the assessments page *or* find some data you are interested in. 
+
+* Try and pick something you are interested in (the assessment will be less painful that way)
+
+* **Remember** that in assessment 1 you are only looking at **two** variables, so your research question will need to be quite precise
+
+
+]
+
+---
+
+### Pick and dataset and research question
+
+.pull-left[
+
+&gt; What is your research about?
+
+
+* Look in the description of datasets file found on the assessments page *or* find some data you are interested in. 
+
+* Try and pick something you are interested in (the assessment will be less painful that way)
+
+* **Remember** that in assessment 1 you are only looking at **two** variables, so your research question will need to be quite precise
+
+
+]
+
+.pull-right[
+
+#### Bad:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; "How does poverty and local political party control cause increases in housing insecurity?"
+
+****
+
+#### What's wrong:
+
+- **More than one independent variable**, not appropriate for assessment 1.
+- **Implies causality**, is it possible to demonstrate with the data and method?
+- **Imprecise outcome/variables**, how is 'housing insecurity' measured in the data? Often it is better to use the specific variable's definition and then widen the concept in the discussion.
+- No clear **unit of analysis**, individuals, local authorities, countries?
+
+]
+
+---
+
+### Pick and dataset and research question
+
+.pull-left[
+
+&gt; What is your research about?
+
+
+* Look in the description of datasets file found on the assessments page *or* find some data you are interested in. 
+
+* Try and pick something you are interested in (the assessment will be less painful that way)
+
+* **Remember** that in assessment 1 you are only looking at **two** variables, so your research question will need to be quite precise
+
+
+]
+
+.pull-right[
+
+#### Better:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; "Are higher rates of poverty in local authorities associated with higher rates of homelessness applications?"
+
+****
+
+#### What's better:
+
+- **Only one independent and one dependent variable**
+- **Restricted to association**, not setting such a high bar to demonstrate causality
+- **More precise description of variables**
+- **Defines the unit of analysis (local authorities)**
+
+]
+
+---
+
+# Write a rationale
+
+.pull-left[
+
+&gt; Why should I **care** about your research?
+
+* Now you have come up with a question, explain to me in a sentence or two **why I should care about it**.
+
+* A good rationale has an explicit call to policy discussions or academic debate.
+
+* The rationale allows you to explain how your more precise research question fits within the wider scholarship.
+
+]
+
+---
+
+# Write a rationale
+
+.pull-left[
+
+&gt; Why should I **care** about your research?
+
+* Now you have come up with a question, explain to me in a sentence or two **why I should care about it**.
+
+* A good rationale has an explicit call to policy discussions or academic debate.
+
+* The rationale allows you to explain how your more precise research question fits within the wider scholarship.
+
+]
+
+.pull-right[
+
+
+#### Bad:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; "Not much is known about how strongly related poverty and housing insecurity is. However, it is important to research this so that we can identify policies to prevent homelessness. In addition, both variables are continuous and suited to bivariate linear regression."
+
+****
+
+#### What's wrong:
+
+- **Vague, unevidenced claim about lack of research** - is that really true?
+- Vague claim about it being important to research - **why** is it important to research??
+- Okay for an undergraduate assignment, but at postgraduate we want you to think more deeply about this.
+
+
+
+]
+
+
+---
+
+# Write a rationale
+
+.pull-left[
+
+&gt; Why should I **care** about your research?
+
+* Now you have come up with a question, explain to me in a sentence or two **why I should care about it**.
+
+* A good rationale has an explicit call to policy discussions or academic debate.
+
+* The rationale allows you to explain how your more precise research question fits within the wider scholarship.
+
+]
+
+.pull-right[
+
+
+#### Better:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; "The end of the COVID-19 pandemic has seen a surge in housing demand across England and Wales, especially in historically deprived cities as internal migration out of London has increased. Costs associated with housing have been one of the greatest contributers to a cost of living crisis; as this crisis continues and a recession looms, understanding the association between homelessness and poverty rates may help policymakers direct resources towards people areas of the country at the highest risk of homelessness."
+
+****
+
+#### What is better:
+
+* **Direct** link to contemporary policy concerns.
+* Demonstrates the ability to think about how the research findings might result in some impact.
+
+
+]
+
+---
+
+# Describe the dataset
+
+.pull-left[
+
+&gt; Where is your data from? How was it collected, and what can that tell us about the wider population or causality?
+
+* If you are using one of the provided datasets: **look in the description of datasets folder on Blackboard for clues on how it was collected.**
+
+* Who collected the data?
+
+* What is the unit of analysis (country? local authority? neighbourhood? person?)
+
+* Is the data an entire population of interest? A random sample? A stratefied random sample? Or an opportunity sample? 
+  - Based on this, what will we be able to say about inference (Check [Week 4 Slides](https://calumwebb.co.uk/teaching/SMI606-content/week-4/slides/#1))?
+
+* Does it come from a causal design? Keep this in mind when talking about causality.
+
+]
+
+
+---
+
+# Describe the dataset
+
+.pull-left[
+
+&gt; Where is your data from? How was it collected, and what can that tell us about the wider population or causality?
+
+* If you are using one of the provided datasets: **look in the description of datasets folder on Blackboard for clues on how it was collected.**
+
+* Who collected the data?
+
+* What is the unit of analysis (country? local authority? neighbourhood? person?)
+
+* Is the data an entire population of interest? A random sample? A stratefied random sample? Or an opportunity sample? 
+  - Based on this, what will we be able to say about inference (Check [Week 4 Slides](https://calumwebb.co.uk/teaching/SMI606-content/week-4/slides/#1))?
+
+* Does it come from a causal design? Keep this in mind when talking about causality.
+
+]
+
+.pull-right[
+
+
+#### Bad:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; "The data is the la-dat.csv. It includes 6 continuous variables and 2 categorical variables."
+
+****
+
+#### What's wrong:
+
+- **No details that tell us anything about the source**
+- **No details on the sample**
+- **No details on the unit of analysis**
+- **Variable types not important for the reader**
+
+]
+
+---
+
+# Describe the dataset
+
+.pull-left[
+
+&gt; Where is your data from? How was it collected, and what can that tell us about the wider population or causality?
+
+* If you are using one of the provided datasets: **look in the description of datasets folder on Blackboard for clues on how it was collected.**
+
+* Who collected the data?
+
+* What is the unit of analysis (country? local authority? neighbourhood? person?)
+
+* Is the data an entire population of interest? A random sample? A stratefied random sample? Or an opportunity sample? 
+  - Based on this, what will we be able to say about inference (Check [Week 4 Slides](https://calumwebb.co.uk/teaching/SMI606-content/week-4/slides/#1))?
+
+* Does it come from a causal design? Keep this in mind when talking about causality.
+
+]
+
+.pull-right[
+
+
+#### Better:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; "The data used includes variables about homelessness applications per 10,000 households in 2021, sourced from the Ministry of Housing and Local Government, and about the proportion of children living in low income families in 2021, sourced from the Department for Work and Pensions. This data is at the local authority level and includes all 151 local authorities. These administrative data are collected routinely."
+
+****
+
+#### What's improved:
+
+- **Tell us about the source** for the data.
+- **Tells us about the unit of analysis**
+- **Tells us this is a population, not a sample of a population**.
+- **Tells us this did not come from an experimental design**.
+
+]
+
+
+
+---
+
+### Describe the data using univariate and bivariate statistics
+
+.pull-left[
+
+&gt; Demonstrate that you can use descriptive statistics and data visualisation to describe the two variables you are interested in independently, and their association with one another.
+
+- **Use the tables in the Week 2 slides to identify the appropriate univariate descriptive statistics and data visualisations and their interpretation for your variables, depending on if they are continuous, categorical, or ordinal**: [Link to slides](https://calumwebb.co.uk/teaching/SMI606-content/week-2/slides/#1)
+
+- **Use the tables in the Week 3 slides to identify the appropriate bivariate descriptive statistics and data visualisation and their interpretation for your two chosen variables**: [Link to slides](https://calumwebb.co.uk/teaching/SMI606-content/week-3/slides/#1)
+
+]
+
+
+---
+
+### Estimate a bivariate linear regression and describe the findings
+
+.pull-left[
+
+&gt; Demonstrate you can express the relationship between the two variables in the form of a bivariate linear regression (Week 7)
+
+This part of the assignment refers to Week 7: Bivariate Linear regression. [Link to slides](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/#1).
+
+In your assignment, you should report:
+
+* The estimated change in the dependent variable for a 1 unit increase in the independent variable (Estimate - for the indepdenent variable)
+* The R-squared statistic.
+* The p-value of the estimate (if appropriate)
+
+See the specific assessment guidance for a general workflow.
+
+
+]
+
+.pull-right[
+
+#### Most common mistakes:
+
+* Dependent variable is on the wrong side of the regression symbol:
+  * &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; Incorrect: &lt;br&gt; `poverty_rate ~ homeless_rate`
+  * &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; Correct: &lt;br&gt; `homeless_rate ~ poverty_rate`
+
+* Interpretation uses the wrong scale, e.g. if poverty rate is measured per 100 children and homelessness rate per 10,000 households:
+  * &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; Incorrect: &lt;br&gt; A 1 percentage point increase in poverty was associated with a 0.1 percentage point increase in homelessness.
+  * &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; Correct: &lt;br&gt; A 1 percentage point increase in poverty was associated with a 0.1 household per 10,000 increase in homelessness.
+
+]
+
+
+---
+
+# Check for violations of assumptions
+
+.pull-left[
+
+&gt; Critically assess what violations of assumptions there may be and the consequences this might have for your model.
+
+**Important: use the slides and cheat sheet for these from Week 7**:
+
+* [Linearity](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#59)
+* [Homoscedasticity](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#61)
+* [Outliers and Leverage Points](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#63)
+* [Normality of residuals](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#65)
+
+If you find that any of these assumptions are violated, you should use the cheat sheet to assess the consequences this might have and what you could potentially do to resolve them: [Consequences cheat sheet](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#67)
+
+
+]
+
+---
+
+# Check for violations of assumptions
+
+.pull-left[
+
+&gt; Critically assess what violations of assumptions there may be and the consequences this might have for your model.
+
+**Important: use the slides and cheat sheet for these from Week 7**:
+
+* [Linearity](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#59)
+* [Homoscedasticity](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#61)
+* [Outliers and Leverage Points](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#63)
+* [Normality of residuals](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#65)
+
+If you find that any of these assumptions are violated, you should use the cheat sheet to assess the consequences this might have and what you could potentially do to resolve them: [Consequences cheat sheet](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#67)
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+An assumption being violated is not **bad**; it doesn't mean the findings are worthless. Knowing that an assumption has been violated means that:
+
+1) We can communicate to a reader which statistical tools we should be more cautious about interpreting (e.g. standard error) and what we might do in future research to improve.
+
+2) It often tells us something **interesting** about our data - e.g. if the strength of an association between two things gets weaker at higher values of one, heteroscedasticity.
+
+
+
+]
+
+
+---
+
+class: middle
+
+# Make appropriate statements about inference and causality throughout
+
+* It's okay to interpret your p-values **as long as** you make it clear whether they are meaningfully generalisable to a larger population or not.
+* Avoid talking about causlity when you are interpreting your analysis specifically (unless you feel you can demonstrate causality), but it is okay to speculate about reasonable causal pathways in the discussion/introduction.
+
+---
+
+### Discuss the findings and conclude the report
+
+.pull-left[
+
+&gt; What is your answer to the research question? How does it contribute to the rationale?
+
+
+The discussion and conclusion is your opportunity to bring together your original research with the rationale you established at the start. The stronger your rationale was, the easier you will find writing the discussion and conclusion. 
+
+* Be concise
+* Don't go beyond what your research can tell you
+* Explore any limitations or directions for future research
+* It's okay to speculate about causality here as long as you are cautious ("may")
+
+
+]
+
+.pull-right[
+
+
+#### Bad:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt; "In conclusion, the research found that a 1 percentage point increase in poverty was associated with a 0.1 per 10,000 increase in homelessness rates. This contributes to the literature by showing that there is a link between poverty rates and homelessness."
+
+****
+
+#### What's wrong:
+
+- **Repeats** what is already in the findings section too precisely
+- **Vague** statement about a contribution to knowledge
+- **No discussion** of future research or policy directions.
+
+]
+
+---
+
+### Discuss the findings and conclude the report
+
+.pull-left[
+
+&gt; What is your answer to the research question? How does it contribute to the rationale?
+
+
+The discussion and conclusion is your opportunity to bring together your original research with the rationale you established at the start. The stronger your rationale was, the easier you will find writing the discussion and conclusion. 
+
+* Be concise
+* Don't go beyond what your research can tell you
+* Explore any limitations or directions for future research
+* It's okay to speculate about causality here as long as you are cautious ("may")
+
+
+]
+
+.pull-right[
+
+
+#### Better:
+
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt; "This research project found that there was a strong association between poverty rates and homelessness rates in local authorities in England; while this is not surprising on its own, it reinforces the concern that already disadvantaged communities will be more likely to experience housing repurcussions as a consequence of the cost of living crisis. Policies that distribute funding towards areas with existing high levels of poverty may be effective in preventing homelessness. Further research that takes account of the availability of affordable social housing is needed to better understand the association between poverty and homelessness."
+
+****
+
+]
+
+
+
+
+---
+
+## Most common mistakes:
+
+.pull-left[
+
+* Too worried about getting the technical bits correct that you ignore the quality of your academic writing.
+
+]
+
+--
+
+.pull-right[
+
+* Getting the scales wrong when reporting the results (e.g. not everything is on the percentage point scale)
+
+]
+
+--
+
+.pull-left[
+
+* Mixing up the dependent and independent variables (in model or interpretation). 
+
+]
+
+--
+
+.pull-right[
+
+* Interpreting the p-value when it's not appropriate, or getting the interpretation wrong (p &lt; 0.05 = significant)
+
+]
+
+--
+
+* **Trying to explain how the statistical methods work; what a p-value is, etc.** You are not writing a methods textbook: you are writing a research report as an applied user of statistics.
+
+  * It's better to only write: 'There was a statistically significant association between X and Y (p&lt;0.05)' &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;  &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt;
+  * Than to get it wrong by writing:
+      * 'There was no statistically significant association between X and Y (p = 0.5), this means the null hypothesis is true' &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt;
+      * 'There was a statistically significant association between X and Y (p &lt; 0.05), which means the results are very unlikely to be due to chance' &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt;
+      * 'There was a statistically significant association between X and Y (p &lt; 0.05), which means there is a more than 95% probability of the association being true' &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt;
+      
+--
+      
+.center[If you think any of the three above is accurate it's not so much that you don't understand the p-value but that it has no shorthand, intuitive definition: that is why we use the shared language of "significance".]
+
+---
+
+class: middle
+
+
+# Live demo: how I would do Assignment 1
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
