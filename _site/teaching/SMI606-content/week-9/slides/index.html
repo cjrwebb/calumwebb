@@ -4,7 +4,7 @@
     <title>SMI606: Week 9 — Multiple Logistic Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2021-11-22" />
+    <meta name="date" content="2022-11-14" />
     <script src="week-09-logistic-regression_files/header-attrs/header-attrs.js"></script>
     <link href="week-09-logistic-regression_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-09-logistic-regression_files/tile-view/tile-view.js"></script>
@@ -110,7 +110,8 @@ top:1em;right:1em;
 class: middle
 
 .pull-left[
-&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
+
+
 ]
 .pull-right[
 
@@ -118,7 +119,7 @@ class: middle
 
 # Sign In
 
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
+
 
 ]
 ---
@@ -242,7 +243,7 @@ Every __1 year increase in age__ is associated with a __1.87 percentage point in
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-5-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -287,7 +288,7 @@ __114.95%__??
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-7-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -333,7 +334,7 @@ __-6.6%__??
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -352,7 +353,7 @@ For this, we can use __logistic regression__.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -372,7 +373,7 @@ For this, we can use __logistic regression__.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -477,7 +478,7 @@ Let's start off with our raw data. Along the top we have the people who do own a
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-12-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -502,7 +503,7 @@ Maximum Likelihood is an iterative method, so let's start our first set of predi
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-13-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-12-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -533,7 +534,7 @@ We also log our real data
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-14-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-13-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -561,7 +562,7 @@ We cannot really use negative infinity for anything, so we map our data points t
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-15-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-14-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -585,7 +586,7 @@ Now we've assigned each data point to its closest position on a line, we can giv
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-16-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-15-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -611,7 +612,7 @@ Doesn't something look familiar about part of our `\(x\)`?
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-17-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-16-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -636,7 +637,7 @@ We can then get a picture of how good our predictions were from the real values,
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-18-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-17-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -660,7 +661,7 @@ Let's go back for another iteration — this time, __let's try giving the line a
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-19-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-18-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -683,7 +684,7 @@ Then we can repeat the process.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-20-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-19-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -710,7 +711,7 @@ Let's map our negative infinity and 0 value data points back to their closest po
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-20-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -742,7 +743,7 @@ Then we just need to convert these new values back into predictions using the lo
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -769,7 +770,7 @@ Our logistic sigmoid function is now:
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -799,7 +800,7 @@ Or in `R` code: `exp(-3.9 + 0.0615*80)/(1 + exp(-3.9 + 0.0615*80)) = 0.7349`
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -819,7 +820,7 @@ Can we do even better? What happens if we increase the regression line for the l
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-25-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -842,7 +843,7 @@ Note that, even though the distance between the points is getting larger in term
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-26-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-25-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -861,7 +862,7 @@ Let's repeat the process. First, let's project all of the points to their closes
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-27-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-26-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -884,7 +885,7 @@ Then we (or rather, the Maximum Likelihood Estimator) maps each point to its clo
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-28-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-27-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -911,7 +912,7 @@ Then we can convert the resulting values for each point back into a predicted pr
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-29-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-28-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -930,7 +931,7 @@ Now we have another new set of predictions. Note that even though our logistic r
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-30-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-29-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -953,7 +954,7 @@ Which we can always convert back into predicted probability using the logistic s
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-31-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-30-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -975,7 +976,7 @@ I wouldn't be doing my job as an educator if I didn't at least try and explain t
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-32-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-31-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -1281,7 +1282,7 @@ __Odds Ratios/ Exponentiated Coefficients__
 
 If we exponentiate (using `exp()`) the change in log odds associated with 1-unit increases in our independent variables, we get something called an __odds ratio__.
 
-This __odds ratio__ tells us the multiplicative change in the odds for a 1-unit increase — in other words __how many more times likely is it that Y = 1 when when the independent variable increases by 1__.
+This __odds ratio__ tells us the multiplicative change in the odds for a 1-unit increase — in other words __how many times as likely is it that Y = 1 when when the independent variable increases by 1__.
 
 For example, __for a 1-unit increase in openness__ __the odds of believing in alien conspiracy theories increases by__ exp(0.215493) = __1.24 times__, or by around 24%.
 
@@ -1346,7 +1347,7 @@ Negative odds ratios can be a little bit more tricky to interpret, but are not t
 
 For example, the multiplicative change in odds associated with having a postgraduate degree is exp(-1.844309) or __0.158__. 
 
-This means that __the odds of believing in alien conspiracy theories decreases by 84.2% among those with higher education degrees, compared to those with no qualifications__ (1 - exp(-1.844309) or 1 - 0.158)
+This means that __the odds of believing in alien conspiracy theories decrease by 84.2% among those with higher education degrees, compared to those with no qualifications__ (1 - exp(-1.844309) or 1 - 0.158)
 
 ]
 
@@ -1407,18 +1408,19 @@ tidy_model
 
 ```
 ## # A tibble: 10 × 6
-##    term                        estimate std.error statistic  p.value odds_ratios
-##    &lt;chr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
-##  1 (Intercept)                 -0.00356   0.291     -0.0123 9.90e- 1       0.996
-##  2 rage                        -0.00788   0.00355   -2.22   2.63e- 2       0.992
-##  3 gamesYes                    -0.00841   0.128     -0.0657 9.48e- 1       0.992
-##  4 hedqual_recLevel 1 quals    -0.0413    0.246     -0.167  8.67e- 1       0.960
-##  5 hedqual_recGCSEs/O levels   -0.446     0.186     -2.39   1.67e- 2       0.640
-##  6 hedqual_recA levels         -0.650     0.200     -3.24   1.18e- 3       0.522
-##  7 hedqual_recHigher Ed, no d… -0.901     0.203     -4.43   9.54e- 6       0.406
-##  8 hedqual_recFirst degree     -1.37      0.220     -6.23   4.58e-10       0.253
-##  9 hedqual_recPostgraduate de… -1.84      0.277     -6.65   2.88e-11       0.158
-## 10 openness                     0.215     0.0777     2.77   5.56e- 3       1.24
+##    term                            estimate std.error statistic  p.value odds_…¹
+##    &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 (Intercept)                     -0.00356   0.291     -0.0123 9.90e- 1   0.996
+##  2 rage                            -0.00788   0.00355   -2.22   2.63e- 2   0.992
+##  3 gamesYes                        -0.00841   0.128     -0.0657 9.48e- 1   0.992
+##  4 hedqual_recLevel 1 quals        -0.0413    0.246     -0.167  8.67e- 1   0.960
+##  5 hedqual_recGCSEs/O levels       -0.446     0.186     -2.39   1.67e- 2   0.640
+##  6 hedqual_recA levels             -0.650     0.200     -3.24   1.18e- 3   0.522
+##  7 hedqual_recHigher Ed, no degree -0.901     0.203     -4.43   9.54e- 6   0.406
+##  8 hedqual_recFirst degree         -1.37      0.220     -6.23   4.58e-10   0.253
+##  9 hedqual_recPostgraduate degree  -1.84      0.277     -6.65   2.88e-11   0.158
+## 10 openness                         0.215     0.0777     2.77   5.56e- 3   1.24 
+## # … with abbreviated variable name ¹​odds_ratios
 ```
 
 ---
@@ -1445,18 +1447,19 @@ tidy_model
 
 ```
 ## # A tibble: 10 × 6
-##    term                        estimate std.error statistic  p.value odds_ratios
-##    &lt;chr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
-##  1 (Intercept)                 -0.00356   0.291     -0.0123 9.90e- 1       0.996
-##  2 rage                        -0.00788   0.00355   -2.22   2.63e- 2       0.992
-##  3 gamesYes                    -0.00841   0.128     -0.0657 9.48e- 1       0.992
-##  4 hedqual_recLevel 1 quals    -0.0413    0.246     -0.167  8.67e- 1       0.960
-##  5 hedqual_recGCSEs/O levels   -0.446     0.186     -2.39   1.67e- 2       0.640
-##  6 hedqual_recA levels         -0.650     0.200     -3.24   1.18e- 3       0.522
-##  7 hedqual_recHigher Ed, no d… -0.901     0.203     -4.43   9.54e- 6       0.406
-##  8 hedqual_recFirst degree     -1.37      0.220     -6.23   4.58e-10       0.253
-##  9 hedqual_recPostgraduate de… -1.84      0.277     -6.65   2.88e-11       0.158
-## 10 openness                     0.215     0.0777     2.77   5.56e- 3       1.24
+##    term                            estimate std.error statistic  p.value odds_…¹
+##    &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 (Intercept)                     -0.00356   0.291     -0.0123 9.90e- 1   0.996
+##  2 rage                            -0.00788   0.00355   -2.22   2.63e- 2   0.992
+##  3 gamesYes                        -0.00841   0.128     -0.0657 9.48e- 1   0.992
+##  4 hedqual_recLevel 1 quals        -0.0413    0.246     -0.167  8.67e- 1   0.960
+##  5 hedqual_recGCSEs/O levels       -0.446     0.186     -2.39   1.67e- 2   0.640
+##  6 hedqual_recA levels             -0.650     0.200     -3.24   1.18e- 3   0.522
+##  7 hedqual_recHigher Ed, no degree -0.901     0.203     -4.43   9.54e- 6   0.406
+##  8 hedqual_recFirst degree         -1.37      0.220     -6.23   4.58e-10   0.253
+##  9 hedqual_recPostgraduate degree  -1.84      0.277     -6.65   2.88e-11   0.158
+## 10 openness                         0.215     0.0777     2.77   5.56e- 3   1.24 
+## # … with abbreviated variable name ¹​odds_ratios
 ```
 
 .center[What was the associated change in the odds of believing the government hides information related to aliens for a 1 year increase in age?]
@@ -1528,18 +1531,17 @@ library(ggeffects)
 
 ```
 ## # Predicted probabilities of Conspiracy beliefs - government covers up knowledge of aliens
-## # x = openness
 ## 
-##    x | Predicted |       95% CI
-## -------------------------------
-## 0.00 |      0.24 | [0.20, 0.30]
-## 0.33 |      0.26 | [0.22, 0.30]
-## 0.67 |      0.27 | [0.24, 0.31]
-## 1.00 |      0.29 | [0.26, 0.32]
-## 1.67 |      0.32 | [0.29, 0.34]
-## 2.00 |      0.33 | [0.30, 0.36]
-## 2.33 |      0.35 | [0.31, 0.38]
-## 3.00 |      0.38 | [0.33, 0.44]
+## openness | Predicted |       95% CI
+## -----------------------------------
+##     0.00 |      0.24 | [0.20, 0.30]
+##     0.33 |      0.26 | [0.22, 0.30]
+##     0.67 |      0.27 | [0.24, 0.31]
+##     1.00 |      0.29 | [0.26, 0.32]
+##     1.67 |      0.32 | [0.29, 0.34]
+##     2.00 |      0.33 | [0.30, 0.36]
+##     2.33 |      0.35 | [0.31, 0.38]
+##     3.00 |      0.38 | [0.33, 0.44]
 ```
 
 
@@ -1574,7 +1576,7 @@ ggeffect(alien_model, terms = "openness") %&gt;%
 * plot()
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-49-1.png" width="500" height="400" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-48-1.png" width="500" height="400" /&gt;
 
 
 ]
@@ -1601,7 +1603,7 @@ ggeffect(alien_model, terms = "hedqual_rec") %&gt;%
   coord_flip()
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-50-1.png" width="500" height="380" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-49-1.png" width="500" height="380" /&gt;
 
 
 ]
@@ -2511,7 +2513,7 @@ conspiracy_data %&gt;%
   geom_smooth(aes(x = rage, y = pred_alien_logodds), method = "lm")
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-64-1.png" width="700" height="350" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-63-1.png" width="700" height="350" /&gt;
 
 
 ]
@@ -2555,7 +2557,7 @@ conspiracy_data %&gt;%
   geom_smooth(aes(x = openness, y = pred_alien_logodds), method = "lm")
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-65-1.png" width="700" height="350" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-64-1.png" width="700" height="350" /&gt;
 
 
 ]
@@ -2587,7 +2589,7 @@ conspiracy_data %&gt;%
 plot(alien_model, which = 4)
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-66-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-65-1.png" width="700" height="450" /&gt;
 
 
 ]
@@ -2619,7 +2621,7 @@ plot(alien_model, which = 4)
 plot(alien_model, which = 5)
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-67-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-66-1.png" width="700" height="450" /&gt;
 
 
 ]
@@ -2653,6 +2655,8 @@ performance::check_outliers(alien_model)
 
 ```
 ## OK: No outliers detected.
+## - Based on the following method and threshold: cook (0.93).
+## - For variable: (Whole model)
 ```
 
 
@@ -2703,11 +2707,11 @@ performance::multicollinearity(alien_model)
 ## 
 ## Low Correlation
 ## 
-##         Term  VIF Increased SE Tolerance
-##         rage 1.40         1.18      0.72
-##        games 1.24         1.11      0.81
-##  hedqual_rec 1.31         1.15      0.76
-##     openness 1.11         1.05      0.90
+##         Term  VIF   VIF 95% CI Increased SE Tolerance Tolerance 95% CI
+##         rage 1.40 [1.32, 1.50]         1.18      0.72     [0.67, 0.76]
+##        games 1.24 [1.18, 1.33]         1.11      0.81     [0.75, 0.85]
+##  hedqual_rec 1.31 [1.24, 1.41]         1.15      0.76     [0.71, 0.81]
+##     openness 1.11 [1.06, 1.19]         1.05      0.90     [0.84, 0.94]
 ```
 
 
@@ -2864,11 +2868,39 @@ Just like our independent variables must be independent, our __observations shou
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-70-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-69-1.png" width="700" height="450" /&gt;
 
 
 ]
 
+
+---
+
+# Assumptions
+
+
+.pull-left-small[
+
+* Linearity
+
+* No outliers or leverage points
+
+* No multicollinearity
+
+* __No autocorrelation__
+
+  * Does spending more time with a Teaching Assistant improve a student's grades?
+
+]
+
+.pull-right-big[
+
+#### Simpson's Paradox
+
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-70-1.png" width="700" height="450" /&gt;
+
+
+]
 
 ---
 
@@ -2894,34 +2926,6 @@ Just like our independent variables must be independent, our __observations shou
 #### Simpson's Paradox
 
 &lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-71-1.png" width="700" height="450" /&gt;
-
-
-]
-
----
-
-# Assumptions
-
-
-.pull-left-small[
-
-* Linearity
-
-* No outliers or leverage points
-
-* No multicollinearity
-
-* __No autocorrelation__
-
-  * Does spending more time with a Teaching Assistant improve a student's grades?
-
-]
-
-.pull-right-big[
-
-#### Simpson's Paradox
-
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-72-1.png" width="700" height="450" /&gt;
 
 
 ]
@@ -3090,7 +3094,7 @@ performance::check_autocorrelation(lm_with_class)
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-77-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-76-1.png" width="700" height="450" /&gt;
 
 
 ]
@@ -3283,6 +3287,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

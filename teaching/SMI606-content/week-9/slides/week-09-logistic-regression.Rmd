@@ -369,11 +369,8 @@ annotate_odds_ratio <- ggplot(tv_licenses_resp, aes(x = age, y = tv_license)) +
 class: middle
 
 .pull-left[
-```{r, echo=FALSE, out.width = "80%"}
 
-knitr::include_graphics("images/pg-sign-in.png")
 
-```
 ]
 .pull-right[
 
@@ -381,7 +378,7 @@ knitr::include_graphics("images/pg-sign-in.png")
 
 # Sign In
 
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
+
 
 ]
 ---
@@ -1537,7 +1534,7 @@ __Odds Ratios/ Exponentiated Coefficients__
 
 If we exponentiate (using `exp()`) the change in log odds associated with 1-unit increases in our independent variables, we get something called an __odds ratio__.
 
-This __odds ratio__ tells us the multiplicative change in the odds for a 1-unit increase — in other words __how many more times likely is it that Y = 1 when when the independent variable increases by 1__.
+This __odds ratio__ tells us the multiplicative change in the odds for a 1-unit increase — in other words __how many times as likely is it that Y = 1 when when the independent variable increases by 1__.
 
 For example, __for a 1-unit increase in openness__ __the odds of believing in alien conspiracy theories increases by__ exp(0.215493) = __1.24 times__, or by around 24%.
 
@@ -1568,7 +1565,7 @@ Negative odds ratios can be a little bit more tricky to interpret, but are not t
 
 For example, the multiplicative change in odds associated with having a postgraduate degree is exp(-1.844309) or __0.158__. 
 
-This means that __the odds of believing in alien conspiracy theories decreases by 84.2% among those with higher education degrees, compared to those with no qualifications__ (1 - exp(-1.844309) or 1 - 0.158)
+This means that __the odds of believing in alien conspiracy theories decrease by 84.2% among those with higher education degrees, compared to those with no qualifications__ (1 - exp(-1.844309) or 1 - 0.158)
 
 ]
 
