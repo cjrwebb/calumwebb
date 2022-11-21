@@ -4,7 +4,7 @@
     <title>SMI606: Week 10 — Cluster Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2021-11-28" />
+    <meta name="date" content="2022-11-21" />
     <script src="week-10-cluster-analysis_files/header-attrs/header-attrs.js"></script>
     <link href="week-10-cluster-analysis_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-10-cluster-analysis_files/tile-view/tile-view.js"></script>
@@ -110,7 +110,7 @@ top:1em;right:1em;
 class: middle
 
 .pull-left[
-&lt;img src="images/pg-sign-in.png" width="80%" /&gt;
+
 ]
 .pull-right[
 
@@ -118,7 +118,6 @@ class: middle
 
 # Sign In
 
-[Link](https://docs.google.com/forms/d/e/1FAIpQLSfUTgPPpkB3LkiDU41PxRn9CDCIojO2GKi7JIm1L_dES8ICJw/viewform)
 
 ]
 ---
@@ -327,7 +326,7 @@ class: inverse, middle
 
 
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-3-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-2-1.png" width="500" height="500" /&gt;
 
 ]
 
@@ -344,7 +343,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-3-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -362,7 +361,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-5-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -380,7 +379,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-6-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-5-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -398,7 +397,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-7-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-6-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -416,7 +415,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-7-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -435,7 +434,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -453,7 +452,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -472,7 +471,7 @@ class: inverse, middle
 
 .pull-right[
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
 
 
 ]
@@ -523,14 +522,14 @@ stargazer::stargazer(as.data.frame(museum_data), header = FALSE, type = "html")
 ```
 
 
-&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Pctl(25)&lt;/td&gt;&lt;td&gt;Pctl(75)&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;nadults&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;2.617&lt;/td&gt;&lt;td&gt;1.203&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;nkids&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;0.953&lt;/td&gt;&lt;td&gt;1.409&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;donation&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;17.833&lt;/td&gt;&lt;td&gt;17.285&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3.9&lt;/td&gt;&lt;td&gt;35&lt;/td&gt;&lt;td&gt;65&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;age&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;41.187&lt;/td&gt;&lt;td&gt;21.452&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;21&lt;/td&gt;&lt;td&gt;67&lt;/td&gt;&lt;td&gt;83&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;giftshop_spend&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;13.290&lt;/td&gt;&lt;td&gt;14.256&lt;/td&gt;&lt;td&gt;0.710&lt;/td&gt;&lt;td&gt;2.257&lt;/td&gt;&lt;td&gt;30.023&lt;/td&gt;&lt;td&gt;44.260&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;cafe_spend&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;6.313&lt;/td&gt;&lt;td&gt;5.015&lt;/td&gt;&lt;td&gt;1.400&lt;/td&gt;&lt;td&gt;2.820&lt;/td&gt;&lt;td&gt;10.675&lt;/td&gt;&lt;td&gt;21.060&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;nadults&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;2.617&lt;/td&gt;&lt;td&gt;1.203&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;nkids&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;0.953&lt;/td&gt;&lt;td&gt;1.409&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;donation&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;17.833&lt;/td&gt;&lt;td&gt;17.285&lt;/td&gt;&lt;td&gt;0.600&lt;/td&gt;&lt;td&gt;65.000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;age&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;41.187&lt;/td&gt;&lt;td&gt;21.452&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;83&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;giftshop_spend&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;13.290&lt;/td&gt;&lt;td&gt;14.256&lt;/td&gt;&lt;td&gt;0.710&lt;/td&gt;&lt;td&gt;44.260&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;cafe_spend&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;td&gt;6.313&lt;/td&gt;&lt;td&gt;5.015&lt;/td&gt;&lt;td&gt;1.400&lt;/td&gt;&lt;td&gt;21.060&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 ]
 
@@ -656,7 +655,7 @@ factoextra::fviz_nbclust(museum_data_prepped,
                          FUNcluster = kmeans)
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-16-1.png" width="500" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-15-1.png" width="500" height="400" /&gt;
 
 ]
 
@@ -694,7 +693,7 @@ factoextra::fviz_nbclust(museum_data_prepped,
                          FUNcluster = kmeans, verbose = FALSE)
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-17-1.png" width="500" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-16-1.png" width="500" height="400" /&gt;
 
 ]
 
@@ -730,7 +729,7 @@ factoextra::fviz_nbclust(museum_data_prepped,
                          FUNcluster = kmeans, verbose = FALSE)
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-18-1.png" width="500" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-17-1.png" width="500" height="400" /&gt;
 
 ]
 
@@ -814,12 +813,15 @@ museum_3k
 ## 3    2.59  0.20   40.150 70.03         4.8955    12.8940
 ## 
 ## Clustering vector:
-##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-##  [58] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [115] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [172] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [229] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [286] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [75] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1
+## [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [223] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [260] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [297] 2 2 2 2
 ## 
 ## Within cluster sum of squares by cluster:
 ## [1]  3608.9634   370.0866 14963.0429
@@ -827,8 +829,8 @@ museum_3k
 ## 
 ## Available components:
 ## 
-## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"        
-## [8] "iter"         "ifault"
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+## [6] "betweenss"    "size"         "iter"         "ifault"
 ```
 
 ]
@@ -878,12 +880,15 @@ museum_3k
 ## 3    2.59  0.20   40.150 70.03         4.8955    12.8940
 ## 
 ## Clustering vector:
-##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-##  [58] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [115] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [172] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [229] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [286] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [75] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1
+## [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [223] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [260] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [297] 2 2 2 2
 ## 
 ## Within cluster sum of squares by cluster:
 ## [1]  3608.9634   370.0866 14963.0429
@@ -891,8 +896,8 @@ museum_3k
 ## 
 ## Available components:
 ## 
-## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"        
-## [8] "iter"         "ifault"
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+## [6] "betweenss"    "size"         "iter"         "ifault"
 ```
 
 ]
@@ -928,12 +933,15 @@ museum_3k$cluster
 ```
 
 ```
-##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-##  [58] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [115] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-## [172] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [229] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [286] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [75] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1
+## [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [223] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [260] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [297] 2 2 2 2
 ```
 
 ```r
@@ -985,7 +993,7 @@ fviz_cluster(museum_3k, data = museum_data_prepped,
   ggthemes::scale_color_colorblind()
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-23-1.png" width="500" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-22-1.png" width="500" height="400" /&gt;
 
 ]
 
@@ -1024,7 +1032,7 @@ fviz_cluster(museum_4k, data = museum_data_prepped,
   ggthemes::scale_color_colorblind()
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-24-1.png" width="500" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-23-1.png" width="500" height="400" /&gt;
 
 ]
 
@@ -1065,19 +1073,20 @@ museum_data
 
 ```
 ## # A tibble: 300 × 8
-##    museum              nadults nkids donation   age giftshop_spend cafe_spend cluster
-##    &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;   &lt;int&gt;
-##  1 Western Park Museum       2     0       35    71           6.21       9.98       3
-##  2 Western Park Museum       3     0       45    63           5.99      12.7        3
-##  3 Western Park Museum       3     0       40    66           6.54      13.6        3
-##  4 Western Park Museum       2     1       35    68           5.29      10.6        3
-##  5 Western Park Museum       1     0       30    67           5.51      14.9        3
-##  6 Western Park Museum       3     0       40    69           4.46       7.36       3
-##  7 Western Park Museum       1     0       40    65           4.33      12.6        3
-##  8 Western Park Museum       2     0       15    72           5.68      14.5        3
-##  9 Western Park Museum       5     0       35    70           5.19      13.5        3
-## 10 Western Park Museum       4     0       45    67           3.61      12.2        3
-## # … with 290 more rows
+##    museum              nadults nkids donation   age giftshop_s…¹ cafe_…² cluster
+##    &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+##  1 Western Park Museum       2     0       35    71         6.21    9.98       3
+##  2 Western Park Museum       3     0       45    63         5.99   12.7        3
+##  3 Western Park Museum       3     0       40    66         6.54   13.6        3
+##  4 Western Park Museum       2     1       35    68         5.29   10.6        3
+##  5 Western Park Museum       1     0       30    67         5.51   14.9        3
+##  6 Western Park Museum       3     0       40    69         4.46    7.36       3
+##  7 Western Park Museum       1     0       40    65         4.33   12.6        3
+##  8 Western Park Museum       2     0       15    72         5.68   14.5        3
+##  9 Western Park Museum       5     0       35    70         5.19   13.5        3
+## 10 Western Park Museum       4     0       45    67         3.61   12.2        3
+## # … with 290 more rows, and abbreviated variable names ¹​giftshop_spend,
+## #   ²​cafe_spend
 ```
 
 ]
@@ -1634,20 +1643,21 @@ youtube_data
 
 ```
 ## # A tibble: 200 × 12
-##    animation comedy documentaries music news  reviews sport tutorials trailers
-##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;   
-##  1 0         1      0             0     0     0       0     0         0       
-##  2 1         0      0             0     0     1       0     0         1       
-##  3 1         0      0             1     0     0       0     1         1       
-##  4 1         0      0             1     0     1       0     0         0       
-##  5 1         0      0             1     0     0       0     1         1       
-##  6 1         0      0             1     0     0       0     0         1       
-##  7 1         0      0             1     0     1       0     1         1       
-##  8 1         1      0             1     0     0       0     1         0       
-##  9 1         0      1             1     0     1       0     0         0       
-## 10 0         1      0             1     0     0       0     0         1       
-## # … with 190 more rows, and 3 more variables: videoessays &lt;fct&gt;,
-## #   videogames &lt;fct&gt;, vlogs &lt;fct&gt;
+##    animation comedy document…¹ music news  reviews sport tutor…² trail…³ video…⁴
+##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;      &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;  
+##  1 0         1      0          0     0     0       0     0       0       0      
+##  2 1         0      0          0     0     1       0     0       1       0      
+##  3 1         0      0          1     0     0       0     1       1       0      
+##  4 1         0      0          1     0     1       0     0       0       0      
+##  5 1         0      0          1     0     0       0     1       1       0      
+##  6 1         0      0          1     0     0       0     0       1       0      
+##  7 1         0      0          1     0     1       0     1       1       0      
+##  8 1         1      0          1     0     0       0     1       0       0      
+##  9 1         0      1          1     0     1       0     0       0       0      
+## 10 0         1      0          1     0     0       0     0       1       0      
+## # … with 190 more rows, 2 more variables: videogames &lt;fct&gt;, vlogs &lt;fct&gt;, and
+## #   abbreviated variable names ¹​documentaries, ²​tutorials, ³​trailers,
+## #   ⁴​videoessays
 ```
 
 ]
@@ -1726,7 +1736,7 @@ youtube_d &lt;- daisy(youtube_data, metric = "gower")
 You don't need to do this, I'm just illustrating what `daisy` is calculating! Darker colours = more dissimilar observations.
 
 &lt;center&gt;
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-42-1.png" width="380" height="380" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-41-1.png" width="380" height="380" /&gt;
 &lt;/center&gt;
 
 ]
@@ -1894,7 +1904,7 @@ __Complete__: Maybe 4, maybe 6 clusters?
 plot(hca_comp, main = "Complete Linkage")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-47-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-46-1.png" width="700" height="400" /&gt;
 
 ]
 
@@ -1941,7 +1951,7 @@ __Average__: Probably 4 clusters
 plot(hca_avg, main = "Average Linkage")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-50-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-49-1.png" width="700" height="400" /&gt;
 
 ]
 
@@ -1971,7 +1981,7 @@ plot(hca_avg, main = "Average Linkage")
 plot(hca_avg, main = "Average Linkage")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-51-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-50-1.png" width="700" height="400" /&gt;
 
 ]
 
@@ -2002,7 +2012,7 @@ plot(hca_avg, main = "Average Linkage")
 abline(a = 0.4, b = 0, col = "blue")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-52-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-51-1.png" width="700" height="400" /&gt;
 
 ]
 
@@ -2079,21 +2089,21 @@ youtube_data_results
 
 ```
 ## # A tibble: 200 × 15
-##    animation comedy documentaries music news  reviews sport tutorials trailers
-##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;   
-##  1 0         1      0             0     0     0       0     0         0       
-##  2 1         0      0             0     0     1       0     0         1       
-##  3 1         0      0             1     0     0       0     1         1       
-##  4 1         0      0             1     0     1       0     0         0       
-##  5 1         0      0             1     0     0       0     1         1       
-##  6 1         0      0             1     0     0       0     0         1       
-##  7 1         0      0             1     0     1       0     1         1       
-##  8 1         1      0             1     0     0       0     1         0       
-##  9 1         0      1             1     0     1       0     0         0       
-## 10 0         1      0             1     0     0       0     0         1       
-## # … with 190 more rows, and 6 more variables: videoessays &lt;fct&gt;,
-## #   videogames &lt;fct&gt;, vlogs &lt;fct&gt;, hca_avg_k4 &lt;int&gt;, hca_comp_k4 &lt;int&gt;,
-## #   hca_comp_k6 &lt;int&gt;
+##    animation comedy document…¹ music news  reviews sport tutor…² trail…³ video…⁴
+##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;      &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;  
+##  1 0         1      0          0     0     0       0     0       0       0      
+##  2 1         0      0          0     0     1       0     0       1       0      
+##  3 1         0      0          1     0     0       0     1       1       0      
+##  4 1         0      0          1     0     1       0     0       0       0      
+##  5 1         0      0          1     0     0       0     1       1       0      
+##  6 1         0      0          1     0     0       0     0       1       0      
+##  7 1         0      0          1     0     1       0     1       1       0      
+##  8 1         1      0          1     0     0       0     1       0       0      
+##  9 1         0      1          1     0     1       0     0       0       0      
+## 10 0         1      0          1     0     0       0     0       1       0      
+## # … with 190 more rows, 5 more variables: videogames &lt;fct&gt;, vlogs &lt;fct&gt;,
+## #   hca_avg_k4 &lt;int&gt;, hca_comp_k4 &lt;int&gt;, hca_comp_k6 &lt;int&gt;, and abbreviated
+## #   variable names ¹​documentaries, ²​tutorials, ³​trailers, ⁴​videoessays
 ```
 
 ]
@@ -2238,15 +2248,15 @@ youtube_data_results %&gt;%
 
 ```
 ## # A tibble: 6 × 13
-##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videogames
-##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0         0.958 
-## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0         0.167 
-## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0         0.559 
-## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556     0.0185
-## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0         0.0476
-## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0         0     
-## # … with 1 more variable: vlogs &lt;dbl&gt;
+##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videoga…¹  vlogs
+##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0        0.958  0.917 
+## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0        0.167  0     
+## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0        0.559  0.118 
+## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556    0.0185 0.0741
+## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0        0.0476 0     
+## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0        0      0.0625
+## # … with abbreviated variable name ¹​videogames
 ```
 
 
@@ -2356,6 +2366,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
