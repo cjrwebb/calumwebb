@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Structural Equation Modelling</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2023-01-06" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="index_files/tile-view/tile-view.js"></script>
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="index_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="index_files/clipboard/clipboard.min.js"></script>
+    <link href="index_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="index_files/shareon/shareon.min.js"></script>
+    <link href="index_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="index_files/viz/viz.js"></script>
+    <link href="index_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+    <script src="index_files/grViz-binding/grViz.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+# .tuos_purple[Structural Equation Modelling]
+
+### Dr. Calum Webb
+#### Sheffield Methods Institute, the University of Sheffield.
+#### c.j.webb@sheffield.ac.uk
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(images/uni-sheffield.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #019EE3;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+class: middle
+
+# Pre-requisites
+
+If I want to learn Structural Equation Modelling I should already have...
+
+* A very good understanding of **multiple linear regression**
+* Good familiarity with terms like **variance, covariance, correlation** 
+* It can help to have some familiarity with **data tidying** (i.e. in R), especially for converting between **long and wide data formats**
+* Formal understanding of **causal diagrams**/Directed Acyclic Graphs can be helpful
+
+
+---
+
+class: middle
+
+
+## Is it more effective to increase family income and spending on their children to improve child wellbeing, or is it more effective to reduce family stress?
+
+**Variables**
+
+* `income` = Family income (in £1000s)
+* `investment` = Amount spent on child (in £1000s)
+* `stress_q1` = Approximately how many times over the last year have you gotten into a disagreement with a co-parent or family member about the parenting of your child(ren)? (10 point scale, centered at 5)
+* `scws` = Child wellbeing (Stirling Child Wellbeing Scale, range 12-60, higher = better wellbeing)
+
+
+---
+
+class: middle
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+## Is it more effective to increase family income and spending on their children to improve child wellbeing, or is it more effective to reduce family stress?
+
+]
+
+.pull-right[
+
+
+
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;scale(scws)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;scale(income)&lt;/td&gt;&lt;td&gt;0.137&lt;sup&gt;***&lt;/sup&gt; (0.016)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;scale(investment)&lt;/td&gt;&lt;td&gt;0.289&lt;sup&gt;***&lt;/sup&gt; (0.016)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;scale(stress_q1)&lt;/td&gt;&lt;td&gt;-0.303&lt;sup&gt;***&lt;/sup&gt; (0.013)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;0.000 (0.011)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;5,000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.374&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.374&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;0.791 (df = 4996)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;994.657&lt;sup&gt;***&lt;/sup&gt; (df = 3; 4996)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+---
+
+class: middle
+
+.pull-left-big[
+.center[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="800" height="500" /&gt;
+
+
+]
+]
+
+.pull-right-small[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Can't have investment without income...
+* Income and investment probably both impact family stress, which then impacts wellbeing...
+
+]
+
+---
+
+class: middle
+
+.pull-left-big[
+.center[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="800" height="500" /&gt;
+]
+]
+
+---
+
+### Structural Equation Modelling
+
+.pull-left[
+
+`Wellbeing ~ Income + Investment + Stress`
+
+`Stress ~ Income + Investment`
+
+`Investment ~ Income`
+
+&lt;img src="images/dag-reg.png" width="100%" /&gt;
+
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;img src="images/trenchcoat.jpg" width="70%" /&gt;
+
+]
+
+]
+
+---
+
+### Path Analysis
+
+.pull-left-big[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="800" height="500" /&gt;
+
+]
+
+
+
+
+.pull-right-small[
+
+**Direct Effects**
+
+* Income: **0.137**
+* Investment: **0.289**
+* Stress: **-0.303**
+
+**Indirect Effects**
+
+Income through...
+* Stress: -0.279 x -0.303 = **0.085**
+* Investment: 0.708 x 0.289 = **0.204**
+* Investment &amp; Stress: 0.708 x -0.283 x -0.303 = **0.061**
+
+**Total Income Effect**
+
+0.137 + 0.085 + 0.204 + 0.061 = **0.487**
+
+
+]
+
+
+---
+
+class: middle
+
+## But what is family stress? And is this question the best measure of it?
+
+
+---
+
+### Latent Variables (Factor Analysis)
+
+.pull-left-small[
+
+- We can't just ask: "How much family stress do you experience on a scale of 1-10?" and expect a good measure.
+- We **operationalise** the concept into distinct questions, e.g.:
+
+  * How frequently do you have disagreements about parenting?
+  * Do you sometimes regret having children?
+  * How often do you feel like you go to bed angry at your partner?
+  
+- All of these questions capture *something* about family stress, but none of them capture it exactly.
+
+]
+
+.pull-right-big[
+
+.center[
+&lt;br&gt;
+
+&lt;img src="images/cfa.jpg" width="90%" /&gt;
+
+]
+
+]
+
+---
+
+### Latent Variables (Factor Analysis)
+
+.pull-left[
+
+&lt;br&gt;
+
+**We shouldn't**
+
+* Chuck all of these similar questions into a single regression model (because of multicollinearity)
+
+* Sum up all of the responses uncritically:
+  * What if they are all on different scales and need to be weighted differently?
+  * What if some of the questions are worse measures of the concept than others?
+  * What if some questions are more salient for some groups of people than others?
+  
+**We can**
+
+* Use factor analysis/construct a latent variable to try and capture the 'underlying' concept.
+
+]
+
+
+.pull-right[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+### Latent Variables (Factor Analysis)
+
+.pull-left[
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+Factor analysis constructs a latent variable that simultaneously predicts multiple indicator (or manifest) variables.
+
+Its scale is arbitrary but is commonly fixed to either a) a marker variable or b) a standardised distribution (mean = 0, sd = 1).
+
+
+]
+
+
+
+.pull-right[
+
+<div id="htmlwidget-5a4d9da9a787e1da76ea" style="width:500px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5a4d9da9a787e1da76ea">{"x":{"diagram":" digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box ] \n node [shape = box] \n stress_q1; stress_q2; stress_q3; stress_q4; stress_q5 \n node [shape = oval] \n stress \n \n edge [ color = black ] \n  stress->stress_q1 [label = \"0.9\"] stress->stress_q2 [label = \"0.9\"] stress->stress_q3 [label = \"0.87\"] stress->stress_q4 [label = \"0.92\"] stress->stress_q5 [label = \"0.89\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+]
+
+
+---
+
+### Latent Variables (Factor Analysis)
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="1200" height="500" /&gt;
+
+
+---
+
+### SEM with Latent Variables
+
+.center[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="700" height="500" /&gt;
+
+]
+
+---
+
+class: middle
+
+### Latent Growth Modelling
+
+&lt;img src="images/divorce_margarine.png" width="100%" /&gt;
+
+---
+
+### Latent Growth Modelling
+
+.pull-left-small[
+
+
+Constraints on latent variables can also be used in clever ways to capture change over time.
+
+
+]
+
+.pull-right-big[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="100%" /&gt;
+
+]
+
+]
+
+---
+
+### Latent Growth Modelling
+
+.pull-left-small[
+
+
+Constraints on latent variables can also be used in clever ways to capture change over time.
+
+  * The mean linear slope for divorce rates was -0.203 per year
+  * The mean linear slope for margarine consumption was -0.215 per year, explaining much of why the two are correlated.
+  
+**But**, a positive correlation between state-level slopes in divorce rate and state-level slopes in margarine consumption (0.417) suggests that divorce rates were falling faster in states where margarine consumption was falling faster (and vice-versa)
+
+
+]
+
+.pull-right-big[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="100%" /&gt;
+
+]
+
+]
+
+
+
+
+
+---
+
+### Latent Growth Modelling
+
+.pull-left-small[
+
+
+The fact that latent growth models use wide rather than long data means that there are a few more nuanced options for examining associations between trends as well as residuals between trends:
+
+* What are the associations between latent traits/individuals: intercepts
+* What are the associations between latent trends: slopes
+* What are the associations between time varying residuals: indicator variable residuals
+
+
+]
+
+.pull-right-big[
+
+.center[
+
+&lt;img src="images/lgm.jpg" width="80%" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+## [Open access taster workbook on SEM, CFA, and LGM in `R` using the `lavaan` package](https://github.com/cjrwebb/aqm-taster-sem)
+
+Link: https://github.com/cjrwebb/aqm-taster-sem 
+
+* Click on Code -&gt; Download as .zip -&gt; Open .Rproj file and `worked-examples.R`
+
+]
+
+.pull-right[
+
+&lt;img src="images/githubpage.png" width="80%" /&gt;
+
+]
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
