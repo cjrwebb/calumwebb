@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Author" />
+    <meta name="date" content="2023-05-13" />
+    <script src="smi-xaringan-template_files/header-attrs/header-attrs.js"></script>
+    <link href="smi-xaringan-template_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/tile-view/tile-view.js"></script>
+    <link href="smi-xaringan-template_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/panelset/panelset.js"></script>
+    <script src="smi-xaringan-template_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="smi-xaringan-template_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/clipboard/clipboard.min.js"></script>
+    <link href="smi-xaringan-template_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/shareon/shareon.min.js"></script>
+    <link href="smi-xaringan-template_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="smi-xaringan-template_files/mark.js/mark.min.js"></script>
+    <link href="smi-xaringan-template_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="smi-xaringan-template_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# This is the presentation title
+#### This is a presentation subtitle
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+class: middle
+
+## This is a panelset: good for learning objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* LO1
+
+* LO2
+
+* LO3
+
+* LO4
+
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Text
+
+* Text 
+
+* Text
+
+
+]
+
+
+]
+
+
+
+
+---
+class: middle
+
+.pull-left[
+
+# This is text on a regular slide
+
+## This is a smaller heading
+
+### This is a smaller heading
+
+**This is bold text - do not use on inverse slide**
+
+This is regular text
+
+[This is a link.](https://www.sheffield.ac.uk/smi)
+
+
+]
+.pull-right[
+
+This is an image:
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.sheffield.ac.uk/sites/default/files/styles/two_thirds_2x/public/2019-12/IMG_1251.jpg?h=cececfd2&amp;itok=scesYnz6" alt="This is an image caption" width="100%" /&gt;
+&lt;p class="caption"&gt;This is an image caption&lt;/p&gt;
+&lt;/div&gt;
+
+
+```r
+# This is a code snippet
+mean(mtcars$mpg)
+```
+
+
+]
+
+
+---
+class: inverse, middle
+
+
+
+# This is text on the inverse slide: useful for big statements, quotes, or section headings
+
+
+---
+class: middle
+
+### This is an `R` plot that fills the slide
+
+&lt;img src="smi-xaringan-template_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
+
+
+---
+
+class: middle
+
+.pull-left[
+
+### This is an `R` plot that fills one half of a slide with code shown.
+
+&gt; This is a quote blah blah blah blah blah blah blah blah blah blah blah blah
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+
+```r
+mtcars %&gt;%
+  ggplot() +
+  geom_point(aes(x = wt, y = mpg))
+```
+
+&lt;img src="smi-xaringan-template_files/figure-html/unnamed-chunk-4-1.png" width="550" height="450" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+If I am using a very long bit of code, I will sometimes have the code on the left (but not evaluated using `eval = FALSE` in the chunk header) so students can see it, and then an evaluated piece of code that doesn't echo on the right, e.g.
+
+
+
+```r
+#' A lot of code for a plot styled like
+#' the slides
+
+mtcars %&gt;%
+  ggplot(aes(x = wt, y = mpg)) +
+  geom_point(col = "#440099") +
+  geom_smooth(method = "lm") +
+  scale_y_log10() + 
+  theme_minimal() +
+  ggtitle("Heavy car, how far do go") +
+  xlab("Car heavy") +
+  ylab("log10(Go far)") +
+  theme_xaringan(title_font_size = 18,
+                 text_font_size = 16, 
+                 title_font = google_font("Source Sans Pro"),
+                 text_font = google_font("Source Sans Pro")) +
+  theme(plot.background = element_rect(fill = "#f8f8f8", 
+                                       colour = "#f8f8f8"),
+        panel.background = element_rect(fill = "#f8f8f8", 
+                                        colour = "#f8f8f8"))
+```
+
+&lt;hr&gt;
+
+You can split up content with a horizontal rule using the html tag `&lt;hr&gt;`
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi-xaringan-template_files/figure-html/unnamed-chunk-6-1.png" width="550" height="450" /&gt;
+
+
+
+
+]
+
+
+
+---
+
+class: middle
+
+.pull-left-small[
+
+If you need a bit more space for an image, and less space for text, you can use the `pull-left-small[]`, `pull-right-small[]`, `pull-left-big[]`, and `pull-right-big[]` versions of the pull class.
+
+If you want an image to fill an entire slide, you can use the `background-image`, `background-position` and `background-size` options...
+
+]
+
+.pull-right-big[
+
+&lt;img src="https://www.sheffield.ac.uk/sites/default/files/styles/3_1_max_2250w/public/2020-08/31312.jpg.jpeg" width="100%" /&gt;
+
+]
+
+---
+
+class: middle
+background-image: url("https://pbs.twimg.com/media/Fut69EWXwAAdTOn?format=jpg&amp;name=large")
+background-position: center
+background-size: contain
+
+# .shadow[This can be done with the banner...]
+
+---
+
+class: hide-logo, middle
+background-image: url("https://pbs.twimg.com/media/Fut69EWXwAAdTOn?format=jpg&amp;name=large")
+background-position: center
+background-size: contain
+
+# .shadow[Or without, if class: hide-logo is used...]
+
+---
+
+class: inverse, middle
+background-image: url("https://pbs.twimg.com/media/Fut69EWXwAAdTOn?format=jpg&amp;name=large")
+background-position: center
+background-size: contain
+
+# .shadow[Or with neither logo or banner is class: inverse is used.]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+.center[This text is centered using `.center[]`]
+
+.right[This text is right-aligned using `.right[]`]
+
+* This is a bullet list
+* Alignment also works
+* for
+* images/code output/etc
+
+*This text is in italics*.
+
+If you want text to be slightly larger on a specific slide, you can .big[use the custom `.big[]` class].
+
+If you want text to be slightly smaller, you can .small[use the custom `.small[]` class]
+
+
+]
+
+.pull-right[
+
+You can also use webicons with the `fontawesome()` function from the `icons` github package, with backticks around them e.g. 
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("twitter")` `` ]&lt;br&gt;
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M505.12019,19.09375c-1.18945-5.53125-6.65819-11-12.207-12.1875C460.716,0,435.507,0,410.40747,0,307.17523,0,245.26909,55.20312,199.05238,128H94.83772c-16.34763.01562-35.55658,11.875-42.88664,26.48438L2.51562,253.29688A28.4,28.4,0,0,0,0,264a24.00867,24.00867,0,0,0,24.00582,24H127.81618l-22.47457,22.46875c-11.36521,11.36133-12.99607,32.25781,0,45.25L156.24582,406.625c11.15623,11.1875,32.15619,13.15625,45.27726,0l22.47457-22.46875V488a24.00867,24.00867,0,0,0,24.00581,24,28.55934,28.55934,0,0,0,10.707-2.51562l98.72834-49.39063c14.62888-7.29687,26.50776-26.5,26.50776-42.85937V312.79688c72.59753-46.3125,128.03493-108.40626,128.03493-211.09376C512.07526,76.5,512.07526,51.29688,505.12019,19.09375ZM384.04033,168A40,40,0,1,1,424.05,128,40.02322,40.02322,0,0,1,384.04033,168Z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("rocket")` `` ] &lt;br&gt;
+
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("github")` `` ] &lt;br&gt;
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("times-circle")` `` ] &lt;br&gt; 
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("check")` `` ] &lt;br&gt;
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("question-circle")` `` ]&lt;br&gt;
+
+&lt;svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M532 386.2c27.5-27.1 44-61.1 44-98.2 0-80-76.5-146.1-176.2-157.9C368.3 72.5 294.3 32 208 32 93.1 32 0 103.6 0 192c0 37 16.5 71 44 98.2-15.3 30.7-37.3 54.5-37.7 54.9-6.3 6.7-8.1 16.5-4.4 25 3.6 8.5 12 14 21.2 14 53.5 0 96.7-20.2 125.2-38.8 9.2 2.1 18.7 3.7 28.4 4.9C208.1 407.6 281.8 448 368 448c20.8 0 40.8-2.4 59.8-6.8C456.3 459.7 499.4 480 553 480c9.2 0 17.5-5.5 21.2-14 3.6-8.5 1.9-18.3-4.4-25-.4-.3-22.5-24.1-37.8-54.8zm-392.8-92.3L122.1 305c-14.1 9.1-28.5 16.3-43.1 21.4 2.7-4.7 5.4-9.7 8-14.8l15.5-31.1L77.7 256C64.2 242.6 48 220.7 48 192c0-60.7 73.3-112 160-112s160 51.3 160 112-73.3 112-160 112c-16.5 0-33-1.9-49-5.6l-19.8-4.5zM498.3 352l-24.7 24.4 15.5 31.1c2.6 5.1 5.3 10.1 8 14.8-14.6-5.1-29-12.3-43.1-21.4l-17.1-11.1-19.9 4.6c-16 3.7-32.5 5.6-49 5.6-54 0-102.2-20.1-131.3-49.7C338 339.5 416 272.9 416 192c0-3.4-.4-6.7-.7-10C479.7 196.5 528 238.8 528 288c0 28.7-16.2 50.6-29.7 64z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("comments")` `` ]&lt;br&gt;
+
+&lt;svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"&gt;&lt;/path&gt;&lt;/svg&gt; .small[ `` `r icons::fontawesome("coffee")` `` ]&lt;br&gt;
+
+.center[You can search all available icons [here](https://fontawesome.com/v4/icons/).]
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+$$ Pr(\bar{Y}=1) = \frac{e^{ \beta_0 + \beta_1X_1 + \beta_2x_2 }}{(1 + e^{ \beta_0 + \beta_1X_1 + \beta_2x_2 })} $$
+.center[This is an equation: wow, it's so beautiful!]
+
+]
+
+--
+
+.pull-right[
+
+### Equations are also supported in slides
+
+You can use single &amp;dollar; signs to enclose an inline equation (e.g. `\(X_1\)`), or double dollar signs &amp;dollar;&amp;dollar; to create a block equation like on the left.
+
+### Something that annoys me...
+
+You might have noticed that these slides irritatingly float left and right blocks to be top-aligned rather than middle aligned when they have different sized content. You can fix this either with repeated breaks spacers `&lt;br&gt;` or you can use the custom `.middle-left[]` or `.middle-right[]` classes I wrote and added to the custom CSS.
+
+
+]
+
+&lt;br&gt;
+
+--
+
+.center[.tuos_purple[P.S.] You can add incremental slides like these using `--` between paragraphs, but this doesn't work *within* `.pull-left[]`, `.pull-right[]` split column slides, unfortunately.]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+
+$$ Pr(Y=1) = \frac{e^{ \beta_0 + \beta_1X_1 + \beta_2x_2 }}{(1 + e^{ \beta_0 + \beta_1X_1 + \beta_2x_2 })} $$
+
+.center[This is an equation: wow, it's even more beautiful!]
+
+
+
+
+]
+
+.middle-right[
+
+
+### Equations are also supported in slides
+
+You can use single .tuos_mint[&amp;dollar;] signs to enclose an inline equation (e.g. `\(X_1\)`), or double dollar signs .tuos_mint[&amp;dollar;&amp;dollar;] to create a block equation like on the left.
+
+### Something that annoys me...
+
+You might have noticed that these slides irritatingly float left and right blocks to be top-aligned rather than middle aligned when they have different sized content. You can fix this either with repeated breaks spacers `&lt;br&gt;` or you can use the custom `.middle-left[]` or `.middle-right[]` classes I wrote and added to the custom CSS.
+
+
+]
+
+---
+
+class: middle
+
+.middle-left-small[
+
+.center[
+
+&lt;img src="header/staff-photo.png" width="90%" /&gt;
+
+]
+
+]
+
+.middle-right-big[
+
+## Dr. Calum Webb
+#### .tuos_purple[Sheffield Methods Institute]&lt;br&gt;The University of Sheffield&lt;br&gt;The Wave, 2 Whitham Road&lt;br&gt;Sheffield&lt;br&gt;S10 2AH
+
+#### [c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+These custom classes also have equivalent `-big` and `-small` versions, e.g. `.middle-left-small[]`, `.middle-right-big[]`, that can be paired up. Perfect for staff profiles.
+
+
+]
+
+---
+
+class: middle
+
+.center[
+
+PDF versions of slides can be created using the excellent `renderthis` package. You will need to install `chromote` and `pdftools` as well. 
+
+These slides were saved as pdf using the following code: &lt;br&gt;`renderthis::to_pdf(from = "smi-xaringan-template.html", to = "smi-xaringan-template.pdf", complex_slides = TRUE)`
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2960;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
