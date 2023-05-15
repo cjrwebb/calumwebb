@@ -1,0 +1,126 @@
+/* stop logo overrun (no longer needed with header)
+
+.remark-slide-content > h3:first-of-type {
+    padding-right: 75px;
+}
+.remark-slide-content > h2:first-of-type {
+    padding-right: 75px;
+}
+.remark-slide-content > h1:first-of-type {
+    padding-right: 75px;
+}
+
+.remark-slide-content > h1:first-of-type {
+    padding-right: 20px;
+}
+
+*/
+
+/* Add padding to accommodate header */
+
+.remark-slide-content {
+  padding-top: 70px;
+}
+
+.small {
+  font-size: 80%;
+}
+.big {
+  font-size: 120%;
+}
+
+
+.shadow {
+  color: #F8F8F8;
+  text-shadow: 2.5px 2.5px #131E29;
+}
+
+
+.full-width {
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.pull-left-big {
+  width: 65%;
+  float: left;
+}
+
+.pull-right-small {
+  width: 30%;
+  float: right;
+}
+
+
+.pull-left-small {
+  width: 30%;
+  float: left;
+}
+
+.pull-right-big {
+  width: 65%;
+  float: right;
+}
+
+.hljs-github .hljs {
+    background: #131E2915;
+}
+
+/* Custom class for absolute two-column layouts  */
+
+.middle-left {
+  position: absolute;
+  width: 42%;
+  left: 5.275%;
+  margin-right: 52.675%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.middle-right {
+  position: absolute;
+  width: 42%;
+  left: 52.675%;
+  margin-right: 5.275%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.middle-left-big {
+  position: absolute;
+  width: 58%;
+  left: 5.275%;
+  margin-right: 34.675%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.middle-right-small {
+  position: absolute;
+  width: 26%;
+  left: 68%;
+  margin-right: 5.275%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.middle-right-big {
+  position: absolute;
+  width: 58%;
+  left: 36.6%;
+  margin-right: 5.275%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.middle-left-small {
+  position: absolute;
+  width: 26%;
+  left: 5.275%;
+  margin-right: 5.275%;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+
