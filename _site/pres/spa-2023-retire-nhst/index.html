@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Should we retire null hypothesis significance testing in (some) social policy research?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2023-06-26" />
+    <script src="retire-nhst_files/header-attrs/header-attrs.js"></script>
+    <link href="retire-nhst_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="retire-nhst_files/tile-view/tile-view.js"></script>
+    <link href="retire-nhst_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="retire-nhst_files/panelset/panelset.js"></script>
+    <script src="retire-nhst_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="retire-nhst_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="retire-nhst_files/clipboard/clipboard.min.js"></script>
+    <link href="retire-nhst_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="retire-nhst_files/shareon/shareon.min.js"></script>
+    <link href="retire-nhst_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="retire-nhst_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="retire-nhst_files/mark.js/mark.min.js"></script>
+    <link href="retire-nhst_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="retire-nhst_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <script src="retire-nhst_files/kePrint/kePrint.js"></script>
+    <link href="retire-nhst_files/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Should we retire null hypothesis significance testing in (some) social policy research?
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+Working Paper Available on SPA2023 Conference Platform | Code published on [Github](https://github.com/cjrwebb/retire-nhst)
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+
+
+
+.middle-left[
+
+## What is the effect of family support services spending on rates of children in the care system?
+
+]
+
+--
+
+.middle-right[
+
+
+
+
+&lt;table class="table" style="font-size: 24px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;font-weight: bold;"&gt; B &lt;/th&gt;
+   &lt;th style="text-align:right;font-weight: bold;"&gt; S.E. &lt;/th&gt;
+   &lt;th style="text-align:right;font-weight: bold;"&gt; t &lt;/th&gt;
+   &lt;th style="text-align:right;font-weight: bold;"&gt; p &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Child poverty rate z &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; * &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Inequality (Gini) z &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; * &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spending z &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.24 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Staffing z &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.70 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+.center[N = 50]
+
+]
+
+
+---
+
+.pull-left[
+
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-4-1.png" width="550" height="550" /&gt;
+
+]
+
+.middle-right[
+
+
+* Only effects with a correlation around **±0.4 or greater** will be **detectable** ("p&lt;0.05") **at least 80% of the time** with a sample size of N = 50.
+
+* Only effects from a sample with a correlation **.tuos_mint[above around ±0.275]** will be **.tuos_mint[detectable]** ("p&lt;0.05") **.tuos_mint[at all]** with a sample size of N = 50 (Lakens, 2017).
+
+* If we could randomly re-sample the data 1,000 times, the spending effect would **only be statistically significant in 23% of the samples.** 
+
+
+]
+
+
+---
+
+class: middle
+
+# Our study is **underpowered**. What can we do?
+
+.pull-left[
+
+### The textbook approach:
+
+* Do a **power analysis** beforehand and repeat the study with a larger sample and adequate power to detect the small/modest effect.
+
+* Only one problem...
+
+]
+
+--
+
+.pull-right[
+
+### We can't collect a bigger 'random' sample: we have data from all 50 administrative units (states, local authorities, countries, etc.). This is an **apparent population** (Berk, Western &amp; Weiss, 1995a)
+
+
+]
+
+
+
+---
+
+class: middle, center
+
+# Some suggestions...
+
+--
+
+.big[**Bin statistical inference** (e.g. our data are the population, no inference is needed [Berk, Western &amp; Weiss, 1995a])]
+
+--
+
+.big[**Change the ecological unit** (e.g. individual level survey, neighbourhoods rather than local authorities or states, etc.)]
+
+--
+
+.big[**Pool data over several years** (e.g. data for states/LAs between 2015-2021) [Bollen, 1995]]
+
+--
+
+.big[**Use meta-analysis** (Several non-significant results can illuminate a significant one [Bollen, 1995])]
+
+--
+
+.big[**Bin null hypothesis significance testing**]
+
+
+---
+
+class: middle
+
+# **Bin statistical inference**&lt;br&gt;A theoretical/philosophical argument
+
+.pull-left[
+
+A brief recap of frequentist NHST:
+
+* There is a true population parameter. 
+* Our estimates of this parameter vary because our samples of data vary.
+* The aim of statistical inference is to generalise from our sample to a population (e.g. a random sample of 500 people to the entire population of the UK)
+* We test the probability that the estimate might be observed from a random sample of size N if the true population parameter is equal to 0.
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+]
+
+--
+
+.pull-right[
+
+**Is this approach to statistical inference meaningful when our data are the complete population?**
+
+&gt; "If the data (the apparent population) are a census of a population and interest lies in a population value, then descriptive statistics are all that is needed. No inference is needed since nothing is unknown." (Berk, Western &amp; Weiss, 1995b: 483)
+
+But...
+
+* The 'population' could refer to a 'superpopulation' — the underlying data generating process.
+* Probably undesirable to have no measure of statistical uncertainty, especially if estimates are 'noisy'
+
+]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+# **Change the ecological unit**&lt;br&gt;At risk of fallacy
+
+* Sometimes appropriate, e.g. unemployment rates might be substituted with individual probability of being unemployed.
+* Often not: e.g. how to meaningfully disaggregate state or LA spending to the individual or neighbourhood level.
+* Uncomfortable implications for social policy/public administration research: .tuos_purple[macro- national or meso- policy and socioeconomic conditions don't matter because they're not convenient for our statistical practice]?
+
+]
+
+
+.pull-right[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-5-1.png" width="500" height="490" /&gt;
+
+]
+
+
+
+---
+
+class: middle
+
+.middle-left[
+
+# **Change the ecological unit**&lt;br&gt;At risk of fallacy
+
+* Sometimes appropriate, e.g. unemployment rates might be substituted with individual probability of being unemployed.
+* Often not: e.g. how to meaningfully disaggregate state or LA spending to the individual or neighbourhood level.
+* Uncomfortable implications for social policy/public administration research: .tuos_purple[macro- national or meso- policy and socioeconomic conditions don't matter because they're not convenient for our statistical practice]?
+
+]
+
+
+.pull-right[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-6-1.png" width="500" height="490" /&gt;
+
+]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+# **Pool data over several years**&lt;br&gt;The problem with pooling
+
+* Pool panel data for the same countries/LAs/states, etc. over multiple years to increase the sample size.
+* Ignores the multilevel structure of the data...
+
+]
+
+
+---
+
+class: middle
+background-color: white
+
+
+&lt;img src="images/pool-same.png" width="100%" /&gt;
+
+
+???
+
+The top panel shows the results from 200 simulated datasets that represent 50 units (states, LAs, countries) measured over 20 time points (e.g. 2002-2022). The coefficients are far more likely to be significant, and are generally unbiased, however, this ignores the fact that differences between units are distinct from differences within- units.
+
+Once an appropriate multilevel CWC(M) model is used, the standard errors for the between units — the units answering the question of whether, for example, states with higher levels of spending have higher rates of children in care — end up the same as the single year standard errors.
+
+
+---
+
+class: middle
+background-color: white
+
+
+&lt;img src="images/pool-zero.png" width="100%" /&gt;
+
+
+???
+
+This can result in considerable bias when the effects are anything but exactly the same at the between and within unit level. This is highly unlikely. For example, in children's services spending the between-unit level is typically positive (places with more problems get more money), while the relationship at the within-unit level are typically negative (if a place gets more money than usual in a given year it tends to have fewer problems).
+
+---
+
+class: middle
+background-color: white
+
+
+&lt;img src="images/pool-opposite.png" width="100%" /&gt;
+
+
+???
+
+This can result in considerable bias when the effects are anything but exactly the same at the between and within unit level. This is highly unlikely. For example, in children's services spending the between-unit level is typically positive (places with more problems get more money), while the relationship at the within-unit level are typically negative (if a place gets more money than usual in a given year it tends to have fewer problems).
+
+---
+
+class: middle
+background-color: white
+
+.middle-left[
+
+# **Meta-analysis**&lt;br&gt;In theory and practice...
+
+
+* It is true that we could repeat a study every year for 20 years and even if all of the coefficients from each individual study were non-significant a meta-analysis of all of these studies would be likely to be significant.
+
+* It is also true that doing this would be incredibly boring, unlikely to attract funding, and unlikely to get written up and published...
+
+* This would lead to considerable publication bias which will affect the meta-analysis results
+
+]
+
+--
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="images/publication-bias.png" width="100%" /&gt;
+
+]
+
+---
+
+class: middle, inverse
+
+# At this point, you may be wondering...
+
+
+---
+
+class: middle, inverse
+
+# Is this one of those depressing methods papers where someone points out everything that is wrong with what we are doing and offers no practical alternatives?
+
+---
+
+class: middle, inverse
+
+# Fair point.
+
+---
+
+class: middle, inverse
+
+# But no, it is not!
+
+
+---
+
+class: middle
+
+.pull-left-small[
+
+# **An alternative**: Describing, rather than deciding, uncertainty
+
+
+From a pragmatic standpoint, the root of this problem is the use of a .tuos_purple[decision threshold] (i.e. the Null Hypothesis Significance Test).
+
+But there are alternatives!
+
+
+]
+
+.pull-right-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-11-1.png" width="800" height="400" /&gt;
+
+]
+
+---
+
+class: middle
+
+.pull-left-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-12-1.png" width="800" height="400" /&gt;
+
+]
+
+
+.middle-right-small[
+
+
+**Frequentist NHST Interpretation**
+
+* There was no statistically significant association between spending on family support services and rates of children in care (p = 0.244)
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-13-1.png" width="800" height="400" /&gt;
+
+]
+
+
+.middle-right-small[
+
+
+**Bayesian descriptive interpretation**
+
+* .tuos_purple[87% of the posterior distribution] was consistent with spending having a .tuos_purple[negative effect on rates of children in care]; greater spending on preventative services is around 6.7 times as likely to reduce rates of care entry than to increase them (*Probability of direction*).
+
+
+]
+
+---
+
+class: middle
+
+
+.pull-left-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-14-1.png" width="800" height="400" /&gt;
+
+]
+
+
+.middle-right-small[
+
+
+**Bayesian descriptive interpretation**
+
+
+* .tuos_purple[65% of the posterior distribution] was associated with a .tuos_purple[negative effect of spending beyond what would be considered practically equivalent to zero]. There is only a 3% probability that increasing spending would increase rates of care (*Region of Practical Equivalence*).
+
+
+
+
+]
+
+---
+
+class: middle
+
+
+.pull-left-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-15-1.png" width="800" height="400" /&gt;
+
+]
+
+
+.middle-right-small[
+
+
+**Bayesian descriptive interpretation**
+
+
+* There is a .tuos_purple[76.5% probability that increasing spending would decrease rates of children in care to such an extent to be cost-neutral] (&lt; -0.05sd) (*Policy Relevant Value*).
+
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left-big[
+
+&lt;img src="retire-nhst_files/figure-html/unnamed-chunk-16-1.png" width="800" height="400" /&gt;
+
+]
+
+
+.pull-right-small[
+
+&gt; The .tuos_purple[straightforwardness] of these statements is possible because of the .tuos_purple[Bayesian] interpretation of probability: the parameter varies but the data are fixed, our knowledge of the parameter's value is uncertain, rather than the variability of the sample.&lt;br&gt;&lt;br&gt;However, that doesn't mean that .tuos_purple[frequentist] descriptions of uncertainty are impossible to imagine. The challenge is the dominance of NHST and difficulty of interpretation.
+
+
+]
+
+
+---
+
+class: center, middle
+
+# Conclusions &amp; Reflections
+
+.big[These kinds of .tuos_purple[apparent populations are common in social policy research]. Their units are also meaningful for policy development.]
+
+--
+
+.big[A reliance on NHST, inappropriate at worst and underpowered at best, indirectly .tuos_purple[generates more evidence for individualised/atomised policies and framing of social problems] (where there is more statistical power). How many effects stood no chance of being detected?]
+
+--
+
+.big[There are .tuos_purple[no shortcuts for making up for the shortfall of statistical power] in apparent populations, but alternative descriptive accounts of uncertainty are possible and desirable.]
+
+
+
+---
+
+class: middle
+
+.middle-left-small[
+
+.center[
+
+&lt;img src="header/staff-photo.png" width="90%" /&gt;
+
+]
+
+]
+
+.pull-right-big[
+
+## Dr. Calum Webb
+.tuos_purple[Sheffield Methods Institute]&lt;br&gt;The University of Sheffield&lt;br&gt;The Wave, 2 Whitham Road&lt;br&gt;Sheffield&lt;br&gt;S10 2AH
+
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+If this presentation has piqued your interest even slightly, I would recommend learning Bayesian data analysis via [Richard McElreath's Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) textbook and lecture series followed by checking out the `brms` `R` package.
+
+Remember, the full working paper is available from the SPA2023 conference website and the code for all simulations is available on [github](https://github.com/cjrwebb/retire-nhst)
+
+
+]
+
+
+---
+
+class: middle
+
+# References
+
+Berk, R. A., Western, B., &amp; Weiss, R. E. (1995a). Statistical inference for apparent populations. *Sociological Methodology*, **25**, 421-458.
+
+Berk, R. A., Western, B., &amp; Weiss, R. E. (1995b). Reply to Bollen, Firebaugh, and Rubin. *Sociological Methodology*, **25**, 481-485.
+
+Bollen, K. A. (1995). Apparent and nonapparent significance tests. *Sociological Methodology*, **25**, 459-468.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
