@@ -4,7 +4,7 @@
     <title>SMI606: Assessment 2</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-12-05" />
+    <meta name="date" content="2023-08-25" />
     <script src="week-x-assessment-2-walkthrough_files/header-attrs/header-attrs.js"></script>
     <link href="week-x-assessment-2-walkthrough_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-x-assessment-2-walkthrough_files/tile-view/tile-view.js"></script>
@@ -17,21 +17,32 @@
     <script src="week-x-assessment-2-walkthrough_files/shareon/shareon.min.js"></script>
     <link href="week-x-assessment-2-walkthrough_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-x-assessment-2-walkthrough_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-x-assessment-2-walkthrough_files/mark.js/mark.min.js"></script>
+    <link href="week-x-assessment-2-walkthrough_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-x-assessment-2-walkthrough_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
 
-class: middle
+
+class: middle, title
 background-size: contain
 
-# .tuos_purple[SMI606: Assessment 2&lt;br&gt;Guidance &amp; Walkthrough]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+# SMI606: Assessment 2
+#### Guidance &amp; Walkthrough
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +50,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -75,6 +86,7 @@ top:1em;right:1em;
 
 
 
+
 <style>.xe__progress-bar__container {
   top:0;
   opacity: 1;
@@ -84,7 +96,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -108,7 +120,7 @@ top:1em;right:1em;
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -136,7 +148,7 @@ top:1em;right:1em;
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -150,7 +162,7 @@ Code, bibliography, code comments do not count.
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * **Structure/Tone/Code**
 
@@ -178,7 +190,7 @@ Code, bibliography, code comments do not count.
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -274,7 +286,7 @@ It is good to have clear, efficient, easy to read, well-explained code but this 
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -302,7 +314,7 @@ It is good to have clear, efficient, easy to read, well-explained code but this 
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -492,7 +504,7 @@ Coming up with a research question...
   * Variables linked to spatial data; no independent or dependent variables but it will be common to compare more than one variable over space ('space' can be thought of as the independent variable), or the same variable in two different areas (cities, regions).
       * Variable distributed over space can be continuous, ordinal, or binary categorical (though most common in aggregate data is continuous)
       * Spatial weight matrix can be distance based (as learned in class and practical) or neighbours (contiguity/adjacency/shared borders) based (see [this guide](https://cran.r-project.org/web/packages/spNetwork/vignettes/SpatialWeightMatrices.html)).
-      * If challenging yourself with a [spatial lag model](https://kimura.univ-montp2.fr/~rousset/spaMM/spaMMintro.pdf) distance based matrices follow a Matérn function, neighbour matrices follow an adjacency function.
+      * If challenging yourself with a [spatial lag model](https://calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/spaMMintro.pdf) distance based matrices follow a Matérn function, neighbour matrices follow an adjacency function.
 
 
 ]
@@ -549,7 +561,7 @@ class: middle
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -577,7 +589,7 @@ class: middle
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -787,7 +799,7 @@ Resources and support for literature reviewing is available from the [library](h
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -815,7 +827,7 @@ Resources and support for literature reviewing is available from the [library](h
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -854,7 +866,7 @@ Similar to assessment 1, you need to describe **where your data** (or the specif
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -882,7 +894,7 @@ Similar to assessment 1, you need to describe **where your data** (or the specif
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -905,11 +917,11 @@ Code, bibliography, code comments do not count.
 
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Why did you select the independent variables you selected (which were of substantive interest and which were just because of their potential confounding effects?)
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Did you transform/recode your variables in any way? (Recoding: [Week 8 Slides 36-47](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#36), Transforming: [Week 8 Slides 48-56](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#48))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Did you transform/recode your variables in any way? (Recoding: [Week 8 Slides 37-48](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#37), Transforming: [Week 8 Slides 50-58](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#50))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; How did you assess model fit ([R-square](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#48)/[Accuracy](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#60)/[k-fold validation](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#73))?
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; How did you assess model fit ([R-square](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#57)/[Accuracy](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#60)/[k-fold validation](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#73))?
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; How did you check for any violations of assumptions ([linearity, homoscedasticity, outliers/leverage points, normality of residuals](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#57), [multicollinearity](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#69), [autocorrelation](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#93))?
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; How did you check for any violations of assumptions ([linearity, homoscedasticity, outliers/leverage points, normality of residuals](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#60), [multicollinearity](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#77), [autocorrelation](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#89))?
 
 
 ]
@@ -920,7 +932,7 @@ Code, bibliography, code comments do not count.
 
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; If a generalisable sample, what critical value did you use for interpreting the significance of the results? ([Week 4](https://calumwebb.co.uk/teaching/SMI606-content/week-4/slides/#1))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; (Logistic regression) How did you communicate the results (e.g. did you transform coefficients into [odds ratios](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#47) using `exp()`? Did you use [prediction/marginal effects plots](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#53)?)
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; (Logistic regression) How did you communicate the results (e.g. did you transform coefficients into [odds ratios](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#48) using `exp()`? Did you use [prediction/marginal effects plots](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#55)?)
 
 ]
 
@@ -934,9 +946,9 @@ Code, bibliography, code comments do not count.
 
 **Cluster Analysis** ([Week 10](https://calumwebb.co.uk/teaching/SMI606-content/week-10/slides/#1))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Which variables (features) did you include? ([Week 10: Slides 23-24](https://calumwebb.co.uk/teaching/SMI606-content/week-10/slides/?panelset1=what-will-i-learn%253F2#23))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Which variables (features) did you include? ([Week 10: Slides 24-25](https://calumwebb.co.uk/teaching/SMI606-content/week-10/slides/?panelset1=what-will-i-learn%253F2#24))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Did you transform/recode your variables in any way? (Recoding: [Week 8 Slides 36-47](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#36), Transforming: [Week 8 Slides 48-56](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#48))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Did you transform/recode your variables in any way? (Recoding: [Week 8 Slides 36-49](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#37), Transforming: [Week 8 Slides 50-57](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#48))
 
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Did you use *k-means* or *Hierarchical Cluster Analysis*?
 
@@ -1000,7 +1012,7 @@ Code, bibliography, code comments do not count.
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -1028,7 +1040,7 @@ Code, bibliography, code comments do not count.
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -1044,7 +1056,7 @@ class: middle
 
 **Some people like to combine their findings and discussion, e.g.** This is fine.
 
-"There was a significant association between age and the likelihood of voting to leave the European Union in the 2016 Brexit Referendum (p&lt;0.05), after adjusting for participants' home region, education levels, and past levels of political engagement. Each additional 10 years of age were associated with a 20% increase in the odds of voting to leave the EU. This finding corresponds with those of Becker, et al. (2017) who reported that support for Leave increased to 60% among voters aged 65 or over, compared to 27% for 18-24 year olds. The probability plot (Figure X) suggests that the strength of this association with was similar in this study even after controlling for region and education levels. This might suggest generational differences in attitudes towards the EU, or differences in the messaging and strategies of the leave and remain campaigns themselves, are a better explanation of support for leaving the EU among older people than the general political ennui of younger people or the lower (average) educational capital of older people required to interrogate the claims made by campaigns."
+"There was a significant association between age and the likelihood of voting to leave the European Union in the 2016 Brexit Referendum (p&lt;0.05), after adjusting for participants' home region, education levels, and past levels of political engagement. Each additional 10 years of age were associated with a 20% increase in the odds of voting to leave the EU. This finding corresponds with those of Becker, et al. (2017) who reported that support for Leave increased to 70% among voters aged 65 or over, compared to 27% for 18-24 year olds. The probability plot (Figure X) suggests that the strength of this association with was similar in this study even after controlling for region and education levels. This might suggest generational differences in attitudes towards the EU, or differences in the messaging and strategies of the leave and remain campaigns themselves, are a better explanation of support for leaving the EU among older people than the general political ennui of younger people or the lower (average) educational capital of older people required to interrogate the claims made by campaigns."
 
 ---
 
@@ -1054,7 +1066,7 @@ class: middle
 
 **Some people like to keep their findings and discussion seperate, e.g.** This is also fine.
 
-"There was a significant association between age and the likelihood of voting to leave the European Union in the 2016 Brexit Referendum (p&lt;0.05), after adjusting for participants' home region, education levels, and past levels of political engagement. Each additional 10 years of age were associated with a 20% increase in the odds of voting to leave the EU. The predicted probability plot (Figure X) suggests that support for leaving the EU was, on average, around 20-30% for people aged between 20 and 30 years old at the time of the survey but increases to between 50 to 60% for people aged between 60 and 70, holding education, region, and past levels of political engagement at average levels."
+"There was a significant association between age and the likelihood of voting to leave the European Union in the 2016 Brexit Referendum (p&lt;0.05), after adjusting for participants' home region, education levels, and past levels of political engagement. Each additional 10 years of age were associated with a 20% increase in the odds of voting to leave the EU. The predicted probability plot (Figure X) suggests that support for leaving the EU was, on average, around 20-30% for people aged between 20 and 30 years old at the time of the survey but increases to between 50 to 70% for people aged between 60 and 70, holding education, region, and past levels of political engagement at average levels."
 
 ... *Later in the discussion section* ...
 
@@ -1071,14 +1083,14 @@ class: middle
 
 **Multiple Linear Regression** ([Week 8](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Regression coefficients and interpretation ([Week 7: Slides 47-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#47))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Regression coefficients and interpretation ([Week 7: Slides 57-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#57))
   * Remember to use the correct scale units when interpreting coefficients! 
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Model fit ([Week 7: Slides 47-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#47))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Model fit ([Week 7: Slides 57-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#57))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Null hypothesis significance tests and interpretation, if appropriate (p-values) ([Week 7: Slides 47-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#47))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Null hypothesis significance tests and interpretation, if appropriate (p-values) ([Week 7: Slides 57-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#57))
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; (Optional but can be helpful) Marginal effects/predicted values plot ([Week 8: Slides 17-19](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#17))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; (Optional but can be helpful) Marginal effects/predicted values plot ([Week 8: Slides 18-20](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#18))
 
 
 
@@ -1089,14 +1101,14 @@ class: middle
 &lt;br&gt;
 
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Assumptions (some people like to put these in the discussion section, or in a 'limitations and model checking' section after their discussion but before their conclusions. Either way is fine with me!)
-  * Linearity ([Week 8: Slides 58-59](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#58))
-  * Homoscedasticity ([Week 8: Slides 60-61](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#60))
-  * No outliers or leverage points ([Week 8: Slides 62-65](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#62))
-  * Normality of residuals ([Week 8: Slides 66-67](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#66))
+  * Linearity ([Week 8: Slides 61-62](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#61))
+  * Homoscedasticity ([Week 8: Slides 63-64](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#63))
+  * No outliers or leverage points ([Week 8: Slides 65-68](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#65))
+  * Normality of residuals ([Week 8: Slides 69-70](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#69))
   * No multicollinearity ([Week 8: Slides 69-75](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#69))
-  * No autocorrelation ([Week 9: Slides 89-95](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#89))
+  * No autocorrelation ([Week 9: Slides 72-78](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#72))
   * What could you do if assumptions are violated? 
-    * Linearity, homoscedasticity, outliers, normality: [Week 8 Slide 68](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#68)
+    * Linearity, homoscedasticity, outliers, normality: [Week 8 Slide 71](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#71)
     * Multicollinearity, autocorrelation: [Week 9 Slide 98](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#98)
 
 
@@ -1119,7 +1131,7 @@ class: middle
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Model fit ([Week 9: Slides 60-74](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#60))
   * Only need to pick one: Pseudo `\(\text{-}R^2\)`, Accuracy, k-fold cross-validation.
 
-&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Null hypothesis significance tests and interpretation, if appropriate (p-values) ([Week 7: Slides 47-58](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#47))
+&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; Null hypothesis significance tests and interpretation, if appropriate (p-values) ([Week 7: Slides 53](https://calumwebb.co.uk/teaching/SMI606-content/week-7/slides/?panelset1=what-will-i-learn%253F2#53), [Week 4](https://calumwebb.co.uk/teaching/SMI606-content/week-4/slides/?panelset1=what-will-i-learn%253F2#1))
 
 &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt; (Optional but can be helpful) Marginal effects/predicted values plot ([Week 9: Slides 53-57](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#53))
 
@@ -1232,7 +1244,7 @@ It can also be hard to talk about choropleth maps if you don't have certain land
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/xid-43959194_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-2-guidance/assessment-2-details.pdf).
 
 * Structure/Tone/Code
 
@@ -1260,7 +1272,7 @@ It can also be hard to talk about choropleth maps if you don't have certain land
 
 Code, bibliography, code comments do not count.
 
-60% of final mark.
+70% of final mark.
 
 &lt;img src="images/assess2.png" width="70%" /&gt;
 ]
@@ -1430,7 +1442,7 @@ what they mean and how future research might address them.
 
 * Were any of the assumptions violated?
 * If so, how might this being have affected the results you found?
-* What would you recommend to correct for this violation of assumptions? (You don't have to actually do these). Regression Cheatsheets [1](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#68), [2](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#98).
+* What would you recommend to correct for this violation of assumptions? (You don't have to actually do these). Regression Cheatsheets [1](https://calumwebb.co.uk/teaching/SMI606-content/week-8/slides/?panelset1=what-will-i-learn%253F2#71), [2](https://calumwebb.co.uk/teaching/SMI606-content/week-9/slides/?panelset1=what-will-i-learn%253F2#98).
 
 
 ]
@@ -1603,6 +1615,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

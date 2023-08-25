@@ -4,7 +4,7 @@
     <title>SMI606: Assessment 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-11-01" />
+    <meta name="date" content="2023-08-25" />
     <script src="week-x-assessment-1-walkthrough_files/header-attrs/header-attrs.js"></script>
     <link href="week-x-assessment-1-walkthrough_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-x-assessment-1-walkthrough_files/tile-view/tile-view.js"></script>
@@ -17,21 +17,31 @@
     <script src="week-x-assessment-1-walkthrough_files/shareon/shareon.min.js"></script>
     <link href="week-x-assessment-1-walkthrough_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-x-assessment-1-walkthrough_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-x-assessment-1-walkthrough_files/mark.js/mark.min.js"></script>
+    <link href="week-x-assessment-1-walkthrough_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-x-assessment-1-walkthrough_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
 
-class: middle
+class: middle, title
 background-size: contain
 
-# .tuos_purple[SMI606: Assessment 1&lt;br&gt;Top tips &amp; Walkthrough]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+# SMI606: Assessment 1
+#### Guidance &amp; Walkthrough
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +49,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -75,6 +85,7 @@ top:1em;right:1em;
 
 
 
+
 <style>.xe__progress-bar__container {
   top:0;
   opacity: 1;
@@ -84,7 +95,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -102,13 +113,15 @@ top:1em;right:1em;
 
 
 
+
+
 ---
 
 # Assessment Guidance
 
 .pull-left[
 
-[Link to the assessment guidance](https://vle.shef.ac.uk/bbcswebdav/pid-6071227-dt-content-rid-43961412_1/xid-43961412_1).
+[Link to the assessment guidance](https://www.calumwebb.co.uk/teaching/SMI606-content/assessment-1-guidance/assessment-1-details.pdf).
 
 * Pick and dataset and research question
 
@@ -759,6 +772,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

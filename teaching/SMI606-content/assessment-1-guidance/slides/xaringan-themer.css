@@ -18,52 +18,53 @@
  *  Version: 0.4.2
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,300i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Playfair+Display:600,600i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Source+Serif+Pro:600,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Lucida+Console&display=swap);
 
 
 :root {
   /* Fonts */
-  --text-font-family: 'Work Sans';
+  --text-font-family: 'Source Sans Pro';
   --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: 'Playfair Display';
+  --header-font-family: 'Source Serif Pro';
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
-  --code-font-family: 'Source Code Pro';
+  --code-font-family: 'Lucida Console';
   --code-font-is-google: 1;
   --base-font-size: 20px;
-  --text-font-size: 1rem;
+  --text-font-size: 0.9rem;
   --code-font-size: 0.65rem;
-  --code-inline-font-size: 1em;
-  --header-h1-font-size: 2.25rem;
-  --header-h2-font-size: 1.75rem;
-  --header-h3-font-size: 1.5rem;
+  --code-inline-font-size: 0.85rem;
+  --header-h1-font-size: 2rem;
+  --header-h2-font-size: 1.5rem;
+  --header-h3-font-size: 1.25rem;
 
   /* Colors */
-  --text-color: #000000;
-  --header-color: #019EE3;
-  --background-color: #FFFFFF;
-  --link-color: #019EE3;
-  --text-bold-color: #019EE3;
+  --text-color: #131E29;
+  --header-color: #131E29;
+  --background-color: #F8F8F8;
+  --link-color: #005A8F;
+  --text-bold-color: #440099;
   --code-highlight-color: rgba(255,255,0,0.5);
-  --inverse-text-color: #000000;
-  --inverse-background-color: #FCF281;
-  --inverse-header-color: #000000;
-  --inverse-link-color: #019EE3;
-  --title-slide-background-color: #019EE3;
-  --title-slide-text-color: #000000;
-  --header-background-color: #019EE3;
-  --header-background-text-color: #FFFFFF;
-  --primary: #019EE3;
-  --secondary: #FCF281;
+  --inverse-text-color: #9ADBE8;
+  --inverse-background-color: #440099;
+  --inverse-header-color: #9ADBE8;
+  --inverse-link-color: #F8F8F8;
+  --title-slide-background-color: #131E29;
+  --title-slide-text-color: #FFFFFF;
+  --header-background-color: #131E29;
+  --header-background-text-color: #F8F8F8;
+  --primary: #131E29;
+  --secondary: #440099;
   --white: #FFFFFF;
   --black: #000000;
-  --tuos_purple: #030043;
-  --grey: #a8a8a8;
-  --tuos_blue: #019EE3;
+  --tuos_purple: #440099;
+  --grey: #131E2960;
+  --tuos_blue: #9ADBE8;
+  --tuos_mint: #00CE7C;
 }
 
 html {
@@ -82,7 +83,7 @@ h1, h2, h3 {
 }
 .remark-slide-content {
   background-color: var(--background-color);
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: 16px 64px 16px 64px;
   width: 100%;
   height: 100%;
@@ -104,15 +105,15 @@ h1, h2, h3 {
 }
 .remark-inline-code {
   font-size: var(--code-inline-font-size);
-  color: #019EE3;
+  color: #440099;
 }
 .remark-slide-number {
-  color: #019EE3;
+  color: #44009970;
   opacity: 1;
   font-size: 0.9rem;
 }
 strong {
-  font-weight: bold;
+  font-weight: 600;
   color: var(--text-bold-color);
 }
 a, a > code {
@@ -155,10 +156,10 @@ a, a > code {
   float: left;
 }
 .left-column h2, .left-column h3 {
-  color: #019EE399;
+  color: #131E2999;
 }
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: #019EE3;
+  color: #131E29;
 }
 .right-column {
   width: 75%;
@@ -180,13 +181,13 @@ img, video, iframe {
   max-width: 100%;
 }
 blockquote {
-  border-left: solid 5px #FCF28180;
+  border-left: solid 5px #44009980;
   padding-left: 1em;
 }
 .remark-slide table {
   margin: auto;
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
+  border-top: 1px solid #44009970;
+  border-bottom: 1px solid #44009970;
 }
 .remark-slide table thead th {
   border-bottom: 1px solid #ddd;
@@ -197,7 +198,7 @@ th, td {
 .remark-slide table:not(.table-unshaded) thead,
 .remark-slide table:not(.table-unshaded) tfoot,
 .remark-slide table:not(.table-unshaded) tr:nth-child(even) {
-  background: #FEFCE5;
+  background: transparent;
 }
 table.dataTable tbody {
   background-color: var(--background-color);
@@ -207,7 +208,7 @@ table.dataTable.display tbody tr.odd {
   background-color: var(--background-color);
 }
 table.dataTable.display tbody tr.even {
-  background-color: #FEFCE5;
+  background-color: transparent;
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -318,5 +319,11 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 }
 .bg-tuos_blue {
   background-color: var(--tuos_blue);
+}
+.tuos_mint {
+  color: var(--tuos_mint);
+}
+.bg-tuos_mint {
+  background-color: var(--tuos_mint);
 }
 
