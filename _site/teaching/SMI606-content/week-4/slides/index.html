@@ -4,7 +4,7 @@
     <title>SMI606: Week 4 — Inference</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-10-04" />
+    <meta name="date" content="2023-08-25" />
     <script src="week-04-inference_files/header-attrs/header-attrs.js"></script>
     <link href="week-04-inference_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-04-inference_files/tile-view/tile-view.js"></script>
@@ -17,6 +17,10 @@
     <script src="week-04-inference_files/shareon/shareon.min.js"></script>
     <link href="week-04-inference_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-04-inference_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-04-inference_files/mark.js/mark.min.js"></script>
+    <link href="week-04-inference_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-04-inference_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <script src="week-04-inference_files/jquery/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="week-04-inference_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -35,7 +39,7 @@
     <script src="week-04-inference_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="week-04-inference_files/formattable_widget-binding/formattable_widget.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -44,11 +48,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 4&lt;br&gt;Inference]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -56,14 +64,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -91,6 +99,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -101,7 +110,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -112,6 +121,7 @@ top:1em;right:1em;
   0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
+
 
 
 
@@ -172,8 +182,8 @@ class: middle
 
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-496a8e57e0b0d5922d5f" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-496a8e57e0b0d5922d5f">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-05b0483841046f480b98" class="formattable_widget html-widget " style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-05b0483841046f480b98">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -279,6 +289,27 @@ So, imagine for a moment that we've been contracted by a Las Vegas casino who ha
 
 * We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"&gt;&lt;/path&gt;&lt;/svg&gt;
 
+]
+
+.pull-right[
+
+![](images/qrcode_webb.shinyapps.io.png)
+
+]
+
+
+---
+
+# Getting a feel for inferential statistics
+
+&lt;br&gt;
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+* We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"&gt;&lt;/path&gt;&lt;/svg&gt;
+
 * Each of you have been given a (virtual) die that you can roll as many times as you like. You don't know whether you have a **fair** die or a **loaded die**. A loaded die will roll some numbers more often than others. &lt;svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"&gt;&lt;/path&gt;&lt;/svg&gt;
 
 ]
@@ -331,7 +362,7 @@ Our task is to roll the die and use our data analysis skills to determine whethe
 
 class: inverse, middle
 
-# .tuos_purple[Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.] 
+# Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.
 
 #### (e.g. that a die is fair, or that there is no relationship between two variables)
 
@@ -727,6 +758,17 @@ class: middle
   * Die
   * And other things.
 
+
+---
+
+class: inverse, middle
+
+
+# Sampling methods
+
+Whether our data are a representative sample of a larger population often depends on the *sampling method*
+
+
 ---
 
 class: middle
@@ -741,8 +783,6 @@ class: middle
 
 # Opportunity sampling (60% of pixels)
 
-&lt;br&gt;
-
 .center[
 &lt;img src="images/opportunity-sample-600-600-60pc.png" alt="The picture shows an older man and woman in a park. The man is pointing at something not shown on the right side of the screen. The image has a dashed border around it which shows that some of the total picture is not visible to the viewer (around 40% of it)." width="770" height="502" /&gt;
 ]
@@ -750,8 +790,6 @@ class: middle
 ---
 
 # Population
-
-&lt;br&gt;
 
 .center[
 &lt;img src="images/base-img.jpg" alt="The picture from before has now been expanded. It now shows the woman and man on the left hand side and the former British Prime Minister Boris Johnson on the right hand side. The man is pointing at the former prime minister in an accusatory way. The prime minister was previously obscured because the sample of the picture did not include him." width="770" height="502" /&gt;
@@ -776,8 +814,6 @@ class: middle
 
 # Random sampling (60% of pixels)
 
-&lt;br&gt;
-
 .center[
 &lt;img src="images/random-sample-60pc.png" alt="The image is the same as the previous picture in the park: two people stand pointing at the former British prime minister. However, now the image is fuzzy because 60% of the pixels have been selected at random. While it is still easy to roughly make out the 'whole picture', some of the details might be fuzzy - but they are not missing." width="770" height="502" /&gt;
 ]
@@ -785,8 +821,6 @@ class: middle
 ---
 
 # Random sampling (30% of pixels)
-
-&lt;br&gt;
 
 .center[
 &lt;img src="images/random-sample-30pc.png" alt="The image now includes a sample of only 30% of the pixels. Even though the image is much grainier than before, the random sampling of pixels still seems to do a good job of helping us infer what the overall image is showing." width="770" height="502" /&gt;
@@ -812,8 +846,6 @@ class: middle
 
 # Random sampling (with non-response)
 
-&lt;br&gt;
-
 .center[
 &lt;img src="images/stratefied-1.5-0.2-1.png" alt="The image now shows what would happen if one part of the image is less likely to respond to the random selection than another. In the left hand side of the image, the two people are shown in a high degree of clarity as a large number of pixels has been selected. On the right hand side of the image, where the former Prime Minister stands, there are hardly any pixels shown at all. As a result, the left hand side of the image is much clearer than the right hand side." width="770" height="502" /&gt;
 ]
@@ -821,8 +853,6 @@ class: middle
 ---
 
 # Random sampling (with non-response)
-
-&lt;br&gt;
 
 .center[
 &lt;img src="images/stratefied-1.5-0.2-2.png" alt="The image is the same as the previous image but now includes the caption '50% more likely than average to respond to a survey' on the left hand side and '80% less likely than average to respond to a survey' on the right hand side." width="770" height="502" /&gt;
@@ -849,8 +879,6 @@ class: middle
 
 ## Stratified random sampling (with non-response adjustment)
 
-&lt;br&gt;
-
 .center[
 &lt;img src="images/stratefied-1.5-0.2-3.png" alt="The image shows the result of a sample of pixels where the left hand side is 50% more likely to respond and the right hand side is 80% less likely to respond. Now an additional caption on the left hand side reads: 'send out only 2/3rds of the surveys than random sampling dictates would be needed for a sample of 60%' and an additional caption on the right hand side reads 'send out five times the number of surveys than random sampling dictates would be needed for a sample of 60%'" width="770" height="502" /&gt;
 ]
@@ -859,8 +887,6 @@ class: middle
 
 ## Stratified random sampling (with non-response adjustment)
 
-&lt;br&gt;
-
 .center[
 &lt;img src="images/stratefied-1.5-0.2-4.png" alt="The left hand side and the right hand side are now closer to being in the same level of clarity, but there is still less clarity on the right hand side of the image compared to the left. The caption on the left hand side reads: 3/4s as many surveys sent out. The caption on the right hand side reads: 3 times as many surveys sent out." width="770" height="502" /&gt;
 ]
@@ -868,8 +894,6 @@ class: middle
 ---
 
 ## Stratified random sampling (with non-response adjustment)
-
-&lt;br&gt;
 
 .center[
 &lt;img src="images/stratefied-1.5-0.2-5.png" alt="The left hand side and the right hand side are now displayed in about the same level of clarity. The caption on the left hand side reads: 2/3rds as many surveys sent out. The caption on the right hand side reads: 5 times as many surveys sent out." width="770" height="502" /&gt;
@@ -952,6 +976,15 @@ We can also have a scenario where we get a proportionally representative sample 
 __Imputation__ and __maximum likelihood__ is too complex a topic to cover here, but is something to be aware of if you are doing a quantitative PhD.
 
 
+
+---
+
+class: inverse, middle
+
+
+# Inference in experimental designs
+
+
 ---
 
 class: middle
@@ -971,6 +1004,7 @@ In other words, inferential statistics can be used to determine __whether the di
 ---
 
 class: middle
+background-color: white
 
 .center[
 &lt;img src="images/experiment-1.png" alt="The picture shows a scatterplot of a random spread of three different types of shapes, all of which are across five different colours. There is no order to or sorting of the points." width="70%" /&gt;
@@ -979,6 +1013,7 @@ class: middle
 ---
 
 class: middle
+background-color: white
 
 .center[
 &lt;img src="images/experiment-2.png" alt="A line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="70%" /&gt;
@@ -988,6 +1023,7 @@ class: middle
 ---
 
 class: middle
+background-color: white
 
 .center[
 &lt;img src="images/experiment-3.png" alt="A different line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="70%" /&gt;
@@ -996,6 +1032,7 @@ class: middle
 ---
 
 class: middle
+background-color: white
 
 .center[
 &lt;img src="images/experiment-random-split-2.png" alt="The points are now sorted into those on the 'control' side of the line and those on the 'experiment' side of the line. They have also been sorted into colour and shape.  The random split has resulted in 5 cross shaped points being in the control group and 7 cross shaped points being in the experimental group. 6 square shaped points are in the control group and 7 are in the experimental group. 7 triangles are in the control group and 5 are in the experimental group. 6 circles are in the control group and 7 are in the experimental group. The colours are also fairly evenly represented in both the control group and experimental group. There are 4 green points in both the control and experimental groups. Both groups have at least three of all of the 7 possible colours." width="90%" /&gt;
@@ -1004,12 +1041,22 @@ class: middle
 
 ---
 
+class: inverse, middle
+
+
+# Inferential statistics for hypothesis testing
+
+Which hypothesis tests should we use for each combination of variables?
+
+
+---
+
 class: middle
 
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-e04e4305f85889a480ee" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-e04e4305f85889a480ee">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e8fb1e252c4c1aa56fc6" class="formattable_widget html-widget " style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-e8fb1e252c4c1aa56fc6">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>ANOVA/t-test<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson/Spearman Correlation t-test <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1069,8 +1116,8 @@ class: middle
 
 ## Inferential statistics for hypothesis testing
 
-<div id="htmlwidget-1855d3208ff4b15e8f88" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-1855d3208ff4b15e8f88">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson/Spearman Correlation t-test<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-64fe15402858308e0748" class="formattable_widget html-widget " style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-64fe15402858308e0748">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Chi-squared Test of Association <\/td>\n   <td style=\"text-align:right;\"> Chi-squared/Spearman Correlation t-test <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> ANOVA/t-test <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson/Spearman Correlation t-test<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1258,6 +1305,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

@@ -4,7 +4,7 @@
     <title>SMI606: Week 10 — Cluster Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-11-21" />
+    <meta name="date" content="2023-07-21" />
     <script src="week-10-cluster-analysis_files/header-attrs/header-attrs.js"></script>
     <link href="week-10-cluster-analysis_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-10-cluster-analysis_files/tile-view/tile-view.js"></script>
@@ -17,8 +17,12 @@
     <script src="week-10-cluster-analysis_files/shareon/shareon.min.js"></script>
     <link href="week-10-cluster-analysis_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-10-cluster-analysis_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-10-cluster-analysis_files/mark.js/mark.min.js"></script>
+    <link href="week-10-cluster-analysis_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-10-cluster-analysis_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,11 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 10&lt;br&gt;Cluster Analysis]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +47,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -74,6 +82,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -84,7 +93,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -168,8 +177,8 @@ By the end of this week you will:
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part I]
-#.tuos_purple[What is cluster analysis and why learn it?]
+Week 10: Cluster Analysis — Part I
+# What is cluster analysis and why learn it?
 
 
 ---
@@ -308,8 +317,8 @@ class: middle
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part II]
-#.tuos_purple[k-means: What is it and how does it work?]
+Week 10: Cluster Analysis — Part II
+# k-means: What is it and how does it work?
 
 
 ---
@@ -482,8 +491,8 @@ class: inverse, middle
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part III]
-#.tuos_purple[k-means: What kinds of people visit museums?]
+Week 10: Cluster Analysis — Part III
+# k-means: What kinds of people visit museums?
 
 
 ---
@@ -616,12 +625,14 @@ museum_data_prepped
 ##  8       2     0       15    72           5.68      14.5 
 ##  9       5     0       35    70           5.19      13.5 
 ## 10       4     0       45    67           3.61      12.2 
-## # … with 290 more rows
+## # ℹ 290 more rows
 ```
 
 ]
 
 ---
+
+background-color: white
 
 ## k-means cluster analysis in `R`
 
@@ -661,6 +672,8 @@ factoextra::fviz_nbclust(museum_data_prepped,
 
 ---
 
+background-color: white
+
 ## k-means cluster analysis in `R`
 
 .pull-left[
@@ -698,6 +711,8 @@ factoextra::fviz_nbclust(museum_data_prepped,
 ]
 
 ---
+
+background-color: white
 
 ## k-means cluster analysis in `R`
 
@@ -960,6 +975,8 @@ museum_3k$centers
 
 ---
 
+background-color: white
+
 ## k-means cluster analysis in `R`
 
 .pull-left[
@@ -998,6 +1015,8 @@ fviz_cluster(museum_3k, data = museum_data_prepped,
 ]
 
 ---
+
+background-color: white
 
 ## k-means cluster analysis in `R`
 
@@ -1073,20 +1092,19 @@ museum_data
 
 ```
 ## # A tibble: 300 × 8
-##    museum              nadults nkids donation   age giftshop_s…¹ cafe_…² cluster
-##    &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
-##  1 Western Park Museum       2     0       35    71         6.21    9.98       3
-##  2 Western Park Museum       3     0       45    63         5.99   12.7        3
-##  3 Western Park Museum       3     0       40    66         6.54   13.6        3
-##  4 Western Park Museum       2     1       35    68         5.29   10.6        3
-##  5 Western Park Museum       1     0       30    67         5.51   14.9        3
-##  6 Western Park Museum       3     0       40    69         4.46    7.36       3
-##  7 Western Park Museum       1     0       40    65         4.33   12.6        3
-##  8 Western Park Museum       2     0       15    72         5.68   14.5        3
-##  9 Western Park Museum       5     0       35    70         5.19   13.5        3
-## 10 Western Park Museum       4     0       45    67         3.61   12.2        3
-## # … with 290 more rows, and abbreviated variable names ¹​giftshop_spend,
-## #   ²​cafe_spend
+##    museum         nadults nkids donation   age giftshop_spend cafe_spend cluster
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;   &lt;int&gt;
+##  1 Western Park …       2     0       35    71           6.21       9.98       3
+##  2 Western Park …       3     0       45    63           5.99      12.7        3
+##  3 Western Park …       3     0       40    66           6.54      13.6        3
+##  4 Western Park …       2     1       35    68           5.29      10.6        3
+##  5 Western Park …       1     0       30    67           5.51      14.9        3
+##  6 Western Park …       3     0       40    69           4.46       7.36       3
+##  7 Western Park …       1     0       40    65           4.33      12.6        3
+##  8 Western Park …       2     0       15    72           5.68      14.5        3
+##  9 Western Park …       5     0       35    70           5.19      13.5        3
+## 10 Western Park …       4     0       45    67           3.61      12.2        3
+## # ℹ 290 more rows
 ```
 
 ]
@@ -1143,6 +1161,8 @@ museum_data %&gt;%
 ]
 
 ---
+
+background-color: white
 
 ## k-means cluster analysis in `R`
 
@@ -1389,8 +1409,8 @@ museum_data %&gt;%
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part IV]
-#.tuos_purple[k-means: Assumptions.]
+Week 10: Cluster Analysis — Part IV
+# k-means: Assumptions.
 
 
 ---
@@ -1434,6 +1454,8 @@ k-means also assumes that the best fitting clusters to your data are approximate
 ]
 
 ---
+
+background-color: white
 
 ## k-means assumptions
 
@@ -1470,11 +1492,13 @@ background-size: contain
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part V]
-#.tuos_purple[Hierarchical Cluster Analysis: How does it work?]
+Week 10: Cluster Analysis — Part V
+# Hierarchical Cluster Analysis: How does it work?
 
 
 ---
+
+background-color: white
 
 ## Hierarchical Cluster Analysis
 
@@ -1494,6 +1518,8 @@ class: inverse, middle
 
 
 ---
+
+background-color: white
 
 ## Hierarchical Cluster Analysis
 
@@ -1513,6 +1539,8 @@ class: inverse, middle
 ]
 
 ---
+
+background-color: white
 
 ## Hierarchical Cluster Analysis
 
@@ -1534,6 +1562,8 @@ class: inverse, middle
 ]
 
 ---
+
+background-color: white
 
 ## Hierarchical Cluster Analysis
 
@@ -1558,6 +1588,8 @@ class: inverse, middle
 
 
 ---
+
+background-color: white
 
 ## Hierarchical Cluster Analysis
 
@@ -1616,8 +1648,8 @@ class: middle
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Part VI]
-#.tuos_purple[Hierarchical Cluster Analysis: What groups do Youtube viewers fall into?]
+Week 10: Cluster Analysis — Part VI
+# Hierarchical Cluster Analysis: What groups do Youtube viewers fall into?
 
 
 ---
@@ -1643,21 +1675,20 @@ youtube_data
 
 ```
 ## # A tibble: 200 × 12
-##    animation comedy document…¹ music news  reviews sport tutor…² trail…³ video…⁴
-##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;      &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;  
-##  1 0         1      0          0     0     0       0     0       0       0      
-##  2 1         0      0          0     0     1       0     0       1       0      
-##  3 1         0      0          1     0     0       0     1       1       0      
-##  4 1         0      0          1     0     1       0     0       0       0      
-##  5 1         0      0          1     0     0       0     1       1       0      
-##  6 1         0      0          1     0     0       0     0       1       0      
-##  7 1         0      0          1     0     1       0     1       1       0      
-##  8 1         1      0          1     0     0       0     1       0       0      
-##  9 1         0      1          1     0     1       0     0       0       0      
-## 10 0         1      0          1     0     0       0     0       1       0      
-## # … with 190 more rows, 2 more variables: videogames &lt;fct&gt;, vlogs &lt;fct&gt;, and
-## #   abbreviated variable names ¹​documentaries, ²​tutorials, ³​trailers,
-## #   ⁴​videoessays
+##    animation comedy documentaries music news  reviews sport tutorials trailers
+##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;   
+##  1 0         1      0             0     0     0       0     0         0       
+##  2 1         0      0             0     0     1       0     0         1       
+##  3 1         0      0             1     0     0       0     1         1       
+##  4 1         0      0             1     0     1       0     0         0       
+##  5 1         0      0             1     0     0       0     1         1       
+##  6 1         0      0             1     0     0       0     0         1       
+##  7 1         0      0             1     0     1       0     1         1       
+##  8 1         1      0             1     0     0       0     1         0       
+##  9 1         0      1             1     0     1       0     0         0       
+## 10 0         1      0             1     0     0       0     0         1       
+## # ℹ 190 more rows
+## # ℹ 3 more variables: videoessays &lt;fct&gt;, videogames &lt;fct&gt;, vlogs &lt;fct&gt;
 ```
 
 ]
@@ -1835,6 +1866,8 @@ General rule of thumb: __average__ and __complete__ linkage is a good choice for
 
 ---
 
+background-color: white
+
 ## HCA: Example
 
 .pull-left-small[
@@ -1864,6 +1897,8 @@ hca_avg &lt;- hclust(d = youtube_d,
 
 
 ---
+
+background-color: white
 
 ## HCA: Example
 
@@ -1904,11 +1939,13 @@ __Complete__: Maybe 4, maybe 6 clusters?
 plot(hca_comp, main = "Complete Linkage")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-46-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-46-1.png" width="700" height="380" /&gt;
 
 ]
 
 ---
+
+background-color: white
 
 ## HCA: Example
 
@@ -1951,11 +1988,13 @@ __Average__: Probably 4 clusters
 plot(hca_avg, main = "Average Linkage")
 ```
 
-&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-49-1.png" width="700" height="400" /&gt;
+&lt;img src="week-10-cluster-analysis_files/figure-html/unnamed-chunk-49-1.png" width="700" height="380" /&gt;
 
 ]
 
 ---
+
+background-color: white
 
 ## HCA: Example
 
@@ -1986,6 +2025,8 @@ plot(hca_avg, main = "Average Linkage")
 ]
 
 ---
+
+background-color: white
 
 ## HCA: Example
 
@@ -2089,21 +2130,21 @@ youtube_data_results
 
 ```
 ## # A tibble: 200 × 15
-##    animation comedy document…¹ music news  reviews sport tutor…² trail…³ video…⁴
-##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;      &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;  
-##  1 0         1      0          0     0     0       0     0       0       0      
-##  2 1         0      0          0     0     1       0     0       1       0      
-##  3 1         0      0          1     0     0       0     1       1       0      
-##  4 1         0      0          1     0     1       0     0       0       0      
-##  5 1         0      0          1     0     0       0     1       1       0      
-##  6 1         0      0          1     0     0       0     0       1       0      
-##  7 1         0      0          1     0     1       0     1       1       0      
-##  8 1         1      0          1     0     0       0     1       0       0      
-##  9 1         0      1          1     0     1       0     0       0       0      
-## 10 0         1      0          1     0     0       0     0       1       0      
-## # … with 190 more rows, 5 more variables: videogames &lt;fct&gt;, vlogs &lt;fct&gt;,
-## #   hca_avg_k4 &lt;int&gt;, hca_comp_k4 &lt;int&gt;, hca_comp_k6 &lt;int&gt;, and abbreviated
-## #   variable names ¹​documentaries, ²​tutorials, ³​trailers, ⁴​videoessays
+##    animation comedy documentaries music news  reviews sport tutorials trailers
+##    &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;   
+##  1 0         1      0             0     0     0       0     0         0       
+##  2 1         0      0             0     0     1       0     0         1       
+##  3 1         0      0             1     0     0       0     1         1       
+##  4 1         0      0             1     0     1       0     0         0       
+##  5 1         0      0             1     0     0       0     1         1       
+##  6 1         0      0             1     0     0       0     0         1       
+##  7 1         0      0             1     0     1       0     1         1       
+##  8 1         1      0             1     0     0       0     1         0       
+##  9 1         0      1             1     0     1       0     0         0       
+## 10 0         1      0             1     0     0       0     0         1       
+## # ℹ 190 more rows
+## # ℹ 6 more variables: videoessays &lt;fct&gt;, videogames &lt;fct&gt;, vlogs &lt;fct&gt;,
+## #   hca_avg_k4 &lt;int&gt;, hca_comp_k4 &lt;int&gt;, hca_comp_k6 &lt;int&gt;
 ```
 
 ]
@@ -2149,6 +2190,8 @@ Class Activity: Join the [Jamboard](https://jamboard.google.com/d/1k5n5lJjEe3k0G
 ]
 
 ---
+
+background-color: white
 
 class: middle
 
@@ -2248,15 +2291,15 @@ youtube_data_results %&gt;%
 
 ```
 ## # A tibble: 6 × 13
-##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videoga…¹  vlogs
-##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0        0.958  0.917 
-## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0        0.167  0     
-## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0        0.559  0.118 
-## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556    0.0185 0.0741
-## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0        0.0476 0     
-## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0        0      0.0625
-## # … with abbreviated variable name ¹​videogames
+##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videogames
+##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0         0.958 
+## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0         0.167 
+## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0         0.559 
+## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556     0.0185
+## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0         0.0476
+## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0         0     
+## # ℹ 1 more variable: vlogs &lt;dbl&gt;
 ```
 
 
@@ -2281,8 +2324,8 @@ class: inverse, middle
 
 class: inverse, middle
 
-.tuos_purple[Week 10: Cluster Analysis — Summary &amp; Practical]
-#.tuos_purple[Summary &amp; Practical.]
+Week 10: Cluster Analysis — Summary &amp; Practical
+# Summary &amp; Practical.
 
 
 ---
@@ -2422,6 +2465,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

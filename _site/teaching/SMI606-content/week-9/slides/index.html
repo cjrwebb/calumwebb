@@ -4,7 +4,7 @@
     <title>SMI606: Week 9 — Multiple Logistic Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-11-14" />
+    <meta name="date" content="2023-07-21" />
     <script src="week-09-logistic-regression_files/header-attrs/header-attrs.js"></script>
     <link href="week-09-logistic-regression_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-09-logistic-regression_files/tile-view/tile-view.js"></script>
@@ -17,8 +17,12 @@
     <script src="week-09-logistic-regression_files/shareon/shareon.min.js"></script>
     <link href="week-09-logistic-regression_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-09-logistic-regression_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-09-logistic-regression_files/mark.js/mark.min.js"></script>
+    <link href="week-09-logistic-regression_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-09-logistic-regression_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,11 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 9&lt;br&gt;Multiple Logistic Regression]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +47,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -74,6 +82,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -84,7 +93,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -95,6 +104,7 @@ top:1em;right:1em;
   0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
+
 
 
 
@@ -167,8 +177,8 @@ By the end of this week you will:
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Part I]
-#.tuos_purple[What is logistic regression and why learn it?]
+Week 9: Logistic Regression — Part I
+# What is logistic regression and why learn it?
 
 
 
@@ -177,11 +187,13 @@ class: inverse, middle
 
 class: inverse, middle
 
-### .tuos_purple[Multiple linear regression is great... But what if the thing we're interested in isn't on a continuous scale?]
+### Multiple linear regression is great... But what if the thing we're interested in isn't on a continuous scale?
 
 (Let alone one with nice normally distributed residuals...)
 
 ---
+
+background-color: white
 
 ## Jamboard activity
 
@@ -237,13 +249,13 @@ summary(plm_mod)
 ## F-statistic: 299.1 on 1 and 298 DF,  p-value: &lt; 2.2e-16
 ```
 
-Every __1 year increase in age__ is associated with a __1.87 percentage point increase__ in the probability of owning a TV license.
+.small[Every __1 year increase in age__ is associated with a __1.87 percentage point increase__ in the probability of owning a TV license.]
 
 ]
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -288,7 +300,7 @@ __114.95%__??
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -334,7 +346,7 @@ __-6.6%__??
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-8-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -353,7 +365,7 @@ For this, we can use __logistic regression__.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -373,7 +385,7 @@ For this, we can use __logistic regression__.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-10-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -382,8 +394,8 @@ For this, we can use __logistic regression__.
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Part II]
-#.tuos_purple[How does logistic regression work?]
+Week 9: Logistic Regression — Part II
+# How does logistic regression work?
 
 
 ---
@@ -478,7 +490,7 @@ Let's start off with our raw data. Along the top we have the people who do own a
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -503,7 +515,7 @@ Maximum Likelihood is an iterative method, so let's start our first set of predi
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-12-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-12-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -534,7 +546,7 @@ We also log our real data
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-13-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-13-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -562,7 +574,7 @@ We cannot really use negative infinity for anything, so we map our data points t
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-14-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-14-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -586,7 +598,7 @@ Now we've assigned each data point to its closest position on a line, we can giv
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-15-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-15-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -612,7 +624,7 @@ Doesn't something look familiar about part of our `\(x\)`?
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-16-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-16-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -637,7 +649,7 @@ We can then get a picture of how good our predictions were from the real values,
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-17-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-17-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -661,7 +673,7 @@ Let's go back for another iteration — this time, __let's try giving the line a
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-18-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-18-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -684,7 +696,7 @@ Then we can repeat the process.
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-19-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-19-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -711,7 +723,7 @@ Let's map our negative infinity and 0 value data points back to their closest po
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-20-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-20-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -743,7 +755,7 @@ Then we just need to convert these new values back into predictions using the lo
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -770,7 +782,7 @@ Our logistic sigmoid function is now:
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -800,7 +812,7 @@ Or in `R` code: `exp(-3.9 + 0.0615*80)/(1 + exp(-3.9 + 0.0615*80)) = 0.7349`
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -820,7 +832,7 @@ Can we do even better? What happens if we increase the regression line for the l
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -843,7 +855,7 @@ Note that, even though the distance between the points is getting larger in term
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-25-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-25-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -862,7 +874,7 @@ Let's repeat the process. First, let's project all of the points to their closes
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-26-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-26-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -885,7 +897,7 @@ Then we (or rather, the Maximum Likelihood Estimator) maps each point to its clo
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-27-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-27-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -912,7 +924,7 @@ Then we can convert the resulting values for each point back into a predicted pr
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-28-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-28-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -931,7 +943,7 @@ Now we have another new set of predictions. Note that even though our logistic r
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-29-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-29-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -954,7 +966,7 @@ Which we can always convert back into predicted probability using the logistic s
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-30-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-30-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -976,7 +988,7 @@ I wouldn't be doing my job as an educator if I didn't at least try and explain t
 
 .pull-right[
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-31-1.png" width="500" height="500" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-31-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -984,8 +996,8 @@ I wouldn't be doing my job as an educator if I didn't at least try and explain t
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Part III]
-#.tuos_purple[Estimating, interpreting, and communicating logistic regression in `R`.]
+Week 9: Logistic Regression — Part III
+# Estimating, interpreting, and communicating logistic regression in `R`.
 
 
 
@@ -1408,19 +1420,18 @@ tidy_model
 
 ```
 ## # A tibble: 10 × 6
-##    term                            estimate std.error statistic  p.value odds_…¹
-##    &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1 (Intercept)                     -0.00356   0.291     -0.0123 9.90e- 1   0.996
-##  2 rage                            -0.00788   0.00355   -2.22   2.63e- 2   0.992
-##  3 gamesYes                        -0.00841   0.128     -0.0657 9.48e- 1   0.992
-##  4 hedqual_recLevel 1 quals        -0.0413    0.246     -0.167  8.67e- 1   0.960
-##  5 hedqual_recGCSEs/O levels       -0.446     0.186     -2.39   1.67e- 2   0.640
-##  6 hedqual_recA levels             -0.650     0.200     -3.24   1.18e- 3   0.522
-##  7 hedqual_recHigher Ed, no degree -0.901     0.203     -4.43   9.54e- 6   0.406
-##  8 hedqual_recFirst degree         -1.37      0.220     -6.23   4.58e-10   0.253
-##  9 hedqual_recPostgraduate degree  -1.84      0.277     -6.65   2.88e-11   0.158
-## 10 openness                         0.215     0.0777     2.77   5.56e- 3   1.24 
-## # … with abbreviated variable name ¹​odds_ratios
+##    term                        estimate std.error statistic  p.value odds_ratios
+##    &lt;chr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+##  1 (Intercept)                 -0.00356   0.291     -0.0123 9.90e- 1       0.996
+##  2 rage                        -0.00788   0.00355   -2.22   2.63e- 2       0.992
+##  3 gamesYes                    -0.00841   0.128     -0.0657 9.48e- 1       0.992
+##  4 hedqual_recLevel 1 quals    -0.0413    0.246     -0.167  8.67e- 1       0.960
+##  5 hedqual_recGCSEs/O levels   -0.446     0.186     -2.39   1.67e- 2       0.640
+##  6 hedqual_recA levels         -0.650     0.200     -3.24   1.18e- 3       0.522
+##  7 hedqual_recHigher Ed, no d… -0.901     0.203     -4.43   9.54e- 6       0.406
+##  8 hedqual_recFirst degree     -1.37      0.220     -6.23   4.58e-10       0.253
+##  9 hedqual_recPostgraduate de… -1.84      0.277     -6.65   2.88e-11       0.158
+## 10 openness                     0.215     0.0777     2.77   5.56e- 3       1.24
 ```
 
 ---
@@ -1447,19 +1458,18 @@ tidy_model
 
 ```
 ## # A tibble: 10 × 6
-##    term                            estimate std.error statistic  p.value odds_…¹
-##    &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1 (Intercept)                     -0.00356   0.291     -0.0123 9.90e- 1   0.996
-##  2 rage                            -0.00788   0.00355   -2.22   2.63e- 2   0.992
-##  3 gamesYes                        -0.00841   0.128     -0.0657 9.48e- 1   0.992
-##  4 hedqual_recLevel 1 quals        -0.0413    0.246     -0.167  8.67e- 1   0.960
-##  5 hedqual_recGCSEs/O levels       -0.446     0.186     -2.39   1.67e- 2   0.640
-##  6 hedqual_recA levels             -0.650     0.200     -3.24   1.18e- 3   0.522
-##  7 hedqual_recHigher Ed, no degree -0.901     0.203     -4.43   9.54e- 6   0.406
-##  8 hedqual_recFirst degree         -1.37      0.220     -6.23   4.58e-10   0.253
-##  9 hedqual_recPostgraduate degree  -1.84      0.277     -6.65   2.88e-11   0.158
-## 10 openness                         0.215     0.0777     2.77   5.56e- 3   1.24 
-## # … with abbreviated variable name ¹​odds_ratios
+##    term                        estimate std.error statistic  p.value odds_ratios
+##    &lt;chr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+##  1 (Intercept)                 -0.00356   0.291     -0.0123 9.90e- 1       0.996
+##  2 rage                        -0.00788   0.00355   -2.22   2.63e- 2       0.992
+##  3 gamesYes                    -0.00841   0.128     -0.0657 9.48e- 1       0.992
+##  4 hedqual_recLevel 1 quals    -0.0413    0.246     -0.167  8.67e- 1       0.960
+##  5 hedqual_recGCSEs/O levels   -0.446     0.186     -2.39   1.67e- 2       0.640
+##  6 hedqual_recA levels         -0.650     0.200     -3.24   1.18e- 3       0.522
+##  7 hedqual_recHigher Ed, no d… -0.901     0.203     -4.43   9.54e- 6       0.406
+##  8 hedqual_recFirst degree     -1.37      0.220     -6.23   4.58e-10       0.253
+##  9 hedqual_recPostgraduate de… -1.84      0.277     -6.65   2.88e-11       0.158
+## 10 openness                     0.215     0.0777     2.77   5.56e- 3       1.24
 ```
 
 .center[What was the associated change in the odds of believing the government hides information related to aliens for a 1 year increase in age?]
@@ -1576,7 +1586,7 @@ ggeffect(alien_model, terms = "openness") %&gt;%
 * plot()
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-48-1.png" width="500" height="400" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-49-1.png" width="500" height="400" /&gt;
 
 
 ]
@@ -1603,7 +1613,7 @@ ggeffect(alien_model, terms = "hedqual_rec") %&gt;%
   coord_flip()
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-49-1.png" width="500" height="380" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-51-1.png" width="500" height="380" /&gt;
 
 
 ]
@@ -1612,15 +1622,15 @@ ggeffect(alien_model, terms = "hedqual_rec") %&gt;%
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Part IV]
-#.tuos_purple[Logistic regression model fit and accuracy.]
+Week 9: Logistic Regression — Part IV
+# Logistic regression model fit and accuracy.
 
 ---
 
 
 class: inverse, middle
 
-## .tuos_purple[But wait, what happened to our R-squared statistic? How good is our model overall?]
+## But wait, what happened to our R-squared statistic? How good is our model overall?
 
 ---
 
@@ -1767,7 +1777,7 @@ conspiracy_data %&gt;%
 ##  8           0            0.521
 ##  9           0           NA    
 ## 10           0            0.374
-## # … with 1,499 more rows
+## # ℹ 1,499 more rows
 ```
 
 
@@ -1822,7 +1832,7 @@ conspiracy_data %&gt;%
 ##  8           0                1
 ##  9           0               NA
 ## 10           0                0
-## # … with 1,499 more rows
+## # ℹ 1,499 more rows
 ```
 
 
@@ -1849,9 +1859,9 @@ Now I can calculate the accuracy of my model against the real data. A quick way 
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -1917,9 +1927,9 @@ There is a lot of information here, but for this class I just want to focus on f
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -1986,9 +1996,9 @@ The 2x2 table at the top of the output tells us how many values were correctly p
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -2056,9 +2066,9 @@ Accuracy is a straightforward calculation of the proportion of classifications t
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -2126,9 +2136,9 @@ The No Information Rate is the proportion of observations we would expect to get
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -2196,9 +2206,9 @@ Lastly, we have a hypothesis test for the hypothesis that our model's accuracy i
 library(caret)
 
 confusionMatrix(
-  data = fct_relevel(factor( conspiracy_data$pred_consp_alien ), 
+  data = relevel(factor( conspiracy_data$pred_consp_alien ), 
                      ref = "0"),
-  reference = fct_relevel(factor( conspiracy_data$consp_alien ), 
+  reference = relevel(factor( conspiracy_data$consp_alien ), 
                           ref = "0"),
 )
 ```
@@ -2288,7 +2298,7 @@ This means that small amounts of random bias or error in our specific sample cou
 ##  8          0          0.293 
 ##  9          1          0.644 
 ## 10          0          0.0687
-## # … with 290 more rows
+## # ℹ 290 more rows
 ```
 
 
@@ -2375,8 +2385,8 @@ performance::performance_accuracy(alien_model, k = 5)
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Part V]
-#.tuos_purple[Logistic regression assumptions.]
+Week 9: Logistic Regression — Part V
+# Logistic regression assumptions.
 
 
 ---
@@ -2513,7 +2523,7 @@ conspiracy_data %&gt;%
   geom_smooth(aes(x = rage, y = pred_alien_logodds), method = "lm")
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-63-1.png" width="700" height="350" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-65-1.png" width="700" height="320" /&gt;
 
 
 ]
@@ -2557,13 +2567,15 @@ conspiracy_data %&gt;%
   geom_smooth(aes(x = openness, y = pred_alien_logodds), method = "lm")
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-64-1.png" width="700" height="350" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-66-1.png" width="700" height="320" /&gt;
 
 
 ]
 
 
 ---
+background-color: white 
+
 
 # Assumptions
 
@@ -2589,13 +2601,15 @@ conspiracy_data %&gt;%
 plot(alien_model, which = 4)
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-65-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-67-1.png" width="700" height="400" /&gt;
 
 
 ]
 
 
 ---
+
+background-color: white 
 
 # Assumptions
 
@@ -2621,7 +2635,7 @@ plot(alien_model, which = 4)
 plot(alien_model, which = 5)
 ```
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-66-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-68-1.png" width="700" height="400" /&gt;
 
 
 ]
@@ -2868,7 +2882,7 @@ Just like our independent variables must be independent, our __observations shou
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-69-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-71-1.png" width="700" height="400" /&gt;
 
 
 ]
@@ -2897,7 +2911,7 @@ Just like our independent variables must be independent, our __observations shou
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-70-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-72-1.png" width="700" height="400" /&gt;
 
 
 ]
@@ -2925,7 +2939,7 @@ Just like our independent variables must be independent, our __observations shou
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-71-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-73-1.png" width="700" height="400" /&gt;
 
 
 ]
@@ -3094,7 +3108,7 @@ performance::check_autocorrelation(lm_with_class)
 
 #### Simpson's Paradox
 
-&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-76-1.png" width="700" height="450" /&gt;
+&lt;img src="week-09-logistic-regression_files/figure-html/unnamed-chunk-78-1.png" width="700" height="400" /&gt;
 
 
 ]
@@ -3197,8 +3211,9 @@ Report Durbin-Watson test. Consider the source of autocorrelation. If from a mea
 
 class: inverse, middle
 
-.tuos_purple[Week 9: Logistic Regression — Summary &amp; Practical]
-#.tuos_purple[Summary &amp; Practical.]
+Week 9: Logistic Regression — Summary &amp; Practical
+
+# Summary &amp; Practical.
 
 
 ---
@@ -3343,6 +3358,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

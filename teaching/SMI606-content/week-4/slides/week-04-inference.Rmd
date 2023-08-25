@@ -6,7 +6,7 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "custom.css"]
+    css: ["xaringan-themer.css", "css/custom.css"]
     seal: false
     nature:
       slideNumberFormat: "%current%"
@@ -16,23 +16,35 @@ output:
       ratio: 16:9
       self_contained: true
       countIncrementalSlides: true
+    includes:
+      after_body: header/insert-header-violet.html
 ---
 
 class: middle
 background-size: contain
 
+<br><br><br>
+
 # .tuos_purple[SMI606: Week 4<br>Inference]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+<br><br>
+
+**Dr. Calum Webb**<br>
+Sheffield Methods Institute, the University of Sheffield.<br>
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+
+# These packages are required for creating the slides
+# Many will need to be installed from Github
 library(icons)
 library(tidyverse)
+library(xaringan)
 library(xaringanExtra)
 library(xaringanthemer)
+
+# Defaults for code
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
   out.width = "100%",
@@ -43,48 +55,97 @@ knitr::opts_chunk$set(
   fig.show = TRUE,
   hiline = TRUE
 )
+
+# set global theme for ggplot to make background #F8F8F8F8 (off white),
+# but otherwise keep all ggplot themes default (better for teaching)
+theme_set(
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        legend.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8")
+        )
+  )
+
+
 ```
 
 ```{r xaringan-tile-view, echo=FALSE}
+# Use tile overview by hitting the o key when presenting
 xaringanExtra::use_tile_view()
 ```
 
 ```{r xaringan-logo, echo=FALSE}
+# Add logo to top right
 xaringanExtra::use_logo(
-  image_url = "images/uni-sheffield.png",
-  exclude_class = c("inverse", "hide_logo")
+  image_url = "header/smi-logo-white.png",
+  exclude_class = c("inverse", "hide_logo"), 
+  width = "180px", position = css_position(top = "1em", right = "2em")
 )
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#019EE3",
-  secondary_color = "#FCF281",
-  colors = c(tuos_purple = "#030043", grey = "#a8a8a8", tuos_blue ="#019EE3"),
-  header_font_google = xaringanthemer::google_font("Playfair Display", "600", "600i"),
-  text_font_google   = xaringanthemer::google_font("Work Sans", "300", "300i"),
-  code_font_google   = xaringanthemer::google_font("Lucida Console"),
-  header_h1_font_size = "2.25rem",
-  header_h2_font_size = "1.75rem",
-  header_h3_font_size = "1.5rem", code_font_size = "0.65rem"
-)
 
-tuos_blue <- "#019EE3"
+# Set some global objects containing the colours
+# of the university's branding
+primary_color <- "#131E29"
+secondary_color <- "#440099"
+tuos_blue <- "#9ADBE8"
+white = "#F8F8F8"
 tuos_yellow <- "#FCF281"
-tuos_purple <- "#030043"
+tuos_purple <- "#440099"
+tuos_red <- "#E7004C"
+tuos_midnight <- "#131E29"
+
+# The bulk of the styling is handled by xaringanthemer
+style_duo_accent(
+  primary_color = "#131E29",
+  secondary_color = "#440099",
+  colors = c(tuos_purple = "#440099", 
+             grey = "#131E2960", 
+             tuos_blue ="#9ADBE8",
+             tuos_mint = "#00CE7C"),
+  header_font_google = xaringanthemer::google_font("Source Serif Pro", "600", "600i"),
+  text_font_google   = xaringanthemer::google_font("Source Sans Pro", "300", "300i", "600", "600i"),
+  code_font_google   = xaringanthemer::google_font("Lucida Console"),
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.5rem", 
+  header_h3_font_size = "1.25rem", 
+  text_font_size = "0.9rem",
+  code_font_size = "0.65rem", 
+  code_inline_background_color = "#F8F8F8", 
+  inverse_text_color = "#9ADBE8", 
+  background_color = "#F8F8F8", 
+  text_color = "#131E29", 
+  link_color = "#005A8F", 
+  inverse_link_color = "#F8F8F8",
+  text_slide_number_color = "#44009970",
+  table_row_even_background_color = "transparent", 
+  table_border_color = "#44009970",
+  text_bold_font_weight = 600
+)
 
 ```
 
+
 ```{r xaringan-panelset, echo=FALSE}
-xaringanExtra::use_panelset()
+# Allow for adding panelsets (see example on slide 2)
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+
+style_panelset_tabs(
+  background = "#F8F8F8",
+  active_background = "#F8F8F8",
+  hover_background = "#F8F8F8"
+)
+
+
 ```
 
 ```{r xaringanExtra, echo = FALSE}
-xaringanExtra::use_progress_bar(color = "#019EE3", location = "top")
+# Adds white progress bar to top
+xaringanExtra::use_progress_bar(color = "#F8F8F8", location = "top")
 ```
 
 ```{r xaringan-extra-styles, echo = FALSE}
+# Allow for code to be highlighted on hover
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         #<<
   mute_unhighlighted_code = TRUE  #<<
@@ -92,32 +153,16 @@ xaringanExtra::use_extra_styles(
 ```
 
 ```{r share-again, echo=FALSE}
+# Add sharing links and other embedding tools
 xaringanExtra::use_share_again()
 ```
 
-```{r metathis, echo=FALSE}
-# Add metadata
-
-# library(metathis)
-# meta() %>%
-#   meta_name("github-repo" = "cjrwebb/cjrwebb.github.io/tree/master/pres/smi") %>% 
-#   meta_social(
-#     title = "In Defence of Ordinary Help: The declining effectiveness of preventative children's services in England",
-#     description = paste(
-#       "On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."
-#     ),
-#     url = "https://cjrwebb.github.io/pres/smi/smi-research",
-#     image = "https://cjrwebb.github.io/pres/smi/idoh-card.png",
-#     image_alt = paste(
-#       "Title slide of In Defence of Ordinary Help"
-#     ),
-#     og_type = "website",
-#     og_author = "Calum Webb",
-#     twitter_card_type = "summary_large_image",
-#     twitter_creator = "@cjrwebb",
-#     twitter_site = "@cjrwebb"
-#   )
+```{r xaringanExtra-search, echo=FALSE}
+# Add magnifying glass search function to bottom left for quick
+# searching of slides
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
 ```
+
 
 ---
 class: middle
@@ -296,6 +341,27 @@ So, imagine for a moment that we've been contracted by a Las Vegas casino who ha
 
 * We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. `r icons::fontawesome("user-secret")`
 
+]
+
+.pull-right[
+
+![](images/qrcode_webb.shinyapps.io.png)
+
+]
+
+
+---
+
+# Getting a feel for inferential statistics
+
+<br>
+
+.pull-left[
+
+* Load the `chisq-sig` Shiny app in R (follow the handout if you didn't do this in advance), or load the online version by going here: [https://webb.shinyapps.io/chisq-sig/](https://webb.shinyapps.io/chisq-sig/)
+
+* We've been contracted by a Las Vegas casino who have discovered that half of their dice are loaded, and do not roll fairly. `r icons::fontawesome("user-secret")`
+
 * Each of you have been given a (virtual) die that you can roll as many times as you like. You don't know whether you have a **fair** die or a **loaded die**. A loaded die will roll some numbers more often than others. `r icons::fontawesome("dice")`
 
 ]
@@ -352,7 +418,7 @@ Our task is to roll the die and use our data analysis skills to determine whethe
 
 class: inverse, middle
 
-# .tuos_purple[Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.] 
+# Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.
 
 #### (e.g. that a die is fair, or that there is no relationship between two variables)
 
@@ -824,6 +890,17 @@ class: middle
   * Die
   * And other things.
 
+
+---
+
+class: inverse, middle
+
+
+# Sampling methods
+
+Whether our data are a representative sample of a larger population often depends on the *sampling method*
+
+
 ---
 
 class: middle
@@ -838,8 +915,6 @@ class: middle
 
 # Opportunity sampling (60% of pixels)
 
-<br>
-
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The picture shows an older man and woman in a park. The man is pointing at something not shown on the right side of the screen. The image has a dashed border around it which shows that some of the total picture is not visible to the viewer (around 40% of it)."}
 
@@ -851,8 +926,6 @@ knitr::include_graphics("images/opportunity-sample-600-600-60pc.png")
 ---
 
 # Population
-
-<br>
 
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The picture from before has now been expanded. It now shows the woman and man on the left hand side and the former British Prime Minister Boris Johnson on the right hand side. The man is pointing at the former prime minister in an accusatory way. The prime minister was previously obscured because the sample of the picture did not include him."}
@@ -881,8 +954,6 @@ class: middle
 
 # Random sampling (60% of pixels)
 
-<br>
-
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image is the same as the previous picture in the park: two people stand pointing at the former British prime minister. However, now the image is fuzzy because 60% of the pixels have been selected at random. While it is still easy to roughly make out the 'whole picture', some of the details might be fuzzy - but they are not missing."}
 
@@ -894,8 +965,6 @@ knitr::include_graphics("images/random-sample-60pc.png")
 ---
 
 # Random sampling (30% of pixels)
-
-<br>
 
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image now includes a sample of only 30% of the pixels. Even though the image is much grainier than before, the random sampling of pixels still seems to do a good job of helping us infer what the overall image is showing."}
@@ -925,8 +994,6 @@ class: middle
 
 # Random sampling (with non-response)
 
-<br>
-
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image now shows what would happen if one part of the image is less likely to respond to the random selection than another. In the left hand side of the image, the two people are shown in a high degree of clarity as a large number of pixels has been selected. On the right hand side of the image, where the former Prime Minister stands, there are hardly any pixels shown at all. As a result, the left hand side of the image is much clearer than the right hand side."}
 
@@ -938,8 +1005,6 @@ knitr::include_graphics("images/stratefied-1.5-0.2-1.png")
 ---
 
 # Random sampling (with non-response)
-
-<br>
 
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image is the same as the previous image but now includes the caption '50% more likely than average to respond to a survey' on the left hand side and '80% less likely than average to respond to a survey' on the right hand side."}
@@ -970,8 +1035,6 @@ class: middle
 
 ## Stratified random sampling (with non-response adjustment)
 
-<br>
-
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The image shows the result of a sample of pixels where the left hand side is 50% more likely to respond and the right hand side is 80% less likely to respond. Now an additional caption on the left hand side reads: 'send out only 2/3rds of the surveys than random sampling dictates would be needed for a sample of 60%' and an additional caption on the right hand side reads 'send out five times the number of surveys than random sampling dictates would be needed for a sample of 60%'"}
 
@@ -984,8 +1047,6 @@ knitr::include_graphics("images/stratefied-1.5-0.2-3.png")
 
 ## Stratified random sampling (with non-response adjustment)
 
-<br>
-
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The left hand side and the right hand side are now closer to being in the same level of clarity, but there is still less clarity on the right hand side of the image compared to the left. The caption on the left hand side reads: 3/4s as many surveys sent out. The caption on the right hand side reads: 3 times as many surveys sent out."}
 
@@ -997,8 +1058,6 @@ knitr::include_graphics("images/stratefied-1.5-0.2-4.png")
 ---
 
 ## Stratified random sampling (with non-response adjustment)
-
-<br>
 
 .center[
 ```{r, out.height=502, out.width=770, echo = FALSE, fig.alt="The left hand side and the right hand side are now displayed in about the same level of clarity. The caption on the left hand side reads: 2/3rds as many surveys sent out. The caption on the right hand side reads: 5 times as many surveys sent out."}
@@ -1085,6 +1144,15 @@ We can also have a scenario where we get a proportionally representative sample 
 __Imputation__ and __maximum likelihood__ is too complex a topic to cover here, but is something to be aware of if you are doing a quantitative PhD.
 
 
+
+---
+
+class: inverse, middle
+
+
+# Inference in experimental designs
+
+
 ---
 
 class: middle
@@ -1104,6 +1172,7 @@ In other words, inferential statistics can be used to determine __whether the di
 ---
 
 class: middle
+background-color: white
 
 .center[
 ```{r, echo = FALSE, fig.alt="The picture shows a scatterplot of a random spread of three different types of shapes, all of which are across five different colours. There is no order to or sorting of the points.", out.width="70%"}
@@ -1116,6 +1185,7 @@ knitr::include_graphics("images/experiment-1.png")
 ---
 
 class: middle
+background-color: white
 
 .center[
 ```{r, echo = FALSE, fig.alt="A line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line.", out.width="70%"}
@@ -1129,6 +1199,7 @@ knitr::include_graphics("images/experiment-2.png")
 ---
 
 class: middle
+background-color: white
 
 .center[
 ```{r, echo = FALSE, fig.alt="A different line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line.", out.width="70%"}
@@ -1141,6 +1212,7 @@ knitr::include_graphics("images/experiment-3.png")
 ---
 
 class: middle
+background-color: white
 
 .center[
 ```{r, echo = FALSE, fig.alt="The points are now sorted into those on the 'control' side of the line and those on the 'experiment' side of the line. They have also been sorted into colour and shape.  The random split has resulted in 5 cross shaped points being in the control group and 7 cross shaped points being in the experimental group. 6 square shaped points are in the control group and 7 are in the experimental group. 7 triangles are in the control group and 5 are in the experimental group. 6 circles are in the control group and 7 are in the experimental group. The colours are also fairly evenly represented in both the control group and experimental group. There are 4 green points in both the control and experimental groups. Both groups have at least three of all of the 7 possible colours.", out.width="90%"}
@@ -1149,6 +1221,16 @@ knitr::include_graphics("images/experiment-random-split-2.png")
 
 ```
 ]
+
+
+---
+
+class: inverse, middle
+
+
+# Inferential statistics for hypothesis testing
+
+Which hypothesis tests should we use for each combination of variables?
 
 
 ---

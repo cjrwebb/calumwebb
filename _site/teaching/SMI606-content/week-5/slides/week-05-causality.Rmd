@@ -6,7 +6,7 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "custom.css"]
+    css: ["xaringan-themer.css", "css/custom.css"]
     seal: false
     nature:
       slideNumberFormat: "%current%"
@@ -16,23 +16,35 @@ output:
       ratio: 16:9
       self_contained: true
       countIncrementalSlides: true
+    includes:
+      after_body: header/insert-header-violet.html
 ---
 
 class: middle
 background-size: contain
 
+<br><br><br>
+
 # .tuos_purple[SMI606: Week 5<br>Causality]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+<br><br>
+
+**Dr. Calum Webb**<br>
+Sheffield Methods Institute, the University of Sheffield.<br>
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+
+# These packages are required for creating the slides
+# Many will need to be installed from Github
 library(icons)
 library(tidyverse)
+library(xaringan)
 library(xaringanExtra)
 library(xaringanthemer)
+
+# Defaults for code
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
   out.width = "100%",
@@ -43,48 +55,97 @@ knitr::opts_chunk$set(
   fig.show = TRUE,
   hiline = TRUE
 )
+
+# set global theme for ggplot to make background #F8F8F8F8 (off white),
+# but otherwise keep all ggplot themes default (better for teaching)
+theme_set(
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        legend.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8")
+        )
+  )
+
+
 ```
 
 ```{r xaringan-tile-view, echo=FALSE}
+# Use tile overview by hitting the o key when presenting
 xaringanExtra::use_tile_view()
 ```
 
 ```{r xaringan-logo, echo=FALSE}
+# Add logo to top right
 xaringanExtra::use_logo(
-  image_url = "images/uni-sheffield.png",
-  exclude_class = c("inverse", "hide_logo")
+  image_url = "header/smi-logo-white.png",
+  exclude_class = c("inverse", "hide_logo"), 
+  width = "180px", position = css_position(top = "1em", right = "2em")
 )
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#019EE3",
-  secondary_color = "#FCF281",
-  colors = c(tuos_purple = "#030043", grey = "#a8a8a8", tuos_blue ="#019EE3"),
-  header_font_google = xaringanthemer::google_font("Playfair Display", "600", "600i"),
-  text_font_google   = xaringanthemer::google_font("Work Sans", "300", "300i"),
-  code_font_google   = xaringanthemer::google_font("Lucida Console"),
-  header_h1_font_size = "2.25rem",
-  header_h2_font_size = "1.75rem",
-  header_h3_font_size = "1.5rem", code_font_size = "0.65rem"
-)
 
-tuos_blue <- "#019EE3"
+# Set some global objects containing the colours
+# of the university's branding
+primary_color <- "#131E29"
+secondary_color <- "#440099"
+tuos_blue <- "#9ADBE8"
+white = "#F8F8F8"
 tuos_yellow <- "#FCF281"
-tuos_purple <- "#030043"
+tuos_purple <- "#440099"
+tuos_red <- "#E7004C"
+tuos_midnight <- "#131E29"
+
+# The bulk of the styling is handled by xaringanthemer
+style_duo_accent(
+  primary_color = "#131E29",
+  secondary_color = "#440099",
+  colors = c(tuos_purple = "#440099", 
+             grey = "#131E2960", 
+             tuos_blue ="#9ADBE8",
+             tuos_mint = "#00CE7C"),
+  header_font_google = xaringanthemer::google_font("Source Serif Pro", "600", "600i"),
+  text_font_google   = xaringanthemer::google_font("Source Sans Pro", "300", "300i", "600", "600i"),
+  code_font_google   = xaringanthemer::google_font("Lucida Console"),
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.5rem", 
+  header_h3_font_size = "1.25rem", 
+  text_font_size = "0.9rem",
+  code_font_size = "0.65rem", 
+  code_inline_background_color = "#F8F8F8", 
+  inverse_text_color = "#9ADBE8", 
+  background_color = "#F8F8F8", 
+  text_color = "#131E29", 
+  link_color = "#005A8F", 
+  inverse_link_color = "#F8F8F8",
+  text_slide_number_color = "#44009970",
+  table_row_even_background_color = "transparent", 
+  table_border_color = "#44009970",
+  text_bold_font_weight = 600
+)
 
 ```
 
+
 ```{r xaringan-panelset, echo=FALSE}
-xaringanExtra::use_panelset()
+# Allow for adding panelsets (see example on slide 2)
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+
+style_panelset_tabs(
+  background = "#F8F8F8",
+  active_background = "#F8F8F8",
+  hover_background = "#F8F8F8"
+)
+
+
 ```
 
 ```{r xaringanExtra, echo = FALSE}
-xaringanExtra::use_progress_bar(color = "#019EE3", location = "top")
+# Adds white progress bar to top
+xaringanExtra::use_progress_bar(color = "#F8F8F8", location = "top")
 ```
 
 ```{r xaringan-extra-styles, echo = FALSE}
+# Allow for code to be highlighted on hover
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         #<<
   mute_unhighlighted_code = TRUE  #<<
@@ -92,31 +153,14 @@ xaringanExtra::use_extra_styles(
 ```
 
 ```{r share-again, echo=FALSE}
+# Add sharing links and other embedding tools
 xaringanExtra::use_share_again()
 ```
 
-```{r metathis, echo=FALSE}
-# Add metadata
-
-# library(metathis)
-# meta() %>%
-#   meta_name("github-repo" = "cjrwebb/cjrwebb.github.io/tree/master/pres/smi") %>% 
-#   meta_social(
-#     title = "In Defence of Ordinary Help: The declining effectiveness of preventative children's services in England",
-#     description = paste(
-#       "On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."
-#     ),
-#     url = "https://cjrwebb.github.io/pres/smi/smi-research",
-#     image = "https://cjrwebb.github.io/pres/smi/idoh-card.png",
-#     image_alt = paste(
-#       "Title slide of In Defence of Ordinary Help"
-#     ),
-#     og_type = "website",
-#     og_author = "Calum Webb",
-#     twitter_card_type = "summary_large_image",
-#     twitter_creator = "@cjrwebb",
-#     twitter_site = "@cjrwebb"
-#   )
+```{r xaringanExtra-search, echo=FALSE}
+# Add magnifying glass search function to bottom left for quick
+# searching of slides
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
 ```
 
 ---
@@ -177,7 +221,7 @@ By the end of this week you will:
 class: inverse, middle
 
 
-# .tuos_purple[What do we mean by causality?]
+# What do we mean by causality?
 
 
 ---
@@ -214,7 +258,7 @@ Using the work and definitions developed by sociologist John H. Goldthorpe (2001
 
 class: inverse, middle
 
-### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, __Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t__. Nonetheless, Billy’s throw increased the probability that the bottle would shatter ... Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter.
+### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, *Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t*. Nonetheless, Billy’s throw increased the probability that the bottle would shatter ... Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter.
 
 [*Hitchcock, 2018. Probabilistic Causation. Stanford Encyclopedia of Philosophy*](https://plato.stanford.edu/entries/causation-probabilistic/)
 
@@ -223,9 +267,15 @@ class: inverse, middle
 
 class: inverse, middle
 
-### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t. Nonetheless, __Billy’s throw increased the probability that the bottle would shatter__ ... __Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter__.
+### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t. Nonetheless, *Billy’s throw increased the probability that the bottle would shatter* ... *Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter*.
 
 [*Hitchcock, 2018. Probabilistic Causation. Stanford Encyclopedia of Philosophy*](https://plato.stanford.edu/entries/causation-probabilistic/)
+
+
+---
+class: middle, inverse
+
+# Causation as "robust dependence": temporal causality
 
 
 ---
@@ -261,6 +311,8 @@ Causality can be argued to exist when we can observe a consistent, temporal caus
 ---
 
 class: middle
+background-color: white
+
 
 .center[
 
@@ -275,6 +327,7 @@ knitr::include_graphics("images/figure_2.png")
 ---
 
 class: middle
+background-color: white
 
 .center[
 
@@ -308,6 +361,12 @@ __Weaknesses of Granger causality__
 
 
 ---
+class: middle, inverse
+
+# Causation as "consequential manipulation": experiments
+
+
+---
 
 class: middle
 
@@ -327,11 +386,13 @@ Causation as some environmental factor that, when manipulated (or left alone), c
 
 ---
 
+background-color: white
+
 # Causation as Consequential Manipulation
 
-__Exercise__
-
 .pull-left[
+
+**Exercise**
 
 <br>
 
@@ -385,10 +446,14 @@ experiment_data %>%
 summary(anova_sweets)
 TukeyHSD(anova_sweets)
 
+chisq.test(experiment_data$sweet, experiment_data$enjoy_quants)
+
 ```
 
 
 ---
+
+background-color: white
 
 # Causation as Consequential Manipulation
 
@@ -417,7 +482,14 @@ knitr::include_graphics("images/qr-ex-2.png")
 
 
 ---
+class: middle, inverse
+
+# Causation as "generative process": DAGs and the New Science of Causality
+
+
+---
 class: middle
+background-color: white
 
 # Causation as Generative Process
 
@@ -456,10 +528,12 @@ Exercise: DAG walkthrough on Jamboard
 
 ---
 
+background-color: white
+
 # DAGS: The Total Effect (Estimand)
 
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 library(dagitty)
 
@@ -484,10 +558,12 @@ rethinking::drawdag(dag1, xlim = c(-2, 6), ylim = c(-3, 3))
 
 ---
 
+background-color: white
+
 # DAGS: Confounders and the Direct Effect
 
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -512,10 +588,12 @@ rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
 
 ---
 
+background-color: white
+
 # DAGS: Pipes, Direct and Indirect Effects
 
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -539,10 +617,12 @@ rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
 
 ---
 
+background-color: white
+
 # DAGS: "Blocked" Pipes: Post-treatment Bias
 
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -565,10 +645,12 @@ rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
 
 ---
 
+background-color: white
+
 # DAGS: Collider Bias
 
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -594,6 +676,7 @@ rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
 ---
 
 class: middle
+background-color: white
 
 # Collider Bias
 
@@ -661,6 +744,8 @@ acad_sim %>%
 
 ---
 
+background-color: white
+
 class: middle
 
 # Collider Bias
@@ -686,6 +771,7 @@ acad_sim %>%
 ---
 
 class: middle
+background-color: white
 
 # Collider Bias
 
@@ -721,9 +807,11 @@ acad_sim %>%
 
 ---
 
+background-color: white
+
 # Collider Bias
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, echo = FALSE, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -749,15 +837,16 @@ rethinking::drawdag(dag, xlim = c(-2, 6), ylim = c(-3, 3))
 
 class: inverse, middle
 
-# .tuos_purple[Do restaurants in better locations have better quality food?]
+# Do restaurants in better locations have better quality food?
 
 
 ---
 class: middle
+background-color: white
 
 # Collider Bias
 
-```{r, echo = FALSE}
+```{r, out.height=350, fig.height=3.5, out.width=450, fig.width=4.5, echo = FALSE}
 
 set.seed(2022)
 location_q <- rnorm(1000)
@@ -775,7 +864,7 @@ restaurant_data <- tibble(location_quality = location_q*12 + 50,
 
 .pull-left[
 
-```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+```{r, echo = FALSE, out.height=350, fig.height=3.5, out.width=450, fig.width=4.5}
 
 restaurant_data %>%
   ggplot() +
@@ -791,7 +880,7 @@ restaurant_data %>%
 
 .pull-right[
 
-```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+```{r, echo = FALSE, out.height=350, fig.height=3.5, out.width=450, fig.width=4.5}
 
 ggplot() +
   theme_void()
@@ -804,12 +893,13 @@ ggplot() +
 
 ---
 class: middle
+background-color: white
 
 # Collider Bias
 
 .pull-left[
 
-```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+```{r, echo = FALSE, out.height=350, fig.height=3.5, out.width=450, fig.width=4.5}
 
 restaurant_data %>%
   ggplot() +
@@ -824,7 +914,7 @@ restaurant_data %>%
 ]
 
 .pull-right[
-```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.width=500, out.height=450}
+```{r, echo = FALSE, out.height=350, fig.height=3.5, out.width=450, fig.width=4.5}
 
 restaurant_data %>%
   ggplot() +
@@ -844,9 +934,11 @@ restaurant_data %>%
 
 ---
 
+background-color: white
+
 # DAGS: Putting it all together
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, out.height=350, fig.height=3.5, out.width=1200, fig.width=12}
 
 dag_spec <- 'dag{
 
@@ -903,6 +995,12 @@ knitr::include_graphics("images/book-why.jpg")
 ]
 
 ]
+
+
+---
+class: middle, inverse
+
+# Which kinds of research design support causal analyses?
 
 ---
 
@@ -1252,6 +1350,12 @@ Example:
 * [Pokemon Go](https://kotaku.com/the-creators-of-pokemon-go-mapped-the-world-now-theyre-1838974714) / Strava / Garmin / Fitbit
 
 ]
+
+
+---
+class: middle, inverse
+
+# Recap: The difference between inference (inferential statistics) and causality (causal inference)
 
 
 ---

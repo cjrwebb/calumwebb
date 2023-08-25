@@ -4,7 +4,7 @@
     <title>SMI606: Week 5 — Causality</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-10-13" />
+    <meta name="date" content="2023-07-21" />
     <script src="week-05-causality_files/header-attrs/header-attrs.js"></script>
     <link href="week-05-causality_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-05-causality_files/tile-view/tile-view.js"></script>
@@ -17,8 +17,12 @@
     <script src="week-05-causality_files/shareon/shareon.min.js"></script>
     <link href="week-05-causality_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-05-causality_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-05-causality_files/mark.js/mark.min.js"></script>
+    <link href="week-05-causality_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-05-causality_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,11 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 5&lt;br&gt;Causality]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +47,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -74,6 +82,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -84,7 +93,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -160,7 +169,7 @@ By the end of this week you will:
 class: inverse, middle
 
 
-# .tuos_purple[What do we mean by causality?]
+# What do we mean by causality?
 
 
 ---
@@ -197,7 +206,7 @@ Using the work and definitions developed by sociologist John H. Goldthorpe (2001
 
 class: inverse, middle
 
-### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, __Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t__. Nonetheless, Billy’s throw increased the probability that the bottle would shatter ... Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter.
+### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, *Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t*. Nonetheless, Billy’s throw increased the probability that the bottle would shatter ... Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter.
 
 [*Hitchcock, 2018. Probabilistic Causation. Stanford Encyclopedia of Philosophy*](https://plato.stanford.edu/entries/causation-probabilistic/)
 
@@ -206,9 +215,15 @@ class: inverse, middle
 
 class: inverse, middle
 
-### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t. Nonetheless, __Billy’s throw increased the probability that the bottle would shatter__ ... __Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter__.
+### [S]uppose that Billy and Suzy each throw a rock at a bottle, and that each has a certain probability of hitting and breaking it. As it happens, Suzy’s rock hits the bottle, and Billy’s doesn’t. As things actually happened, we would say that Suzy’s throw caused the bottle to shatter, while Billy’s didn’t. Nonetheless, *Billy’s throw increased the probability that the bottle would shatter* ... *Billy’s throw had a tendency to shatter the bottle; it was a potential cause of the bottle shattering; it was the sort of thing that generally causes shattering; but it did not actually cause the bottle to shatter*.
 
 [*Hitchcock, 2018. Probabilistic Causation. Stanford Encyclopedia of Philosophy*](https://plato.stanford.edu/entries/causation-probabilistic/)
+
+
+---
+class: middle, inverse
+
+# Causation as "robust dependence": temporal causality
 
 
 ---
@@ -244,6 +259,8 @@ Causality can be argued to exist when we can observe a consistent, temporal caus
 ---
 
 class: middle
+background-color: white
+
 
 .center[
 
@@ -254,6 +271,7 @@ class: middle
 ---
 
 class: middle
+background-color: white
 
 .center[
 
@@ -283,6 +301,12 @@ __Weaknesses of Granger causality__
 
 
 ---
+class: middle, inverse
+
+# Causation as "consequential manipulation": experiments
+
+
+---
 
 class: middle
 
@@ -302,11 +326,13 @@ Causation as some environmental factor that, when manipulated (or left alone), c
 
 ---
 
+background-color: white
+
 # Causation as Consequential Manipulation
 
-__Exercise__
-
 .pull-left[
+
+**Exercise**
 
 &lt;br&gt;
 
@@ -331,6 +357,8 @@ Please now fill out the following form: https://forms.gle/sigw2jprMohiaBZM8
 
 ---
 
+background-color: white
+
 # Causation as Consequential Manipulation
 
 
@@ -354,7 +382,14 @@ Please now fill out the following form: https://forms.gle/sigw2jprMohiaBZM8
 
 
 ---
+class: middle, inverse
+
+# Causation as "generative process": DAGs and the New Science of Causality
+
+
+---
 class: middle
+background-color: white
 
 # Causation as Generative Process
 
@@ -389,48 +424,58 @@ Exercise: DAG walkthrough on Jamboard
 
 ---
 
+background-color: white
+
 # DAGS: The Total Effect (Estimand)
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-7-1.png" width="1200" height="350" /&gt;
 
 .center[We start with the thing we want to estimate (our estimand), in this case the strength of the association between a person's secondary school outcomes and their university degree classification.]
 
 
 ---
 
+background-color: white
+
 # DAGS: Confounders and the Direct Effect
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-8-1.png" width="1200" height="350" /&gt;
 
 .center[We know that there will be certain confounders in our data: things that influence both the predictor/cause (Prior Education) and the outcome/effect (Degree Classification). We need to control for these things to get an unbiased estimate of the effect. For example, here, we might want to only include people who studied the same subjects.]
 
 
 ---
 
+background-color: white
+
 # DAGS: Pipes, Direct and Indirect Effects
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-9-1.png" width="1200" height="350" /&gt;
 
 .center["Pipes" occur when the effects of the 'cause' operates through some mechanism(s), for example, the effect of prior education on degree outcome is partially mediated through prior education teaching more effective study skills. You may or may not want to condition effects based on mediators.]
 
 ---
 
+background-color: white
+
 # DAGS: "Blocked" Pipes: Post-treatment Bias
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-10-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-10-1.png" width="1200" height="350" /&gt;
 
 .center[We can also imagine some of these pipes being 'blockers' rather than mediators — test scores will obviously dictate degree classification and may fully mediate prior education, so conditioning on test scores as well as degree classification would incorrectly negate any effect of prior education.]
 
 ---
 
+background-color: white
+
 # DAGS: Collider Bias
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-11-1.png" width="1200" height="350" /&gt;
 
 .center[Collider bias is an often overlooked source of bias that occurs where the relationship between a cause and an outcome is conditioned on something that is a common consequence of both; e.g. here past educational performance will likely impact a person's self-rated academic ability.]
 
@@ -438,6 +483,7 @@ Exercise: DAG walkthrough on Jamboard
 ---
 
 class: middle
+background-color: white
 
 # Collider Bias
 
@@ -448,6 +494,8 @@ class: middle
 
 ---
 
+background-color: white
+
 class: middle
 
 # Collider Bias
@@ -457,6 +505,7 @@ class: middle
 ---
 
 class: middle
+background-color: white
 
 # Collider Bias
 
@@ -465,9 +514,11 @@ class: middle
 
 ---
 
+background-color: white
+
 # Collider Bias
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-16-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-16-1.png" width="1200" height="350" /&gt;
 
 .center[What can happen when we have a collider that determines selection?]
 
@@ -475,11 +526,12 @@ class: middle
 
 class: inverse, middle
 
-# .tuos_purple[Do restaurants in better locations have better quality food?]
+# Do restaurants in better locations have better quality food?
 
 
 ---
 class: middle
+background-color: white
 
 # Collider Bias
 
@@ -487,13 +539,13 @@ class: middle
 
 .pull-left[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-18-1.png" width="500" height="450" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-18-1.png" width="450" height="350" /&gt;
 
 ]
 
 .pull-right[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-19-1.png" width="500" height="450" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-19-1.png" width="450" height="350" /&gt;
 
 ]
 
@@ -501,17 +553,18 @@ class: middle
 
 ---
 class: middle
+background-color: white
 
 # Collider Bias
 
 .pull-left[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-20-1.png" width="500" height="450" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-20-1.png" width="450" height="350" /&gt;
 
 ]
 
 .pull-right[
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-21-1.png" width="500" height="450" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-21-1.png" width="450" height="350" /&gt;
 ]
 
 .center[But when only including currently open restaurants...]
@@ -519,9 +572,11 @@ class: middle
 
 ---
 
+background-color: white
+
 # DAGS: Putting it all together
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-22-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-22-1.png" width="1200" height="350" /&gt;
 
 .center[You can follow the rules of '*do*-calculus' to create adjustment sets to find out what kinds of confounding variables you should condition on to identify the total and/or direct effects; the model and findings can then be developed, and their causal claims challenged.]
 
@@ -564,6 +619,12 @@ dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Cla
 ]
 
 ]
+
+
+---
+class: middle, inverse
+
+# Which kinds of research design support causal analyses?
 
 ---
 
@@ -916,6 +977,12 @@ Example:
 
 
 ---
+class: middle, inverse
+
+# Recap: The difference between inference (inferential statistics) and causality (causal inference)
+
+
+---
 class: middle
 
 # Inference
@@ -1081,6 +1148,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

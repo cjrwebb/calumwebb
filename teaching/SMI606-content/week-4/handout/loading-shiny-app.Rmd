@@ -12,6 +12,7 @@ output:
       in_header: header/header_logo.html
 ---
 
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 # invalidate cache when the tufte version changes

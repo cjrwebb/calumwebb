@@ -4,7 +4,7 @@
     <title>SMI606: Week 7 — Bivariate Linear Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-10-27" />
+    <meta name="date" content="2023-08-25" />
     <script src="week-07-bivariate-lm_files/header-attrs/header-attrs.js"></script>
     <link href="week-07-bivariate-lm_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-07-bivariate-lm_files/tile-view/tile-view.js"></script>
@@ -17,8 +17,12 @@
     <script src="week-07-bivariate-lm_files/shareon/shareon.min.js"></script>
     <link href="week-07-bivariate-lm_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-07-bivariate-lm_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-07-bivariate-lm_files/mark.js/mark.min.js"></script>
+    <link href="week-07-bivariate-lm_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-07-bivariate-lm_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,11 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 7&lt;br&gt;Bivariate Linear Regression]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -39,14 +47,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -74,6 +82,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -84,7 +93,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -159,6 +168,15 @@ By the end of this week you will:
 
 ---
 
+class: inverse, middle
+
+
+# What is linear regression?
+
+
+
+---
+
 
 
 
@@ -195,7 +213,7 @@ un_data %&gt;%
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-3-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-3-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -222,7 +240,7 @@ un_data %&gt;%
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-4-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -250,7 +268,7 @@ un_data %&gt;%
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-5-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-5-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -402,6 +420,42 @@ class: middle
 
 ]
 
+
+---
+class: middle
+
+## Finding the best fitting line
+
+.pull-left[
+
+#### How do we find the best fitting line? A competition!
+
+* Honour system - no cheating!
+
+* Open the [Shiny app](https://webb.shinyapps.io/find-line/) in your web browser, or download and run the source code in `R`
+
+* In pairs, your task is to get the best fitting line to the data that the app has generated for you by manipulating the intercept and slope values with the sliders.
+
+* Once you've decided on the best fitting line, check the actual results from the linear regression and see how far off you were. Check the residuals plot and see how it changes between your estimate and the linear regression one.
+
+* Whoever gets the closest guess wins!
+
+
+]
+
+
+.pull-right[
+
+&lt;img src="images/qrcode_webb.shinyapps.io.png" width="100%" /&gt;
+
+[https://webb.shinyapps.io/find-line/](https://webb.shinyapps.io/find-line/)
+
+]
+
+
+
+
+
 ---
 class: middle
 
@@ -449,7 +503,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-7-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-8-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -470,7 +524,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-9-1.png" width="500" height="450" /&gt;
 
 
 ]
@@ -494,7 +548,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-10-1.png" width="500" height="450" /&gt;
 
 
 ]
@@ -527,10 +581,20 @@ lab_model &lt;- lm(data = un_data,
 .pull-right[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-12-1.png" width="500" height="450" /&gt;
 
 
 ]
+
+
+---
+
+class: inverse, middle
+
+
+# How does the Ordinary Least Squares estimator work?
+
+*You don't need to know this for any assessments, but you should at least understand generally how it works!*
 
 
 ---
@@ -539,7 +603,7 @@ lab_model &lt;- lm(data = un_data,
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \bar{x} )}{\sum_{\substack{i=1}}^n(x - \bar{x})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \bar{x} )}{\sum_{\substack{i=1}}^n(x_i - \bar{x})^2}\)`
 
 `\(\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x}\)`
 
@@ -552,7 +616,7 @@ Let's break down these equations into each of their steps so we can get an under
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-13-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-14-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -565,7 +629,7 @@ Let's break down these equations into each of their steps so we can get an under
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x - \color{blue}{\bar{x})}^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}\)`
 
 `\(\hat{\beta_0} = \bar{y} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -576,7 +640,7 @@ One of the terms in the equation is `\(\bar{x}\)` (x bar or bar x), which is ref
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-14-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-15-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -588,7 +652,7 @@ One of the terms in the equation is `\(\bar{x}\)` (x bar or bar x), which is ref
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x - \color{blue}{\bar{x})}^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -600,7 +664,7 @@ The other bar, `\(\bar{y}\)` (y bar), refers to the mean of the y variable. Our 
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-15-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-16-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -610,7 +674,7 @@ The other bar, `\(\bar{y}\)` (y bar), refers to the mean of the y variable. Our 
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -621,7 +685,7 @@ We can see that in the numerator one of the terms is the sum ( `\(\sum_{\substac
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-16-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-17-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -632,7 +696,7 @@ We can see that in the numerator one of the terms is the sum ( `\(\sum_{\substac
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -644,7 +708,7 @@ Similarly, we also have a term for the equivalent for y - the difference between
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-17-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-18-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -654,7 +718,7 @@ Similarly, we also have a term for the equivalent for y - the difference between
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -666,7 +730,7 @@ Notice that when we take the product of `\((\color{magenta}{y_i - \bar{y}})\)` a
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-18-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-19-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -676,7 +740,7 @@ Notice that when we take the product of `\((\color{magenta}{y_i - \bar{y}})\)` a
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -688,7 +752,7 @@ As a result, we can think about the distance from the mean of y and each specifi
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-19-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-20-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -698,7 +762,7 @@ As a result, we can think about the distance from the mean of y and each specifi
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -710,7 +774,7 @@ Because the rectangles are overlapping, I'm going to seperate them out now but k
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-20-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-21-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -720,7 +784,7 @@ Because the rectangles are overlapping, I'm going to seperate them out now but k
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -732,7 +796,7 @@ Now we have each of the squares and the distances of X that they cover (keep in 
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-21-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-22-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -742,7 +806,7 @@ Now we have each of the squares and the distances of X that they cover (keep in 
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -754,7 +818,7 @@ We also have the changes from the mean of Y that each of those distances corresp
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-22-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-23-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -764,7 +828,7 @@ We also have the changes from the mean of Y that each of those distances corresp
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -775,7 +839,7 @@ Now, watch what happens to the distances when we divide by one of the `\(x - \ba
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-23-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-24-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -785,7 +849,7 @@ Now, watch what happens to the distances when we divide by one of the `\(x - \ba
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -798,7 +862,7 @@ Now all of our changes are on the same scale.
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-24-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-25-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -808,7 +872,7 @@ Now all of our changes are on the same scale.
 
 .pull-left-small[
 
-`\(\color{teal}{\hat{\beta_1}} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\color{teal}{\hat{\beta_1}} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \color{teal}{\hat{\beta_1}}\color{blue}{\bar{x}}\)`
 
@@ -820,7 +884,7 @@ If we take the average of all of these scaled changes, we end up with the averag
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-25-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-26-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -830,7 +894,7 @@ If we take the average of all of these scaled changes, we end up with the averag
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -842,7 +906,7 @@ But the slope is only one part of the equation! How does the second equation get
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-26-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-27-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -852,7 +916,7 @@ But the slope is only one part of the equation! How does the second equation get
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -863,7 +927,7 @@ Here?
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-27-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-28-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -873,7 +937,7 @@ Here?
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -884,7 +948,7 @@ Or here?
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-28-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-29-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -894,7 +958,7 @@ Or here?
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -905,7 +969,7 @@ Or here??
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-29-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-30-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -915,7 +979,7 @@ Or here??
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -926,7 +990,7 @@ Well, if you remember from earlier, we said that we know the line *must* cross t
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-30-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-31-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -936,7 +1000,7 @@ Well, if you remember from earlier, we said that we know the line *must* cross t
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -947,7 +1011,7 @@ So what if we take that as a starting point and then **work backwards from the m
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-31-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-32-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -957,7 +1021,7 @@ So what if we take that as a starting point and then **work backwards from the m
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -968,7 +1032,7 @@ One step...
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-32-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-33-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -978,7 +1042,7 @@ One step...
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -989,7 +1053,7 @@ Two steps...
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-33-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-34-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -999,7 +1063,7 @@ Two steps...
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1010,7 +1074,7 @@ Three steps...
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-34-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-35-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -1020,7 +1084,7 @@ Three steps...
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1031,7 +1095,7 @@ Four steps...
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-35-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-36-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -1041,7 +1105,7 @@ Four steps...
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1052,7 +1116,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-36-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-37-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -1062,7 +1126,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1073,7 +1137,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-37-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-38-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -1083,7 +1147,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1094,7 +1158,7 @@ Even though the equations above look quite overwhelming, we can see visually exa
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-38-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-39-1.png" width="700" height="450" /&gt;
 
 ]
 
@@ -1104,7 +1168,7 @@ Even though the equations above look quite overwhelming, we can see visually exa
 
 .pull-left-small[
 
-`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}\)`
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
 
 `\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
 
@@ -1117,9 +1181,17 @@ Even though the equations above look quite overwhelming, we can see visually exa
 .pull-right-big[
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-39-1.png" width="700" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-40-1.png" width="700" height="450" /&gt;
 
 ]
+
+
+---
+
+class: inverse, middle
+
+
+# How to report a regression model
 
 
 ---
@@ -1620,13 +1692,20 @@ stargazer::stargazer(lab_model, type = "html")
 
 ---
 
+class: inverse, middle
+
+
+# Binary categorical predictors
+
+---
+
 ## Binary categorical predictors
 
 
 
 &lt;center&gt;
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-51-1.png" width="800" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-52-1.png" width="800" height="450" /&gt;
 
 &lt;/center&gt;
 
@@ -1637,7 +1716,7 @@ stargazer::stargazer(lab_model, type = "html")
 
 &lt;center&gt;
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-52-1.png" width="800" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-53-1.png" width="800" height="450" /&gt;
 
 &lt;/center&gt;
 
@@ -1676,20 +1755,28 @@ summary(eu_model)
 ## F-statistic: 0.4387 on 1 and 60 DF,  p-value: 0.5103
 ```
 
-"An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."
+.small["An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."]
 
 ]
 
 .pull-right[
 &lt;center&gt;
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-54-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-55-1.png" width="500" height="450" /&gt;
 
 
 
 &lt;/center&gt;
 ]
 
+---
+
+class: inverse, middle
+
+
+# Assumptions of linear regression
+
+Important! You will need to know how to check these for your assessments!
 
 
 ---
@@ -1716,7 +1803,7 @@ Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple 
 
 
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-56-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-57-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -1742,7 +1829,7 @@ Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple 
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-57-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-58-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -1769,7 +1856,7 @@ Checked with: Scatterplot (bivariate); spread-location plot (multiple regression
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-58-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-59-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -1796,7 +1883,7 @@ Checked with: Scatterplot (bivariate); spread-location plot (multiple regression
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-59-1.png" width="500" height="500" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-60-1.png" width="500" height="450" /&gt;
 
 ]
 
@@ -1822,7 +1909,7 @@ Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-60-1.png" width="500" height="450" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-61-1.png" width="500" height="450" /&gt;
 
 
 `$$Y = 28.62 + 0.29X$$`
@@ -1852,7 +1939,7 @@ Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-61-1.png" width="500" height="450" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-62-1.png" width="500" height="450" /&gt;
 
 `$$Y = 38.39 + 0.19X$$`
 
@@ -1880,7 +1967,7 @@ Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple r
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-62-1.png" width="500" height="450" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-63-1.png" width="500" height="450" /&gt;
 
 
 ]
@@ -1908,7 +1995,7 @@ Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple r
 
 .pull-right[
 
-&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-63-1.png" width="500" height="450" /&gt;
+&lt;img src="week-07-bivariate-lm_files/figure-html/unnamed-chunk-64-1.png" width="500" height="450" /&gt;
 
 
 ]
@@ -2087,6 +2174,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {

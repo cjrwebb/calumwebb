@@ -6,7 +6,7 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "custom.css"]
+    css: ["xaringan-themer.css", "css/custom.css"]
     seal: false
     nature:
       slideNumberFormat: "%current%"
@@ -16,23 +16,35 @@ output:
       ratio: 16:9
       self_contained: true
       countIncrementalSlides: true
+    includes:
+      after_body: header/insert-header-violet.html
 ---
 
 class: middle
 background-size: contain
 
+<br><br><br>
+
 # .tuos_purple[SMI606: Week 7<br>Bivariate Linear Regression]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+<br><br>
+
+**Dr. Calum Webb**<br>
+Sheffield Methods Institute, the University of Sheffield.<br>
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+
+# These packages are required for creating the slides
+# Many will need to be installed from Github
 library(icons)
 library(tidyverse)
+library(xaringan)
 library(xaringanExtra)
 library(xaringanthemer)
+
+# Defaults for code
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
   out.width = "100%",
@@ -43,48 +55,114 @@ knitr::opts_chunk$set(
   fig.show = TRUE,
   hiline = TRUE
 )
+
+# set global theme for ggplot to make background #F8F8F8F8 (off white),
+# but otherwise keep all ggplot themes default (better for teaching)
+theme_set(
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        legend.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8")
+        )
+  )
+
+theme_minimal <- function() 
+  {
+    ggplot2::theme_minimal() +
+    theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        legend.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8")
+        )
+}
+
+theme_void <- function() 
+  {
+    ggplot2::theme_void() +
+    theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        legend.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8")
+        )
+  }
+
 ```
 
 ```{r xaringan-tile-view, echo=FALSE}
+# Use tile overview by hitting the o key when presenting
 xaringanExtra::use_tile_view()
 ```
 
 ```{r xaringan-logo, echo=FALSE}
+# Add logo to top right
 xaringanExtra::use_logo(
-  image_url = "images/uni-sheffield.png",
-  exclude_class = c("inverse", "hide_logo")
+  image_url = "header/smi-logo-white.png",
+  exclude_class = c("inverse", "hide_logo"), 
+  width = "180px", position = css_position(top = "1em", right = "2em")
 )
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#019EE3",
-  secondary_color = "#FCF281",
-  colors = c(tuos_purple = "#030043", grey = "#a8a8a8", tuos_blue ="#019EE3"),
-  header_font_google = xaringanthemer::google_font("Playfair Display", "600", "600i"),
-  text_font_google   = xaringanthemer::google_font("Work Sans", "300", "300i"),
-  code_font_google   = xaringanthemer::google_font("Lucida Console"),
-  header_h1_font_size = "2.25rem",
-  header_h2_font_size = "1.75rem",
-  header_h3_font_size = "1.5rem", code_font_size = "0.65rem"
-)
 
-tuos_blue <- "#019EE3"
+# Set some global objects containing the colours
+# of the university's branding
+primary_color <- "#131E29"
+secondary_color <- "#440099"
+tuos_blue <- "#9ADBE8"
+white = "#F8F8F8"
 tuos_yellow <- "#FCF281"
-tuos_purple <- "#030043"
+tuos_purple <- "#440099"
+tuos_red <- "#E7004C"
+tuos_midnight <- "#131E29"
+
+# The bulk of the styling is handled by xaringanthemer
+style_duo_accent(
+  primary_color = "#131E29",
+  secondary_color = "#440099",
+  colors = c(tuos_purple = "#440099", 
+             grey = "#131E2960", 
+             tuos_blue ="#9ADBE8",
+             tuos_mint = "#00CE7C"),
+  header_font_google = xaringanthemer::google_font("Source Serif Pro", "600", "600i"),
+  text_font_google   = xaringanthemer::google_font("Source Sans Pro", "300", "300i", "600", "600i"),
+  code_font_google   = xaringanthemer::google_font("Lucida Console"),
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.5rem", 
+  header_h3_font_size = "1.25rem", 
+  text_font_size = "0.9rem",
+  code_font_size = "0.65rem", 
+  code_inline_background_color = "#F8F8F8", 
+  inverse_text_color = "#9ADBE8", 
+  background_color = "#F8F8F8", 
+  text_color = "#131E29", 
+  link_color = "#005A8F", 
+  inverse_link_color = "#F8F8F8",
+  text_slide_number_color = "#44009970",
+  table_row_even_background_color = "transparent", 
+  table_border_color = "#44009970",
+  text_bold_font_weight = 600
+)
 
 ```
 
+
 ```{r xaringan-panelset, echo=FALSE}
-xaringanExtra::use_panelset()
+# Allow for adding panelsets (see example on slide 2)
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+
+style_panelset_tabs(
+  background = "#F8F8F8",
+  active_background = "#F8F8F8",
+  hover_background = "#F8F8F8"
+)
+
+
 ```
 
 ```{r xaringanExtra, echo = FALSE}
-xaringanExtra::use_progress_bar(color = "#019EE3", location = "top")
+# Adds white progress bar to top
+xaringanExtra::use_progress_bar(color = "#F8F8F8", location = "top")
 ```
 
 ```{r xaringan-extra-styles, echo = FALSE}
+# Allow for code to be highlighted on hover
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         #<<
   mute_unhighlighted_code = TRUE  #<<
@@ -92,31 +170,14 @@ xaringanExtra::use_extra_styles(
 ```
 
 ```{r share-again, echo=FALSE}
+# Add sharing links and other embedding tools
 xaringanExtra::use_share_again()
 ```
 
-```{r metathis, echo=FALSE}
-# Add metadata
-
-# library(metathis)
-# meta() %>%
-#   meta_name("github-repo" = "cjrwebb/cjrwebb.github.io/tree/master/pres/smi") %>% 
-#   meta_social(
-#     title = "In Defence of Ordinary Help: The declining effectiveness of preventative children's services in England",
-#     description = paste(
-#       "On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."
-#     ),
-#     url = "https://cjrwebb.github.io/pres/smi/smi-research",
-#     image = "https://cjrwebb.github.io/pres/smi/idoh-card.png",
-#     image_alt = paste(
-#       "Title slide of In Defence of Ordinary Help"
-#     ),
-#     og_type = "website",
-#     og_author = "Calum Webb",
-#     twitter_card_type = "summary_large_image",
-#     twitter_creator = "@cjrwebb",
-#     twitter_site = "@cjrwebb"
-#   )
+```{r xaringanExtra-search, echo=FALSE}
+# Add magnifying glass search function to bottom left for quick
+# searching of slides
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
 ```
 
 ---
@@ -171,6 +232,15 @@ By the end of this week you will:
 
 
 ???
+
+
+
+---
+
+class: inverse, middle
+
+
+# What is linear regression?
 
 
 
@@ -231,7 +301,7 @@ un_data %>%
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 
 
@@ -274,7 +344,7 @@ un_data %>%
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data <- read_csv("un-gender-extract.csv")
 
@@ -315,7 +385,7 @@ un_data %>%
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data <- read_csv("un-gender-extract.csv")
 
@@ -482,6 +552,46 @@ class: middle
 
 ]
 
+
+---
+class: middle
+
+## Finding the best fitting line
+
+.pull-left[
+
+#### How do we find the best fitting line? A competition!
+
+* Honour system - no cheating!
+
+* Open the [Shiny app](https://webb.shinyapps.io/find-line/) in your web browser, or download and run the source code in `R`
+
+* In pairs, your task is to get the best fitting line to the data that the app has generated for you by manipulating the intercept and slope values with the sliders.
+
+* Once you've decided on the best fitting line, check the actual results from the linear regression and see how far off you were. Check the residuals plot and see how it changes between your estimate and the linear regression one.
+
+* Whoever gets the closest guess wins!
+
+
+]
+
+
+.pull-right[
+
+```{r, echo = FALSE, height = 450, width = 500}
+
+knitr::include_graphics("images/qrcode_webb.shinyapps.io.png")
+
+```
+
+[https://webb.shinyapps.io/find-line/](https://webb.shinyapps.io/find-line/)
+
+]
+
+
+
+
+
 ---
 class: middle
 
@@ -533,7 +643,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data %>% 
   ggplot() +
@@ -567,7 +677,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data %>% 
   ggplot() +
@@ -605,7 +715,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data %>% 
   ggplot() +
@@ -654,7 +764,7 @@ lab_model <- lm(data = un_data,
 .pull-right[
 
 
-```{r, echo=FALSE, out.height=500, out.width=500, fig.height=5, fig.width=5, dpi = 300}
+```{r, echo=FALSE, out.height=450, out.width=500, fig.height=4.5, fig.width=5, dpi = 300}
 
 un_data %>% 
   ggplot() +
@@ -677,11 +787,21 @@ un_data %>%
 
 ---
 
+class: inverse, middle
+
+
+# How does the Ordinary Least Squares estimator work?
+
+*You don't need to know this for any assessments, but you should at least understand generally how it works!*
+
+
+---
+
 # Aside: OLS: how does it work?
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \bar{x} )}{\sum_{\substack{i=1}}^n(x - \bar{x})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \bar{x} )}{\sum_{\substack{i=1}}^n(x_i - \bar{x})^2}$
 
 $\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x}$
 
@@ -1133,7 +1253,7 @@ plot26 <- ggplot() +
 
 ```
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot1
 
@@ -1150,7 +1270,7 @@ plot1
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x - \color{blue}{\bar{x})}^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}$
 
 $\hat{\beta_0} = \bar{y} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1161,7 +1281,7 @@ One of the terms in the equation is $\bar{x}$ (x bar or bar x), which is referri
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot2
 
@@ -1177,7 +1297,7 @@ plot2
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x - \color{blue}{\bar{x})}^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1189,7 +1309,7 @@ The other bar, $\bar{y}$ (y bar), refers to the mean of the y variable. Our regr
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot3
 
@@ -1203,7 +1323,7 @@ plot3
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1214,7 +1334,7 @@ We can see that in the numerator one of the terms is the sum ( $\sum_{\substack{
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot4
 
@@ -1229,7 +1349,7 @@ plot4
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1241,7 +1361,7 @@ Similarly, we also have a term for the equivalent for y - the difference between
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot5
 
@@ -1255,7 +1375,7 @@ plot5
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1267,7 +1387,7 @@ Notice that when we take the product of $(\color{magenta}{y_i - \bar{y}})$ and $
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot6
 
@@ -1281,7 +1401,7 @@ plot6
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1293,7 +1413,7 @@ As a result, we can think about the distance from the mean of y and each specifi
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot7
 
@@ -1307,7 +1427,7 @@ plot7
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1319,7 +1439,7 @@ Because the rectangles are overlapping, I'm going to seperate them out now but k
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot8
 
@@ -1333,7 +1453,7 @@ plot8
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1345,7 +1465,7 @@ Now we have each of the squares and the distances of X that they cover (keep in 
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot10
 
@@ -1359,7 +1479,7 @@ plot10
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1371,7 +1491,7 @@ We also have the changes from the mean of Y that each of those distances corresp
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot11
 
@@ -1385,7 +1505,7 @@ plot11
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1396,7 +1516,7 @@ Now, watch what happens to the distances when we divide by one of the $x - \bar{
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot12
 
@@ -1410,7 +1530,7 @@ plot12
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1423,7 +1543,7 @@ Now all of our changes are on the same scale.
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot13
 
@@ -1437,7 +1557,7 @@ plot13
 
 .pull-left-small[
 
-$\color{teal}{\hat{\beta_1}} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\color{teal}{\hat{\beta_1}} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \color{teal}{\hat{\beta_1}}\color{blue}{\bar{x}}$
 
@@ -1449,7 +1569,7 @@ If we take the average of all of these scaled changes, we end up with the averag
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot14
 
@@ -1463,7 +1583,7 @@ plot14
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1475,7 +1595,7 @@ But the slope is only one part of the equation! How does the second equation get
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot15_intercept
 
@@ -1489,7 +1609,7 @@ plot15_intercept
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1500,7 +1620,7 @@ Here?
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot16
 
@@ -1514,7 +1634,7 @@ plot16
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1525,7 +1645,7 @@ Or here?
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot17
 
@@ -1539,7 +1659,7 @@ plot17
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1550,7 +1670,7 @@ Or here??
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot18
 
@@ -1564,7 +1684,7 @@ plot18
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1575,7 +1695,7 @@ Well, if you remember from earlier, we said that we know the line *must* cross t
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot19
 
@@ -1589,7 +1709,7 @@ plot19
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1600,7 +1720,7 @@ So what if we take that as a starting point and then **work backwards from the m
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot20
 
@@ -1614,7 +1734,7 @@ plot20
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1625,7 +1745,7 @@ One step...
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot21
 
@@ -1639,7 +1759,7 @@ plot21
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1650,7 +1770,7 @@ Two steps...
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot22
 
@@ -1664,7 +1784,7 @@ plot22
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1675,7 +1795,7 @@ Three steps...
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot22.2
 
@@ -1689,7 +1809,7 @@ plot22.2
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1700,7 +1820,7 @@ Four steps...
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot22.3
 
@@ -1714,7 +1834,7 @@ plot22.3
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1725,7 +1845,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot23
 
@@ -1739,7 +1859,7 @@ plot23
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1750,7 +1870,7 @@ And now our regression line is in contact the point at which X = 0: this gives u
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot24
 
@@ -1764,7 +1884,7 @@ plot24
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1775,7 +1895,7 @@ Even though the equations above look quite overwhelming, we can see visually exa
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot25
 
@@ -1789,7 +1909,7 @@ plot25
 
 .pull-left-small[
 
-$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x - \bar{x}})^2}$
+$\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}$
 
 $\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}$
 
@@ -1802,13 +1922,21 @@ $\hat{\beta_0} = 1.48$
 .pull-right-big[
 
 
-```{r, echo = FALSE, out.height=500, out.width=700, fig.height=5, fig.width=7}
+```{r, echo = FALSE, out.height=450, out.width=700, fig.height=4.5, fig.width=7}
 
 plot26
 
 ```
 
 ]
+
+
+---
+
+class: inverse, middle
+
+
+# How to report a regression model
 
 
 ---
@@ -2139,6 +2267,13 @@ stargazer(lab_model, type = "html")
 
 ---
 
+class: inverse, middle
+
+
+# Binary categorical predictors
+
+---
+
 ## Binary categorical predictors
 
 ```{r, include = FALSE}
@@ -2155,7 +2290,7 @@ un_data <- un_data %>%
 
 <center>
 
-```{r, echo = FALSE, fig.height=5, fig.width=8, out.height=500, out.width=800}
+```{r, echo = FALSE, fig.height=4.5, fig.width=8, out.height=450, out.width=800}
 
 un_data %>%
   ggplot() +
@@ -2174,7 +2309,7 @@ un_data %>%
 
 <center>
 
-```{r, echo = FALSE, fig.height=5, fig.width=8, out.height=500, out.width=800}
+```{r, echo = FALSE, fig.height=4.5, fig.width=8, out.height=450, out.width=800}
 
 un_data %>%
   ggplot() +
@@ -2202,14 +2337,14 @@ summary(eu_model)
 
 ```
 
-"An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."
+.small["An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."]
 
 ]
 
 .pull-right[
 <center>
 
-```{r, echo = FALSE, fig.height=5, fig.width=5, out.height=500, out.width=500}
+```{r, echo = FALSE, fig.height=4.5, fig.width=5, out.height=450, out.width=500}
 
 un_data %>%
   ggplot() +
@@ -2225,6 +2360,14 @@ un_data %>%
 </center>
 ]
 
+---
+
+class: inverse, middle
+
+
+# Assumptions of linear regression
+
+Important! You will need to know how to check these for your assessments!
 
 
 ---
@@ -2261,7 +2404,7 @@ y <- y + rnorm(100, 5, 2)
 
 ```
 
-```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=450, out.width=500}
 
 ggplot() +
   geom_point(
@@ -2299,7 +2442,7 @@ Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple 
 
 .pull-right[
 
-```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=450, out.width=500}
 
 ggplot() +
   geom_point(
@@ -2338,7 +2481,7 @@ Checked with: Scatterplot (bivariate); spread-location plot (multiple regression
 
 .pull-right[
 
-```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=450, out.width=500}
 
 set.seed(785)
 x <- rnorm(100, 10, 4)
@@ -2377,7 +2520,7 @@ Checked with: Scatterplot (bivariate); spread-location plot (multiple regression
 
 .pull-right[
 
-```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=500, out.width=500}
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, out.height=450, out.width=500}
 
 set.seed(22)
 x = rnorm(200,1,1)

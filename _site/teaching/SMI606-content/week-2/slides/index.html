@@ -4,7 +4,7 @@
     <title>SMI606: Week 2 — Types of quantification</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2022-09-15" />
+    <meta name="date" content="2023-07-21" />
     <script src="week-02-types-of-quantification_files/header-attrs/header-attrs.js"></script>
     <link href="week-02-types-of-quantification_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-02-types-of-quantification_files/tile-view/tile-view.js"></script>
@@ -17,6 +17,10 @@
     <script src="week-02-types-of-quantification_files/shareon/shareon.min.js"></script>
     <link href="week-02-types-of-quantification_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="week-02-types-of-quantification_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-02-types-of-quantification_files/mark.js/mark.min.js"></script>
+    <link href="week-02-types-of-quantification_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-02-types-of-quantification_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
     <script src="week-02-types-of-quantification_files/jquery/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="week-02-types-of-quantification_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -35,7 +39,7 @@
     <script src="week-02-types-of-quantification_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="week-02-types-of-quantification_files/formattable_widget-binding/formattable_widget.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -44,11 +48,15 @@
 class: middle
 background-size: contain
 
+&lt;br&gt;&lt;br&gt;
+
 # .tuos_purple[SMI606: Week 2&lt;br&gt;Types of quantification]
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -56,14 +64,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -91,6 +99,7 @@ top:1em;right:1em;
 
 
 
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -101,7 +110,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -112,6 +121,8 @@ top:1em;right:1em;
   0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
+
+
 
 
 
@@ -171,9 +182,10 @@ By the end of this week you will:
 
 ---
 class: middle
+background-color: white
 
 .center[
-&lt;img src="images/continuous_discrete.png" width="70%" /&gt;
+&lt;img src="images/continuous_discrete.png" width="60%" /&gt;
 ]
 
 *Illustration by Allison Horst*
@@ -222,14 +234,17 @@ as.integer(continuous)
 
 ---
 class: middle 
+background-color: white
 
 .center[
-&lt;img src="images/nominal_ordinal_binary.png" width="85%" /&gt;
+&lt;img src="images/nominal_ordinal_binary.png" width="80%" /&gt;
 ]
 
 *Illustration by Allison Horst*
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -246,6 +261,8 @@ class(nominal)
 ```
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -290,6 +307,8 @@ tibble(label = c("unhappy", "ok", "awesome"), numeric_val = c(1, 2, 3))
 ```
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -395,7 +414,7 @@ class: middle
 ```r
 idaci %&gt;% # My data
   ggplot() + # start up ggplot
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") + # create a histogram
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") + # create a histogram
   theme_minimal() + # make a nice background
   xlab("Income Deprivation Affecting Children Index (% in low income)") + # Add an x axis label
   ylab("Frequency") # add a y axis label
@@ -437,6 +456,8 @@ class: middle
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency]
 
 
@@ -465,6 +486,8 @@ hse_cleaned %&gt;%
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency]
 
 &lt;br&gt;&lt;br&gt;
@@ -490,6 +513,8 @@ hse_cleaned %&gt;%
 ```
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency]
 
@@ -517,6 +542,8 @@ hse_cleaned %&gt;%
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency]
 
 &lt;br&gt;&lt;br&gt;
@@ -542,6 +569,8 @@ hse_cleaned %&gt;%
 ```
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency]
 
@@ -603,19 +632,21 @@ class: middle
 &lt;img src="week-02-types-of-quantification_files/figure-html/unnamed-chunk-25-1.png" width="100%" /&gt;
 
 ---
+class: middle
+background-color: white
 
-&lt;img src="images/summary_statistics.png" width="100%" /&gt;
+&lt;img src="images/summary_statistics.png" width="80%" /&gt;
 
 ---
 class: inverse, middle
 
 
-## When a continuous/integer variable is __.tuos_purple[not]__ normally distributed (for example, if it is skewed), the mean, median, and mode will often not align and some will not end up on the 'most likely value'. 
+## When a continuous/integer variable is not normally distributed (for example, if it is skewed), the mean, median, and mode will often not align and some will not end up on the 'most likely value'. 
 
-## This is why it's __always__ important to visualise your data.
+## This is why it's always important to visualise your data.
 
 ---
-
+class: middle
 
 .pull-left[
 
@@ -659,7 +690,7 @@ Self-rated health
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -696,7 +727,7 @@ Categorical/Ordinal variables
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -738,9 +769,10 @@ Categorical/Ordinal variables
 
 ---
 
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -784,7 +816,7 @@ hse_cleaned %&gt;%
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -828,7 +860,7 @@ hse_cleaned %&gt;% # my data
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -876,7 +908,7 @@ tabyl(hse_cleaned$econact_s) %&gt;%
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -922,7 +954,7 @@ hse_cleaned %&gt;%
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -975,7 +1007,7 @@ unique(hse_cleaned$health)
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -998,10 +1030,9 @@ unique(hse_cleaned$health)
 
 ---
 
-
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -1097,6 +1128,8 @@ Percentage of children in poverty
 
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Dispersion]
 
@@ -1196,6 +1229,8 @@ class: middle
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Dispersion]
 
 
@@ -1225,11 +1260,13 @@ idaci %&gt;%
 ##  8 Brist…  20.6 TRUE      TRUE      TRUE     
 ##  9 Centr…  11.4 TRUE      TRUE      TRUE     
 ## 10 Chesh…  10.7 TRUE      TRUE      TRUE     
-## # … with 307 more rows
+## # ℹ 307 more rows
 ```
 
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Dispersion]
 
@@ -1262,7 +1299,7 @@ idaci %&gt;%
 
 class: inverse, middle
 
-### .tuos_purple[However, we know from the example of income we saw before that sometimes variables are not normally distributed. How can we summarise their distribution?]
+### However, we know from the example of income we saw before that sometimes variables are not normally distributed. How can we summarise their distribution?
 
 
 ---
@@ -1356,7 +1393,7 @@ Here are the results if we used quantiles set at pr = 0.025 and pr = 97.5 (95% c
 
 class: middle
 
-<div id="htmlwidget-4b01bd0ca50ae62aac5d" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<div id="htmlwidget-4b01bd0ca50ae62aac5d" class="formattable_widget html-widget " style="width:100%;height:252px;" width="100%" height="252"></div>
 <script type="application/json" data-for="htmlwidget-4b01bd0ca50ae62aac5d">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Central Tendency <\/th>\n   <th style=\"text-align:right;\"> Dispersion <\/th>\n   <th style=\"text-align:right;\"> Data Vis <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Bar Chart<br>geom_bar()/barplot() <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()<br>Means/Median/Mode<br>mean(), median(), modeest::mfv() <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Bar Chart<br>geom_bar()/barplot() <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/Median/Mode<br>mean(), median(), modeest::mfv() <\/td>\n   <td style=\"text-align:right;\"> Standard Deviation +<br>Empirical Rule (if approx normally distributed)<br>sd()<br>Quantiles/Percentiles<br>quantile() <\/td>\n   <td style=\"text-align:right;\"> Histogram<br>geom_histogram()/hist() <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
@@ -1426,6 +1463,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
@@ -1469,6 +1519,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {
