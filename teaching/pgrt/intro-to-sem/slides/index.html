@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>An Introduction to SEM</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2024-07-22" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="index_files/tile-view/tile-view.js"></script>
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="index_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="index_files/clipboard/clipboard.min.js"></script>
+    <link href="index_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="index_files/shareon/shareon.min.js"></script>
+    <link href="index_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="index_files/mark.js/mark.min.js"></script>
+    <link href="index_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# An Introduction to Structural Equation Modelling in R
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+
+---
+
+class: middle
+
+.middle-left[
+
+## Why Structural Equation Modelling?
+
+* How can I express a more complex relationship between variables than "X causes Y"?
+
+* How can I combine several indicators of complex social science contexts (e.g. deprivation, poverty, anxiety, stress, concern, social capital) into a single, justifiable, indicator?
+
+* How can I assess whether my combined measures are reliable (generalisable beyond a specific sample or to other groups) and valid (a reasonably good and precise measure of what they purport to measure)?
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="images/icons8-network.svg" width="60%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.pull-left-big[
+
+## During this training course, you will be playing the role of researchers exploring the relationship between family's monetary investment on their children, the degree of parental stress they report, and children's wellbeing and educational outcomes.
+
+* Load up RStudio and the [repository](https://github.com/cjrwebb/sem-pgrt) you should have downloaded in advance.
+
+]
+
+.middle-right-small[
+
+&lt;br&gt;
+
+&lt;img src="images/icons8-view.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 1: Path analysis and graphical models
+
+It all started with some guinea pigs...
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-guinea_pig.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+background-color: white
+
+class: middle
+
+.middle-left[
+
+## Path analysis/graphical models
+
+**Structural Equation Modelling** is a family of techniques, rather than a single method. At its most simple, a structural equation model is a multivariate model (multiple outcome/dependent variables) made up of several regressions or correlations between variables.
+
+* Implies a causal relationship/pathway (useful to justify using some of the 'new science of causality' methods, Pearl, Glymour, &amp; Jewell, 2016)
+
+* Can be cyclical, but usually *acyclic* (Lipsky &amp; Greenland, 2022)
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/wright-model.png" alt="Sewell Wright's (1920) first published use of a causal graphical model" width="90%" /&gt;
+&lt;p class="caption"&gt;Sewell Wright's (1920) first published use of a causal graphical model&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+
+---
+
+background-color: white
+
+class: middle
+
+.middle-left[
+
+## Path analysis/graphical models
+
+```
+
+O ~ D + H + E
+O' ~ D + H' + E
+
+H ~ G + G''
+H' ~ G' + G'''
+
+G ~ H'' + Chance
+G' ~ H'' + Chance
+G'' ~ H''' + Chance
+G''' ~ H''' + Chance
+
+Sire ~ D + E + H''
+Dam ~ H''' + E + D
+
+
+```
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/wright-model.png" alt="Sewell Wright's (1920) first published use of a causal graphical model" width="90%" /&gt;
+&lt;p class="caption"&gt;Sewell Wright's (1920) first published use of a causal graphical model&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 1: Path analysis and graphical models: Practical
+
+Exploring the relationship between family income, family investment, parental stress, and children's outcomes using lavaan in R.
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-guinea_pig.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 1: Path Analysis Summary
+
+* Diagrams of the structured relationships can be converted into a structured set of equations to express more complicated relationships between variables
+
+* In lavaan syntax, a regression is defined using the ~ operator
+
+* The indirect effect of variables via other variables (mediators) can be estimated by taking the product of the paths between the variables
+
+* Paths can be labelled in lavaan syntax using the pattern label\*
+
+* Derived parameters, e.g. the product of two paths or the sum of indirect and direct paths, can be defined using the := operator
+
+* Binary categorical or ordinal outcomes can be predicted using a probit link using the "ordered =" argument in lavaan::sem()
+
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-guinea_pig.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 2: Latent variables and confirmatory factor analysis
+
+It's the 1500s and you are an astronomer...
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-constellation.svg" width="90%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+
+???
+
+In the 16th century, the quality of observations of stars in astronomy would tend to be based on judgements about the quality of the equipment used, as well as the quality of the person doing the measurement (was the astronomer who took the measurements a good mate of yours?)
+
+However, Henry Gellibrand later realised in 1635 that you could gain more information by throwing information away: by combining multiple measurements and taking their average, you could minimize the impact of any given measurement's error on the actual estimate.
+
+Latent factors are designed to minimise the impact of "error" on any specific way of measuring an abstract concept. 
+
+---
+
+
+class: middle
+
+.middle-left[
+
+## What is a latent factor?
+
+Often in quantitative social science research we are trying to measure **underlying constructs**, for example: attitudes, beliefs, stati, constructions of identity, and so on. 
+
+We will typically **operationalise** these constructs/concepts into variables, e.g. poverty is income less than 60% of the median household income. We might call these 'indicators' of concepts. But any one of these indicators will have some "error" or some "mixture" of other concepts, e.g. fear for safety may indicate both perceptions of risk and levels of anxiety.
+
+Latent factors are constructed based on the **commonality** across multiple indicators. The underlying latent factor is said to simultaneously predict values across all indicators. The commonality is kept, the 'error' or variance capturing other constructs is separated.
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-venn_diagram.svg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+## Anatomy of a latent variable
+
+Features of latent variables include:
+
+* **A set of indicator/manifest variables**: in general, a latent factor should only be constructed from a minimum of three manifest or indicator variables.
+
+* **Factor loadings**: the extent to which the latent factor linearly predicts the indicator/manifest variables. On a standardised scale, this can be interpreted like a correlation, the higher the factor loading, the more precisely the indicator measures the underlying factor.
+
+* **Model fit**: the extent to which modelling the data as one or a set of latent factors can reproduce the underlying variance/covariance structure of the data. Better model fit means the number of factors and their assignment is an appropriate fit to the data, and this can be the case even if factor loadings are poor.
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-venn_diagram.svg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+&lt;br&gt;
+
+## Two flavour of factor analysis
+
+* **Exploratory Factor Analysis (EFA)** employs the use of various criterion and algorithms to atheoretically assign manifest variables to factors. *Not covered in this course*, but what we learn about factor loadings and model fit is applicable.
+
+* **Confirmatory Factor Analysis (CFA)** is the application of *a priori* theory to the factor structure across manifest variables to assess the extent to which a single or multiple factors 'load onto' these indicators. 
+
+Factor analysis **is not** principal components analysis (PCA) (Mazziotta and Pareto, 2021). While they share similarities, in PCA, the composite index is *caused by* changes in the indicators, in latent variables the latent construct *causes* changes in the indicators.
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-venn_diagram.svg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+???
+
+When might you want to use PCA over Factor Analysis?
+
+For example, poor air quality might be suitable for PCA whereas for a latent factor it may be interpreted more as poor environmental management.
+
+In many cases the practical applications are the same, but the choice of indicators may differ substantially. 
+
+A good example: if one your indicators increases, your PCA index *must* increase. If your latent factor increases, then your manifest indicators increase *on average*.
+
+
+---
+
+
+class: middle
+
+.middle-left[
+
+&lt;br&gt;
+
+## Confirmatory factor analysis in lavaan syntax
+
+```
+
+# Unstandardised
+lv =~ mv1 + mv2 + mv3 + mv4 + mv5
+
+
+```
+
+```
+
+# Standardised
+lv =~ NA*mv1 + mv2 + mv3 + mv4 + mv5
+
+lv ~~ 1*lv
+
+```
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-venn_diagram.svg" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+
+---
+
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 2: Confirmatory Factor Analysis: Practical
+
+Constructing a latent factor measuring parental stress. 
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-constellation.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 2: Latent Variables Summary
+
+* Latent variables can be constructed to leverage the commonality across several indicators of a concept/construct to derive a variable that removes some of the measurement error found in any one indicator.
+
+* In lavaan syntax, a latent variable is defined using the =~ operator
+
+* Latent variables can be standardised using the special NA\* label in combination with the ~~1\*LV specification, or using the std.lv = TRUE argument 
+
+* Latent variables are assessed using (usually standardised) factor loadings, which tell us how precise our indicators are for measuring that specific underlying factor and how much commonality they share with it, and model fit, which tells us how well our factor solution (how many factors and which variables they are loaded on) fits the data. 
+
+* Ordinal or binary variables can be included as factor indicators in the same way as usual.
+
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-constellation.svg" width="70%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 3: Reliability &amp; Validity of Factors
+
+You're a doctor, what indicators that you observe do you associate with a latent, unobservable illness?
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-bandage.svg" width="90%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+???
+
+Imagine you're a dermatologist — a skin doctor — and you need to assess whether a patient has "medical condition A". "Medical condition A" is a latent construct or, at least, in diagnosis it is. It is unobservable in a patient observation.
+
+Instead, you have a number of indicators from your medical training and your medical textbooks: we can imagine these as variables. The redness of the skin; the degree of bruising; the presence of swelling; an increase in dark freckles or moles; pallidness of skin surrounding lesions. 
+
+Adelekun, et al. (2020) found that only up to 18% of images documenting conditions in medical textbooks showed the presentation of the condition on darker skin tones. The indicators of many doctors, such as the ones listed above - in the mental latent factor of the skin condition - may not be suitable indicators for diagnosing a condition among a large swathe of the population. 
+
+
+
+---
+
+
+class: middle
+
+.middle-left[
+
+## What is reliability?
+
+**Reliability**, in the most general sense, refers to the extent to which we can perform the same actions and get the same, or very similar, results. Ask the same questions, get the same answers. Model the same latent factor, get the same results. In latent variables:
+
+* Do our questions relate to one another? Are they consistent with the construct?
+
+* If we are measuring an unchanging trait/concept, if we ask the same person/people the same questions at a different time, would they give similar answers? Would our underlying factor look similar as time changes? 
+
+* How sensitive is our latent factor's composition to our specific sample and any choices we made in our research process?
+
+* How generalisable is our latent factor's construction across different groups?
+
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-diversity.svg" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+
+class: middle
+
+.middle-left[
+
+## What is validity?
+
+**Validity** generally refers to the extent to which our description of something *truly* describes what we are trying to describe. Is this really parental stress, or could it be something else? In latent variables:
+
+* Do others agree that our choice of manifest variables represent (in the majority) the underlying concept/construct? 
+
+* Is our latent variable highly correlated with other latent variables based on different manifest variables intended to measure the same concept/construct?
+
+* Is our latent variable sufficiently distinct from related concepts?
+
+* Is our latent variable unrelated to, or inversely related to, things it should be unrelated to?
+
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-diversity.svg" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# Reliability
+
+* Model fit and assessment of factor loadings
+
+* Testing/validation or exploration/confirmation subsetting of data.
+
+* Multi-group invariance testing
+
+
+]
+
+.pull-right[
+
+# Validity
+
+* .grey[Consensual method indicators research (Walker, 1987)]
+
+* Concurrent validity through factor correlation
+
+* Convergent validity through factor correlation
+
+* Discriminant validity using Average Variance Extracted
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 3: Reliability &amp; Validity of Factors Practical
+
+How reliable and valid is our parental stress latent variable?
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-bandage.svg" width="90%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+class: inverse, middle
+
+.middle-left-big[
+
+&lt;br&gt;
+
+# Part 3: Reliability &amp; Validity of Factors Summary
+
+* Reliability and validity testing is an oft neglected (outside of psychology) endeavor, but can lead to some really rich and critical research insights. SEM is well-suited for reliability and validity testing using latent factors.
+
+* Reliability and validity testing requires a range of different models and statistics, and usually involves manipulating labels to be 'fixed' or 'freed':
+
+  * Exploration/validation subsetting of data avoids the garden of forking paths.
+
+  * Multigroup invariance testing: configural, metric, scalar, and strict invariance for identifying what elements of our factors precisely lack comparability across groups.
+  
+  * Average Variance Extracted, calculated manually or using semTools, and factor correlations to explore concurrent, convergent, and discriminant validity.
+
+
+]
+
+.pull-right-small[
+
+
+&lt;img src="images/icons8-bandage.svg" width="90%" height="30%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.middle-left[
+
+## What else can be done in Structural Equation Modelling?
+
+* **Latent growth modelling** for measuring associations between linear and non-linear change over time
+
+* **Cross-lagged panel models, random intercepts cross lagged panel models, and latent curve models with structured residuals** for exploring differences in relationships between variance in traits, trends, time
+
+* **Bayesian Structural Equation Modelling** using `blavaan`
+
+* **Multilevel Structural Equation Modelling** using `lavaan`
+
+* *Most* things can be done in `lavaan` (free), but the really cutting-edge and niche things require Mplus (ehich can be run in `R` using the `Mplusautomation` package) 
+
+
+]
+
+.pull-right[
+
+&lt;img src="images/icons8-toolbox.svg" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+
+
+---
+
+class: middle
+
+### References
+
+Adelekun, A., Onyekaba, G., &amp; Lipoff, J. B. (2021). Skin color in dermatology textbooks: an updated evaluation and analysis. Journal of the American Academy of Dermatology, 84(1), 194-196.
+
+Lipsky, A. M., &amp; Greenland, S. (2022). Causal directed acyclic graphs. JAMA, 327(11), 1083-1084.
+
+Mazziotta and Pareto, 2021, “On the construction of composite indices by principal components analysis”, Rivista Italiana di Economia Demografia e Statistica, 70(1), 103-109.
+
+Pearl, J., Glymour, M., &amp; Jewell, N. P. (2016). Causal inference in statistics: A primer. John Wiley &amp; Sons.
+
+Walker, R. (1987). Consensual approaches to the definition of poverty: towards an alternative methodology. Journal of Social Policy, 16(2), 213-226.
+
+---
+
+class: middle
+
+### Further reading
+
+El-Sheikh, A. A., Abonazel, M. R., &amp; Gamil, N. (2017). A review of software packages for structural equation modeling: A comparative study. Applied Mathematics and Physics, 5(3), 85-94.
+
+Gana, K., &amp; Broc, G. (2019). Structural equation modeling with lavaan. John Wiley &amp; Sons.
+
+Hoyle, R. H. (Ed.). (2023). Handbook of structural equation modelling 2nd ed. Guilford press.
+
+Kenny, D. A. (2015). Measuring model fit. https://davidakenny.net/cm/fit.htm 
+
+Rosseel, Y., The Lavaan Project. (2023). Tutorial. lavaan.org: https://lavaan.ugent.be/tutorial/ 
+
+Van de Schoot, R., Lugtig, P., &amp; Hox, J. (2012). A checklist for testing measurement invariance. European journal of developmental psychology, 9(4), 486-492.
+
+****
+
+Merkle, E. C., &amp; Rosseel, Y. (2015). blavaan: Bayesian structural equation models via parameter expansion. arXiv preprint arXiv:1511.05604.
+
+Duncan, T. E., &amp; Duncan, S. C. (2009). The ABC’s of LGM: An introductory guide to latent variable growth curve modeling. Social and personality psychology compass, 3(6), 979-991.
+
+Little, T. D. (2013). Longitudinal structural equation modeling. Guilford press.
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
