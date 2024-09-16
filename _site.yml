@@ -18,8 +18,6 @@ navbar:
       href: https://cjrwebb.github.io/datavis/
     - text: "CWIP App"
       href: https://www.cwip-app.co.uk
-    - icon: fa fa-twitter
-      href: https://twitter.com/cjrwebb
     - icon: fa fa-github
       href: https://github.com/cjrwebb
     - icon: ai ai-google-scholar

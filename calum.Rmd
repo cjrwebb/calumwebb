@@ -4,8 +4,6 @@ image: "cwebb_profile_picture.jpg"
 links:
   - label: Google Scholar
     url: "https://scholar.google.com/citations?user=CNYHo0IAAAAJ&hl=en"
-  - label: Twitter
-    url: "https://twitter.com/cjrwebb"
   - label: GitHub
     url: "https://github.com/cjrwebb"
   - label: Email

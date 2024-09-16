@@ -4,7 +4,7 @@
     <title>SMI606: Week 9 — Multiple Logistic Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2023-07-21" />
+    <meta name="date" content="2024-09-16" />
     <script src="week-09-logistic-regression_files/header-attrs/header-attrs.js"></script>
     <link href="week-09-logistic-regression_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-09-logistic-regression_files/tile-view/tile-view.js"></script>
@@ -195,7 +195,7 @@ class: inverse, middle
 
 background-color: white
 
-## Jamboard activity
+## Wooclap activity
 
 .pull-left[
 
@@ -203,13 +203,16 @@ background-color: white
 
 #### What things are you interested in researching that aren't on a continuous scale?
 
-Join the jamboard by clicking [this link](https://jamboard.google.com/d/18mE9FwmOmaa3V7pTwUbpVyuOF5TEVvjp4vszHiDlbeI/edit?usp=sharing), or scanning the QR code on the right, and try and contribute at least one variable that you would be interested in analysing but either can't be measured on, or you haven't seen measured on, a continuous scale.
+Join the wooclap activity by clicking [this link](https://app.wooclap.com/events/AXUMRY/questions/66e8406bafc80076ce296f5d), or scanning the QR code on the right, and try and contribute at least one variable that you would be interested in analysing but either can't be measured on, or you haven't seen measured on, a continuous scale.
+
+Event ID: **AXUMRY**
+
 
 ]
 
 .pull-right[
 
-&lt;img src="images/wk-9-jb.png" width="100%" /&gt;
+&lt;img src="images/smi606-week-9-wooclap-1.png" width="100%" /&gt;
 
 ]
 
@@ -2373,9 +2376,8 @@ performance::performance_accuracy(alien_model, k = 5)
 ```
 ## # Accuracy of Model Predictions
 ## 
-## Accuracy: 63.50%
-##       SE: 4.98%-points
-##   Method: Area under Curve
+## Accuracy (95% CI): 63.50% [56.66%, 67.97%]
+## Method: Area under Curve
 ```
 
 ]
@@ -2669,7 +2671,7 @@ performance::check_outliers(alien_model)
 
 ```
 ## OK: No outliers detected.
-## - Based on the following method and threshold: cook (0.93).
+## - Based on the following method and threshold: cook (0.8).
 ## - For variable: (Whole model)
 ```
 

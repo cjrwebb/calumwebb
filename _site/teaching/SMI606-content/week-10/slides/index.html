@@ -4,7 +4,7 @@
     <title>SMI606: Week 10 — Cluster Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2023-07-21" />
+    <meta name="date" content="2024-09-16" />
     <script src="week-10-cluster-analysis_files/header-attrs/header-attrs.js"></script>
     <link href="week-10-cluster-analysis_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-10-cluster-analysis_files/tile-view/tile-view.js"></script>
@@ -1180,14 +1180,14 @@ background-color: white
 
 * __Describe the characteristics of each cluster.__
 
-[Join the Jamboard (Week 10: Jamboard 1)](https://jamboard.google.com/d/1Fs3JisXEgPSwqJVNlQpXad5wc-GwVbyxmH2g5dbeTmk/edit?usp=sharing) using this [link](https://jamboard.google.com/d/1Fs3JisXEgPSwqJVNlQpXad5wc-GwVbyxmH2g5dbeTmk/edit?usp=sharing) and try interpreting the clusters produced by k-means, based on their mean values.
+[Join the Wooclap (Week 10: Wooclap 1)](https://app.wooclap.com/events/SMIGJA/questions/66e84343e4f5d5ad4d599f0c) using this [link](https://app.wooclap.com/events/SMIGJA/questions/66e84343e4f5d5ad4d599f0c) (Event ID: **SMIGJA**) and try interpreting the clusters produced by k-means, based on their mean values.
 
 ]
 
 .pull-right[
 
 &lt;center&gt;
-&lt;img src="images/jamboard-1-qr.png" width="80%" /&gt;
+&lt;img src="images/week-10-wooclap-1.png" width="80%" /&gt;
 &lt;/center&gt;
 
 ]
@@ -2183,9 +2183,11 @@ youtube_data_results %&gt;%
 
 &lt;br&gt;
 
-Class Activity: Join the [Jamboard](https://jamboard.google.com/d/1k5n5lJjEe3k0GR5mk4C1EhNNq0axXSAu_BaApsXYJF0/edit?usp=sharing) and try to give appropriate labels to each 'group' of Youtube Viewers
+Class Activity: Join the [Wooclap Activity](https://app.wooclap.com/events/SMIGJA/questions/66e847db000342198d5906ee) and try to give appropriate labels to each 'group' of Youtube Viewers
 
-[Link](https://jamboard.google.com/d/1k5n5lJjEe3k0GR5mk4C1EhNNq0axXSAu_BaApsXYJF0/edit?usp=sharing)
+[Link](https://app.wooclap.com/events/SMIGJA/questions/66e847db000342198d5906ee)
+
+Event ID: **SMIGJA** (Question 2)
 
 ]
 
@@ -2197,7 +2199,7 @@ class: middle
 
 &lt;center&gt;
 
-&lt;img src="images/jamboard-2-qr.png" width="60%" /&gt;
+&lt;img src="images/smi606-week-10-wooclap-2.png" width="60%" /&gt;
 
 &lt;/center&gt;
 
@@ -2286,20 +2288,20 @@ youtube_data_results %&gt;%
   mutate_at(vars(animation:vlogs), ~as.numeric(.)-1) %&gt;%
   group_by(hca_comp_k6) %&gt;%
   # Means for all youtube genres
-  summarise_at(vars(animation:vlogs), ~mean(., na.rm = TRUE))
+  summarise_at(vars(animation:vlogs), ~mean(., na.rm = TRUE)) %&gt;%
+  print(width = Inf) 
 ```
 
 ```
 ## # A tibble: 6 × 13
-##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videogames
-##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0         0.958 
-## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0         0.167 
-## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0         0.559 
-## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556     0.0185
-## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0         0.0476
-## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0         0     
-## # ℹ 1 more variable: vlogs &lt;dbl&gt;
+##   hca_comp_k6 animation comedy documentaries  music  news reviews  sport tutorials trailers videoessays videogames  vlogs
+##         &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+## 1           1    0.854  0.667         0.0208 0.688  0       0.354 0         0.583    0.542        0         0.958  0.917 
+## 2           2    0.5    0             0      1      0.667   1     0.333     1        1            0         0.167  0     
+## 3           3    0.0882 0.382         0.0588 0.294  0.118   0.118 0.912     0.0294   0            0         0.559  0.118 
+## 4           4    0.0556 0.278         0.852  0.0926 0.907   0.222 0.222     0.852    0.0556       0.556     0.0185 0.0741
+## 5           5    0.0238 0.0476        0.0476 0.881  0.357   0.690 0.0238    0.190    0.976        0         0.0476 0     
+## 6           6    0.25   0.188         0      0.312  0       0.75  1         0.0625   0.625        0         0      0.0625
 ```
 
 

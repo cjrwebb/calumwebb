@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI606: Week 6 — Bivariate Linear Regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2024-09-16" />
+    <script src="week-06-bivariate-lm_files/header-attrs/header-attrs.js"></script>
+    <link href="week-06-bivariate-lm_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/tile-view/tile-view.js"></script>
+    <link href="week-06-bivariate-lm_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/panelset/panelset.js"></script>
+    <script src="week-06-bivariate-lm_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="week-06-bivariate-lm_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/clipboard/clipboard.min.js"></script>
+    <link href="week-06-bivariate-lm_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/shareon/shareon.min.js"></script>
+    <link href="week-06-bivariate-lm_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="week-06-bivariate-lm_files/mark.js/mark.min.js"></script>
+    <link href="week-06-bivariate-lm_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="week-06-bivariate-lm_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle
+background-size: contain
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# .tuos_purple[SMI606: Week 6&lt;br&gt;Bivariate Linear Regression]
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield.&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+class: middle
+
+.pull-left[
+
+
+]
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sign In
+
+]
+---
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Understand how to interpret and report simple bivariate linear regression models.
+
+* Be able to estimate simple bivariate linear regression models in `R` using the `lm()` function.
+
+* Be able to plot a simple linear regression line using the `geom_smooth()` function in `ggplot()` (with `method = "lm"` argument).
+
+* Be able to check whether data meets the assumptions of simple linear regression.
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* Regression is the workhorse of contemporary quantitative social science research, and incorporates within it many of the concepts we've learned.
+
+* This week will prepare you for extending bivariate linear regression to multiple linear regression (week 8), and logistic regression (week 9), to answer more complex (and more interesting!) social science research questions.
+
+* A good understanding of regression will create a foundation for understanding cutting-edge advanced methods for longitudinal and multilevel models (In Advanced Quants module).
+
+
+]
+
+
+]
+
+
+
+???
+
+
+
+---
+
+class: inverse, middle
+
+
+# What is linear regression?
+
+
+
+---
+
+
+
+
+
+## What is linear regression?
+
+.pull-left[
+
+#### Code for UN Data plot
+
+
+```r
+library(tidyverse)
+library(ggrepel)
+
+un_data &lt;- read_csv("un-gender-extract.csv")
+
+un_data %&gt;% 
+  ggplot() +
+  geom_point(
+    aes(x = sec_ed_women, y = lab_force_women)
+    ) +
+  geom_text_repel(
+    aes(x = sec_ed_women, y = lab_force_women, label = country), 
+    size = 3) +
+  ylab("Proportion of Women in the Labour Force") +
+  xlab("Proportion of Women with at least some Secondary Education") +
+  labs(title = "UNDP Gender Inequality Index (GII) 2020", 
+       caption = "http://hdr.undp.org/en/content/gender-inequality-index-gii")
+```
+
+]
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-3-1.png" width="500" height="450" /&gt;
+
+]
+
+---
+
+## What is linear regression?
+
+.pull-left[
+
+&lt;br&gt;
+
+#### Which of the following statements is more informative?
+
+* There was a moderate correlation of R = 0.5 between rates of women completing at least some secondary education and women's labour market participation.
+
+*Or*
+
+* Every additional 1 percentage point of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+
+]
+
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-4-1.png" width="500" height="450" /&gt;
+
+]
+
+
+---
+
+## What is linear regression?
+
+.pull-left[
+
+&lt;br&gt;
+
+#### Which of the following statements is more informative?
+
+* There was a moderate correlation of R = 0.5 between rates of women completing at least some secondary education and women's labour market participation.
+
+*Or*
+
+* Every additional 1 percentage point of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+
+]
+
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-5-1.png" width="500" height="450" /&gt;
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = mx + b$$]
+
+*Equation for a Straight line*
+
+*"y is equal to m times by x (the slope) plus b (the intercept)"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = b + mx$$]
+
+*Shift the intercept over*
+
+*"y is equal to b (the intercept) plus m times by x (the slope)"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$y = b_0 + b_1x$$]
+
+*Change all estimates to b with a subscript to differentiate*
+
+*"y is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by x"*
+
+]
+
+---
+
+class: middle
+
+.center[
+
+## .tuos_purple[$$\bar{y} = b_0 + b_1x$$]
+
+*Put a bar over Y to indicate that it's the mean of Y, not the exact value.*
+
+*"The mean of y is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by x"*
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{y} = b_0 + b_1x$$]
+
+*"The mean of y is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by x"*
+
+]]
+
+.pull-right[
+
+
+__Substitute our variables of interest__
+
+Every additional 1 percent of women completing at least some secondary education was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1x$$]
+
+*Change Y to be our dependent variable.*
+
+*"The mean of women's labour market participation is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by x"*
+
+]]
+
+.pull-right[
+
+__Identify our dependent (y) variable__
+
+Every additional 1 percent of women completing at least some secondary education was associated with an increase in __women's labour market participation__ of 0.3 percentage points.
+
+]
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1\text{womenSER}$$]
+
+*Change X to be our independent variable.*
+
+*"The mean of women's labour market participation is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by women's secondary education rate"*
+
+]]
+
+.pull-right[
+
+__Identify our independent (x) variable__
+
+Every additional 1 percent of __women completing at least some secondary education__ was associated with an increase in women's labour market participation of 0.3 percentage points.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[.center[
+
+### .tuos_purple[$$\bar{\text{womenLMP}} = b_0 + b_1\text{womenSER}$$]
+
+*Change X to be our independent variable.*
+
+*"The mean of women's labour market participation is equal to b&lt;sub&gt;0&lt;/sub&gt; plus b&lt;sub&gt;1&lt;/sub&gt; times by women's secondary education rate"*
+
+]]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* Find __ `\(b_0\)` __ ?
+
+* Find __ `\(b_1\)` __ ?
+
+]
+
+
+---
+class: middle
+
+## Finding the best fitting line
+
+.pull-left[
+
+#### How do we find the best fitting line? A competition!
+
+* Honour system - no cheating!
+
+* Open the [Shiny app](https://webb.shinyapps.io/find-line/) in your web browser, or download and run the source code in `R`
+
+* In pairs, your task is to get the best fitting line to the data that the app has generated for you by manipulating the intercept and slope values with the sliders.
+
+* Once you've decided on the best fitting line, check the actual results from the linear regression and see how far off you were. Check the residuals plot and see how it changes between your estimate and the linear regression one.
+
+* Whoever gets the closest guess wins!
+
+
+]
+
+
+.pull-right[
+
+&lt;img src="images/qrcode_webb.shinyapps.io.png" width="100%" /&gt;
+
+[https://webb.shinyapps.io/find-line/](https://webb.shinyapps.io/find-line/)
+
+]
+
+
+
+
+
+---
+class: middle
+
+## Finding the best fitting line
+
+.pull-left[
+
+#### How do we find the best fitting line? A competition!
+
+* Honour system - no cheating!
+
+* Open the [Shiny app](https://webb.shinyapps.io/find-line/) in your web browser, or download and run the source code in `R`
+
+* In pairs, your task is to get the best fitting line to the data that the app has generated for you by manipulating the intercept and slope values with the sliders.
+
+* Once you've decided on the best fitting line, check the actual results from the linear regression and see how far off you were. Check the residuals plot and see how it changes between your estimate and the linear regression one.
+
+* Whoever gets the closest guess wins!
+
+
+]
+
+
+.pull-right[
+
+&lt;img src="images/find-line-app.png" width="100%" /&gt;
+
+[https://webb.shinyapps.io/find-line/](https://webb.shinyapps.io/find-line/)
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+
+]
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-8-1.png" width="500" height="450" /&gt;
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+]
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-9-1.png" width="500" height="450" /&gt;
+
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+* It also tells us the __intercept__ of the line (the point at which the line crosses the Y-axis)
+
+]
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-10-1.png" width="500" height="450" /&gt;
+
+
+]
+
+
+---
+
+## Finding the best fitting line with Ordinary Least Squares
+
+
+.pull-left[
+
+The slope and intercept of the line can be found using the __Ordinary Least Squares regression estimator__, which [__minimizes__ __the sum of the squared residuals__](https://setosa.io/ev/ordinary-least-squares-regression/).
+
+* This gives us the **slope** of the line (how much, on average, does Y change for every one-unit increase in X)
+
+* It also tells us the __intercept__ of the line (the point at which the line crosses the Y-axis)
+
+We can estimate a **linear regression model** in `R` using the inbuilt `lm()` function. 
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+```
+
+
+]
+
+.pull-right[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-12-1.png" width="500" height="450" /&gt;
+
+
+]
+
+
+---
+
+class: inverse, middle
+
+
+# How does the Ordinary Least Squares estimator work?
+
+*You don't need to know this for any assessments, but you should at least understand generally how it works!*
+
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \bar{x} )}{\sum_{\substack{i=1}}^n(x_i - \bar{x})^2}\)`
+
+`\(\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x}\)`
+
+
+Let's break down these equations into each of their steps so we can get an understanding of what they are doing.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-14-1.png" width="700" height="450" /&gt;
+
+]
+
+
+
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \bar{y}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}\)`
+
+`\(\hat{\beta_0} = \bar{y} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+One of the terms in the equation is `\(\bar{x}\)` (x bar or bar x), which is referring to the sample mean of the X variable. 
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-15-1.png" width="700" height="450" /&gt;
+
+]
+
+
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (x_i - \color{blue}{\bar{x}} )}{\sum_{\substack{i=1}}^n(x_i - \color{blue}{\bar{x})}^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+The other bar, `\(\bar{y}\)` (y bar), refers to the mean of the y variable. Our regression line will have to pass through the point where `\(\bar{x}\)` and `\(\bar{y}\)` meet.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-16-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (y_i - \color{magenta}{\bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+We can see that in the numerator one of the terms is the sum ( `\(\sum_{\substack{i=1}}^n\)` ) of the difference between the mean of x ( `\(\bar{x}\)` ) and the observed values of x `\(x_i\)`. This term is also squared in the denominator.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-17-1.png" width="700" height="450" /&gt;
+
+]
+
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Similarly, we also have a term for the equivalent for y - the difference between the mean of y `\(\bar{y}\)` and the observed values of y `\(y_i\)`.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-18-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Notice that when we take the product of `\((\color{magenta}{y_i - \bar{y}})\)` and `\((\color{blue}{x_i - \bar{x}} )\)` it gives us the area of a rectangle.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-19-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+As a result, we can think about the distance from the mean of y and each specific point as a unique incidence of the change in y, relative to its mean, for an increase or decrease in X of however far away it is from the mean of X.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-20-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Because the rectangles are overlapping, I'm going to seperate them out now but keep them to scale to make what happens when we work through the fraction clearer.
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-21-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Now we have each of the squares and the distances of X that they cover (keep in mind that half of these will be negative, but will cover the same distance in the other direction).
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-22-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+We also have the changes from the mean of Y that each of those distances correspond with
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-23-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Now, watch what happens to the distances when we divide by one of the `\(x - \bar{x}\)` terms, removing it completely from the numerator and removing one of the powers of the denominator.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-24-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}})}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Of course, we now also need to re-scale the distances in Y; if the X distance previously was 4 then the Y distance for a 1-unit increase of X will be whatever it originally was divided by 4.
+
+Now all of our changes are on the same scale.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-25-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\color{teal}{\hat{\beta_1}} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \color{teal}{\hat{\beta_1}}\color{blue}{\bar{x}}\)`
+
+If we take the average of all of these scaled changes, we end up with the average change in __Y for a one-unit increase in X__: the definition of a slope in a linear equation!
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-26-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+But the slope is only one part of the equation! How does the second equation get us the intercept (the point at which we can start drawing the line). Without this we could draw the line...
+
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-27-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Here?
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-28-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Or here?
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-29-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Or here??
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-30-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Well, if you remember from earlier, we said that we know the line *must* cross the point where the mean of x and the mean of y meet.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-31-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+So what if we take that as a starting point and then **work backwards from the mean until we get to X = 0, each time also subtracting the slope value from the mean of Y**.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-32-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+One step...
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-33-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Two steps...
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-34-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Three steps...
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-35-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Four steps...
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-36-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+And now our regression line is in contact the point at which X = 0: this gives us the intercept, the other part of the equation, of around 1.48.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-37-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+And now our regression line is in contact the point at which X = 0: this gives us the intercept, the other part of the equation, of around 1.48.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-38-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+Even though the equations above look quite overwhelming, we can see visually exactly what they are doing to calculate the regression line. The result from those equations minimises the squared residuals.
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-39-1.png" width="700" height="450" /&gt;
+
+]
+
+---
+
+# Aside: OLS: how does it work?
+
+.pull-left-small[
+
+`\(\hat{\beta_1} =  \frac{\sum_{\substack{i=1}}^n (\color{magenta}{y_i - \bar{y}}) (\color{blue}{x_i - \bar{x}} )}{\sum_{\substack{i=1}}^n(\color{blue}{x_i - \bar{x}})^2}\)`
+
+`\(\hat{\beta_0} = \color{magenta}{\bar{y}} - \hat{\beta_1}\color{blue}{\bar{x}}\)`
+
+`\(\hat{\beta_1} = 0.29\)`
+
+`\(\hat{\beta_0} = 1.48\)`
+
+]
+
+.pull-right-big[
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-40-1.png" width="700" height="450" /&gt;
+
+]
+
+
+---
+
+class: inverse, middle
+
+
+# How to report a regression model
+
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(&gt;|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(&gt;|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(&gt;|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(&gt;|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+  * .small[__Effect size__: Exactly how much change in Y would be expect to see on average for a 1-unit increase in X?]
+
+
+]
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+Using the `summary()` function then gives us our model output. This gives us a range of results, from very general statements to very specific ones.
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+* __R-squared__: Total variance in Y that can be explained by variance in X.
+* __p-values (Pr(&gt;|t|))__: If appropriate, whether the associations between X and Y were statistically significant.
+* __Intercept/slope (Estimate)__: The strength and direction of the relationship.
+  * .small[__Direction__: Is the estimate a positive number (as X increases, Y also increases), or a negative number (as X increases, Y decreases).]
+  * .small[__Effect size__: Exactly how much change in Y would be expect to see on average for a 1-unit increase in X?]
+  * .small[__Confidence Intervals__: A 95% confidence interval around the effect size can be calculated by adding and subtracting 1.96 times the standard error to the estimate.]
+
+
+]
+
+---
+
+class: middle
+
+## Reporting a regression model
+
+.pull-left[
+
+&lt;img src="images/week-6-wooclap-1.png" width="100%" /&gt;
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Activity: Label the regression output with commonly used statistical terms.
+
+### Wooclap Event Code: 
+
+&gt; # UIRTGC 
+
+[Link](https://app.wooclap.com/events/UIRTGC/questions/66e83564668307d647368a0c)
+
+]
+
+
+---
+
+## Reporting a regression model
+
+
+.pull-left[
+
+
+```r
+lab_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ sec_ed_women)
+
+summary(lab_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ sec_ed_women, data = un_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.4142  -3.6709   0.4669   5.0493  13.8211 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  28.61977    5.58156   5.128 3.31e-06 ***
+## sec_ed_women  0.29158    0.06545   4.455 3.73e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.164 on 60 degrees of freedom
+## Multiple R-squared:  0.2485,	Adjusted R-squared:  0.236 
+## F-statistic: 19.84 on 1 and 60 DF,  p-value: 3.727e-05
+```
+
+
+
+
+]
+
+.pull-right[
+
+.center[
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.5em;" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+]
+
+&lt;br&gt;
+
+&gt; Overall, the percentage of women with at least some secondary school education could explain approximately 25 per cent of the variance in women's labour market participation. The relationship between the two variables was statistically significant (p&lt;0.05). As the percentage of women with at least some secondary school education increased, the percentage of women participating in the labour market also increased. A 1 percentage point increase in women with secondary school education was associated with a 0.3 percentage point increase in women's labour market participation, on average. 
+
+]
+
+---
+
+## Note: Pretty regression output
+
+.pull-left[
+
+If using Rmarkdown, you can make prettier regression results tables using the `stargazer` package. For example:
+
+
+```r
+library(stargazer)
+
+stargazer::stargazer(lab_model, type = "html")
+```
+
+&lt;br&gt;
+
+#### .tuos_purple[$$\bar{\text{womenLMP}} = 28.6 + 0.3\text{womenSER}$$]
+
+]
+
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;lab_force_women&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;sec_ed_women&lt;/td&gt;&lt;td&gt;0.292&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.065)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;28.620&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(5.582)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;62&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.249&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.236&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;7.164 (df = 60)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;19.845&lt;sup&gt;***&lt;/sup&gt; (df = 1; 60)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+class: inverse, middle
+
+
+# Binary categorical predictors
+
+---
+
+## Binary categorical predictors
+
+
+
+&lt;center&gt;
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-53-1.png" width="800" height="450" /&gt;
+
+&lt;/center&gt;
+
+
+---
+
+## Binary categorical predictors
+
+&lt;center&gt;
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-54-1.png" width="800" height="450" /&gt;
+
+&lt;/center&gt;
+
+---
+
+## Binary categorical predictors
+
+.pull-left[
+
+
+```r
+eu_model &lt;- lm(data = un_data, 
+                formula = lab_force_women ~ in_eu)
+
+summary(eu_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = lab_force_women ~ in_eu, data = un_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -31.660  -3.763   1.439   4.587  17.040 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   53.760      1.392  38.623   &lt;2e-16 ***
+## in_eu         -1.397      2.109  -0.662     0.51    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 8.235 on 60 degrees of freedom
+## Multiple R-squared:  0.007258,	Adjusted R-squared:  -0.009287 
+## F-statistic: 0.4387 on 1 and 60 DF,  p-value: 0.5103
+```
+
+.small["An increase of 1 in the 'in_eu' variable [meaning, the country is in the EU] was associated with an average decrease of 1.4 points in the percentage of women in the labour force."]
+
+]
+
+.pull-right[
+&lt;center&gt;
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-56-1.png" width="500" height="450" /&gt;
+
+
+
+&lt;/center&gt;
+]
+
+---
+
+class: inverse, middle
+
+
+# Assumptions of linear regression
+
+Important! You will need to know how to check these for your assessments!
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+The most appropriate approximation of the relationship in the data is a straight line.
+
+Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple regression, next week).
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-58-1.png" width="500" height="450" /&gt;
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+The most appropriate approximation of the relationship in the data is a straight line.
+
+Checked with: Scatterplot (bivariate); residuals versus fitted values (multiple regression, next week).
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-59-1.png" width="500" height="450" /&gt;
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+The spread of points around the regression line is approximately the same size at all points in the regression line.
+
+Checked with: Scatterplot (bivariate); spread-location plot (multiple regression, next week).
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-60-1.png" width="500" height="450" /&gt;
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+The spread of points around the regression line is approximately the same size at all points in the regression line.
+
+Checked with: Scatterplot (bivariate); spread-location plot (multiple regression, next week).
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-61-1.png" width="500" height="450" /&gt;
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can have an undue influence on the slope of the line. Outliers deviate far from the general pattern whereas leverage points tend to follow the trend (somewhat) but be far away from the general cluster. Can be **true** outliers, or artefacts/errors.
+
+Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-62-1.png" width="500" height="450" /&gt;
+
+
+`$$Y = 28.62 + 0.29X$$`
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can have an undue influence on the slope of the line. Outliers deviate far from the general pattern whereas leverage points tend to follow the trend (somewhat) but be far away from the general cluster. Can be **true** outliers, or artefacts/errors.
+
+Checked with: Scatterplot (bivariate); leverage plot (multiple regression)
+
+* __Normality of residuals__
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-63-1.png" width="500" height="450" /&gt;
+
+`$$Y = 38.39 + 0.19X$$`
+
+]
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+The residuals from the regression line have an approximately normal distribution around the line (e.g. there are not more points closer together on one side of the line than there are on the other).
+
+Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple regression)
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-64-1.png" width="500" height="450" /&gt;
+
+
+]
+
+
+---
+
+## Assumptions
+
+.pull-left[
+
+* __Linearity__
+
+* __Homoscedasticity__
+
+* __Outliers and leverage points__
+
+* __Normality of residuals__
+
+The residuals from the regression line have an approximately normal distribution around the line (e.g. there are not more points closer together on one side of the line than there are on the other).
+
+Checked with: Scatterplot with regression line (bivariate); Q-Q plot (multiple regression)
+
+]
+
+.pull-right[
+
+&lt;img src="week-06-bivariate-lm_files/figure-html/unnamed-chunk-65-1.png" width="500" height="450" /&gt;
+
+
+]
+
+
+---
+
+
+## Diagnostics: What happens and what to do when assumptions are violated? Cheat sheet.
+
+.pull-left[
+
+* __Linearity__
+
+This means that your estimates will be over- and under-estimated at different parts of the line. If your dependent variable is right-skewed (long tail of observations in the + direction), you can transform it to its log value using `log()`. Alternatively, you can fit a curvilinear model — bit more advanced but not too difficult!
+
+* __Homoscedasticity__
+
+Heteroscedasticity means that the standard errors will be biased (in different ways depending on the shape) — this can be resolved using robust standard errors and/or a weighted least squares estimator.
+
+
+]
+
+.pull-right[
+
+* __Outliers and leverage points__
+
+Outliers and leverage points can generally have an undue influence on the slope in a regression. Remove any error-based outliers (e.g. someone enters their age as 400 instead of 40). Compare results with 'true' outliers included and excluded to see how they differ, present both. 
+
+* __Normality of residuals__
+
+Non-normality of residuals can mean that standard errors are smaller than they should be, which can effect decisions made in hypothesis testing in marginal cases — but this is not generally a big problem outside of very small studies (N &lt; 10 per variable) ([Schmidt &amp; Finan, 2018](https://pubmed.ncbi.nlm.nih.gov/29258908/)). Make this clear if either is true.
+
+
+]
+
+
+---
+
+class: middle
+
+# Summary&lt;br&gt;Bivariate Linear Regression
+
+* Simple bivariate linear regression can be expressed as a line through the data points in our scatterplot.
+
+--
+
+* This line can be expressed very efficiently in the form of an equation ( `\(\bar{y} = b_0+b_1x\)` ), and can be interpreted in an often meaningful way (as `\(X\)` increases by 1, the mean value of `\(Y\)` increases by `\(b_1\)` )
+
+--
+
+* Regression models include inferential statistics (where `\(H_0\)` = the slope of the regression line is not significantly different from what we would expect if it were 0 in the entire population, a.k.a. a flat line).
+
+--
+
+* Regression provides us with a highly flexible and descriptive form of statistical modelling, able to incorporate binary and non-normally distributed predictors of a continuous dependent variable.
+
+--
+
+* As we will see next week, regression models are even more useful as they allow us to include more than one predictor to explore conditional associations.
+
+---
+class: middle
+
+# R Exercise&lt;br&gt;Bivariate Linear Regression
+
+### .tuos_purple[Research question: To what extent are women's secondary school education rates, women's workforce participation rates, and societal bias against women associated with the proportion of seats in parliament held by women?]
+
+* Download `week-6-exercise.zip` and open the `week-6-exercise` Rproject file and R script.
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

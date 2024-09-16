@@ -1,0 +1,46 @@
+.remark-slide-content > h3:first-of-type {
+    padding-right: 75px;
+}
+.remark-slide-content > h2:first-of-type {
+    padding-right: 75px;
+}
+.remark-slide-content > h1:first-of-type {
+    padding-right: 75px;
+}
+
+.remark-slide-content > h1:first-of-type {
+    padding-right: 20px;
+}
+
+.small {
+  font-size: 80%;
+}
+.big {
+  font-size: 120%;
+}
+.full-width {
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.pull-left-big {
+  width: 65%;
+  float: left;
+}
+
+.pull-right-small {
+  width: 30%;
+  float: right;
+}
+
+
+.pull-left-small {
+  width: 30%;
+  float: left;
+}
+
+.pull-right-big {
+  width: 65%;
+  float: right;
+}

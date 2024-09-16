@@ -24,3 +24,7 @@
   flex: 1 1 auto;
 }
 
+.big-code {
+  font-size: 120%;
+  font-family: monospace, monospace;
+}
