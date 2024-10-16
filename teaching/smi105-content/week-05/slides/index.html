@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SMI105: Week 5 Visual design</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Calum Webb" />
+    <meta name="date" content="2024-10-16" />
+    <script src="smi105-week-5_files/header-attrs/header-attrs.js"></script>
+    <link href="smi105-week-5_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/tile-view/tile-view.js"></script>
+    <link href="smi105-week-5_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/panelset/panelset.js"></script>
+    <script src="smi105-week-5_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="smi105-week-5_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/clipboard/clipboard.min.js"></script>
+    <link href="smi105-week-5_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/shareon/shareon.min.js"></script>
+    <link href="smi105-week-5_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="smi105-week-5_files/mark.js/mark.min.js"></script>
+    <link href="smi105-week-5_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="smi105-week-5_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Visual Design
+#### SMI105: Week 5
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+class: middle, inverse
+
+# Sign in
+
+---
+
+class: middle
+
+## Learning outcomes
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will know:
+
+* What is considered "best" practice in designing data visualisations.
+
+* How to apply graphic design principles to design effective data visualisations through good use of text and colour.
+
+* How to apply these principles in `ggplot2`
+
+* The answers to any last questions you have about the first assessment.
+
+
+]
+]
+
+---
+
+class: inverse, middle
+
+#### Part I
+
+# The history of good practice in information visual design
+
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Tufte's (1983/2001) Graphical Excellence &amp; Elegance
+
+Edward Tufte's revolutionised the way that data visualisation was done by introducing principles of excellence and elegance:
+
+&gt; "Graphical excellence consists of complex ideas communicated with clarity, precision and efficiency." (p.51)
+
+&gt; "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space." (p.51)
+
+For Tufte (at least in 1983/2001), we should aim to 'maximise the ink to information ratio' and avoid introducing extraneous stylistic elements that, at best, do nothing and, at worst, might influence perception of the data — communicate the most information in the least amount of ink. What does this mean?
+
+
+]
+
+.pull-right[
+
+
+.center[
+
+&lt;img src="images/tufte.jpg" width="70%" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Tufte's (1983/2001) Graphical Excellence &amp; Elegance
+
+Edward Tufte's revolutionised the way that data visualisation was done by introducing principles of excellence and elegance:
+
+&gt; "Graphical excellence consists of complex ideas communicated with clarity, precision and efficiency." (p.51)
+
+&gt; "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space." (p.51)
+
+For Tufte (at least in 1983/2001), we should aim to 'maximise the ink to information ratio' and avoid introducing extraneous stylistic elements that, at best, do nothing and, at worst, might influence perception of the data — communicate the most information in the least amount of ink. What does this mean?
+
+
+]
+
+.pull-right[
+
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-boxplot-1.png" alt="Typical boxplot design (Tufte, 2001)" width="100%" /&gt;
+&lt;p class="caption"&gt;Typical boxplot design (Tufte, 2001)&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Tufte's (1983/2001) Graphical Excellence &amp; Elegance
+
+Edward Tufte's revolutionised the way that data visualisation was done by introducing principles of excellence and elegance:
+
+&gt; "Graphical excellence consists of complex ideas communicated with clarity, precision and efficiency." (p.51)
+
+&gt; "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space." (p.51)
+
+For Tufte (at least in 1983/2001), we should aim to 'maximise the ink to information ratio' and avoid introducing extraneous stylistic elements that, at best, do nothing and, at worst, might influence perception of the data — communicate the most information in the least amount of ink. What does this mean?
+
+
+]
+
+.pull-right[
+
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-boxplot-2.png" alt="Tufte's redesigned boxplot (Tufte, 2001)" width="100%" /&gt;
+&lt;p class="caption"&gt;Tufte's redesigned boxplot (Tufte, 2001)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Tufte's (1983/2001) Graphical Excellence &amp; Elegance
+
+Edward Tufte's revolutionised the way that data visualisation was done by introducing principles of excellence and elegance:
+
+&gt; "Graphical excellence consists of complex ideas communicated with clarity, precision and efficiency." (p.51)
+
+&gt; "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space." (p.51)
+
+For Tufte (at least in 1983/2001), we should aim to 'maximise the ink to information ratio' and avoid introducing extraneous stylistic elements that, at best, do nothing and, at worst, might influence perception of the data — communicate the most information in the least amount of ink. What does this mean?
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-bar-1.png" alt="A standard bar chart (Tufte, 2001)" width="100%" /&gt;
+&lt;p class="caption"&gt;A standard bar chart (Tufte, 2001)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Tufte's (1983/2001) Graphical Excellence &amp; Elegance
+
+Edward Tufte's revolutionised the way that data visualisation was done by introducing principles of excellence and elegance:
+
+&gt; "Graphical excellence consists of complex ideas communicated with clarity, precision and efficiency." (p.51)
+
+&gt; "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space." (p.51)
+
+For Tufte (at least in 1983/2001), we should aim to 'maximise the ink to information ratio' and avoid introducing extraneous stylistic elements that, at best, do nothing and, at worst, might influence perception of the data — communicate the most information in the least amount of ink. What does this mean?
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-bar-2.png" alt="Tufte's redesigned barchart (Tufte, 2001)" width="100%" /&gt;
+&lt;p class="caption"&gt;Tufte's redesigned barchart (Tufte, 2001)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+---
+
+class: inverse, middle
+
+
+# The life and death(?) of chartjunk
+
+
+---
+
+class: middle
+
+.pull-left[
+
+
+## Chartjunk &amp; misrepresentation
+
+Edward Tufte particularly took issue with what he called **"chartjunk"**; the "interior decoration of graphics [that] does not tell the viewer anything new". In addition, he raised the issues of **misrepresentation and integrity** that often accompanied misuse of area/scale
+
+* **Integrity and misrepresentation of scale**: misrepresenting differences between things: a square with twice the area of one that measures 10cm x 10cm would measure ~14cm x 14cm, not 20cm x 20cm
+
+* .grey[Unintentional optical art: eye-straining effects that had "no place in data graphical design" (or arguably, any form of graphical design)]
+
+* .grey[Extraneous gridlines: gridlines that only exist as a relic from drawing visualisations by hand that distract the viewer.]
+
+* .grey[The graphical duck: unneccesary additions to the visualisation (e.g. colour) where it does not add any information, and is done just because "it can be done".]
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-cj1.png" alt="A lie factor of 2 (Tufte, 2001)" width="55%" /&gt;
+&lt;p class="caption"&gt;A lie factor of 2 (Tufte, 2001)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+
+## Chartjunk &amp; misrepresentation
+
+Edward Tufte particularly took issue with what he called **"chartjunk"**; the "interior decoration of graphics [that] does not tell the viewer anything new". In addition, he raised the issues of **misrepresentation and integrity** that often accompanied misuse of area/scale
+
+* .grey[Integrity and misrepresentation of scale: misrepresenting differences between things: a square with twice the area of one that measures 10cm x 10cm would measure ~14cm x 14cm, not 20cm x 20cm]
+
+* **Unintentional optical art**: eye-straining effects that had "no place in data graphical design" (or arguably, any form of graphical design)
+
+* .grey[Extraneous gridlines: gridlines that only exist as a relic from drawing visualisations by hand that distract the viewer.]
+
+* .grey[The graphical duck: unneccesary additions to the visualisation (e.g. colour) where it does not add any information, and is done just because "it can be done".]
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-cj2.png" alt="(Tufte, 2001: 108)" width="100%" /&gt;
+&lt;p class="caption"&gt;(Tufte, 2001: 108)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+
+## Chartjunk &amp; misrepresentation
+
+Edward Tufte particularly took issue with what he called **"chartjunk"**; the "interior decoration of graphics [that] does not tell the viewer anything new". In addition, he raised the issues of **misrepresentation and integrity** that often accompanied misuse of area/scale
+
+* .grey[Integrity and misrepresentation of scale: misrepresenting differences between things: a square with twice the area of one that measures 10cm x 10cm would measure ~14cm x 14cm, not 20cm x 20cm]
+
+* .grey[Unintentional optical art: eye-straining effects that had "no place in data graphical design" (or arguably, any form of graphical design)]
+
+* **Extraneous gridlines**: gridlines that only exist as a relic from drawing visualisations by hand that distract the viewer.
+
+* .grey[The graphical duck: unneccesary additions to the visualisation (e.g. colour) where it does not add any information, and is done just because "it can be done".]
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-cj3.png" alt="(Tufte, 2001: 115)" width="100%" /&gt;
+&lt;p class="caption"&gt;(Tufte, 2001: 115)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+
+## Chartjunk &amp; misrepresentation
+
+Edward Tufte particularly took issue with what he called **"chartjunk"**; the "interior decoration of graphics [that] does not tell the viewer anything new". In addition, he raised the issues of **misrepresentation and integrity** that often accompanied misuse of area/scale
+
+* .grey[Integrity and misrepresentation of scale: misrepresenting differences between things: a square with twice the area of one that measures 10cm x 10cm would measure ~14cm x 14cm, not 20cm x 20cm]
+
+* .grey[Unintentional optical art: eye-straining effects that had "no place in data graphical design" (or arguably, any form of graphical design)]
+
+* .grey[Extraneous gridlines: gridlines that only exist as a relic from drawing visualisations by hand that distract the viewer.]
+
+* **The graphical duck**: unneccesary additions to the visualisation (e.g. colour) where it does not add any information, and is done just because "it can be done".
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte-cj4.png" alt="(Tufte, 2001: 120)" width="100%" /&gt;
+&lt;p class="caption"&gt;(Tufte, 2001: 120)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+## The influence of, and a critique of, Tufte's approach
+
+Note how, in the workshops, many of the defaults that are used by ggplot (and other packages) tend to use the same kind of best practice that Tufte recommended: **no more thick gridlines, no more unnecessary crosshatching, and you have to try quite hard to misrepresent your data**.
+
+However, of we remove everything that isn't strictly necessary, where does that leave **design, art, and the influence it can have on engagement and communication for different audiences**? What does "default ink" look like in a digital world? What if elegant isn't your aesthetic?
+
+&gt; "Embellishments can at times, when properly chosen and designed, represent information redundantly in useful ways, and even when they aren't information in and of themselves, can meaningfully support the display of information."
+
+.right[Stephen Few, quoted in Feigenbaum &amp; Alamalhodaei, 2020.]
+
+
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/tufte.jpg" alt="(Tufte, 2001: 120)" width="70%" /&gt;
+&lt;p class="caption"&gt;(Tufte, 2001: 120)&lt;/p&gt;
+&lt;/div&gt;
+
+] 
+
+]
+
+
+---
+
+class: inverse, middle
+
+#### Part II
+
+# Good practice meets good design? Data vis with pretty ducks.
+
+
+---
+
+class: middle
+
+.pull-left[
+
+## Text
+
+* Font
+* Annotation
+* Accessibility
+* Readability
+
+Some great advice on the DataWrapper blog [here](https://blog.datawrapper.de/text-in-data-visualizations/) and [here](https://blog.datawrapper.de/fonts-for-data-visualization/).
+
+]
+
+.pull-right[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* Accessibility
+
+Some more great advice from DataWrapper on the use of colour in blogs [here](https://blog.datawrapper.de/emphasize-with-color-in-data-visualizations/) and [here](https://blog.datawrapper.de/color-keys-for-data-visualizations/), as well as a very useful tool in the Adobe Color web tool [here](https://color.adobe.com/create/color-wheel)
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* Font
+* Annotation
+* Accessibility
+* Readability
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* **Font**
+
+Fonts can generally be characterised into two "flavours": .serif[Serif] (e.g. Times) and .sans-serif[Sans-serif] (e.g. Helvetica).
+
+Fonts can also have different weights, for example: .helv200[Helvetica@200], .helv300[Helvetica@300], .helv600[Helvetica@600], which can indicate emphasis/hierarchy or be a style choice in general.
+
+Further, fonts can be *italicised* or &lt;u&gt;underlined&lt;/u&gt; for emphasis.
+
+Sans-serif fonts tend to be **cleaner and easier to read in data visualisation**. 
+
+A good rule of thumb: Maximum 3 different sizes for leading the eye, and bold weights for emphasis if needed.
+
+* .grey[Annotation]
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-12-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+## Text
+
+* **Font**
+
+Fonts can generally be characterised into two "flavours": .serif[Serif] (e.g. Times) and .sans-serif[Sans-serif] (e.g. Helvetica).
+
+Fonts can also have different weights, for example: .helv200[Helvetica@200], .helv300[Helvetica@300], .helv600[Helvetica@600], which can indicate emphasis/hierarchy or be a style choice in general.
+
+Further, fonts can be *italicised* or &lt;u&gt;underlined&lt;/u&gt; for emphasis.
+
+Sans-serif fonts tend to be **cleaner and easier to read in data visualisation**. 
+
+A good rule of thumb: Maximum 3 different sizes for leading the eye, and bold weights for emphasis if needed.
+
+* .grey[Annotation]
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-13-1.png" width="500" height="500" /&gt;
+
+]
+
+
+
+
+---
+
+.pull-left[
+
+## Text
+
+* **Font**
+
+
+
+
+```r
+my_plot + theme(
+    plot.title = element_text(family = "Helvetica", 
+                              size = 18, 
+                              face = "bold"
+                                        ),
+    plot.subtitle = element_text(family = "Helvetica", 
+                                 size = 10
+                                           ),
+    axis.title.y = element_text(family = "Helvetica", 
+                                size = 8),
+    legend.text = element_text(family = "Helvetica", 
+                               size = 8
+                               ), 
+    legend.title = element_text(family = "Helvetica", 
+                                size = 8),
+    axis.text = element_text(family = "Helvetica", 
+                             size = 8)
+  )
+```
+
+
+* .grey[Annotation]
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-15-1.png" width="500" height="500" /&gt;
+
+]
+
+
+
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* **Annotation**
+
+Annotation refers to placing text (or sometimes images/icons) on the 'data' layer of the data visualisation. 
+
+This helps keep the reader's eye centred on the most important part of the visualisation — the data — and **prevents them having to go 'hunting' for the relevant information** (i.e. the legend). 
+
+Annotations are usually combined with colour in order to remove the need for a separate key outside the data at all.
+
+Annotations are usually best placed at the 'end' of a time-series or near the thing we want to draw attention to (which could also be a 'peak').
+
+
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-16-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* **Annotation**
+
+Annotation refers to placing text (or sometimes images/icons) on the 'data' layer of the data visualisation. 
+
+This helps keep the reader's eye centred on the most important part of the visualisation — the data — and **prevents them having to go 'hunting' for the relevant information** (i.e. the legend). 
+
+Annotations are usually combined with colour in order to remove the need for a separate key outside the data at all.
+
+Annotations are usually best placed at the 'end' of a time-series or near the thing we want to draw attention to (which could also be a 'peak').
+
+
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-17-1.png" width="500" height="500" /&gt;
+
+]
+
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* **Annotation**
+
+
+```r
+my_plot +
+    annotate("text", 
+             x = as.Date("2024-08-01"), 
+             y = 44.5, 
+             label = "Age 30-44",
+             hjust = 0,
+             family = "Helvetica", face = "bold",
+             size = 10/.pt,
+             colour = "#00BA38"
+           ) +
+  ... +
+  scale_x_date(breaks = as.Date(c("2021-01-01", "2022-01-01", "2023-01-01", "2024-01-01")), 
+               labels = scales::date_format("%Y")) + 
+  expand_limits(x = as.Date(c("2021-01-01", "2025-06-01"))) +
+  theme(
+    legend.position = "none"
+  )
+```
+
+
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-19-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* **Annotation**
+
+An alternative, usually easier, way to add annotation without having to expand the axis is to add a "label" that is the same colour as your background. This makes your annotation feel "embedded".
+
+
+```r
+my_plot + 
+  annotate("label", x = as.Date("2022-01-15"), 
+           y = 34, label = "Age 30-44",
+          hjust = 0,
+          family = "Helvetica", face = "bold",
+          size = 10/.pt,
+          colour = "#f8f8f8", 
+          fill = "#00BA38") 
+```
+
+I prefer the first version and feel like it's more appropriate for us wanting to draw the reader's eye to the most recent time point on the right hand side though.
+
+
+* .grey[Accessibility]
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-21-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* **Accessibility**
+
+**Font/text**
+
+Is the text size sufficiently large?
+
+.sans-serif-dyslexia[Sans serif with increased letter spacing can be better for people with dyslexia.]
+
+Left aligned text is easier to read than
+
+&lt;center&gt;center aligned text.&lt;/center&gt;
+
+UPPERCASE is harder to read than lowercase.
+
+Best practice for text contrast is not Black text on a pure white background, but actually slightly less contrast (it reduces eye strain) by either using a "grey" text or a "grey" background. 
+
+
+
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-22-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* **Accessibility**
+
+(Technically this is about colour, but it applies specifically to reading text, so it's here):
+
+Here is an example using black (#00000) text and a white (#ffffff) background (Contrast ratio of 21:1).
+
+
+
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-23-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* **Accessibility**
+
+(Technically this is about colour, but it applies specifically to reading text, so it's here):
+
+.grey[Here is an example using black (#00000) text and a white (#ffffff) background (Contrast ratio of 21:1)]
+
+Here is an example using "grey" (#323232) text and a "grey" (#f8f8f8) background (Contrast ratio of around 12:1).
+
+
+A free tool for checking contrast ratio can be found [here](https://webaim.org/resources/contrastchecker/). Contrast ratios for all text intended to be read should be no lower than 4.5:1. Most people tend to find a contrast ratio between 10-15:1 comfortable for reading.
+
+* .grey[Readability]
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-24-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* .grey[Accessibility]
+* **Readability**
+
+Right aligned numbers are easier to read than left-aligned numbers, especially when they have a different number of digits. Decimal point-aligned numbers can be even better.
+
+**Round numbers** where you can. Group large numbers, for example, use 1,000,000 instead of 1000000 or 1e+06 (the `scales` package functions such as `scales::comma_format()` are very useful for this). Be conscious of regional differences in whether , or . means decimal. 
+
+Keep your formats represented (somewhere) on your axes, where possible. For example, using `scales::percent_format()` to add % signs for axes showing percentage.
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-25-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* .grey[Accessibility]
+* **Readability**
+
+
+
+```r
+ai_data %&gt;%
+  mutate(worried = round(worried, 0)) %&gt;%
+  ggplot() + ...
+  scale_y_continuous(limits = c(0, 60), 
+                     labels = scales::percent_format()) +
+  ...
+```
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-27-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* .grey[Accessibility]
+* **Readability**
+
+
+Make the most conversational language the most prominent, and keep the specifics/technical details in places like the subtitle, captions, and axis titles.
+
+Where possible, think of ways to avoid making people have to tilt their heads or their screens/printouts to read the axis labels. 
+
+This can be done by making the value of the Y axis obvious through other means (for example, in the subtitle as we have done here) and then using a much shorter or no label at all.
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-28-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Text
+
+* .grey[Font]
+* .grey[Annotation]
+* .grey[Accessibility]
+* **Readability**
+
+
+Make the most conversational language the most prominent, and keep the specifics/technical details in places like the subtitle, captions, and axis titles.
+
+Where possible, think of ways to avoid making people have to tilt their heads or their screens/printouts to read the axis labels. 
+
+This can be done by making the value of the Y axis obvious through other means (for example, in the subtitle as we have done here) and then using a much shorter or no label at all.
+
+
+
+
+
+```r
+my_plot +
+  theme(
+    axis.title.y = element_text(family = "Helvetica", 
+                                size = 8,
+                                vjust = 0.8,
+                                angle = 0,
+                                colour = "#323232")
+  )
+```
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-30-1.png" width="500" height="500" /&gt;
+
+]
+
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-31-1.png" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* **Symbolism/Identity (or lack thereof)**
+
+Is there an existing colour identity or symbolism that you could/should use? 
+
+For example:
+
+Colour choices related to countries (flags)?
+
+Colour choices that represent certain symbols or identities (e.g. red = hot, blue = cold; green for flora/nature), though we do not have to reproduce these in all cases (e.g. should we reproduce colour choices like "pink for girls, blue for boys"?)
+
+Is the data visualisation for or about a specific brand that has a recognisable colour identity?
+
+* Colour theory and palettes
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="images/analogous-colors-min.png" width="90%" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* **Colour theory and palettes**
+
+If we do not have a specific symbolic or brand-identity colour in mind, there are **colour theory** tools we can use to help us identify colour palettes that are pleasing to the eye and help us commuinicate our story:
+
+**Tone**: Colours can be thought of as "warm" or "cool". Tone can be used to create contrasts (as in complementary colours) or mood.
+
+**Saturation**: Saturated colours can be placed against de-saturated colours in order to create emphasis.
+
+**Colour harmony**: Certain strategies can be used to create combinations of colours that harmonise well, either to contrast against each other while still being aesthetically pleasing or to create a scale.
+
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="images/Colour-Theory.jpg" width="90%" /&gt;
+
+Source: Pixel and Ink (https://pixelandink.com.au/the-colour-theory/)
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* **Colour theory and palettes**
+
+Tools like [Adobe Color](https://color.adobe.com/create/color-wheel) can be used to help design colour palettes that correspond with ideas in colour theory. You can then take those colour palettes and apply them to your data visualisations using `scale_colour_manual(values = c("#FF7A27", "#52A8AA"))` etc.
+
+&lt;center&gt;
+
+&lt;img src="images/adobe-color-qr.png" width="45%" /&gt;
+
+&lt;/center&gt;
+
+
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/adobe-color.png" width="100%" /&gt;
+
+Source: https://color.adobe.com/create/color-wheel
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* **Colour theory and palettes**
+
+**Shades/Analogous/Monochromatic**: Used for generating a scale from 'lowest' to 'highest', e.g. usage: `scale_colour_gradient(low = "#2477E3", high = "#70C6E3")`, good for encoding an additional continuous/ordinal variable.
+
+
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-36-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* **Colour theory and palettes**
+
+**Shades/Analogous/Monochromatic**: Used for generating a scale from 'lowest' to 'highest', e.g. usage: `scale_colour_gradient(low = "#2477E3", high = "#70C6E3")`, good for encoding an additional continuous/ordinal variable.
+
+**Square/Triad/Compound**: Used for generating diverse colour palettes that work well together. e.g. usage: `scale_colour_manual(values = c("#F5E116", "#F5166C", "#17CEF5"))`, good when every group is equally important to the story.
+
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-37-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* **Colour theory and palettes**
+
+**Shades/Analogous/Monochromatic**: Used for generating a scale from 'lowest' to 'highest', e.g. usage: `scale_colour_gradient(low = "#2477E3", high = "#70C6E3")`, good for encoding an additional continuous/ordinal variable.
+
+**Square/Triad/Compound**: Used for generating diverse colour palettes that work well together. e.g. usage: `scale_colour_manual(values = c("#F5E116", "#F5166C", "#17CEF5"))`, good when every group is equally important to the story.
+
+**Complementary/Split Complementary**: Used for generating two colours that work well together according to colour theory. e.g. usage: `scale_colour_manual(values = c("#1085F5", "#1085F5", "#F59F14"))`, good when emphasising a specific group.
+
+* Colour for emphasis
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-38-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+
+**Saturation** to further emphasise the part of the data that is important to your story, you can colour 'unimportant' groups using a lower saturation. #1085F5 -&gt; #82BFF5
+
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-39-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+
+**Saturation** to further emphasise the part of the data that is important to your story, you can colour 'unimportant' groups using a lower saturation. #1085F5 -&gt; #82BFF5
+
+**Use of grey** usually implies that the information is unimportant: avoid using grey or low saturation for information that is important, and use it liberally if you want that information to fall more into the background. #1085F5 -&gt; grey50
+
+* Accessibility
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-40-1.png" width="500" height="500" /&gt;
+
+
+]
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* **Accessibility**
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-41-1.png" width="500" height="500" /&gt;
+
+
+]
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* **Accessibility**
+
+Check that text is legible against background, e.g. using the Adobe Color **contrast checker** (https://color.adobe.com/create/color-contrast-analyzer). Aim for &gt; 4.5:1
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-42-1.png" width="500" height="500" /&gt;
+
+
+]
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* **Accessibility**
+
+Check that text is legible against background, e.g. using the Adobe Color **contrast checker** (https://color.adobe.com/create/color-contrast-analyzer). Aim for &gt; 4.5:1
+
+Check that colours are **colour-blind safe** or **colour-blind friendly**, e.g. using the Adobe Color Colour Blind Safe checker (https://color.adobe.com/create/color-accessibility) or apps like Sim Daltonism. The most common form of colour blindness is red-green colour-blindness.
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-43-1.png" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+.pull-left[
+
+## Colour
+
+* Symbolism/Identity (or lack thereof)
+* Colour theory and palettes
+* Colour for emphasis
+* **Accessibility**
+
+Check that text is legible against background, e.g. using the Adobe Color **contrast checker** (https://color.adobe.com/create/color-contrast-analyzer). Aim for &gt; 4.5:1
+
+Check that colours are **colour-blind safe** or **colour-blind friendly**, e.g. using the Adobe Color Colour Blind Safe checker (https://color.adobe.com/create/color-accessibility) or apps like Sim Daltonism. The most common form of colour blindness is red-green colour-blindness.
+
+Avoid using colour palettes that exaggerate variations (such as rainbow). The [`scico` library](https://github.com/thomasp85/scico?tab=readme-ov-file) has been developed for `R` has been developed to provide colour gradients that avoid exaggeration. 
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/scico.png" width="100%" /&gt;
+
+.center[Crameri, et al. (2020) [The misuse of colour in science communication](https://www.nature.com/articles/s41467-020-19160-7) ]
+
+
+]
+
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-45-1.png" width="500" height="500" /&gt;
+
+
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="smi105-week-5_files/figure-html/unnamed-chunk-46-1.png" width="500" height="500" /&gt;
+
+
+]
+
+---
+
+class: middle, inverse
+
+#### Part III
+
+# Is this "best" practice?
+
+---
+
+class: middle
+
+
+.pull-left[
+
+## Best practice?
+
+Charts that look clear, plain, minimal can suggest the data they contain is neutral, objective and certain, but we know it is none of these things (D’Ignazio and Klein, 2020). Data is collected *by humans*, and no method for collecting, interpreting, and presenting data is free of bias.
+
+The 'best practice' design aesthetic we are learning may be great for many purposes, but many people may choose not to reproduce this aesthetic.
+
+This might be in order to:
+
+* Attract a different type of audience
+* Create more of an emotional connection with the audience
+* Make things feel more visceral/real
+
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;img src="images/mona-chalabi-1.jpg" width="90%" /&gt;
+
+]
+
+.center[
+Source: Mona Chalabi, [DataJournalism.com](https://datajournalism.com/read/handbook/two/working-with-data/experiencing-data/the-web-as-a-medium-for-data-visualisation) 
+]
+
+]
+
+---
+
+class: middle
+
+
+.pull-left[
+
+## Best practice?
+
+Charts that look clear, plain, minimal can suggest the data they contain is neutral, objective and certain, but we know it is none of these things (D’Ignazio and Klein, 2020). Data is collected *by humans*, and no method for collecting, interpreting, and presenting data is free of bias.
+
+The 'best practice' design aesthetic we are learning may be great for many purposes, but many people may choose not to reproduce this aesthetic.
+
+This might be in order to:
+
+* Attract a different type of audience
+* Create more of an emotional connection with the audience
+* Make things feel more visceral/real
+
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;img src="images/mona-chalabi-2.jpg" width="65%" /&gt;
+
+]
+
+.center[
+Source: Mona Chalabi, [ItsNiceThat.com](https://www.itsnicethat.com/articles/wix-playground-presents-data-narrative-design-round-up-digital-event-040320) 
+]
+
+]
+
+
+---
+
+class: middle, inverse
+
+## Summary
+
+* Visual design in data visualisation has been continually evolving, from the 'wild west' of data ducks to a more clear, plain, and minimal style that has been informed by best practice in graphic design.
+
+* 'Best practice' can be an effective tool to ensure that we are telling our data story (week 3) effectively, emphasising the points we want to emphasize, and ensuring our work is accessible.
+
+* However, we should keep in mind that 'best practice' and good visual design can be used to make bad or biased data look more objective and neutral than it is. We may also have artistic reasons for choosing different design aesthetics. 
+
+
+---
+
+# The rest of this week:
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+**This week's workshop**:
+
+We’ll begin by talking through your first assessment and address any questions you have about it. Then, let’s customise our graphs. The work we’ve been putting together so far looks OK, but it’s often very functional: default colour schemes, grey backgrounds, messy titles, and so on. In this session, we’ll go through some of the ways that we can tidy our graphs up so that we’re happy presenting them to a different set of audiences.
+
+
+]
+
+--
+
+.pull-right[
+
+Week 6 (next week) is a reading week. There is no lecture or workshop in week 6.
+
+
+**Before week 7**:
+
+**Core tasks**:
+
+* Before workshop: Work through the task at the end of the workshop handout
+
+**Supplementary tasks**:
+
+Before week 7 lecture: Read Chalabi, M. and Gray, J. Sketching With Data The Data Journalism Handbook 2 pages 108-114, available online here: https://s3.eu-central-1.amazonaws.com/datajournalismcom/handbooks/The-Data-Journalism-Handbook-2.pdf
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
