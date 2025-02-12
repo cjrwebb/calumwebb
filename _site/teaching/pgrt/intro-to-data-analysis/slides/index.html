@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Data Analysis in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="date" content="2025-02-12" />
+    <script src="intro-to-data-analysis-R_files/header-attrs/header-attrs.js"></script>
+    <link href="intro-to-data-analysis-R_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/tile-view/tile-view.js"></script>
+    <link href="intro-to-data-analysis-R_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/panelset/panelset.js"></script>
+    <script src="intro-to-data-analysis-R_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="intro-to-data-analysis-R_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/clipboard/clipboard.min.js"></script>
+    <link href="intro-to-data-analysis-R_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/shareon/shareon.min.js"></script>
+    <link href="intro-to-data-analysis-R_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="intro-to-data-analysis-R_files/mark.js/mark.min.js"></script>
+    <link href="intro-to-data-analysis-R_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="intro-to-data-analysis-R_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# An Introduction to Data Analysis using R
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+
+---
+
+class: middle, inverse
+
+# This is going to be a hands-on training course: all of the information that you need is included in the materials, rather than being split across the slides and the exercises.
+
+
+---
+
+class: middle
+
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+# R compared to software for Data Analysis 
+
+* `R` is a programming language, rather than just a piece of software.
+* `R` has a central repository that holds packages that can expand what you are capable of doing with it.
+* `R` is free.
+* `R` has a very supportive and active community around it. 
+* `R` can do pretty much everything that any commercial software package can do, with a few very niche exceptions.. 
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/r_first_then.png" alt="Artwork by Allison Horst" width="85%" /&gt;
+&lt;p class="caption"&gt;Artwork by Allison Horst&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+]
+
+---
+
+class: middle, inverse
+
+# "But I'm not a programmer, I never studied computer science/mathematics/intro to programming before"
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/guis.png" width="70%" /&gt;
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+# If you can use a computer, you can program.
+
+* It's not difficult, it's different. Getting used to something different takes time.
+* Instead of clicking virtual or real buttons that apply functions (i.e. make things happen), we give commands by writing text.
+* They are called **languages** for a reason — they have their own rules, grammar, and syntax — you have to practice them to get good at them.
+* **But**, that doesn't mean you can't use phrasebooks, especially if you only use the language occasionally. 
+
+]
+
+.pull-right[
+
+`open.spotify()`
+
+`search.playlists(search = "instrumental")`
+
+`play.playlist(playlist = "Instrumental Studying Mix")`
+
+`skip.track()`
+
+`rewind.track(seconds = 20)`
+
+`add.track.to.favourites()`
+
+`stop()`
+
+`quit.spotify()`
+
+
+]
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/errors.png" width="100%" /&gt;
+
+]
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/gui-errors.png" width="70%" /&gt;
+
+]
+
+
+---
+
+class: inverse, middle
+
+# We get errors all the time when using computers. The only difference between the errors you just saw and R errors is that the R errors are at least trying to tell you what went wrong.
+
+---
+
+class: inverse, middle
+
+# If you've ever used the "back" <svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg> or "undo" <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M125.7 160H176c17.7 0 32 14.3 32 32s-14.3 32-32 32H48c-17.7 0-32-14.3-32-32V64c0-17.7 14.3-32 32-32s32 14.3 32 32v51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"/></svg> button, change something, and then do it again to get the result you want — congratulations, you've corrected an error.
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# What we're going to cover today:
+
+* A general rule for using code in R: things you have to change and things that stay the same. 
+* Basic univariate and bivariate descriptive statistics using Base R
+* Basic data visualisations using base R
+* Common bivariate inferential statistics using base R
+* Installing additional packages
+* Reading datasets into R, including SPSS datasets
+* Descriptive statistics using `tidyverse` and `janitor` tools
+* Data visualisations using `ggplot2`
+
+This is your phrasebook to help you on your R learning journey.
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/r_rollercoaster.png" alt="Artwork by Allison Horst" width="100%" /&gt;
+&lt;p class="caption"&gt;Artwork by Allison Horst&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"sealed": false,
+"ratio": "16:9",
+"self_contained": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
