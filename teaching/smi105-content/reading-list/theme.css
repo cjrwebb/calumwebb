@@ -10,11 +10,13 @@ html.dark .theme-image {
 :root {
   --background-color: #ffffff;
   --font-color: #24272B;
+  --border-color: rgba(0, 0, 0, 0.1);
   /* can set other variables here as needed e.g. secondary font, secondary background etc. */
 }
 :root.dark {
   --background-color: #24272B;
   --font-color: #f6f6f6;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 
@@ -92,9 +94,45 @@ body {
   color: var(--font-color) !important;
 }
 
-/* headings */
-h1, h2, h3, h4, h5, h6, li, p, a, d-byline, .h1, .h2, .h3, .h4, .h5, .h6, .p, .li, .a, .d-byline {
+/* headings and text */
+h1, h3, h4, h5, h6, li, p, a, summary, em, .h1, .h3, .h4, .h5, .h6, .p, .li, .a, .summary, .em {
   color: var(--font-color) !important;
+}
+
+/* h2 has a line underneath in the styling */
+h2, .h2 {
+  color: var(--font-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+table, thead, th, .table, .thead, .th {
+  color: var(--font-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* gt tables */
+gt_table, gt_col_heading, .gt_table, .gt_col_heading {
+  color: var(--font-color) !important;
+  background: var(--background-color) !important;
+}
+
+d-byline, .d-byline {
+  color: var(--font-color) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+d-article, .d-article {
+  border-top: 1px solid var(--border-color) !important;
+}
+
+/* Horizontal Rules */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--border-color) !important;
+  margin: 1em 0;
+  padding: 0;
 }
 
 /* data tables div */
