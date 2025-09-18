@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SMI606: Week 9 — Multiple Logistic Regression</title>
+    <title>EDC459: Week 9 — Multiple Logistic Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2024-09-16" />
+    <meta name="date" content="2025-09-17" />
     <script src="week-09-logistic-regression_files/header-attrs/header-attrs.js"></script>
     <link href="week-09-logistic-regression_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-09-logistic-regression_files/tile-view/tile-view.js"></script>
@@ -33,7 +33,7 @@ background-size: contain
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-# .tuos_purple[SMI606: Week 9&lt;br&gt;Multiple Logistic Regression]
+# .tuos_purple[EDC459: Week 9&lt;br&gt;Multiple Logistic Regression]
 
 &lt;br&gt;&lt;br&gt;
 
@@ -82,7 +82,7 @@ top:1em;right:2em;
 
 
 
-<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+<style>:root{--panel-tab-background:#F8F8F8;--panel-tab-active-background:#F8F8F8;--panel-tab-hover-background:#F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -212,7 +212,7 @@ Event ID: **AXUMRY**
 
 .pull-right[
 
-&lt;img src="images/smi606-week-9-wooclap-1.png" width="100%" /&gt;
+&lt;img src="images/SMI606-week-9-wooclap-1.png" width="100%" /&gt;
 
 ]
 
@@ -225,7 +225,7 @@ Event ID: **AXUMRY**
 We can use linear regression to predict binary outcomes. This is called an LPM — a __linear probability model__ (not to be confused with a linear panel model!)
 
 
-```r
+``` r
 plm_mod &lt;- lm(data = tv_licenses, formula = tv_license ~ age)
 
 summary(plm_mod)
@@ -269,7 +269,7 @@ summary(plm_mod)
 .pull-left[
 
 
-```r
+``` r
 summary(plm_mod)
 ```
 
@@ -315,7 +315,7 @@ __114.95%__??
 .pull-left[
 
 
-```r
+``` r
 summary(plm_mod)
 ```
 
@@ -1019,7 +1019,7 @@ Let's work through an example...
 .pull-left[
 
 
-```r
+``` r
 conspiracy_data &lt;- read_rds("conspiracy.rds")
 ```
 
@@ -1027,7 +1027,7 @@ conspiracy_data &lt;- read_rds("conspiracy.rds")
 
 
 
-```r
+``` r
 conspiracy_data %&gt;%
   janitor::tabyl(consp_alien)
 ```
@@ -1075,7 +1075,7 @@ __Independent Variables__
 #### Code
 
 
-```r
+``` r
 # Model
 glm(data = conspiracy_data, 
     formula = consp_alien ~ rage + games + 
@@ -1103,7 +1103,7 @@ glm(data = conspiracy_data,
 #### Code
 
 
-```r
+``` r
 # Model
 *glm(data = conspiracy_data,
     formula = consp_alien ~ rage + games + 
@@ -1132,7 +1132,7 @@ glm(data = conspiracy_data,
 #### Code
 
 
-```r
+``` r
 # Model
 glm(data = conspiracy_data, 
 *   formula = consp_alien ~ rage + games +
@@ -1164,7 +1164,7 @@ glm(data = conspiracy_data,
 #### Code
 
 
-```r
+``` r
 glm(data = conspiracy_data, 
     formula = consp_alien ~ rage + games + 
                             hedqual_rec + openness, 
@@ -1180,7 +1180,7 @@ glm(data = conspiracy_data,
 
 .pull-left-big[
 
-```r
+``` r
 alien_model &lt;- glm(data = conspiracy_data, 
                     formula = consp_alien ~ rage + games + 
                                             hedqual_rec + openness, 
@@ -1194,10 +1194,6 @@ summary(alien_model)
 ## Call:
 ## glm(formula = consp_alien ~ rage + games + hedqual_rec + openness, 
 ##     family = binomial(link = "logit"), data = conspiracy_data)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.3461  -0.9378  -0.6988   1.2889   2.1832  
 ## 
 ## Coefficients:
 ##                                  Estimate Std. Error z value Pr(&gt;|z|)    
@@ -1246,7 +1242,7 @@ But how do I communicate changes in log odds!?
 
 .pull-left-big[
 
-```r
+``` r
 alien_model &lt;- glm(data = conspiracy_data, 
                     formula = consp_alien ~ rage + games + 
                                             hedqual_rec + openness, 
@@ -1260,10 +1256,6 @@ summary(alien_model)
 ## Call:
 ## glm(formula = consp_alien ~ rage + games + hedqual_rec + openness, 
 ##     family = binomial(link = "logit"), data = conspiracy_data)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.3461  -0.9378  -0.6988   1.2889   2.1832  
 ## 
 ## Coefficients:
 ##                                  Estimate Std. Error z value Pr(&gt;|z|)    
@@ -1309,7 +1301,7 @@ For example, __for a 1-unit increase in openness__ __the odds of believing in al
 
 .pull-left-big[
 
-```r
+``` r
 alien_model &lt;- glm(data = conspiracy_data, 
                     formula = consp_alien ~ rage + games + 
                                             hedqual_rec + openness, 
@@ -1323,10 +1315,6 @@ summary(alien_model)
 ## Call:
 ## glm(formula = consp_alien ~ rage + games + hedqual_rec + openness, 
 ##     family = binomial(link = "logit"), data = conspiracy_data)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.3461  -0.9378  -0.6988   1.2889   2.1832  
 ## 
 ## Coefficients:
 ##                                  Estimate Std. Error z value Pr(&gt;|z|)    
@@ -1377,7 +1365,7 @@ This means that __the odds of believing in alien conspiracy theories decrease by
 
 
 
-```r
+``` r
 # Convert model to tibble with broom::tidy
 tidy_model &lt;- broom::tidy(alien_model)
 tidy_model
@@ -1411,7 +1399,7 @@ tidy_model
 
 
 
-```r
+``` r
 # Create odds ratios column
 tidy_model &lt;- tidy_model %&gt;%
   mutate(
@@ -1449,7 +1437,7 @@ tidy_model
 
 
 
-```r
+``` r
 # Create odds ratios column
 tidy_model &lt;- tidy_model %&gt;%
   mutate(
@@ -1510,7 +1498,7 @@ First, load the `ggeffects` library.
 .pull-right[
 
 
-```r
+``` r
 library(ggeffects)
 ```
 
@@ -1536,7 +1524,7 @@ Then, run the `ggeffect` function; make sure to specify the variable you want pr
 .pull-right[
 
 
-```r
+``` r
 library(ggeffects)
 
 *ggeffect(alien_model, terms = "openness")
@@ -1545,16 +1533,16 @@ library(ggeffects)
 ```
 ## # Predicted probabilities of Conspiracy beliefs - government covers up knowledge of aliens
 ## 
-## openness | Predicted |       95% CI
-## -----------------------------------
-##     0.00 |      0.24 | [0.20, 0.30]
-##     0.33 |      0.26 | [0.22, 0.30]
-##     0.67 |      0.27 | [0.24, 0.31]
-##     1.00 |      0.29 | [0.26, 0.32]
-##     1.67 |      0.32 | [0.29, 0.34]
-##     2.00 |      0.33 | [0.30, 0.36]
-##     2.33 |      0.35 | [0.31, 0.38]
-##     3.00 |      0.38 | [0.33, 0.44]
+## openness | Predicted |     95% CI
+## ---------------------------------
+##     0.00 |      0.24 | 0.20, 0.30
+##     0.33 |      0.26 | 0.22, 0.30
+##     0.67 |      0.27 | 0.24, 0.31
+##     1.00 |      0.29 | 0.26, 0.32
+##     1.67 |      0.32 | 0.29, 0.34
+##     2.00 |      0.33 | 0.30, 0.36
+##     2.33 |      0.35 | 0.31, 0.38
+##     3.00 |      0.38 | 0.33, 0.44
 ```
 
 
@@ -1582,7 +1570,7 @@ We can add a `plot()` function after this with a `%&gt;%` to turn this into a gg
 .pull-right[
 
 
-```r
+``` r
 library(ggeffects)
 
 ggeffect(alien_model, terms = "openness") %&gt;%
@@ -1608,7 +1596,7 @@ The plot you get will differ depending on whether your independent variable is c
 .pull-right[
 
 
-```r
+``` r
 library(ggeffects)
 
 ggeffect(alien_model, terms = "hedqual_rec") %&gt;%
@@ -1669,7 +1657,7 @@ One option is to use one of [a range of Pseudo-](https://stats.idre.ucla.edu/oth
 .pull-right[
 
 
-```r
+``` r
 pseudo_r2s_alien &lt;- DescTools::PseudoR2(alien_model, which = c("McFadden", "CoxSnell", "Nagelkerke", "Efron"))
 
 tibble(
@@ -1754,7 +1742,7 @@ The first stage is to calculate our predictions.
 .pull-right[
 
 
-```r
+``` r
 conspiracy_data &lt;- conspiracy_data %&gt;%
   mutate(
     pred_consp_alien = predict(alien_model, 
@@ -1809,7 +1797,7 @@ I then check the results with a temporary `select()`.
 .pull-right[
 
 
-```r
+``` r
 conspiracy_data &lt;- conspiracy_data %&gt;%
   mutate(
     pred_consp_alien = case_when(is.na(pred_consp_alien) ~ NA_real_,
@@ -1858,7 +1846,7 @@ Now I can calculate the accuracy of my model against the real data. A quick way 
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -1926,7 +1914,7 @@ There is a lot of information here, but for this class I just want to focus on f
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -1995,7 +1983,7 @@ The 2x2 table at the top of the output tells us how many values were correctly p
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -2065,7 +2053,7 @@ Accuracy is a straightforward calculation of the proportion of classifications t
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -2135,7 +2123,7 @@ The No Information Rate is the proportion of observations we would expect to get
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -2205,7 +2193,7 @@ Lastly, we have a hypothesis test for the hypothesis that our model's accuracy i
 .pull-right[
 
 
-```r
+``` r
 library(caret)
 
 confusionMatrix(
@@ -2362,7 +2350,7 @@ __Results__
 &lt;br&gt;
 
 
-```r
+``` r
 # Set seed - Because the unique subsets are random
 # for demonstration purposes I want to make sure 
 # the they are always the same
@@ -2511,7 +2499,7 @@ Week 9: Logistic Regression — Part V
 .pull-right-big[
 
 
-```r
+``` r
 conspiracy_data %&gt;%
   # Get predicted logodds
   mutate(
@@ -2555,7 +2543,7 @@ conspiracy_data %&gt;%
 .pull-right-big[
 
 
-```r
+``` r
 conspiracy_data %&gt;%
   # Get predicted logodds
   mutate(
@@ -2599,7 +2587,7 @@ background-color: white
 .pull-right-big[
 
 
-```r
+``` r
 plot(alien_model, which = 4)
 ```
 
@@ -2633,7 +2621,7 @@ background-color: white
 .pull-right-big[
 
 
-```r
+``` r
 plot(alien_model, which = 5)
 ```
 
@@ -2665,13 +2653,13 @@ plot(alien_model, which = 5)
 .pull-right-big[
 
 
-```r
+``` r
 performance::check_outliers(alien_model)
 ```
 
 ```
 ## OK: No outliers detected.
-## - Based on the following method and threshold: cook (0.8).
+## - Based on the following method and threshold: cook (0.7).
 ## - For variable: (Whole model)
 ```
 
@@ -2702,7 +2690,7 @@ performance::check_outliers(alien_model)
 .pull-right-big[
 
 
-```r
+``` r
 car::vif(alien_model)
 ```
 
@@ -2714,7 +2702,7 @@ car::vif(alien_model)
 ## openness    1.109380  1        1.053271
 ```
 
-```r
+``` r
 performance::multicollinearity(alien_model)
 ```
 
@@ -2723,11 +2711,11 @@ performance::multicollinearity(alien_model)
 ## 
 ## Low Correlation
 ## 
-##         Term  VIF   VIF 95% CI Increased SE Tolerance Tolerance 95% CI
-##         rage 1.40 [1.32, 1.50]         1.18      0.72     [0.67, 0.76]
-##        games 1.24 [1.18, 1.33]         1.11      0.81     [0.75, 0.85]
-##  hedqual_rec 1.31 [1.24, 1.41]         1.15      0.76     [0.71, 0.81]
-##     openness 1.11 [1.06, 1.19]         1.05      0.90     [0.84, 0.94]
+##         Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI
+##         rage 1.40 [1.32, 1.50]     1.18      0.72     [0.67, 0.76]
+##        games 1.24 [1.18, 1.33]     1.11      0.81     [0.75, 0.85]
+##  hedqual_rec 1.31 [1.24, 1.41]     1.02      0.76     [0.71, 0.81]
+##     openness 1.11 [1.06, 1.19]     1.05      0.90     [0.84, 0.94]
 ```
 
 
@@ -2957,7 +2945,7 @@ class: middle
 .pull-left[
 
 
-```r
+``` r
 lm_without_class &lt;- lm(sp_data, 
                     formula = student_grade ~ time_with_ta)
 
@@ -2990,7 +2978,7 @@ summary(lm_without_class)
 .pull-right[
 
 
-```r
+``` r
 lm_with_class &lt;- lm(sp_data, 
                     formula = student_grade ~ time_with_ta + class)
 
@@ -3037,7 +3025,7 @@ class: middle
 However, we can test for autocorrelation using `car`'s Durbin Watson test...
 
 
-```r
+``` r
 car::durbinWatsonTest(lm_without_class)
 ```
 
@@ -3047,7 +3035,7 @@ car::durbinWatsonTest(lm_without_class)
 ##  Alternative hypothesis: rho != 0
 ```
 
-```r
+``` r
 performance::check_autocorrelation(lm_without_class)
 ```
 
@@ -3062,7 +3050,7 @@ performance::check_autocorrelation(lm_without_class)
 Or `performance`'s `check_autocorrelation` test. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
 
 
-```r
+``` r
 car::durbinWatsonTest(lm_with_class)
 ```
 
@@ -3072,7 +3060,7 @@ car::durbinWatsonTest(lm_with_class)
 ##  Alternative hypothesis: rho != 0
 ```
 
-```r
+``` r
 performance::check_autocorrelation(lm_with_class)
 ```
 
@@ -3257,13 +3245,13 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

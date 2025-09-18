@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SMI606: Week 5 — Causality</title>
+    <title>EDC459: Week 5 — Causality</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2024-09-16" />
+    <meta name="date" content="2025-09-17" />
     <script src="week-05-causality_files/header-attrs/header-attrs.js"></script>
     <link href="week-05-causality_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-05-causality_files/tile-view/tile-view.js"></script>
@@ -31,9 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-82' --size '1216x684'  "week-04-inference/slides/week-04-inference.html" week-04-inference/slides/week-04-inference.pdf
+
+-----&gt;
+
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-# .tuos_purple[SMI606: Week 5&lt;br&gt;Causality]
+# .tuos_purple[EDC459: Week 5&lt;br&gt;Causality]
 
 &lt;br&gt;&lt;br&gt;
 
@@ -82,7 +88,7 @@ top:1em;right:2em;
 
 
 
-<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+<style>:root{--panel-tab-background:#F8F8F8;--panel-tab-active-background:#F8F8F8;--panel-tab-hover-background:#F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -376,7 +382,7 @@ Event code: **AXXIZJ**
 
 .pull-right[
 
-&lt;img src="images/wooclap-smi606-w5-1.png" width="85%" /&gt;
+&lt;img src="images/wooclap-SMI606-w5-1.png" width="85%" /&gt;
 
 
 
@@ -590,7 +596,7 @@ class: middle
 # DAGS: Dagitty and Further Reading
 
 
-```r
+``` r
 dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "total")
 ```
 
@@ -598,7 +604,7 @@ dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Cla
 ## { Subject(s) Studied }
 ```
 
-```r
+``` r
 dagitty::adjustmentSets(dag, exposure = "Prior Education", outcome = "Degree Classification", effect = "direct")
 ```
 
@@ -1047,13 +1053,13 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -1150,6 +1156,9 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<html>
+<link rel="shortcut icon" href="#" />
+</html>
 
 <style>
 .my-header {

@@ -1,5 +1,5 @@
 ---
-title: "SMI606: Week 3 — Relationships between Variables"
+title: "EDC459: Week 3 — Relationships between Variables"
 subtitle: ""  
 author: 
   - "Calum Webb"
@@ -23,9 +23,15 @@ output:
 class: middle
 background-size: contain
 
+<!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-77' --size '1216x684'  "week-03-relationships-between-variables/slides/week-03-relationships-between-variables.html" week-03-relationships-between-variables/slides/week-03-relationships-between-variables.pdf
+
+----->
+
 <br><br><br>
 
-# .tuos_purple[SMI606: Week 3<br>Relationships between variables]
+# .tuos_purple[EDC459: Week 3<br>Relationships between variables]
 
 <br><br>
 

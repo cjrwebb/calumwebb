@@ -1,12 +1,12 @@
 ---
-title: "SMI606: Week 2 — Types of quantification"
+title: "EDC459: Week 2 — Types of quantification"
 subtitle: ""  
 author: 
   - "Calum Webb"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "custom.css"]
+    css: ["xaringan-themer.css", "css/custom.css"]
     seal: false
     nature:
       slideNumberFormat: "%current%"
@@ -16,24 +16,42 @@ output:
       ratio: 16:9
       self_contained: true
       countIncrementalSlides: true
+    includes:
+      after_body: header/insert-header-violet.html
 ---
 
 class: middle
 background-size: contain
 
-# .tuos_purple[SMI606: Week 2<br>Types of quantification]
+<!----- Make a pdf using:
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-65' --size '1216x684'  "week-02-types-of-quantification/slides/week-02-types-of-quantification.html" week-02-types-of-quantification/slides/week-02-types-of-quantification.pdf
+
+----->
+
+
+<br><br>
+
+# .tuos_purple[EDC459: Week 2<br>Types of quantification]
+
+<br><br>
+
+**Dr. Calum Webb**<br>
+Sheffield Methods Institute, the University of Sheffield.<br>
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+
+# These packages are required for creating the slides
+# Many will need to be installed from Github
 library(icons)
 library(tidyverse)
-library(plotly)
+library(xaringan)
 library(xaringanExtra)
 library(xaringanthemer)
+
+# Defaults for code
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
   out.width = "100%",
@@ -44,48 +62,95 @@ knitr::opts_chunk$set(
   fig.show = TRUE,
   hiline = TRUE
 )
+
+# set global theme for ggplot to make background #F8F8F8F8 (off white),
+# but otherwise keep all ggplot themes default (better for teaching)
+theme_set(
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
+  )
+
+
 ```
 
 ```{r xaringan-tile-view, echo=FALSE}
+# Use tile overview by hitting the o key when presenting
 xaringanExtra::use_tile_view()
 ```
 
 ```{r xaringan-logo, echo=FALSE}
+# Add logo to top right
 xaringanExtra::use_logo(
-  image_url = "images/uni-sheffield.png",
-  exclude_class = c("inverse", "hide_logo")
+  image_url = "header/smi-logo-white.png",
+  exclude_class = c("inverse", "hide_logo"), 
+  width = "180px", position = css_position(top = "1em", right = "2em")
 )
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#019EE3",
-  secondary_color = "#FCF281",
-  colors = c(tuos_purple = "#030043", grey = "#a8a8a8", tuos_blue ="#019EE3"),
-  header_font_google = xaringanthemer::google_font("Playfair Display", "600", "600i"),
-  text_font_google   = xaringanthemer::google_font("Work Sans", "300", "300i"),
-  code_font_google   = xaringanthemer::google_font("Lucida Console"),
-  header_h1_font_size = "2.25rem",
-  header_h2_font_size = "1.75rem",
-  header_h3_font_size = "1.5rem", code_font_size = "0.7rem"
-)
 
-tuos_blue <- "#019EE3"
+# Set some global objects containing the colours
+# of the university's branding
+primary_color <- "#131E29"
+secondary_color <- "#440099"
+tuos_blue <- "#9ADBE8"
+white = "#F8F8F8"
 tuos_yellow <- "#FCF281"
-tuos_purple <- "#030043"
+tuos_purple <- "#440099"
+tuos_red <- "#E7004C"
+tuos_midnight <- "#131E29"
+
+# The bulk of the styling is handled by xaringanthemer
+style_duo_accent(
+  primary_color = "#131E29",
+  secondary_color = "#440099",
+  colors = c(tuos_purple = "#440099", 
+             grey = "#131E2960", 
+             tuos_blue ="#9ADBE8",
+             tuos_mint = "#00CE7C"),
+  header_font_google = xaringanthemer::google_font("Source Serif Pro", "600", "600i"),
+  text_font_google   = xaringanthemer::google_font("Source Sans Pro", "300", "300i", "600", "600i"),
+  code_font_google   = xaringanthemer::google_font("Lucida Console"),
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.5rem", 
+  header_h3_font_size = "1.25rem", 
+  text_font_size = "0.9rem",
+  code_font_size = "0.65rem", 
+  code_inline_background_color = "#F8F8F8", 
+  inverse_text_color = "#9ADBE8", 
+  background_color = "#F8F8F8", 
+  text_color = "#131E29", 
+  link_color = "#005A8F", 
+  inverse_link_color = "#F8F8F8",
+  text_slide_number_color = "#44009970",
+  table_row_even_background_color = "transparent", 
+  table_border_color = "#44009970",
+  text_bold_font_weight = 600
+)
 
 ```
 
+
 ```{r xaringan-panelset, echo=FALSE}
-xaringanExtra::use_panelset()
+# Allow for adding panelsets (see example on slide 2)
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+
+style_panelset_tabs(
+  background = "#F8F8F8",
+  active_background = "#F8F8F8",
+  hover_background = "#F8F8F8"
+)
+
+
 ```
 
 ```{r xaringanExtra, echo = FALSE}
-xaringanExtra::use_progress_bar(color = "#019EE3", location = "top")
+# Adds white progress bar to top
+xaringanExtra::use_progress_bar(color = "#F8F8F8", location = "top")
 ```
 
 ```{r xaringan-extra-styles, echo = FALSE}
+# Allow for code to be highlighted on hover
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         #<<
   mute_unhighlighted_code = TRUE  #<<
@@ -93,32 +158,17 @@ xaringanExtra::use_extra_styles(
 ```
 
 ```{r share-again, echo=FALSE}
+# Add sharing links and other embedding tools
 xaringanExtra::use_share_again()
 ```
 
-```{r metathis, echo=FALSE}
-# Add metadata
-
-# library(metathis)
-# meta() %>%
-#   meta_name("github-repo" = "cjrwebb/cjrwebb.github.io/tree/master/pres/smi") %>% 
-#   meta_social(
-#     title = "In Defence of Ordinary Help: The declining effectiveness of preventative children's services in England",
-#     description = paste(
-#       "On average, an additional £40 spent per child on preventative services in a given year was associated with decreases of nearly 5 children in need per 10,000, but this effectiveness has been declining over the decade."
-#     ),
-#     url = "https://cjrwebb.github.io/pres/smi/smi-research",
-#     image = "https://cjrwebb.github.io/pres/smi/idoh-card.png",
-#     image_alt = paste(
-#       "Title slide of In Defence of Ordinary Help"
-#     ),
-#     og_type = "website",
-#     og_author = "Calum Webb",
-#     twitter_card_type = "summary_large_image",
-#     twitter_creator = "@cjrwebb",
-#     twitter_site = "@cjrwebb"
-#   )
+```{r xaringanExtra-search, echo=FALSE}
+# Add magnifying glass search function to bottom left for quick
+# searching of slides
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
 ```
+
+
 
 ---
 class: middle
@@ -172,9 +222,10 @@ By the end of this week you will:
 
 ---
 class: middle
+background-color: white
 
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "60%"}
 
 knitr::include_graphics("images/continuous_discrete.png")
 
@@ -218,9 +269,10 @@ as.integer(continuous)
 
 ---
 class: middle 
+background-color: white
 
 .center[
-```{r, echo = FALSE, out.width = "85%"}
+```{r, echo = FALSE, out.width = "80%"}
 
 knitr::include_graphics("images/nominal_ordinal_binary.png")
 
@@ -230,6 +282,8 @@ knitr::include_graphics("images/nominal_ordinal_binary.png")
 *Illustration by Allison Horst*
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -243,6 +297,8 @@ class(nominal)
 ```
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -268,6 +324,8 @@ tibble(label = c("unhappy", "ok", "awesome"), numeric_val = c(1, 2, 3))
 ```
 
 ---
+
+class: middle
 
 ## Nominal, Ordinal, and Binary Variables in `R`
 
@@ -360,11 +418,13 @@ class: middle
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") +
   scale_y_continuous(limits = c(0, 30)) +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -378,7 +438,7 @@ class: middle
 
 idaci %>% # My data
   ggplot() + # start up ggplot
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") + # create a histogram
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") + # create a histogram
   theme_minimal() + # make a nice background
   xlab("Income Deprivation Affecting Children Index (% in low income)") + # Add an x axis label
   ylab("Frequency") # add a y axis label
@@ -399,15 +459,17 @@ class: middle
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = tuos_blue) +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = tuos_purple) +
   scale_y_continuous(limits = c(0, 30)) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = tuos_blue) +
+           hjust = 0, colour = tuos_purple) +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 
 ```
@@ -426,19 +488,21 @@ class: middle
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") +
   geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
   scale_y_continuous(limits = c(0, 30)) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = "darkgrey") +
-  geom_vline(xintercept = median(idaci$idaci, na.rm = TRUE), col = tuos_blue) +
+           hjust = 0, colour = "grey20") +
+  geom_vline(xintercept = median(idaci$idaci, na.rm = TRUE), col = tuos_purple) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 24, 
            label = paste("Median IDACI:", round(median(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = tuos_blue) +
+           hjust = 0, colour = tuos_purple) +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 
 ```
@@ -467,23 +531,25 @@ library(modeest)
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   scale_y_continuous(limits = c(0, 30)) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = "darkgrey") +
-  geom_vline(xintercept = median(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+           hjust = 0, colour = "grey20") +
+  geom_vline(xintercept = median(idaci$idaci, na.rm = TRUE), col = "grey20") +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 24, 
            label = paste("Median IDACI:", round(median(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = "darkgrey") +
-  geom_vline(xintercept = mfv(round(idaci$idaci, 0), na_rm = TRUE), col = tuos_blue) +
+           hjust = 0, colour = "grey20") +
+  geom_vline(xintercept = mfv(round(idaci$idaci, 0), na_rm = TRUE), col = tuos_purple) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 22, 
            label = paste("Mode IDACI:", mfv(round(idaci$idaci, 0), na_rm = TRUE)),
-           hjust = 0, colour = tuos_blue) +
+           hjust = 0, colour = tuos_purple) +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 
 ```
@@ -491,6 +557,8 @@ idaci %>%
 
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -514,6 +582,8 @@ hse_cleaned %>%
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
 <br><br>
@@ -533,6 +603,8 @@ hse_cleaned %>%
 ```
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -554,6 +626,8 @@ hse_cleaned %>%
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
 <br><br>
@@ -573,6 +647,8 @@ hse_cleaned %>%
 ```
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency]
 
@@ -602,15 +678,17 @@ class: middle
 
 hse_cleaned %>%
   ggplot() +
-  geom_histogram(aes(x = htval), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = tuos_blue) +
+  geom_histogram(aes(x = htval), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = tuos_purple) +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 750, label = paste("Mean: ", round(mean(hse_cleaned$htval, na.rm = TRUE), 0)),
-           col = tuos_blue, hjust = 0) +
+           col = tuos_purple, hjust = 0) +
   scale_y_continuous(limits = c(0, 800)) +
   theme_minimal() +
   xlab("Height distribution Age > 16 (in Health Survey England), cm") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -623,19 +701,21 @@ class: middle
 
 hse_cleaned %>%
   ggplot() +
-  geom_histogram(aes(x = htval), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = "darkgrey") +
+  geom_histogram(aes(x = htval), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = "grey20") +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 750, label = paste("Mean: ", round(mean(hse_cleaned$htval, na.rm = TRUE), 0)),
-           col = "darkgrey", hjust = 0) +
-  geom_vline(xintercept = median(hse_cleaned$htval, na.rm = TRUE), col = tuos_blue) +
+           col = "grey20", hjust = 0) +
+  geom_vline(xintercept = median(hse_cleaned$htval, na.rm = TRUE), col = tuos_purple) +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 700, label = paste("Median: ", round(median(hse_cleaned$htval, na.rm = TRUE), 0)),
-           col = tuos_blue, hjust = 0) +
+           col = tuos_purple, hjust = 0) +
   scale_y_continuous(limits = c(0, 800)) +
   theme_minimal() +
   xlab("Height distribution Age > 16 (in Health Survey England), cm") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -650,23 +730,25 @@ mode_height <- mfv(hse_cleaned$htval, na.rm = TRUE)
 
 hse_cleaned %>%
   ggplot() +
-  geom_histogram(aes(x = htval), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = "darkgrey") +
+  geom_histogram(aes(x = htval), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(hse_cleaned$htval, na.rm = TRUE), col = "grey20") +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 750, label = paste("Mean: ", round(mean(hse_cleaned$htval, na.rm = TRUE), 0)),
-           col = "darkgrey", hjust = 0) +
-  geom_vline(xintercept = median(hse_cleaned$htval, na.rm = TRUE), col = "darkgrey") +
+           col = "grey20", hjust = 0) +
+  geom_vline(xintercept = median(hse_cleaned$htval, na.rm = TRUE), col = "grey20") +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 700, label = paste("Median: ", round(median(hse_cleaned$htval, na.rm = TRUE), 0)),
-           col = "darkgrey", hjust = 0) +
-  geom_vline(xintercept = mode_height, col = tuos_blue) +
+           col = "grey20", hjust = 0) +
+  geom_vline(xintercept = mode_height, col = tuos_purple) +
   annotate("text", x = mean(hse_cleaned$htval, na.rm = TRUE) + 1,
            y = 650, label = paste("Mode: ", mode_height),
-           col = tuos_blue, hjust = 0) +
+           col = tuos_purple, hjust = 0) +
   scale_y_continuous(limits = c(0, 800)) +
   theme_minimal() +
   xlab("Height distribution Age > 16 (in Health Survey England), cm") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -688,15 +770,15 @@ mode_income <- mfv(round(hse_cleaned$eqvinc, 0), na.rm = TRUE)
 
 hse_cleaned %>%
   ggplot() +
-  geom_histogram(aes(x = eqvinc), col = "darkgrey", fill = "transparent", bins = 50) +
+  geom_histogram(aes(x = eqvinc), col = "grey20", fill = "transparent", bins = 50) +
   geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = tuos_blue) +
   annotate("text", x = mean(hse_cleaned$eqvinc, na.rm = TRUE) + 10000,
            y = 1750, label = paste("Mean: ", round(mean(hse_cleaned$eqvinc, na.rm = TRUE), 0)),
            col = tuos_blue, hjust = 0) +
-  geom_vline(xintercept = median(hse_cleaned$eqvinc, na.rm = TRUE), col = "grey50") +
+  geom_vline(xintercept = median(hse_cleaned$eqvinc, na.rm = TRUE), col = tuos_blue) +
   annotate("text", x = mean(hse_cleaned$eqvinc, na.rm = TRUE) + 10000,
            y = 1500, label = paste("Median: ", round(median(hse_cleaned$eqvinc, na.rm = TRUE), 0)),
-           col = "grey50", hjust = 0) +
+           col = tuos_blue, hjust = 0) +
   geom_vline(xintercept = mode_income, col = tuos_purple) +
   annotate("text", x = mean(hse_cleaned$eqvinc, na.rm = TRUE) + 10000,
            y = 1250, label = paste("Mode: ", mode_income),
@@ -704,28 +786,36 @@ hse_cleaned %>%
   scale_y_continuous(limits = c(0, 2000)) +
   theme_minimal() +
   xlab("Income distribution Age > 16 (in Health Survey England), £ equivalised") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
 ---
+class: middle
+background-color: white
 
-```{r, echo = FALSE}
+.center[
+
+```{r, echo = FALSE, out.width="80%"}
 
 knitr::include_graphics("images/summary_statistics.png")
 
 ```
 
+]
+
 ---
 class: inverse, middle
 
 
-## When a continuous/integer variable is __.tuos_purple[not]__ normally distributed (for example, if it is skewed), the mean, median, and mode will often not align and some will not end up on the 'most likely value'. 
+## When a continuous/integer variable is not normally distributed (for example, if it is skewed), the mean, median, and mode will often not align and some will not end up on the 'most likely value'. 
 
-## This is why it's __always__ important to visualise your data.
+## This is why it's always important to visualise your data.
 
 ---
-
+class: middle
 
 .pull-left[
 
@@ -757,7 +847,7 @@ head(hse_cleaned$health, 50)
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -794,7 +884,7 @@ Categorical/Ordinal variables
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -837,9 +927,10 @@ Categorical/Ordinal variables
 
 ---
 
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -873,7 +964,7 @@ hse_cleaned %>%
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -898,7 +989,9 @@ hse_cleaned %>%
   theme_minimal() +
   coord_flip() +
   ylab("Percentage of Survey Sample") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -928,9 +1021,13 @@ hse_cleaned %>% # my data
 
 ---
 
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+
+
+.middle-left[
+
 
 #### What about nominal/categorical variables?
 
@@ -975,7 +1072,7 @@ tabyl(hse_cleaned$econact_s) %>%
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about nominal/categorical variables?
 
@@ -1001,7 +1098,9 @@ hse_cleaned %>%
   theme_minimal() +
   coord_flip() +
   ylab("Frequency") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1033,7 +1132,7 @@ hse_cleaned %>%
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -1072,7 +1171,7 @@ unique(hse_cleaned$health)
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -1096,7 +1195,9 @@ hse_cleaned %>%
   geom_bar(aes(x = health, fill = health)) +
   scale_xaringan_fill_discrete() +
   theme_minimal() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1107,10 +1208,9 @@ hse_cleaned %>%
 
 ---
 
-
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
-.pull-left[
+.middle-left[
 
 #### What about ordinal variables?
 
@@ -1176,6 +1276,8 @@ head(idaci$idaci, 200)
 
 ---
 
+class: middle
+
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
 <br>
@@ -1184,8 +1286,8 @@ head(idaci$idaci, 200)
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent") +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   annotate("rect", xmin = 2, xmax = 15, 
             ymin = 0, ymax = 30.3, alpha = 0.2) +
   annotate("rect", xmin = 15.6, xmax = 34, 
@@ -1193,10 +1295,12 @@ idaci %>%
   scale_y_continuous(limits = c(0, 31)) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 1)),
-           hjust = 0, colour = "darkgrey") +
+           hjust = 0, colour = "grey20") +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1259,7 +1363,9 @@ ggplot(data = normal_dist, aes(x)) +
                      minor_breaks = NULL) +
   xlab("") +
   ggtitle("The Empirical Rule (68, 95, 99.7 Rule)") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1305,7 +1411,9 @@ ggplot(data = normal_dist, aes(x)) +
                      minor_breaks = NULL) +
   xlab("") +
   ggtitle("The Empirical Rule (68, 95, 99.7 Rule)") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1352,7 +1460,9 @@ ggplot(data = normal_dist, aes(x)) +
                      minor_breaks = NULL) +
   xlab("") +
   ggtitle("The Empirical Rule (68, 95, 99.7 Rule)") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1398,7 +1508,9 @@ ggplot(data = normal_dist, aes(x)) +
                      minor_breaks = NULL) +
   xlab("") +
   ggtitle("The Empirical Rule (68, 95, 99.7 Rule)") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1419,20 +1531,22 @@ n_obs <- 317
 
 idaci %>%
   ggplot() +
-  geom_histogram(aes(x = idaci), col = "darkgrey", fill = "transparent", binwidth = 1) +
+  geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent", binwidth = 1) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(idaci$idaci, na.rm=TRUE), 
                        sd = sd(idaci$idaci, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   scale_y_continuous(limits = c(0, 31)) +
   scale_x_continuous(limits = c(0, 35)) +
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 0),
                          "\nStd.Dev.: 6"),
-           hjust = 0, colour = "darkgrey") +
+           hjust = 0, colour = "grey20") +
   theme_minimal() +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1456,12 +1570,12 @@ idaci2 <- idaci %>%
 
 idaci2 %>%
   ggplot(aes(x = idaci)) +
-  geom_histogram(aes(x = idaci, fill = idaci_1sd), col = "darkgrey", binwidth = 1,
+  geom_histogram(aes(x = idaci, fill = idaci_1sd), col = "grey20", binwidth = 1,
                  alpha = 0.4) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(idaci$idaci, na.rm=TRUE), 
                        sd = sd(idaci$idaci, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   stat_aud(geom = "area",
            xlim = c(10, 20), n = 317, fill = tuos_blue, alpha = 0.3) +
   scale_y_continuous(limits = c(0, 31)) +
@@ -1470,11 +1584,13 @@ idaci2 %>%
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 0),
                          "\nStd.Dev.: 6"),
-           hjust = 0, colour = "darkgrey") +
+           hjust = 0, colour = "grey20") +
   theme_minimal() +
   theme(legend.position = "none") +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1493,12 +1609,12 @@ class: middle
 
 idaci2 %>%
   ggplot(aes(x = idaci)) +
-  geom_histogram(aes(x = idaci, fill = idaci_2sd), col = "darkgrey", binwidth = 1,
+  geom_histogram(aes(x = idaci, fill = idaci_2sd), col = "grey20", binwidth = 1,
                  alpha = 0.4) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(idaci$idaci, na.rm=TRUE), 
                        sd = sd(idaci$idaci, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   stat_aud(geom = "area",
            xlim = c(10, 20), n = 317, fill = tuos_blue, alpha = 0.3) +
   scale_y_continuous(limits = c(0, 31)) +
@@ -1507,11 +1623,13 @@ idaci2 %>%
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 0),
                          "\nStd.Dev.: 6"),
-           hjust = 0, colour = "darkgrey") +
+           hjust = 0, colour = "grey20") +
   theme_minimal() +
   theme(legend.position = "none") +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1529,12 +1647,12 @@ class: middle
 
 idaci2 %>%
   ggplot(aes(x = idaci)) +
-  geom_histogram(aes(x = idaci, fill = idaci_3sd), col = "darkgrey", binwidth = 1,
+  geom_histogram(aes(x = idaci, fill = idaci_3sd), col = "grey20", binwidth = 1,
                  alpha = 0.4) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(idaci$idaci, na.rm=TRUE), 
                        sd = sd(idaci$idaci, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "darkgrey") +
+  geom_vline(xintercept = mean(idaci$idaci, na.rm = TRUE), col = "grey20") +
   stat_aud(geom = "area",
            xlim = c(10, 20), n = 317, fill = tuos_blue, alpha = 0.3) +
   scale_y_continuous(limits = c(0, 31)) +
@@ -1543,16 +1661,20 @@ idaci2 %>%
   annotate("text", x = mean(idaci$idaci, na.rm=TRUE) + 0.5, y = 26, 
            label = paste("Mean IDACI:", round(mean(idaci$idaci, na.rm = FALSE), 0),
                          "\nStd.Dev.: 6"),
-           hjust = 0, colour = "darkgrey") +
+           hjust = 0, colour = "grey20") +
   theme_minimal() +
   theme(legend.position = "none") +
   xlab("Income Deprivation Affecting Children Index (% in low income)") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1572,6 +1694,8 @@ idaci %>%
 
 
 ---
+
+class: middle
 
 ## Univariate Descriptive Statistics<br>.tuos_purple[Measures of Dispersion]
 
@@ -1598,7 +1722,7 @@ idaci %>%
 
 class: inverse, middle
 
-### .tuos_purple[However, we know from the example of income we saw before that sometimes variables are not normally distributed. How can we summarise their distribution?]
+### However, we know from the example of income we saw before that sometimes variables are not normally distributed. How can we summarise their distribution?
 
 
 ---
@@ -1619,16 +1743,18 @@ n_obs <- sum(!is.na(hse_cleaned$eqvinc))
 
 hse_cleaned %>%
   ggplot() +
-  geom_histogram(aes(x = eqvinc), col = "darkgrey", fill = "transparent", binwidth = 5000) +
+  geom_histogram(aes(x = eqvinc), col = "grey20", fill = "transparent", binwidth = 5000) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
                        sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "grey20", size = 0.75) +
   #scale_y_continuous(limits = c(0, 31)) +
   scale_x_continuous(limits = c(-1e+05, 3e+05)) +
   theme_minimal() +
   xlab("Equivalised Household Income") +
-  ylab("Frequency")
+  ylab("Frequency") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1652,18 +1778,20 @@ hse_cleaned2 <- hse_cleaned %>%
 
 hse_cleaned2 %>%
   ggplot() +
-  geom_histogram(aes(x = eqvinc, fill = eqvinc_3sd), col = "darkgrey", binwidth = 5000, alpha = 0.4) +
+  geom_histogram(aes(x = eqvinc, fill = eqvinc_3sd), col = "grey20", binwidth = 5000, alpha = 0.4) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
                        sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "grey20", size = 0.75) +
   #scale_y_continuous(limits = c(0, 31)) +
   scale_x_continuous(limits = c(-1e+05, 3e+05)) +
   theme_minimal() +
   scale_fill_manual(values = c("NA", tuos_blue)) +
   xlab("Equivalised Household Income") +
   ylab("Frequency") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1740,18 +1868,20 @@ hse_cleaned2 <- hse_cleaned %>%
 
 hse_cleaned2 %>%
   ggplot() +
-  geom_histogram(aes(x = eqvinc, fill = eqvinc_95q), col = "darkgrey", binwidth = 5000, alpha = 0.4) +
+  geom_histogram(aes(x = eqvinc, fill = eqvinc_95q), col = "grey20", binwidth = 5000, alpha = 0.4) +
   stat_function(fun = function(x) 
       dnorm(x, mean = mean(hse_cleaned$eqvinc, na.rm=TRUE), 
                        sd = sd(hse_cleaned$eqvinc, na.rm = TRUE)) * bw * n_obs) +
-  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "darkgrey", size = 0.75) +
+  geom_vline(xintercept = mean(hse_cleaned$eqvinc, na.rm = TRUE), col = "grey20", size = 0.75) +
   #scale_y_continuous(limits = c(0, 31)) +
   scale_x_continuous(limits = c(-1e+05, 3e+05)) +
   theme_minimal() +
   scale_fill_manual(values = c("NA", tuos_blue)) +
   xlab("Equivalised Household Income") +
   ylab("Frequency") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"), 
+        panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"))
 
 ```
 
@@ -1787,6 +1917,7 @@ as.htmlwidget(visuals_tab, width = "100%")
 
 
 ---
+
 class: middle
 
 ```{r, include=FALSE}

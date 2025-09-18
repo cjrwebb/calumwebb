@@ -1,5 +1,5 @@
 ---
-title: "SMI606: Week 4 — Inference"
+title: "EDC459: Week 4 — Inference"
 subtitle: ""  
 author: 
   - "Calum Webb"
@@ -23,9 +23,15 @@ output:
 class: middle
 background-size: contain
 
+<!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-82' --size '1216x684'  "week-04-inference/slides/week-04-inference.html" week-04-inference/slides/week-04-inference.pdf
+
+----->
+
 <br><br><br>
 
-# .tuos_purple[SMI606: Week 4<br>Inference]
+# .tuos_purple[EDC459: Week 4<br>Inference]
 
 <br><br>
 

@@ -1,5 +1,5 @@
 ---
-title: "SMI606: Week 10 — Cluster Analysis"
+title: "EDC459: Week 10 — Cluster Analysis"
 subtitle: ""  
 author: 
   - "Calum Webb"
@@ -23,9 +23,15 @@ output:
 class: middle
 background-size: contain
 
+<!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-79' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000  "week-10-cluster-analysis/slides/week-10-cluster-analysis.html" week-10-cluster-analysis/slides/week-10-cluster-analysis.pdf
+
+----->
+
 <br><br><br>
 
-# .tuos_purple[SMI606: Week 10<br>Cluster Analysis]
+# .tuos_purple[EDC459: Week 10<br>Cluster Analysis]
 
 <br><br>
 
@@ -1554,7 +1560,7 @@ background-color: white
 
 * __Describe the characteristics of each cluster.__
 
-[Join the Jamboard (Week 10: Jamboard 1)](https://jamboard.google.com/d/1Fs3JisXEgPSwqJVNlQpXad5wc-GwVbyxmH2g5dbeTmk/edit?usp=sharing) using this [link](https://jamboard.google.com/d/1Fs3JisXEgPSwqJVNlQpXad5wc-GwVbyxmH2g5dbeTmk/edit?usp=sharing) and try interpreting the clusters produced by k-means, based on their mean values.
+[Join the Wooclap (Week 10: Wooclap 1)](https://app.wooclap.com/events/SMIGJA/questions/66e84343e4f5d5ad4d599f0c) using this [link](https://app.wooclap.com/events/SMIGJA/questions/66e84343e4f5d5ad4d599f0c) (Event ID: **SMIGJA**) and try interpreting the clusters produced by k-means, based on their mean values.
 
 ]
 
@@ -1563,7 +1569,7 @@ background-color: white
 <center>
 ```{r, echo = FALSE, out.width = "80%"}
 
-knitr::include_graphics("images/jamboard-1-qr.png")
+knitr::include_graphics("images/week-10-wooclap-1.png")
 
 ```
 </center>
@@ -2529,9 +2535,11 @@ youtube_data_results %>%
 
 <br>
 
-Class Activity: Join the [Jamboard](https://jamboard.google.com/d/1k5n5lJjEe3k0GR5mk4C1EhNNq0axXSAu_BaApsXYJF0/edit?usp=sharing) and try to give appropriate labels to each 'group' of Youtube Viewers
+Class Activity: Join the [Wooclap Activity](https://app.wooclap.com/events/SMIGJA/questions/66e847db000342198d5906ee) and try to give appropriate labels to each 'group' of Youtube Viewers
 
-[Link](https://jamboard.google.com/d/1k5n5lJjEe3k0GR5mk4C1EhNNq0axXSAu_BaApsXYJF0/edit?usp=sharing)
+[Link](https://app.wooclap.com/events/SMIGJA/questions/66e847db000342198d5906ee)
+
+Event ID: **SMIGJA** (Question 2)
 
 ]
 
@@ -2545,7 +2553,7 @@ class: middle
 
 ```{r, echo = FALSE, out.width = "60%"}
 
-knitr::include_graphics("images/jamboard-2-qr.png")
+knitr::include_graphics("images/SMI606-week-10-wooclap-2.png")
 
 ```
 
@@ -2559,7 +2567,7 @@ knitr::include_graphics("images/jamboard-2-qr.png")
 
 ```{r, include = FALSE}
 
-options(width = 120)
+options(width = 200)
 
 ```
 
@@ -2622,7 +2630,8 @@ youtube_data_results %>%
   mutate_at(vars(animation:vlogs), ~as.numeric(.)-1) %>%
   group_by(hca_comp_k6) %>%
   # Means for all youtube genres
-  summarise_at(vars(animation:vlogs), ~mean(., na.rm = TRUE))
+  summarise_at(vars(animation:vlogs), ~mean(., na.rm = TRUE)) %>%
+  print(width = Inf) 
 
 ```
 

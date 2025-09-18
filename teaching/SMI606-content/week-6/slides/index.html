@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SMI606: Week 6 — Bivariate Linear Regression</title>
+    <title>EDC459: Week 6 — Bivariate Linear Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2024-09-16" />
+    <meta name="date" content="2025-09-17" />
     <script src="week-06-bivariate-lm_files/header-attrs/header-attrs.js"></script>
     <link href="week-06-bivariate-lm_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-06-bivariate-lm_files/tile-view/tile-view.js"></script>
@@ -33,7 +33,7 @@ background-size: contain
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-# .tuos_purple[SMI606: Week 6&lt;br&gt;Bivariate Linear Regression]
+# .tuos_purple[EDC459: Week 6&lt;br&gt;Bivariate Linear Regression]
 
 &lt;br&gt;&lt;br&gt;
 
@@ -82,7 +82,7 @@ top:1em;right:2em;
 
 
 
-<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+<style>:root{--panel-tab-background:#F8F8F8;--panel-tab-active-background:#F8F8F8;--panel-tab-hover-background:#F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -188,7 +188,7 @@ class: inverse, middle
 #### Code for UN Data plot
 
 
-```r
+``` r
 library(tidyverse)
 library(ggrepel)
 
@@ -570,7 +570,7 @@ The slope and intercept of the line can be found using the __Ordinary Least Squa
 We can estimate a **linear regression model** in `R` using the inbuilt `lm()` function. 
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 ```
@@ -1202,7 +1202,7 @@ class: inverse, middle
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1250,7 +1250,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1307,7 +1307,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1365,7 +1365,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1423,7 +1423,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1482,7 +1482,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1542,7 +1542,7 @@ Using the `summary()` function then gives us our model output. This gives us a r
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1631,7 +1631,7 @@ class: middle
 .pull-left[
 
 
-```r
+``` r
 lab_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ sec_ed_women)
 
@@ -1687,7 +1687,7 @@ summary(lab_model)
 If using Rmarkdown, you can make prettier regression results tables using the `stargazer` package. For example:
 
 
-```r
+``` r
 library(stargazer)
 
 stargazer::stargazer(lab_model, type = "html")
@@ -1754,7 +1754,7 @@ class: inverse, middle
 .pull-left[
 
 
-```r
+``` r
 eu_model &lt;- lm(data = un_data, 
                 formula = lab_force_women ~ in_eu)
 
@@ -2098,13 +2098,13 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SMI606: Week 10 — Cluster Analysis</title>
+    <title>EDC459: Week 10 — Cluster Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2024-09-16" />
+    <meta name="date" content="2025-09-17" />
     <script src="week-10-cluster-analysis_files/header-attrs/header-attrs.js"></script>
     <link href="week-10-cluster-analysis_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-10-cluster-analysis_files/tile-view/tile-view.js"></script>
@@ -31,9 +31,15 @@
 class: middle
 background-size: contain
 
+&lt;!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-106' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000  "week-09-logistic-regression/slides/week-09-logistic-regression.html" week-09-logistic-regression/slides/week-09-logistic-regression.pdf
+
+-----&gt;
+
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-# .tuos_purple[SMI606: Week 10&lt;br&gt;Cluster Analysis]
+# .tuos_purple[EDC459: Week 10&lt;br&gt;Cluster Analysis]
 
 &lt;br&gt;&lt;br&gt;
 
@@ -82,7 +88,7 @@ top:1em;right:2em;
 
 
 
-<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+<style>:root{--panel-tab-background:#F8F8F8;--panel-tab-active-background:#F8F8F8;--panel-tab-hover-background:#F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -510,7 +516,7 @@ This (simulated) data is about 300 visitors to a museum. The data includes varia
 .pull-right-big[
 
 
-```r
+``` r
 head(museum_data, 5)
 ```
 
@@ -526,7 +532,7 @@ head(museum_data, 5)
 ```
 
 
-```r
+``` r
 stargazer::stargazer(as.data.frame(museum_data), header = FALSE, type = "html")
 ```
 
@@ -567,7 +573,7 @@ stargazer::stargazer(as.data.frame(museum_data), header = FALSE, type = "html")
 We are going to use the `factoextra` and `cluster` packages to help us run our cluster analysis.
 
 
-```r
+``` r
 # install.packages("factoextra")
 # install.packages("cluster")
 library(factoextra)
@@ -603,7 +609,7 @@ k-means will only work with data that includes __only__ numeric variables (and a
 
 
 
-```r
+``` r
 museum_data_prepped &lt;- museum_data %&gt;%
   select(nadults, nkids, donation,
          age, giftshop_spend, cafe_spend)
@@ -660,7 +666,7 @@ The highest silhouette value reflects the optimal number of clusters under this 
 
 
 
-```r
+``` r
 factoextra::fviz_nbclust(museum_data_prepped, 
                          method = "silhouette",
                          FUNcluster = kmeans)
@@ -700,7 +706,7 @@ The highest gap statistic __above a margin of error__ tells us the best solution
 
 
 
-```r
+``` r
 factoextra::fviz_nbclust(museum_data_prepped, 
                          method = "gap",
                          FUNcluster = kmeans, verbose = FALSE)
@@ -738,7 +744,7 @@ Our silhouette and gap statistics seem to be indicating that either a __3__ or _
 
 
 
-```r
+``` r
 factoextra::fviz_nbclust(museum_data_prepped, 
                          method = "gap",
                          FUNcluster = kmeans, verbose = FALSE)
@@ -775,7 +781,7 @@ Now we know an appropriate number of clusters, we can create both 3-cluster and 
 
 
 
-```r
+``` r
 set.seed(2021)
 museum_3k &lt;- kmeans(museum_data_prepped, 
                     centers = 3)
@@ -814,7 +820,7 @@ If we inspect the k-means objects, we get the following information.
 
 
 
-```r
+``` r
 museum_3k
 ```
 
@@ -881,7 +887,7 @@ museum_3k
 
 
 
-```r
+``` r
 museum_3k
 ```
 
@@ -943,7 +949,7 @@ We can call specific parts of the k-means object using the `$` operator.
 
 
 
-```r
+``` r
 museum_3k$cluster
 ```
 
@@ -959,7 +965,7 @@ museum_3k$cluster
 ## [297] 2 2 2 2
 ```
 
-```r
+``` r
 museum_3k$centers
 ```
 
@@ -1004,7 +1010,7 @@ A biplot uses something called Principal Components Analysis to simplify multipl
 
 
 
-```r
+``` r
 fviz_cluster(museum_3k, data = museum_data_prepped,
              geom = "point") +
   ggthemes::scale_color_colorblind()
@@ -1045,7 +1051,7 @@ Does the four cluster solution look much better than the three cluster solution?
 
 
 
-```r
+``` r
 fviz_cluster(museum_4k, data = museum_data_prepped,
              geom = "point") +
   ggthemes::scale_color_colorblind()
@@ -1081,7 +1087,7 @@ We can add the cluster membership to our data easily using the object from kmean
 
 
 
-```r
+``` r
 museum_data &lt;- museum_data %&gt;%
   mutate(
     cluster = museum_3k$cluster
@@ -1136,7 +1142,7 @@ We can then carry out any bivariate statistics, tests, or other analyses with bo
 
 
 
-```r
+``` r
 museum_data %&gt;%
   group_by(cluster) %&gt;%
   summarise(
@@ -1223,7 +1229,7 @@ e.g. 1 = Around 2 adults, large number of children, average donation, age 30s, h
 
 
 
-```r
+``` r
 museum_data %&gt;%
   group_by(cluster) %&gt;%
   summarise(
@@ -1273,7 +1279,7 @@ e.g. 2 = Larger number of adults, very few if ever kids, low donations, overall 
 
 
 
-```r
+``` r
 museum_data %&gt;%
   group_by(cluster) %&gt;%
   summarise(
@@ -1323,7 +1329,7 @@ e.g. 3 = Often 2, sometimes 3 adults; sometimes children, but not often; average
 
 
 
-```r
+``` r
 museum_data %&gt;%
   group_by(cluster) %&gt;%
   summarise(
@@ -1374,7 +1380,7 @@ It's quite common to give either straightforward or amusing names to the cluster
 
 
 
-```r
+``` r
 museum_data %&gt;%
   group_by(cluster) %&gt;%
   summarise(
@@ -1669,7 +1675,7 @@ We collected a random sample of videos watched on 200 Youtube users and then rec
 
 
 
-```r
+``` r
 youtube_data
 ```
 
@@ -1734,7 +1740,7 @@ We can calculate a distance/dissimilarity matrix (distance between all points) u
 Binary continuous variables __must__ be coded as factors for `daisy` to calculate Gower's distance correctly.
 
 
-```r
+``` r
 library(cluster)
 
 # Calculate a distance matrix and save it as youtube_d
@@ -1877,7 +1883,7 @@ background-color: white
 * Cluster data based on __complete linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_comp &lt;- hclust(d = youtube_d,
                    method = "complete")
@@ -1886,7 +1892,7 @@ hca_comp &lt;- hclust(d = youtube_d,
 * Cluster data based on __average linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_avg &lt;- hclust(d = youtube_d,
                   method = "average")
@@ -1909,7 +1915,7 @@ background-color: white
 * Cluster data based on __complete linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_comp &lt;- hclust(d = youtube_d,
                    method = "complete")
@@ -1918,7 +1924,7 @@ hca_comp &lt;- hclust(d = youtube_d,
 * Cluster data based on __average linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_avg &lt;- hclust(d = youtube_d,
                   method = "average")
@@ -1935,7 +1941,7 @@ __Complete__: Maybe 4, maybe 6 clusters?
 #### Step 4: Visualise HCAs using dendrograms
 
 
-```r
+``` r
 plot(hca_comp, main = "Complete Linkage")
 ```
 
@@ -1956,7 +1962,7 @@ background-color: white
 * Cluster data based on __complete linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_comp &lt;- hclust(d = youtube_d,
                    method = "complete")
@@ -1965,7 +1971,7 @@ hca_comp &lt;- hclust(d = youtube_d,
 * Cluster data based on __average linkage__
 
 
-```r
+``` r
 set.seed(2021)
 hca_avg &lt;- hclust(d = youtube_d,
                   method = "average")
@@ -1984,7 +1990,7 @@ __Average__: Probably 4 clusters
 #### Step 4: Visualise HCAs using dendrograms
 
 
-```r
+``` r
 plot(hca_avg, main = "Average Linkage")
 ```
 
@@ -2016,7 +2022,7 @@ background-color: white
 .pull-right-big[
 
 
-```r
+``` r
 plot(hca_avg, main = "Average Linkage")
 ```
 
@@ -2048,7 +2054,7 @@ background-color: white
 .pull-right-big[
 
 
-```r
+``` r
 plot(hca_avg, main = "Average Linkage")
 abline(a = 0.4, b = 0, col = "blue")
 ```
@@ -2081,7 +2087,7 @@ abline(a = 0.4, b = 0, col = "blue")
 .pull-right-big[
 
 
-```r
+``` r
 hca_avg_k4  &lt;- cutree(hca_avg, k = 4)
 hca_comp_k4 &lt;- cutree(hca_comp, k = 4)
 hca_comp_k6 &lt;- cutree(hca_comp, k = 6)
@@ -2117,7 +2123,7 @@ We can add the cluster membership to our data using the `mutate` function.
 .pull-right[
 
 
-```r
+``` r
 youtube_data_results &lt;- youtube_data %&gt;%
   mutate(
     hca_avg_k4 = hca_avg_k4,
@@ -2159,7 +2165,7 @@ youtube_data_results
 
 
 
-```r
+``` r
 youtube_data_results %&gt;%
   # change my factor variables to numeric for 
   # calculating proportions
@@ -2199,7 +2205,7 @@ class: middle
 
 &lt;center&gt;
 
-&lt;img src="images/smi606-week-10-wooclap-2.png" width="60%" /&gt;
+&lt;img src="images/SMI606-week-10-wooclap-2.png" width="60%" /&gt;
 
 &lt;/center&gt;
 
@@ -2212,7 +2218,7 @@ class: middle
 
 
 
-```r
+``` r
 youtube_data_results %&gt;%
   # change my factor variables to numeric for 
   # calculating proportions
@@ -2247,7 +2253,7 @@ youtube_data_results %&gt;%
 #### Step 7: Explore how the clusters differ with bivariate statistics
 
 
-```r
+``` r
 youtube_data_results %&gt;%
   # change my factor variables to numeric for 
   # calculating proportions
@@ -2281,7 +2287,7 @@ youtube_data_results %&gt;%
 #### Step 7: Explore how the clusters differ with bivariate statistics
 
 
-```r
+``` r
 youtube_data_results %&gt;%
   # change my factor variables to numeric for 
   # calculating proportions
@@ -2364,13 +2370,13 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

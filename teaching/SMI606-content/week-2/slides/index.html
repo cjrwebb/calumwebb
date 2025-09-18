@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SMI606: Week 2 — Types of quantification</title>
+    <title>EDC459: Week 2 — Types of quantification</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2023-07-21" />
+    <meta name="date" content="2025-09-17" />
     <script src="week-02-types-of-quantification_files/header-attrs/header-attrs.js"></script>
     <link href="week-02-types-of-quantification_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-02-types-of-quantification_files/tile-view/tile-view.js"></script>
@@ -50,7 +50,7 @@ background-size: contain
 
 &lt;br&gt;&lt;br&gt;
 
-# .tuos_purple[SMI606: Week 2&lt;br&gt;Types of quantification]
+# .tuos_purple[EDC459: Week 2&lt;br&gt;Types of quantification]
 
 &lt;br&gt;&lt;br&gt;
 
@@ -99,7 +99,7 @@ top:1em;right:2em;
 
 
 
-<style>.panelset{--panel-tab-background: #F8F8F8;--panel-tab-active-background: #F8F8F8;--panel-tab-hover-background: #F8F8F8;}</style>
+<style>:root{--panel-tab-background:#F8F8F8;--panel-tab-active-background:#F8F8F8;--panel-tab-hover-background:#F8F8F8;}</style>
 
 <style>.xe__progress-bar__container {
   top:0;
@@ -198,7 +198,7 @@ class: middle
 Continuous and discrete variables are largely handled through the __numeric__ class that we saw in last week's practical.
 
 
-```r
+``` r
 continuous &lt;- c(1.00735, 2.0873, 9.328, 12.4747)
 class(continuous)
 ```
@@ -208,7 +208,7 @@ class(continuous)
 ```
 
 
-```r
+``` r
 discrete &lt;- c(1, 2, 3, 4)
 class(discrete)
 ```
@@ -223,7 +223,7 @@ class(discrete)
 However, `R` does have a class of variable with specific functionality for discrete data: integer.
 
 
-```r
+``` r
 as.integer(continuous)
 ```
 
@@ -251,7 +251,7 @@ class: middle
 There are multiple different ways to handle these kinds of variables in `R`. You can use simple character variables for nominal and binary variables:
 
 
-```r
+``` r
 nominal &lt;- c("turtle", "snail", "butterfly")
 class(nominal)
 ```
@@ -269,7 +269,7 @@ class: middle
 You can use ordered factors for ordinal variables...
 
 
-```r
+``` r
 ordinal &lt;- factor(c("unhappy", "ok", "awesome"), levels = c("unhappy", "ok", "awesome"),
                   ordered = TRUE)
 print(ordinal)
@@ -280,7 +280,7 @@ print(ordinal)
 ## Levels: unhappy &lt; ok &lt; awesome
 ```
 
-```r
+``` r
 class(ordinal)
 ```
 
@@ -293,7 +293,7 @@ class(ordinal)
 ... or simply make a numeric variable that corresponds to their character labels.
 
 
-```r
+``` r
 tibble(label = c("unhappy", "ok", "awesome"), numeric_val = c(1, 2, 3))
 ```
 
@@ -315,7 +315,7 @@ class: middle
 And lastly, we could store our binary variables as either numeric (identified by 0 = false or 1 = true); character; factor; or logical variables...
 
 
-```r
+``` r
 binary_num &lt;- c(1, 0)
 binary_chr &lt;- c("extinct", "not extinct")
 binary_fct &lt;- factor(c("extinct", "not extinct"), levels = c("not extinct", "extinct"))
@@ -411,7 +411,7 @@ class: middle
 ## Side note: How did I create this plot?
 
 
-```r
+``` r
 idaci %&gt;% # My data
   ggplot() + # start up ggplot
   geom_histogram(aes(x = idaci), col = "grey20", fill = "transparent") + # create a histogram
@@ -465,7 +465,7 @@ class: middle
 &lt;br&gt;&lt;br&gt;
 
 
-```r
+``` r
 library(modeest) # Package for calculating the mode
 
 hse_cleaned %&gt;%
@@ -493,7 +493,7 @@ class: middle
 &lt;br&gt;&lt;br&gt;
 
 
-```r
+``` r
 library(modeest)
 
 hse_cleaned %&gt;%
@@ -521,7 +521,7 @@ class: middle
 &lt;br&gt;&lt;br&gt;
 
 
-```r
+``` r
 library(modeest)
 
 hse_cleaned %&gt;%
@@ -549,7 +549,7 @@ class: middle
 &lt;br&gt;&lt;br&gt;
 
 
-```r
+``` r
 library(modeest)
 
 hse_cleaned %&gt;%
@@ -577,7 +577,7 @@ class: middle
 &lt;br&gt;&lt;br&gt;
 
 
-```r
+``` r
 library(modeest)
 
 hse_cleaned %&gt;%
@@ -635,7 +635,11 @@ class: middle
 class: middle
 background-color: white
 
+.center[
+
 &lt;img src="images/summary_statistics.png" width="80%" /&gt;
+
+]
 
 ---
 class: inverse, middle
@@ -707,7 +711,7 @@ Self-rated health
 
 
 
-```r
+``` r
 mfv(hse_cleaned$econact, na.rm = TRUE)
 ```
 
@@ -744,7 +748,7 @@ Categorical/Ordinal variables
 
 
 
-```r
+``` r
 hse_cleaned &lt;- hse_cleaned %&gt;%
   mutate(
     employed_lgc = ifelse(
@@ -788,7 +792,7 @@ Categorical/Ordinal variables
 
 
 
-```r
+``` r
 options(width = 40)
 
 hse_cleaned %&gt;%
@@ -844,7 +848,7 @@ class: middle
 ## Aside: How did I create this bar plot in R?
 
 
-```r
+``` r
 hse_cleaned %&gt;% # my data
   ggplot(aes(econact)) + # the variable I want to create a bar plot of
   geom_bar(aes(y = ..count../sum(..count..), fill = econact)) + # bar plot as a percentage
@@ -858,9 +862,13 @@ hse_cleaned %&gt;% # my data
 
 ---
 
+
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Central Tendency/Summary Statistics]
 
+
+
 .middle-left[
+
 
 #### What about nominal/categorical variables?
 
@@ -880,7 +888,7 @@ hse_cleaned %&gt;% # my data
 
 
 
-```r
+``` r
 library(janitor)
 
 tabyl(hse_cleaned$econact_s) %&gt;% 
@@ -939,7 +947,7 @@ class: middle
 ## Aside: How did I create this bar plot in R?
 
 
-```r
+``` r
 hse_cleaned %&gt;%
   ggplot(aes(econact)) +
   geom_bar(aes(y = ..count.., fill = econact)) + # no longer a percentage
@@ -969,7 +977,7 @@ hse_cleaned %&gt;%
 .pull-right[
 
 
-```r
+``` r
 hse_cleaned %&gt;%
   mutate(
     health_nm = as.numeric(health)
@@ -991,7 +999,7 @@ hse_cleaned %&gt;%
 ## 1        2.67          3 3. Good/Very G…
 ```
 
-```r
+``` r
 unique(hse_cleaned$health)
 ```
 
@@ -1049,7 +1057,7 @@ unique(hse_cleaned$health)
 .pull-right[
 
 
-```r
+``` r
 tabyl(hse_cleaned$health) %&gt;% 
   adorn_rounding(digits = 3)
 ```
@@ -1149,7 +1157,7 @@ class: middle
 ## .tuos_purple[If a variable is approximately normally distributed we can describe its dispersion around the mean using 'standard deviation'.]
 
 
-```r
+``` r
 sd(idaci$idaci)
 ```
 
@@ -1234,7 +1242,7 @@ class: middle
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Dispersion]
 
 
-```r
+``` r
 # Mean = ~15
 # Standard deviation = ~6
 
@@ -1271,7 +1279,7 @@ class: middle
 ## Univariate Descriptive Statistics&lt;br&gt;.tuos_purple[Measures of Dispersion]
 
 
-```r
+``` r
 # Mean = ~15
 # Standard deviation = ~6
 
@@ -1330,7 +1338,7 @@ class: middle
 Instead of relying on the Empirical Rule, we can use **quantiles/percentiles** to describe any arbitrary range of our data. 
 
 
-```r
+``` r
 # Default quantiles
 quantile(hse_cleaned$eqvinc, na.rm = TRUE)
 ```
@@ -1354,7 +1362,7 @@ class: middle
 If we wanted a 95% range we would want to take the 2.5th percentile and the 97.5th percentile (as a probability, this would be 0.025 and 0.975). We can do this by editing our quantiles function. 
 
 
-```r
+``` r
 # Default quantiles
 quantile(hse_cleaned$eqvinc, probs = c(0.025, 0.975), na.rm = TRUE)
 ```
@@ -1393,12 +1401,13 @@ Here are the results if we used quantiles set at pr = 0.025 and pr = 97.5 (95% c
 
 class: middle
 
-<div id="htmlwidget-4b01bd0ca50ae62aac5d" class="formattable_widget html-widget " style="width:100%;height:252px;" width="100%" height="252"></div>
+<div id="htmlwidget-4b01bd0ca50ae62aac5d" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
 <script type="application/json" data-for="htmlwidget-4b01bd0ca50ae62aac5d">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Central Tendency <\/th>\n   <th style=\"text-align:right;\"> Dispersion <\/th>\n   <th style=\"text-align:right;\"> Data Vis <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Bar Chart<br>geom_bar()/barplot() <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl()<br>Means/Median/Mode<br>mean(), median(), modeest::mfv() <\/td>\n   <td style=\"text-align:right;\"> Percentage of Each Value<br>Frequency Counts<br>janitor::tabyl() <\/td>\n   <td style=\"text-align:right;\"> Bar Chart<br>geom_bar()/barplot() <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/Median/Mode<br>mean(), median(), modeest::mfv() <\/td>\n   <td style=\"text-align:right;\"> Standard Deviation +<br>Empirical Rule (if approx normally distributed)<br>sd()<br>Quantiles/Percentiles<br>quantile() <\/td>\n   <td style=\"text-align:right;\"> Histogram<br>geom_histogram()/hist() <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 
 ---
+
 class: middle
 
 
@@ -1416,13 +1425,13 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

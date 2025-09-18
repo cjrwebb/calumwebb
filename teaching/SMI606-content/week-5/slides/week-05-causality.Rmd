@@ -1,5 +1,5 @@
 ---
-title: "SMI606: Week 5 — Causality"
+title: "EDC459: Week 5 — Causality"
 subtitle: ""  
 author: 
   - "Calum Webb"
@@ -23,9 +23,15 @@ output:
 class: middle
 background-size: contain
 
+<!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-57' --size '1216x684'  "week-05-causality/slides/week-05-causality.html" week-05-causality/slides/week-05-causality.pdf
+
+----->
+
 <br><br><br>
 
-# .tuos_purple[SMI606: Week 5<br>Causality]
+# .tuos_purple[EDC459: Week 5<br>Causality]
 
 <br><br>
 
@@ -435,7 +441,7 @@ experiment_data <- experiment_data %>%
 
 experiment_data <- experiment_data %>%
   mutate(timestamp = as.character(timestamp)) %>%
-  filter(str_detect(timestamp, "2023"))
+  filter(str_detect(timestamp, "2024"))
 
 experiment_data %>%
   group_by(sweet) %>%
@@ -479,7 +485,7 @@ Event code: **AXXIZJ**
 
 ```{r, echo = FALSE, out.width="85%"}
 
-knitr::include_graphics("images/wooclap-smi606-w5-1.png")
+knitr::include_graphics("images/wooclap-SMI606-w5-1.png")
 
 ```
 
