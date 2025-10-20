@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Simulation Studies</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Andy Bell" />
+    <meta name="author" content="Dr. Calum Webb" />
+    <meta name="date" content="2025-10-20" />
+    <script src="intro-to-simulation-studies_files/header-attrs/header-attrs.js"></script>
+    <link href="intro-to-simulation-studies_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/tile-view/tile-view.js"></script>
+    <link href="intro-to-simulation-studies_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="intro-to-simulation-studies_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/panelset/panelset.js"></script>
+    <script src="intro-to-simulation-studies_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="intro-to-simulation-studies_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/clipboard/clipboard.min.js"></script>
+    <link href="intro-to-simulation-studies_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/shareon/shareon.min.js"></script>
+    <link href="intro-to-simulation-studies_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="intro-to-simulation-studies_files/mark.js/mark.min.js"></script>
+    <link href="intro-to-simulation-studies_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="intro-to-simulation-studies_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+&lt;!----- 
+
+Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-91' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000 "slides/intro-to-simulation-studies.html" slides/intro-to-simulation-studies.pdf
+
+-----&gt;
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Introduction to Simulation Studies
+
+&lt;br&gt;
+
+**Dr. Andy Bell** &amp; **Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, School of Education, the University of Sheffield&lt;br&gt;
+[andrew.j.d.bell@sheffield.ac.uk](mailto:andrew.j.d.bell@sheffield.ac.uk)&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+class: middle
+
+## Plan for the day:
+
+* Lecture: What are simulations good for?
+* Lecture: The logic of a simulation study.
+* Practical exercise: A simple simulation of omitted variable bias.
+
+**Lunch**
+
+* Lecture: Simulation quantities of interest
+* Lecture: Presenting simulation results
+* Practical exercise: Conducting many simulations and creating a dataset of the quantities of interest
+
+
+---
+
+class: inverse, middle
+
+.pull-left-big[
+
+&lt;br&gt;
+
+# Lecture 1: Introduction to Simulation Studies
+
+]
+
+.pull-right-small[
+
+.center[
+
+&lt;img src="images/icons8-old_computer.svg" alt="An icon of an old style desktop computer" width="70%" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle
+
+.center[
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="images/wiki.png" alt="An image of a Wikipedia article about simulation, which humorously contains the warning 'Not to be confused with Stimulation'" width="90%" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+#### What are simulation studies?
+
+* Lots of different meanings: including as a methodology in itself (e.g. spatial micro-simulation)
+* Here, we are interested in using simulated data to test whether a model / a methodology works as we expect it to
+* Difficult with real data, as we don’t know how it came about
+
+]
+
+--
+
+.pull-right[
+
+So: 
+
+1. Take a dataset that we know the truth about
+2. Run a model using that dataset
+3. See whether the results that are produced are accurate
+4. Repeat this multiple times to check results weren’t by chance.
+5. See under what conditions the model is accurate
+
+
+]
+
+---
+
+class: inverse
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Why would we want to spend an entire day learning about simulation?
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* A geeky interest in the models themselves
+* To test whether a model that you want to use for a substantive topic works
+* To really understand what a model is really doing
+* As a way of (re)learning basic statistics that we should know already, but don’t.
+
+
+]
+
+---
+
+class: inverse
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Why would we want to spend an entire day learning about simulation?
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+* A geeky interest in the models themselves
+* To test whether a model that you want to use for a substantive topic works
+* To really understand what a model is really doing
+* As a way of (re)learning basic statistics that we should know already, but don’t.
+
+But...
+
+* Simulations seem a bit artificial - how do we know they have anything to do with the real world.
+* This was my attitude when a reviewer first asked me to conduct a simulation. (And it's not just me...)
+
+]
+
+
+---
+
+class: inverse, middle, no-header
+
+.bg-white.b--lightest-blue.ba.bw2.br3.shadow-5.ph4[
+
+.center[
+&lt;img src="images/yang-land.png" alt="An image of the abstract, title, and author list from an article by Reither et al. where the authors argue that one of Andy Bell's articles is unproductive because his simulations are contrived." width="65%" /&gt;
+
+]]
+
+
+---
+
+class: inverse, middle
+
+
+# To what extent do simulations reflect reality? To what extent do they need to reflect reality?
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+#### To what extent do they need to reflect reality?
+
+My view: If a mathematical model can draw out interesting things about society (I think it can) then a mathematically simulated dataset can tell us interesting things about the model’s relation to real data.
+
+That doesn’t mean models, or simulation, can tell us everything about the world: simulations as an important initial test
+
+]
+
+
+.pull-right[
+
+
+.center[
+&lt;img src="images/icons8-globe.svg" alt="A purely decorative image of the globe in a simple wireframe." width="60%" /&gt;
+]
+
+]
+
+
+
+---
+
+class: middle
+
+# What can be wrong with models?
+
+* They give inaccurate answers on average (bias)
+* They give correct answers on average, but with not as much precision as another model
+* They give correct answers but the precision is inaccurately estimated
+* They give the correct answer, but to a different question to what you thought
+* A combination of the above
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="50%" /&gt;
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+# What causes models to be wrong?
+
+]
+
+.pull-right[
+
+* Sample size too small
+* Omitted variables
+* Poor performing estimator
+* Reverse causality
+* Model specified wrong in some other way
+* Missing data
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# What do we mean by wrong?
+
+]
+
+.pull-right[
+
+If a model is biased… what is it biased from? And is that thing what we were really expecting to find?
+
+&gt; Example: failing to control for ‘cultural differences’ in finding effect of race
+
+Results should always be situated in some kind of reality!
+
+]
+
+---
+
+&lt;br&gt;&lt;br&gt;
+
+# FE versus RE &amp; Age, Period Cohort Analysis
+
+.pull-left[
+
+### Fixed Effects and Random Effects
+
+* Conventional wisdom: FE ‘gold standard’, RE affected by omitted variables
+* But FE is limited (e.g no higher level variables can be estimated)
+* Bell and Jones (2015) – shows RE with group means produces same results
+* Also showed problems with SEs for FEVD
+
+&lt;hr&gt;
+
+**Result**: a change in advice of what researchers should do
+
+*Bring into question results of some models (eg using the FEVD)*
+
+
+]
+
+--
+
+.pull-right[
+
+### Age-Period-Cohort Models
+
+* Age = Period – Cohort, so model cannot include all three (exactly colinearity)
+* Various proposed ‘solutions’ to the identification problem, and justified with simulations
+* Bell and Jones (various) show situations where these models do not work (by changing the DGP used
+in simulations
+
+&lt;hr&gt;
+
+**Result** A change in academic practice using these models?
+
+]
+
+
+---
+
+class: middle, center
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="images/apc1.png" alt="A figure shows the difference in results for age, period and cohort effects where the models do not estimate an accurate effect of each according to the simulated data generating process." width="50%" /&gt;
+
+]
+
+---
+
+class: middle
+
+
+# Summary
+
+* These sorts of studies can have a big impact in challenging standard practice
+* But are also an important way to understand what we are doing with our models
+
+**I didn’t really understand SEs until I started simulating things!**
+
+
+---
+
+class: inverse, middle
+
+.pull-left-big[
+
+&lt;br&gt;
+
+# Lecture 2: The logic of a simulation study
+
+]
+
+.pull-right-small[
+
+.center[
+
+&lt;img src="images/icons8-workflow.svg" alt="A decorative icon of a flowchart" width="70%" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+## What really is a regression model anyway?
+
+A regression model is a **description** of data that we have observed. However, we can use that description as a way to generate data. 
+
+This is an oversimplified representation of the world / the "truth". Literally: a model. 
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+**Linear regression model:**
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+## What really is a regression model anyway?
+
+A regression model is a **description** of data that we have observed. However, we can use that description as a way to generate data. 
+
+This is an oversimplified representation of the world / the "truth". Literally: a model. 
+
+]
+
+.pull-right[
+
+
+**Linear regression model:**
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_1\)`: The average change in Y for a one-unit change in X. From a frequentist perspective, every repeat study of a given sample size will have some error in this value that is normally distributed around the true (population) value. 
+
+From a Bayesian perspective, multiple values of `\(B_1\)` are plausible and these are usually normally distributed.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+## What really is a regression model anyway?
+
+A regression model is a **description** of data that we have observed. However, we can use that description as a way to generate data. 
+
+This is an oversimplified representation of the world / the "truth". Literally: a model. 
+
+]
+
+.pull-right[
+
+
+**Linear regression model:**
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(X_1\)`: Our observations of the variable X from our sample will be the product of its own data generating process that results in a distribution, and will have some measurement error (e.g. a sample of incomes from the wider population will reflect a positively skewed normal distribution/log-normal distribution). 
+
+Every set of values for X we get will look slightly different depending on who is in our sample and the error in our measurement.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+## What really is a regression model anyway?
+
+A regression model is a **description** of data that we have observed. However, we can use that description as a way to generate data. 
+
+This is an oversimplified representation of the world / the "truth". Literally: a model. 
+
+]
+
+.pull-right[
+
+
+**Linear regression model:**
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(e\)`: Sometimes called the error, `\(e\)` can also be considered the considered the **unexplained residual** - that is, the difference between the true value of Y and that expected by the model. It is everything that cannot be predicted by `\(X_1\)`. In linear regression, it is assumed that `\(e\)` is normally distributed.
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 0,
+`\(B_1\)` = ???,
+`\(X_1\)` = ???,
+`\(e\)` = ???
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-8-1.png" alt="A scatterplot where only a line is present at y = 0" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 0,
+`\(B_1\)` = ???,
+`\(X_1\)` = `\(N(0, 1)\)`,
+`\(e\)` = ???
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-9-1.png" alt="A scatterplot where variation is only shown along the X axis" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 0,
+`\(B_1\)` = 0.5,
+`\(X_1\)` = `\(N(0, 1)\)`,
+`\(e\)` = ???
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-10-1.png" alt="A scatterplot where variation is shown across the x and y axis but the dots all follow a perfect, deterministic, line with no error." width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 0,
+`\(B_1\)` = 0.5,
+`\(X_1\)` = `\(N(0, 1)\)`,
+`\(e\)` = `\(N(0, 1)\)`
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-11-1.png" alt="A scatterplot showing a relationship between X and Y but with a lot of error/large, random residuals" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 0,
+`\(B_1\)` = 0.5,
+`\(X_1\)` = `\(N(0, 1)\)`,
+`\(e\)` = `\(N(0, 1)\)`
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+**Each time we simulate the data, the results will change a little bit because the values of `\(X\)` and `\(e\)` will be drawn at random from their distributions.**
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-12-1.png" alt="The same scatterplot as before is shown, but this time the error and regression line is slightly different." width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 60,
+`\(B_1\)` = 1,
+`\(X_1\)` = `\(N(6, 1)\)`,
+`\(e\)` = `\(N(0, 10)\)`
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+**We can change the values of the distribution to represent real-world variables better, e.g. `\(Y\)` = Test Grade, `\(X_1\)` = Average Hours of Sleep.**
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-13-1.png" alt="A similar scatterplot to before but now the scales have changes and are labelled Hours of Sleep and Test Grade" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;
+
+## Working backwards from a linear regression to simulated data...
+
+With these pieces of information we can simulate what Y might look like.
+
+`$$Y = B_0 + B_1X_1 + e$$`
+
+`\(B_0\)` = 60,
+`\(B_1\)` = 1,
+`\(X_1\)` = `\(N(0, 1)\)`,
+`\(e\)` = `\(Lognormal(0, 1)\)`
+
+\* `\(N(0, 1)\)` means "A normally distributed variable with a mean of 0 and a standard deviation of 1".
+
+**We could also change the distributions that we are using to see what kind of effect it has, for example, if the error was log-normal distributed... (but we won't really go into that in this course)**
+
+]
+
+
+.pull-right[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-14-1.png" alt="The same scatterplot as before but now the error is non-normally distributed, the points above the regression line are very dispersed and those below it are not" width="500" height="500" /&gt;
+
+
+]
+
+
+---
+
+
+
+.pull-left[
+
+## Simulation shows how uncertainty (of effect, Bayesian, or of sample, Frequentist) plays out
+
+On the right are the regression lines for 200 simulations based on the regression equation in the previous slides with a sample size of 200 (with the last simulation's data overlaid on top).
+
+* If our sample is truly random, our estimates of B0 and B1 should be normally distributed around the true value.
+
+Here's the first five results for `\(B_0\)` and `\(B_1\)`:
+
+
+| `\(B_0\)`| `\(B_1\)`|
+|-----:|-----:|
+| 55.99|  1.78|
+| 58.27|  1.49|
+| 60.56|  0.92|
+| 59.09|  1.05|
+| 64.81|  0.26|
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-17-1.png" alt="A scatterplot but this time showing many, many regression lines (200) all with some small amount of variation" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+
+
+.pull-left[
+
+## Simulation shows how uncertainty (of effect, Bayesian, or of sample, Frequentist) plays out
+
+On the right are the regression lines for 200 simulations based on the regression equation in the previous slides with a sample size of 1000 (with the last simulation's data overlaid on top).
+
+* If our sample is truly random, our estimates of B0 and B1 should be normally distributed around the true value.
+
+Here's the first five results for `\(B_0\)` and `\(B_1\)`:
+
+
+| `\(B_0\)`| `\(B_1\)`|
+|-----:|-----:|
+| 55.94|  1.66|
+| 58.49|  1.31|
+| 62.52|  0.60|
+| 58.60|  1.16|
+| 62.71|  0.59|
+
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-20-1.png" alt="The same scatterplot as before, but this time the regression lines from the simulations are all much closer together because of the sample size increasing from 200 to 1000" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+class: middle, center
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-21-1.png" alt="A density plot shows the true expected distribution (a perfectly normal distribution centred around 1) and a 'spikier' empirical distribution based on simulation results. Most of the simulation results fit within the empirical distribution." width="800" height="550" /&gt;
+
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+Most of the time we're going to be interested in models with more than one independent variable. Moreover, we're likely to be interested in know how **the presence or absence of variables that are associated with both our key predictors of interest and our outcome, and the strength of association, influences our results.**
+
+* How bad would the difference in propensity to non-respond to a survey need to be to invalidate the results?
+
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+Most of the time we're going to be interested in models with more than one independent variable. Moreover, we're likely to be interested in know how **the presence or absence of variables that are associated with both our key predictors of interest and our outcome, and the strength of association, influences our results.**
+
+* How bad would the difference in propensity to non-respond to a survey need to be to invalidate the results?
+
+**Cornfield Conditions Study**:
+
+* In the 1950s, many statisticians (including Karl Pearson) believed there was no good evidence that smoking caused cancer because an omitted, unmeasurable variable, whether someone has a **smoking gene** that makes them more likely to smoke and more likely to develop lung cancer, could exist.
+* Jerome Cornfield demonstrated that the effect of such an omitted variable would have to be implausibly large in order to "explain away" the link between smoking and cancer.
+
+
+]
+
+--
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-22-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. There is an arrow going from gene to smoking and a second arrow going from gene to concer." width="500" height="500" /&gt;
+
+]
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+**The order of simulation**
+
+* Identify a variable/variables that are not a product of any other variables (i.e. they only have arrows going away from them, not to them)
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-23-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. There is an arrow going from gene to smoking and a second arrow going from gene to concer." width="500" height="500" /&gt;
+
+]
+
+]]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+**The order of simulation**
+
+* Identify a variable/variables that are not a product of any other variables (i.e. they only have arrows going away from them, not to them)
+* Simulate those variables.
+
+&lt;br&gt;
+
+$$
+  \begin{split}
+  gene &amp; = N(\mu_1, \sigma_1)\\\
+  \end{split}
+$$
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-24-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. There is an arrow going from gene to smoking and a second arrow going from gene to concer. The node gene is lit up because it has no pre-requisite causes." width="500" height="500" /&gt;
+
+]
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+**The order of simulation**
+
+* Identify a variable/variables that are not a product of any other variables (i.e. they only have arrows going away from them, not to them)
+* Simulate those variables.
+* Now you have a new variable, you can identify which other variables you now have the pieces of to simulate. 
+
+&lt;br&gt;
+
+$$
+  \begin{split}
+  gene &amp; = N(\mu_1, \sigma_1)\\\
+  smoking  &amp; = B_0 + B_1gene + e_1\\\
+  e_1 &amp; = N(0, \sigma_2)\\\
+  \end{split}
+$$
+
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-25-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. There is an arrow going from gene to smoking and a second arrow going from gene to concer. The node smoking is now lit up because all pre-requisites for its simulation have been met." width="500" height="500" /&gt;
+
+]
+
+]]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+**The order of simulation**
+
+* Identify a variable/variables that are not a product of any other variables (i.e. they only have arrows going away from them, not to them)
+* Simulate those variables.
+* Now you have a new variable, you can identify which other variables you now have the pieces of to simulate. 
+* Repeat until you have simulated all of your variables.
+
+&lt;br&gt;
+
+$$
+  \begin{split}
+  gene &amp; = N(\mu_1, \sigma_1)\\\
+  smoking  &amp; = B_0 + B_1gene + e_1\\\
+  cancer &amp; = B_3 + B_4smoking + B_5gene + e_2\\\
+  e_1 &amp; = N(0, \sigma_2)\\\
+  e_2 &amp; = N(0, \sigma_3)
+  \end{split}
+$$
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-26-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. All three nodes are now lit up because they can all be simulated." width="500" height="500" /&gt;
+
+]
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Building up the complexity
+
+**The order of simulation**
+
+* Identify a variable/variables that are not a product of any other variables (i.e. they only have arrows going away from them, not to them)
+* Simulate those variables.
+* Now you have a new variable, you can identify which other variables you now have the pieces of to simulate. 
+* Repeat until you have simulated all of your variables.
+
+&lt;br&gt;
+
+**A warning**: This does become a bit more complicated when it comes to more complex relationships between variables: simulation of trends, multilevel data structures, latent factors, bidirected relationships, etc. but the general principle stays the same.
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.center[.middle[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-27-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled smoking, cancer, and gene. There is an arrow going from smoking to cancer. There is an arrow going from gene to smoking and a second arrow going from gene to concer." width="500" height="500" /&gt;
+
+]
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+# One simulation to many...
+
+Now that you have a simulation that works (represents the underlying data generating process), we need to repeat it many, many, times, to see what happens. Some things to keep in mind:
+
+* Can someone reproduce your results?
+* Is there a clear description of what each part of your code is intended to do?
+* What things do you actually want to vary, how much work will that be, and how fine-grained do the conditions need to be:
+  * Sample size?
+  * Relationship between confounder and outcome?
+  * Relationship between confounder and predictor?
+  * Both?
+  * Distribution of the error terms?
+
+]
+
+--
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+# Best practice
+
+1. Random is not truly random. Randomness is generated based on starting conditions. These can be set to be the same across several instances of a script by **setting a seed** that determines the randomness.
+2. **Generate your data** using your simulation code
+3. **Estimate your model**
+4. **Save the results** for the things you're interested in (parameters, SEs, etc.)
+5. **Repeat** with different randomness (re-sampling from the same data generating process)
+6. **Repeat** under different conditions (different confounding effects, different sample sizes, etc.)
+
+*Only change one thing at a time unless you're interested in how the two things interact with each other*.
+
+]
+
+---
+
+class: middle
+
+# Exercise 1
+
+In the first exercise, we'll be building up a simple simulation similar to the graph we've just looked at (an outcome (Y), a predictor of interest (X), and a confounder (Z)) and see **what happens to our estimates of our regression coefficient** if we exclude this confounder. We'll then look at how the strength of that confounder's relationship with the outcome affects that estimate.
+
+You'll then be tasked with creating your own code seeing what happens if Z is a collider instead of a confounder, meaning a variable that is caused by both X and Y.
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# Demonstration
+
+How does the treatment of a confounder change our predictions?
+
+.center[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-28-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled x, z, and y There is an arrow going from x to y There is an arrow going from z to x and a second arrow going from z to y" width="400" height="400" /&gt;
+
+]
+
+]
+
+.pull-right[
+
+# Exercise
+
+How does the treatment of a collider change our predictions?
+
+.center[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-29-1.png" alt="A directed acyclic graph diagram shows three nodes, labelled x, z, and y. There is an arrow going from x to y. There is an arrow going from x to z and a second arrow going from y to z" width="400" height="400" /&gt;
+
+]
+
+
+]
+
+
+---
+
+class: middle, inverse
+
+.pull-left-big[
+
+&lt;br&gt;
+
+# Lecture 3: Simulation quantities of interest
+
+]
+
+.pull-right-small[
+
+.center[
+
+&lt;img src="images/icons8-measurement_tool.svg" alt="An icon of a measuring tool" width="70%" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# What have we done so far?
+
+What simulations are good for, why the they are useful, the logic of how to simulate based on a data generating process (that you can draw graphically), how to run a (single) simulation.
+ 
+]
+
+--
+
+.pull-right[
+
+# What's next?
+
+How we can usefully summarise the results of our simulations in a standardised way, how to interpret and present those results, and how to run multiple simulations and store the results "on the fly".
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# What do we want to measure?
+
+* What does the model usually say?
+* Does the model generally get it “right” on average?
+* Are the results very dispersed?
+* Do the measures of dispersal (SE) accurately reflect the true dispersal?
+
+]
+
+--
+
+.pull-right[
+
+# Quantities of Interest
+
+In simulation studies, the key quantities of interest are:
+
+* Predictions
+* Bias
+* Root Mean Square Error
+* Optimism
+* 95% coverage 
+
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Repeated examples are needed
+
+To do this, we can’t just have a single simulation
+ 
+* That would contain random white noise - so difficult to tell what is bias and what is white noise
+
+Instead, simulate the data lots of time (e.g. 1000 times) and see how the results vary across those
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+.middle[.center[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-31-1.png" alt="A density plot of the true distribution is shown, with a solitary vertical line indicating a single simulation that is on the periphery of the density distribution, indicating it is not especially typical." width="500" height="500" /&gt;
+
+]]
+
+]
+
+
+---
+
+class: middle
+
+.center[
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="50%" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Predictions
+
+We can make predictions from the model, based on some, or all, of the estimated parameters and compare these to predictions from the DGP
+
+Useful for visualising problems (covered in the next lecture).
+
+But can’t quantify the problem in a standard way, difficult to compare models/specifications, etc.
+
+
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+# Bias
+
+&gt; We want to estimate how far off the average of the simulations is
+
+Two ways of estimating this:
+
+* (1) as a ratio: Bias = estimate / truth
+  * In this case, a perfect result is 1
+
+`$$\text{Bias} = 100\times(\frac{\bar{B}}{B_{\text{true}}})$$`
+
+`\(\bar{B}\)` = B-bar = The mean of all parameter estimates from the simulations
+
+`\(B_{\text{true}}\)` = B true = The true value of B specified in the simulation
+
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+
+
+# Bias
+
+&gt; We want to estimate how far off the average of the simulations is
+
+Two ways of estimating this:
+
+* (1) as a ratio: Bias = estimate / truth
+  * In this case, a perfect result is 1
+
+* (2) As a proportion: (estimate-truth)/truth
+  * Here, the perfect result os 0
+  
+`$$\frac{\bar{B} - B_\text{true}}{B_\text{true}} \times 100$$`
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Bias
+
+* These measures tell us about the averages
+* But not about the individual model deviations
+* A model might be correct on average, but so wrong each individual time to be close to meaningless
+* Often a bit of bias is worth having more precision
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Root Mean Square Error
+
+&gt; We want a measure that incorporates both bias and precision
+
+How close to the truth are the individual model runs rather than how close to the truth is the average of the model runs?
+
+This effectively combines bias and precision/efficiency.
+
+`$$\text{RMSE} = \sqrt{\frac{\sum_{l=1}^{nsims}(\beta^{(l)}-\beta_{\text{true}})^2}{n}}$$`
+
+*The square root os the sum of each parameter estimate for each simulation minus the true value of the parameter from the data generating process squared and divided by the number of observations*.
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# What about standard errors?
+
+* Everything so far has been about coefficient estimates
+* But what about the SEs that go with them?
+* These are just as important as the coefficients themselves
+* Our models need to tell us the correct amount of uncertainty; they shouldn't be overly optimistic or overly pessimistic.
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+# What about standard errors?
+
+Fortunately, the distribution of our simulated results is exactly the uncertainty that our model should be estimating.
+
+So we can compare our model’s estimated uncertainty (SE) to the variability of our simulations
+
+`$$\text{Optimism} = 100 \times 
+\frac{
+  \sqrt{\sum_{l=1}^{\text{nsims}} (\beta^{(l)} - \bar{\beta})^2}
+}{
+  \sqrt{\sum_{l=1}^{\text{nsims}} (\text{SE}(\beta^{(l)}))^2}
+}$$`
+
+`\(\bar{\beta}\)` = The mean of the parameter estimates from all of the simulations.
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="images/bullseye-graphic.png" alt="An image of four targets with the labels unbiased, imprecise in the top left, biased and precide in the top right, unbiased and imprecise in the bottom left, and biased and imprecise in the bottom right. In the unbiased and precise target there are several holes that are all on the bullseye almost exactly. In the biased and precise target there is a close cluster of holes, but these are away from the bullseye. In the unbiased but imprecise target there are holes that are spread out all over the place around the bullseye. In the biased and imprecise target there are holes that are spread out a lot and they are all below the bullseye." width="95%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# What about standard errors?
+
+**Alternatively**, 95% Coverage.
+
+* Take the 95% confidence intervals for each simulation iteration
+* See what proportion of those contain the true value
+* Should be 95% of them (100% is not a good result!) 
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-40-1.png" alt="A graph shows the 95% Confidence Intervals of a series of simulations from the same data generating process. The confidence intervals that contain the true value are coloured in purple while the confidence intervals that do not are coloured in red. 94 of the 100 lines are coloured in purple, indicating expected performance." width="500" height="500" /&gt;
+
+]
+
+]
+
+
+---
+
+name: se-chart
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# What about standard errors?
+
+**Alternatively**, 95% Coverage.
+
+* Take the 95% confidence intervals for each simulation iteration
+* See what proportion of those contain the true value
+* Should be 95% of them (100% is not a good result!) 
+
+
+]
+
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-41-1.png" alt="A graph shows the 95% Confidence Intervals of a series of simulations from the same data generating process. The confidence intervals that contain the true value are coloured in purple while the confidence intervals that do not are coloured in red. Only around half of the lines are coloured in purple, indicating poor coverage." width="500" height="500" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+# Optimism versus 95% Coverage
+
+]
+
+.pull-right[
+
+* Both aim for much the same thing
+* 95% coverage more constrained by 100% limit than 0% limit
+* Optimism less constrained (although can’t go below 0)
+* 95% coverage useful for Bayesian models: doesn’t require SE Normality assumptions
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# General Process for Repeat Simulations
+
+1. Repeat the following*1000
+  * Generate data
+  * Run model
+  * Save parameters of interest (beta, SE, etc)
+2. Calculate quantities of interest for those 1000 parameters (e.g. bias, RMSE, etc)
+3. Repeat for all modelling situations of interest (e.g. changes in sample size, omitted variable bias, nested data structures)
+
+]
+
+--
+
+.pull-right[
+
+# In Sum
+
+We can work out general model performance by simulating data (and running models on those data) lots of times.
+
+That allows us to work out things about the models performance that aren’t clear from a single iteration.
+
+We can measure the bias and efficiency of parameter estimates, and the bias of the SE estimates.
+
+]
+
+
+---
+
+class: inverse, middle
+
+.pull-left-big[
+
+&lt;br&gt;
+
+# Lecture: Presenting Simulation Results
+
+]
+
+.pull-right-small[
+
+.center[
+
+&lt;img src="images/icons8-flip_chart.svg" alt="An icon of a flipchart" width="70%" /&gt;
+
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Principles of Data Visualisation
+
+* Data storytelling
+* Data visualisation and design principles
+* Medium of publication
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Principles of Data Visualisation
+
+* **Data storytelling**
+* .grey[Data visualisation and design principles]
+* .grey[Medium of publication]
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+1. **Does it need to be a data visualisation?**
+  * Can a table of summary statistics do the same job? Does the visualisation of the summary statistics add anything (e.g. making non-linear changes, diminishing returns, etc. easier to spot)?
+
+2. **One story — one visualisation**
+  * Is it clear what you are trying to communicate with the data visualisation or is too much being shown at once? Can the story be made clearer using an active title or by splitting important parts into facets?
+  
+3. **Who is your audience?**
+  * Is your intended audience already familiar with simulations? If so, maybe it's more efficient to just go straight to visualising measures of bias/precision? If not, is illustrating the predictions and 95% confidence/credible intervals more appropriate?
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Principles of Data Visualisation
+
+* .grey[Data storytelling]
+* **Data visualisation and design principles**
+* .grey[Medium of publication]
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+1. **Ensure your presentation of data is accessible**
+  * Avoid colour schemes that have low accessibility for people with colour-blindness. Ensure that whatever you're showing in the data visualisation is explained in text in some form (even generally). Ensure text and annotations are clear. Use an accessible contrast ratio.
+  
+2. **Minimise the ink to data ratio**
+  * Avoid too many distracting flourishes. Consider density contours, shaded areas (ribbons etc.) rather than many overlapping points if possible. Avoid junk (caps on the end of segments/bars). Remove extraneous gridlines.
+  
+3. **Make good use of colour**
+  * Use colour and saturation (if appropriate to the publishing medium) to emphasize the most important feature of the visualisation.
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Principles of Data Visualisation
+
+* .grey[Data storytelling]
+* .grey[Data visualisation and design principles]
+* **Medium of publication**
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+1. **Consider the limitations of the medium you're publishing in**
+  * Do you need to use black-and-white? Does your file need to be submitted in a specific format? Do the formats you can use have specific restrictions (e.g. SVG/EPS does not support transparency)
+  
+2. **Do you need different versions for different mediums?**
+  * Does a print medium with restrictions on figures require you to make a composite of plots? Do you need a landscape version for a full slide in a presentation/for half a page in a publication and a square version for half a slide? Can the same information be displayed on all versions?
+  
+3. **Resolution**
+  * How high resolution does the image need to be (dpi/ppi) in order for everything to be reproduced well?
+
+]
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+
+]
+
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-44-1.png" alt="A scatterplot showing sample size on the x axis and estimates for the coefficient B1 on the y axis. As the sample size increases, the points become less dispersed, but this change is exponential." width="500" height="500" /&gt;
+
+]
+
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+* Add an active title.
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-45-1.png" alt="A scatterplot showing sample size on the x axis and estimates for the coefficient B1 on the y axis. As the sample size increases, the points become less dispersed, but this change is exponential. The title has been changed to 'Gains in precision for B1 do not scale linearly.'" width="500" height="500" /&gt;
+
+]
+
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+* Add an active title.
+* Get rid of extraneous information (bias is not the focus here).
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-46-1.png" alt="A scatterplot showing sample size on the x axis and estimates for the coefficient B1 on the y axis. As the sample size increases, the points become less dispersed, but this change is exponential. The title has been changed to 'Gains in precision for B1 do not scale linearly.' The extraneous smoothed line emphasising the everage coefficient has been removed." width="500" height="500" /&gt;
+
+]
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+* Add an active title.
+* Get rid of extraneous information (bias is not the focus here).
+* Minimise our ink-to-data/ink-to-information ratio.
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-47-1.png" alt="The plot now looks similar to a contour plot showing the density of simulations on the Y axis (coefficient) and how this decreases as sample size increases. The decrease is not linear. The title has been changed to 'Gains in precision for B1 do not scale linearly.' The extraneous smoothed line emphasising the everage coefficient has been removed." width="500" height="500" /&gt;
+
+]
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+* Add an active title.
+* Get rid of extraneous information (bias is not the focus here).
+* Minimise our ink-to-data/ink-to-information ratio.
+
+**Keep in mind**: Sometimes we *do* want to see every single iteration (or a large sample) of iterations to illustrate RMSE and poor coverage of CIs (dispersed results, with or without bias, that are overly confident, e.g. [this plot from earlier](#se-chart)). *Again, what is it you are trying to show.*
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-48-1.png" alt="The same plot as on the previous slide." width="500" height="500" /&gt;
+
+]
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Let's improve this...
+
+* Add an active title.
+* Get rid of extraneous information (bias is not the focus here).
+* Minimise our ink-to-data/ink-to-information ratio.
+* Consider the audience (are they likely to be familiar with simulation terms?)
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-49-1.png" alt="An alternative plot is now shown which presents the RMSE on the Y axis and the Sample Size on the X axis. This shows that Root Square Mean Error decreases with exponential decay as sample size increases." width="500" height="500" /&gt;
+
+]
+
+---
+
+class: middle
+
+# Some examples from existing literature...
+
+
+---
+
+class: middle
+
+
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/plot_ex1.png" alt="Two plots are shown side-by-side. Both show how RMSE falls as T increases, but how this differs for different types of models." width="80%" /&gt;
+&lt;p class="caption"&gt;Beck, N., &amp; Katz, J. N. (2007). Random coefficient models for time-series—cross-section data: Monte Carlo experiments. Political Analysis, 15(2), 182-195.&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+]]
+
+---
+
+class: middle
+
+
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/plot_ex2.png" alt="The image shows two density plots superimposed on one another. One density plot, coloured in blue, stays unbiased with quite wide tails. The other, in red, becomes more bias as the figure rho increases." width="80%" /&gt;
+&lt;p class="caption"&gt;Dieleman, J. L., &amp; Templin, T. (2014). Random-effects, fixed-effects and the within-between specification for clustered data in observational health studies: a simulation study. PloS one, 9(10), e110257.&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+]]
+
+
+---
+
+class: middle
+
+
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/plot_ex3.png" alt="Four grouped bar plots are shown. Each of these illustrate the bias of listwise deletion of data compared to various forms of multiple imputation." width="55%" /&gt;
+&lt;p class="caption"&gt;King, G., Honaker, J., Joseph, A., &amp; Scheve, K. (2001). Analyzing incomplete political science data: An alternative algorithm for multiple imputation. American political science review, 95(1), 49-69.&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+]]
+
+
+---
+
+class: middle
+
+
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/plot_ex4.1.png" alt="Three plots are shown side-by-side. The true effect predictions are shown in black, and results from simulations of hierarchical age period cohort are shown in grey. It is notable that in many cases the simulations diverge considerably from the true values." width="30%" /&gt;&lt;img src="images/plot_ex4.2.png" alt="Three plots are shown side-by-side. The true effect predictions are shown in black, and results from simulations of hierarchical age period cohort are shown in grey. It is notable that in many cases the simulations diverge considerably from the true values." width="30%" /&gt;&lt;img src="images/plot_ex4.3.png" alt="Three plots are shown side-by-side. The true effect predictions are shown in black, and results from simulations of hierarchical age period cohort are shown in grey. It is notable that in many cases the simulations diverge considerably from the true values." width="30%" /&gt;
+&lt;p class="caption"&gt;Bell, A., &amp; Jones, K. (2015). Should age-period-cohort analysts accept innovation without scrutiny? A response to Reither, Masters, Yang, Powers, Zheng and Land. Social Science &amp; Medicine, 128, 331-333.&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+]]
+
+---
+
+class: middle
+
+
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/plot_ex5.png" alt="A figure comparing simulations from multilevel data that has been centered and modelled in different ways is shown. In the top panel, labelled Pooled OLS, the simulations have overly precise confidence intervals and are biased towards zero. In the middle row, labelled MLMCWC, the model estimates are unbiased and the coverage looks appropriate. In the final row, labelled non-pooled LM, the results reflect only the between level effects." width="85%" /&gt;
+&lt;p class="caption"&gt;Webb, C. (2023). Should we retire the Null Hypothesis Significance Test in (some) social policy research? Decisive versus descriptive approaches to statistical uncertainty in research on apparent populations with small or modest effects. Working Paper Presented at Social Policy Association Conference 2023&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+]]
+
+
+---
+
+class: middle
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/table_ex1.png" alt="A table shows the coverage of simulation confidence intervals depending on group size." width="90%" /&gt;
+&lt;p class="caption"&gt;Maas, C. J., &amp; Hox, J. J. (2004). Robustness issues in multilevel regression analysis. Statistica Neerlandica, 58(2), 127-137.&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+
+---
+
+class: middle
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/table_ex2.png" alt="A table shows the bias of various parameters relative to their true values, and highlights whether the bias is significant or not." width="90%" /&gt;
+&lt;p class="caption"&gt;Maas, C. J., &amp; Hox, J. J. (2004). The influence of violations of assumptions on multilevel parameter estimates and their standard errors. Computational statistics &amp; data analysis, 46(3), 427-440.&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+---
+
+class: middle
+
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;div class="figure"&gt;
+&lt;img src="images/table_ex3.png" alt="A table shows the non-coverage of specific parameter estimates depending on the size of groups. It also highlights which are significant and which are not." width="60%" /&gt;
+&lt;p class="caption"&gt;Maas, C. J., &amp; Hox, J. J. (2005). Sufficient sample sizes for multilevel modeling. Methodology, 1(3), 86-92.&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+
+---
+
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Presenting results
+
+* It would be nice if someone had decided on some rules for simulations, and stuck to them.
+* But they haven't.
+* Which can be a really positive thing — you can be creative in how you display your results to do what you want the results to show.
+
+]
+
+--
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Exercise 2...
+
+* In the next exercise we'll be building up to a full simulation study: deciding which value we want to vary, writing a loop to run many simulations for each value we are varying, calculating the relevant quantities of interest, and creating some simple tables and visualisations. 
+
+]
+
+
+---
+
+
+.pull-left[
+
+&lt;img src="intro-to-simulation-studies_files/figure-html/unnamed-chunk-58-1.png" alt="A directed acyclic graph shows three nodes labelled x, y and z. There is an arrow going from x to y. There are two arrows going from z to x and y. The arrow between z and x is labelled B3 = 0.5. The arrow between z and y is labelled B2 = 0, 1, ... 3. The arrow between x and y is labelled B1=2" width="500" height="500" /&gt;
+
+
+]
+
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Exercise 2...
+
+* In the next exercise we'll be building up to a full simulation study: deciding which value we want to vary, writing a loop to run many simulations for each value we are varying, calculating the relevant quantities of interest, and creating some simple tables and visualisations. 
+
+]
+
+
+---
+
+class: inverse, middle
+
+# Final thoughts...
+
+
+---
+
+class: middle
+
+.pull-left[
+
+# What could you do a simulation on?
+
+* We’ve looked at the effect of confounders / colliders
+* Could look at sample size (effectively do power analysis through simulation)
+* What happens when you miss data’s multilevel structure?
+* What do different missing data patterns do?
+* Different model choices (Bayesian vs Frequentist, Poisson vs Negative Binomial, Fixed vs random effects, etc)
+
+]
+
+.pull-right[
+
+# Limits of simulations
+
+* Simulation studies don’t tell you for sure that models work well in real life
+* Complex models will often struggle with messy real life data, but work OK with data designed as the model expects
+* Can sometimes try to simulate messiness
+
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+
+
+# Judging simulation studies
+
+* What are the situations being compared? Are they realistic?
+* Do they apply to your dataset? Might things be different for you?
+* Do they test all likely eventualities in the DGP (or do they miss something important)?
+* There are lots of different ways to do simulations. We've only shown you one way, but others work too! 
+
+# Tips 
+
+* Be aware that some functions in some software will simulate "empirical" or "exact" simulated distributions rather than random simulated distributions (i.e. a simulated dataset that has values that return exactly the parameters specified), e.g. `corr2data` in Stata and with the `empirical = TRUE` argument in `faux` in R.
+
+]
+
+.pull-right[
+
+* More complex simulation (e.g. multilevel data, multivariate data, time-series) might require additional packages, e.g. `faux`, `MASS` (in R) `simsum` in Stata, but not always (often there's a logic order to follow)
+
+# Further reading...
+
+* [Morris, T. P., White, I. R., &amp; Crowther, M. J. (2019). Using simulation studies to evaluate statistical methods. Statistics in medicine, 38(11), 2074-2102.](https://onlinelibrary.wiley.com/doi/10.1002/sim.8086)
+* [White, I. R., Pham, T. M., Quartagno, M., &amp; Morris, T. P. (2024). How to check a simulation study. International Journal of Epidemiology, 53(1), dyad134.](https://academic.oup.com/ije/article/53/1/dyad134/7313663)
+* Måns Thulin (2025). *The role of simulation in modern statistics* https://www.modernstatisticswithr.com for more examples in R.
+* Nick Huntington-Klein (2025). *Simulation* in *The Effect* https://theeffectbook.net/ch-Simulation.html (also in R)
+* Adkins &amp; Gade (2012) *'Monte Carlo Experiments Using Stata: A Primer with Examples'* in Terrell &amp; Millimet (2012) Advances in Econometrics.
+
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
