@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Finding Your Programming Language</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Calum Webb" />
+    <meta name="author" content="Jacob Macdonald" />
+    <meta name="date" content="2025-10-29" />
+    <script src="finding-your-language_files/header-attrs/header-attrs.js"></script>
+    <link href="finding-your-language_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="finding-your-language_files/tile-view/tile-view.js"></script>
+    <link href="finding-your-language_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="finding-your-language_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="finding-your-language_files/panelset/panelset.js"></script>
+    <script src="finding-your-language_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="finding-your-language_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="finding-your-language_files/clipboard/clipboard.min.js"></script>
+    <link href="finding-your-language_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="finding-your-language_files/shareon/shareon.min.js"></script>
+    <link href="finding-your-language_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="finding-your-language_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="finding-your-language_files/mark.js/mark.min.js"></script>
+    <link href="finding-your-language_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="finding-your-language_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Finding your (programming) language:&lt;br&gt;R, Python, and Julia
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+**Dr. Jacob Macdonald**&lt;br&gt;
+School of Geography and Planning, the University of Sheffield&lt;br&gt;
+[j.macdonald@sheffield.ac.uk](mailto:j.macdonald@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+
+---
+
+class: middle
+
+# Overview of today
+
+**This morning (~10:00-~12:30)**: Installing three-open source programming languages that are used often in quantitative research and data analytics, along with three Integrated Development Environments (IDEs) for writing code in them.
+
+**Lunch**
+
+**This afternoon(~13:30-16:00)**: Demonstrations in each of the programming languages/IDEs with handouts you can follow along with covering: 1) installing extra packages for added functionality, 2) reading data from a CSV file, 3) some basic data manipulation (creating a new column), 4) a basic scatterplot, 5) a basic regression model.
+
+---
+
+class: middle
+
+# Learning outcomes
+
+**By the end of today, you will...**
+
+* Have R, Python, and Julia installed on your personal computer along with IDEs for using them, so that you are prepared to take part in any research methods training sessions making use of these programming languages.
+
+* Gain some familiarity with the syntax, pros, and cons of each language.
+
+---
+
+class: inverse, middle
+
+# Why does this training course exist?
+
+
+---
+
+class: inverse, middle
+
+# "All robot servo-mechanisms and all computers are bastards."
+
+.right[Philip K. Dick]
+
+
+---
+
+class: inverse, middle
+
+# "There are no bonds so strong as those which are formed by suffering together."
+
+.right[Harriet Jacobs]
+
+---
+
+class: inverse, middle
+
+# 1/2 Being taught useful things&lt;br&gt;1/2 Networking/suffering together
+
+---
+
+class: middle, center
+
+&lt;img src="images/2560px-R_logo-1.svg.png" width="30%" /&gt;&lt;img src="images/1024px-Python-logo-notext.svg.png" width="30%" /&gt;&lt;img src="images/2560px-Julia_Programming_Language_Logo.svg.png" width="30%" /&gt;
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# R
+
+R is a **statistical programming language**. It is designed for statistical analysis *first and foremost*. As such, it has a lot of built-in capacity for statistics "out of the box". 
+
+Because R has such a large user community that are not computer programmers/computer scientists/programmers, there tends to be quite a lot of very well-written and accessible resources. Package conflicts are rare due to how carefully controlled the Comprehensive R Archive Network (CRAN) is.
+
+**Pros**
+
+* Excellent community of support (Tidy Tuesdays, RLadies, etc.)
+* Excellent support for quantitative analysis and statistical modelling (multilevel models, structural equation models, etc.)
+* Very powerful and customisable plotting tools such as `ggplot2`
+* Extremely good Integrated Development Environment in RStudio. 
+
+]
+
+.pull-right[
+.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/2560px-R_logo-1.svg.png" width="80%" /&gt;
+]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Python
+
+Python is a **general programming language** with a large number of extensions for data science and statistical analysis. Python is the most popular programming language in the world by some measures, and is extremely flexible. 
+
+Because of how large the Python universe is, package management can often be the biggest barrier to entry. However, Python is packaged together in specific data science focused distributions such as Anaconda, which can help a lot. Outside of academia, Python is a lot more common than R, and its flexibility means it's especially useful when data analysis is just one part of a larger software project.
+
+**Pros**
+
+* Extremely good support for cutting-edge machine learning applications, especially images, text, video, audio, and so on, when compared to R.
+* A very common and useful language to know in industry.
+* A wide range of training materials and courses that are taught in Python.
+
+]
+
+.pull-right[
+.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/1024px-Python-logo-notext.svg.png" width="70%" /&gt;
+]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+# Julia
+
+Julia is a **general programming language** designed with an explicit emphasis on data analysis. Julia is the youngest of the programming languages we're installing and demo-ing today, and has the smallest userbase. As such, it doesn't have all of the functionality that R or Python have.
+
+However, what Julia does have is *speed*. Julia is a compiled language, while Python and R are both interpreted languages. This means that once code is being executed, it is executed *extremely fast*. 
+
+**Pros**
+
+* The speed of Julia means that it is likely to become increasingly important for working with very large datasets (e.g. adminsitrative longitudinal data, large amounts of text or image data) or in applications with live data, multiple repeated models, etc. It may also become quite useful for certain types of models (e.g. Bayesian models)
+* Julia is already supported and in use by some quite large organisations (Intel, NASA, Amazon, etc.)
+
+]
+
+.pull-right[
+.center[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src="images/2560px-Julia_Programming_Language_Logo.svg.png" width="80%" /&gt;
+]
+]
+
+
+---
+
+.pull-left-big[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Installing R, Python, Julia &amp; IDEs
+
+There are printed handouts for installing each of the programming languages and some commonly used Integrated Development Environments along with them. 
+
+These are colour coded: R is in &lt;span style="background-color:#CCEDF3"&gt;blue&lt;/span&gt;, Python is in &lt;span style="background-color:#E2F5F1"&gt;mint&lt;/span&gt;, and Julia is in &lt;span style="background-color:#EDEAFF"&gt;violet&lt;/span&gt;.
+
+Jacob and I will be here to help with error messages that might come up on computers, etc. Please do get to know the other people on your table, help each other out, compare notes and experiences (if you've already used some of the programming languages here or alternatives). 
+
+If you prefer an online PDF version, all of the course materials can be found at: [https://github.com/cjrwebb/pgrt-finding-your-language](https://github.com/cjrwebb/pgrt-finding-your-language). 
+
+
+]
+
+.pull-right-small[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="images/handout-preview.png" width="110%" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+# Lunch break
+
+---
+
+class: middle
+
+# Demonstrations
+
+The purpose of the second half of the day is to work through some straightforward demonstrations in each of the languages/IDEs together. This will achieve two things:
+
+1. You'll get an idea of how to manage a project in each language/IDE, how the syntax looks, etc.
+2. If you come across any errors following along with the demonstration, we can hopefully solve them.
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Feedback Form
+
+Please let us know what you thought about having a training course/networking event like today by completing a feedback form for the White Rose Doctoral Training Partnerhip.
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="images/feedback-form.png" width="100%" /&gt;
+
+]
+
+]
+
+---
+
+# Further Reading
+
+.pull-left[
+
+**R**
+
+* Mehmetoglu, M., &amp; Mittner, M. (2021). Applied statistics using R: A guide for the social sciences. London: Sage.
+* Wickham, H., &amp; Grolemund, G. (2017). R for data science (Vol. 2). O'Reilly. (Free online: [https://r4ds.hadley.nz](https://r4ds.hadley.nz))
+* Hvitfeldt, E., &amp; Silge, J. (2021). Supervised machine learning for text analysis in R. Chapman and Hall/CRC. Free online: [https://smltar.com](https://smltar.com)
+* McElreath, R. (2020). Statistical rethinking: A Bayesian course with examples in R and Stan. (2nd Ed) Chapman and Hall/CRC.
+
+**Python**
+
+* McKinney, W. (2012). Python for data analysis: Data wrangling with Pandas, NumPy, and IPython. O'Reilly. Free (online: [https://wesmckinney.com/book/](https://wesmckinney.com/book/))
+* McLevey, J. (2021). Doing computational social science: a practical introduction. Sage.
+  * Great book but the environment setup currently doesn't work well due to mixing pip and conda package managers.
+
+]
+
+.pull-right[
+
+**Julia**
+
+* Storopoli, Huijzer and Alonso (2021). Julia Data Science. Free online: https://juliadatascience.io.
+* Rennie, N. (2025). Introduction to Julia for R Users. https://nrennie.rbind.io/blog/introduction-julia-r-users/ 
+* Carrone, F., Nicolini, M., &amp; Obst Demaestri, H. (2021). Data Science in Julia for Hackers. Book in beta, free online: [https://datasciencejuliahackers.com/](https://datasciencejuliahackers.com/)
+* McNicholas, P. D., &amp; Tait, P. (2019). Data science with Julia. Chapman and Hall/CRC.
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
