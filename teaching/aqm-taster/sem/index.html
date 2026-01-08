@@ -4,10 +4,11 @@
     <title>Structural Equation Modelling</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2023-01-06" />
+    <meta name="date" content="2026-01-07" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="index_files/tile-view/tile-view.js"></script>
+    <link href="index_files/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
     <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
@@ -17,6 +18,11 @@
     <script src="index_files/shareon/shareon.min.js"></script>
     <link href="index_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="index_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="index_files/mark.js/mark.min.js"></script>
+    <link href="index_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link href="index_files/htmltools-fill/fill.css" rel="stylesheet" />
     <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="index_files/viz/viz.js"></script>
     <link href="index_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
@@ -28,14 +34,16 @@
     <textarea id="source">
 
 
-class: middle
+class: middle, title
 background-size: contain
 
-# .tuos_purple[Structural Equation Modelling]
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-### Dr. Calum Webb
-#### Sheffield Methods Institute, the University of Sheffield.
-#### c.j.webb@sheffield.ac.uk
+## Structural Equation Modelling: A taster
+
+**Dr. Calum Webb**&lt;br&gt;
+Deputy Director of Advanced Data Analytics, Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
 
 
 
@@ -43,14 +51,14 @@ background-size: contain
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 110px;
+width: 180px;
 height: 128px;
 z-index: 0;
-background-image: url(images/uni-sheffield.png);
+background-image: url(header/smi-logo-white.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-top:1em;right:1em;
+top:1em;right:2em;
 }
 </style>
 <script>(function () {
@@ -88,7 +96,7 @@ top:1em;right:1em;
 }
 .xe__progress-bar {
   height: 0.25em;
-  background-color: #019EE3;
+  background-color: #F8F8F8;
   width: calc(var(--slide-current) / var(--slide-total) * 100%);
 }
 .remark-visible .xe__progress-bar {
@@ -99,6 +107,9 @@ top:1em;right:1em;
   0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
+
+
+
 
 
 
@@ -176,17 +187,21 @@ class: middle
 class: middle
 
 .pull-left-big[
+&lt;br&gt;
 .center[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="800" height="500" /&gt;
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="700" height="450" /&gt;
+
+]
 
 ]
 ]
 
 .pull-right-small[
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 * Can't have investment without income...
 * Income and investment probably both impact family stress, which then impacts wellbeing...
@@ -195,13 +210,17 @@ class: middle
 
 ---
 
-class: middle
+class: middle, center
 
-.pull-left-big[
+
+&lt;br&gt;
 .center[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="800" height="500" /&gt;
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="700" height="450" /&gt;
 ]
+
 ]
 
 ---
@@ -216,8 +235,11 @@ class: middle
 
 `Investment ~ Income`
 
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
 &lt;img src="images/dag-reg.png" width="100%" /&gt;
 
+]
 
 ]
 
@@ -233,13 +255,17 @@ class: middle
 
 ---
 
+&lt;br&gt;&lt;br&gt;
+
 ### Path Analysis
 
 .pull-left-big[
+.center[
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="800" height="500" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="700" height="450" /&gt;
 
-]
+]]]
 
 
 
@@ -271,14 +297,20 @@ Income through...
 
 class: middle
 
+&lt;br&gt;
+
 ## But what is family stress? And is this question the best measure of it?
 
 
 ---
 
-### Latent Variables (Factor Analysis)
+class: middle
 
 .pull-left-small[
+
+&lt;br&gt;
+
+### Latent Variables (Factor Analysis)
 
 - We can't just ask: "How much family stress do you experience on a scale of 1-10?" and expect a good measure.
 - We **operationalise** the concept into distinct questions, e.g.:
@@ -296,13 +328,18 @@ class: middle
 .center[
 &lt;br&gt;
 
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
 &lt;img src="images/cfa.jpg" width="90%" /&gt;
 
+]
 ]
 
 ]
 
 ---
+
+class: middle
 
 ### Latent Variables (Factor Analysis)
 
@@ -328,20 +365,21 @@ class: middle
 
 .pull-right[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="500" height="500" /&gt;
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="450" height="450" /&gt;
 
+]
 ]
 
 
 ---
 
-### Latent Variables (Factor Analysis)
+class: middle
 
 .pull-left[
 
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Latent Variables (Factor Analysis)
 
 Factor analysis constructs a latent variable that simultaneously predicts multiple indicator (or manifest) variables.
 
@@ -354,9 +392,10 @@ Its scale is arbitrary but is commonly fixed to either a) a marker variable or b
 
 .pull-right[
 
-<div id="htmlwidget-5a4d9da9a787e1da76ea" style="width:500px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5a4d9da9a787e1da76ea">{"x":{"diagram":" digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box ] \n node [shape = box] \n stress_q1; stress_q2; stress_q3; stress_q4; stress_q5 \n node [shape = oval] \n stress \n \n edge [ color = black ] \n  stress->stress_q1 [label = \"0.9\"] stress->stress_q2 [label = \"0.9\"] stress->stress_q3 [label = \"0.87\"] stress->stress_q4 [label = \"0.92\"] stress->stress_q5 [label = \"0.89\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+<div class="grViz html-widget html-fill-item" id="htmlwidget-8e3a364cbf4078534856" style="width:400px;height:200px;"></div>
+<script type="application/json" data-for="htmlwidget-8e3a364cbf4078534856">{"x":{"diagram":" digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box ] \n node [shape = box] \n stress_q1; stress_q2; stress_q3; stress_q4; stress_q5 \n node [shape = oval] \n stress \n \n edge [ color = black ] \n  stress->stress_q1 [label = \"0.9\"] stress->stress_q2 [label = \"0.9\"] stress->stress_q3 [label = \"0.87\"] stress->stress_q4 [label = \"0.92\"] stress->stress_q5 [label = \"0.89\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
 ]
 
@@ -372,10 +411,13 @@ Its scale is arbitrary but is commonly fixed to either a) a marker variable or b
 
 ### SEM with Latent Variables
 
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 .center[
 
 &lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="700" height="500" /&gt;
 
+]
 ]
 
 ---
@@ -384,15 +426,20 @@ class: middle
 
 ### Latent Growth Modelling
 
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
+
 &lt;img src="images/divorce_margarine.png" width="100%" /&gt;
+
+]
 
 ---
 
-### Latent Growth Modelling
+class: middle
 
 .pull-left-small[
 
-
+&lt;br&gt;
+### Latent Growth Modelling
 Constraints on latent variables can also be used in clever ways to capture change over time.
 
 
@@ -403,8 +450,10 @@ Constraints on latent variables can also be used in clever ways to capture chang
 .center[
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 &lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="100%" /&gt;
+
+]
 
 ]
 
@@ -412,10 +461,12 @@ Constraints on latent variables can also be used in clever ways to capture chang
 
 ---
 
-### Latent Growth Modelling
+class: middle
 
 .pull-left-small[
 
+&lt;br&gt;
+### Latent Growth Modelling
 
 Constraints on latent variables can also be used in clever ways to capture change over time.
 
@@ -432,9 +483,9 @@ Constraints on latent variables can also be used in clever ways to capture chang
 .center[
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 &lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="100%" /&gt;
-
+]
 ]
 
 ]
@@ -445,10 +496,13 @@ Constraints on latent variables can also be used in clever ways to capture chang
 
 ---
 
-### Latent Growth Modelling
+class: middle
 
 .pull-left-small[
 
+&lt;br&gt;&lt;br&gt;
+
+### Latent Growth Modelling
 
 The fact that latent growth models use wide rather than long data means that there are a few more nuanced options for examining associations between trends as well as residuals between trends:
 
@@ -460,13 +514,14 @@ The fact that latent growth models use wide rather than long data means that the
 ]
 
 .pull-right-big[
-
+&lt;br&gt;
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 .center[
 
 &lt;img src="images/lgm.jpg" width="80%" /&gt;
 
 ]
-
+]
 ]
 
 ---
@@ -475,7 +530,7 @@ class: middle
 
 .pull-left[
 
-## [Open access taster workbook on SEM, CFA, and LGM in `R` using the `lavaan` package](https://github.com/cjrwebb/aqm-taster-sem)
+## [Open access taster workbook on SEM, CFA, and LGM in R using the `lavaan` package](https://github.com/cjrwebb/aqm-taster-sem)
 
 Link: https://github.com/cjrwebb/aqm-taster-sem 
 
@@ -485,7 +540,11 @@ Link: https://github.com/cjrwebb/aqm-taster-sem
 
 .pull-right[
 
+&lt;br&gt;
+
+.bg-white.b--purple.ba.bw2.br3.shadow-5.ph4[
 &lt;img src="images/githubpage.png" width="80%" /&gt;
+]
 
 ]
 
@@ -495,13 +554,13 @@ Link: https://github.com/cjrwebb/aqm-taster-sem
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
-"highlightStyle": "github",
-"highlightLines": true,
-"sealed": false,
-"ratio": "16:9",
-"self_contained": true,
-"countIncrementalSlides": true
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -598,6 +657,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
 
 <script>
 slideshow._releaseMath = function(el) {
