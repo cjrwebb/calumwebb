@@ -4,7 +4,7 @@
     <title>EDC459: Week 11 — Spatial Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2025-09-17" />
+    <meta name="date" content="2026-03-19" />
     <script src="week-11-spatial-analysis_files/header-attrs/header-attrs.js"></script>
     <link href="week-11-spatial-analysis_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-11-spatial-analysis_files/tile-view/tile-view.js"></script>
@@ -43,7 +43,7 @@ background-size: contain
 
 &lt;!----- Make a pdf using:
 
-decktape generic --key=ArrowRight --load-pause 1800 --slides '1-79' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000  "week-10-cluster-analysis/slides/week-10-cluster-analysis.html" week-10-cluster-analysis/slides/week-10-cluster-analysis.pdf
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-76' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000  "week-11-spatial-analysis/slides/week-11-spatial-analysis.html" week-11-spatial-analysis/slides/week-11-spatial-analysis.pdf
 
 -----&gt;
 
@@ -1751,9 +1751,15 @@ anova(m_spamm)
 ```
 
 ```
-## Chisq. tests for each term (type II contrasts)
-##             Df Chisq.     Pr(&gt;Chisq.)    
-## idaopi_2019  1 39.771 0.0000000002855 ***
+## Result accounting for uncertainty for the following estimates of nuisance parameters:
+##  corrPars.1.nu corrPars.1.rho       lambda.1            phi 
+##    0.493907678    0.001242692  231.594233350    0.002549916
+```
+
+```
+## Type II Analysis of Variance Table with Satterthwaite's method
+##              Sum Sq Mean Sq NumDF DenDF F value         Pr(&gt;F)    
+## idaopi_2019 0.10141 0.10141     1 247.7  39.772 0.000000001302 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
