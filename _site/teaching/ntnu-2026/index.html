@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Studying Welfare Inequalities: Quantitative Approaches</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Calum Webb" />
+    <meta name="date" content="2026-05-08" />
+    <script src="ntnu-quants_files/header-attrs/header-attrs.js"></script>
+    <link href="ntnu-quants_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="ntnu-quants_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/tile-view/tile-view.js"></script>
+    <link href="ntnu-quants_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/panelset/panelset.js"></script>
+    <script src="ntnu-quants_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="ntnu-quants_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/clipboard/clipboard.min.js"></script>
+    <link href="ntnu-quants_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/shareon/shareon.min.js"></script>
+    <link href="ntnu-quants_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="ntnu-quants_files/mark.js/mark.min.js"></script>
+    <link href="ntnu-quants_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="ntnu-quants_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+
+&lt;!----- 
+
+Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-31' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000 "ntnu-quants.html" ntnu-quantitative-approaches-cwi.pdf
+
+-----&gt;
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Studying Welfare Inequalities: Quantitative Approaches
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Structure of the session
+
+* Why study welfare inequalities quantitatively?
+* Sources of Quantitative Child Welfare Data
+* Quantitative methods case study: Multilevel modelling approaches for local variation and causal analysis
+
+]
+
+.pull-right[
+
+.circle-mask[
+
+&lt;img src="images/swings.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle, inverse
+
+# I. Why study child welfare inequalities quantitatively?
+
+---
+
+class: middle, inverse
+
+&gt; .white[A director of an urban community organisation remarked, ‘People talk about their individual mental health experiences, incredibly powerful. But then you have to take that and put it in a way that would make sense to policymakers. It would need to have some quantitative data.’ Respondents across the wider system perceived central government actors to place a higher value on quantitative data. A scientific adviser in a government department noted that, ‘there’s been a focus on quantitative evidence no doubt within government… the quant stuff, the data, it just seems to trump it [qualitative data]’. This observation was confirmed by a Whitehall data analyst who believed that personal accounts, on their own, ‘wouldn’t cut much ice with Ministers and officials’.]
+
+.right[.small[Bates, G., Ayres, S., Barnfield, A., &amp; Larkin, C. (2023). &lt;br&gt;What types of health evidence persuade policy actors in a complex system?.&lt;br&gt; Policy &amp; Politics, 51(3), 386-412]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# The role of quantitative evidence in policymaking
+
+**Do you want your research to make a difference?** What do policymakers and policy influencers look for when they are making a case for change?
+
+"This is just the kind of evidence we need"
+
+**Four Evidence Profiles of Policy Actors:** *Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*
+
+]
+
+--
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## [Evidence Based Policy Making] Idealists
+
+"[Evidence Based Policy Making] Idealists have a strong preference for ‘rigorous’ evidence, however, the participants in this profile recognise that it is not just limited to quantitative evidence. Classic EBPM views such as quantitative evidence being the most important (-1) and evidence being what can be counted and measured (-2) were not ranked positively in either study, suggesting a recognition that these ideals do not apply in the real world. There was some support for RCTs being the gold standard of evidence (+1), but as one participant commented:
+
+&gt; ‘I don’t agree that only quants should count or RCTs or statistical analysis
+should be all that matters. More recently I am seeing more of a mix of data
+analysis and case studies. If you only do very scientific studies, you would
+be unlikely to be able to influence people.’ "
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# The role of quantitative evidence in policymaking
+
+**Do you want your research to make a difference?** What do policymakers and policy influencers look for when they are making a case for change?
+
+"This is just the kind of evidence we need"
+
+**Four Evidence Profiles of Policy Actors:** *Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## The Inclusive
+
+"This profile places emphasis on considering “a broad variety of evidence”
+(INC-9) in policymaking, suggesting that “[the policy community] need[s] to
+take all kinds of evidence into account” (INC-27). ... Those people with an inclusive view of evidence value individual stories as evidence (+2), believe that evidence is anything that helps draw a rich picture of an issue (+2) and that policymakers should use evidence in an impartial way (+2)."
+
+
+&gt; "[T]here is an irreducible complexity to the world that research can help
+with but not resolve"
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# The role of quantitative evidence in policymaking
+
+**Do you want your research to make a difference?** What do policymakers and policy influencers look for when they are making a case for change?
+
+"This is just the kind of evidence we need"
+
+**Four Evidence Profiles of Policy Actors:** *Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## The Pragmatist
+
+The Scottish Pragmatists strongly agree with the idea that ‘evidence is always going
+to be contested’ and that ‘there is not always clear evidence about what works on
+an issue’. 
+
+One participant explained that policymakers come to the role with preconceptions
+which should be challenged, and evidence is a valuable step in that process... 
+
+&gt; ‘it can reaffirm the views that you took or decisions that you made...it has a
+very important challenge function… [and] it is important for all the different
+voices to be heard as equally as possible so that everyone gets the opportunity
+to participate in the democratic process.’
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# The role of quantitative evidence in policymaking
+
+**Do you want your research to make a difference?** What do policymakers and policy influencers look for when they are making a case for change?
+
+"This is just the kind of evidence we need"
+
+**Four Evidence Profiles of Policy Actors:** *Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## The Political
+
+This profile strongly disagreed that ‘quantitative evidence is the most important
+evidence’ (-4) and that ‘there is a need for a hierarchy of evidence’ (-4). Participants said, “those statements make me shudder, they make me so cross” (POL-5) and that “it’s just completely untrue” (POL-19). Further, this profile ranked the ideas that “evidence should be rigorously tested and capable of replication” (-3) and “RCTs are the gold standard of evidence” (-3) lower than other profiles. Concerning RCTs, one participant commented that “some types of science use RCTs to delegitimise other forms of science” (POL-17). 
+
+
+
+]
+
+---
+
+&lt;br&gt;&lt;br&gt;
+
+.pull-left[
+
+## EBPM Idealists
+
+* Favour paradigm that fits quants more easily (replicable, "rigorous") than quals
+* Support for the idea of a hierarchy of evidence (Randomised Controlled Trials at the top)
+
+&lt;br&gt;
+&lt;hr&gt;
+
+## The Inclusives
+
+* Strongest support for a plurality of evidence
+* Strongest support for including qualitative and lived experience as evidence in policymaking
+
+]
+
+
+.pull-right[
+
+## The Pragmatists&lt;br&gt;
+
+* Emphasises the rhetorical role that evidence plays (challenging viewpoints)
+* Flexibility on what evidence is most suitable depending on what the issue is
+
+&lt;br&gt;
+&lt;hr&gt;
+
+## The Politicals
+
+* Greatest opposition to a hierarchy of evidence
+* Emphasise the role that power relations play in what is counted as evidence
+
+
+]
+
+.footnote[*Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*]
+
+---
+
+class: inverse, middle
+
+# Reflection
+
+* Which evidence profile do you most strongly align with?
+* If you had to speak to someone who fit with a different evidence profile, which would you find the most challenging?
+* Which do you think is the most common evidence profile amongst policymakers? Which do you think is the most powerful?
+
+
+---
+
+&lt;br&gt;&lt;br&gt;
+
+.pull-left[
+
+## EBPM Idealists (17/54)
+
+* Favour paradigm that fits quants more easily (replicable, "rigorous") than quals
+* Support for the idea of a hierarchy of evidence (Randomised Controlled Trials at the top)
+
+&lt;br&gt;
+&lt;hr&gt;
+
+## The Inclusives (13/54)
+
+* Strongest support for a plurality of evidence
+* Strongest support for including qualitative and lived experience as evidence in policymaking
+
+]
+
+
+.pull-right[
+
+## The Pragmatists (14/54)
+
+* Emphasises the rhetorical role that evidence plays (challenging viewpoints)
+* Flexibility on what evidence is most suitable depending on what the issue is
+
+&lt;br&gt;
+&lt;hr&gt;
+
+## The Politicals (10/54)
+
+* Greatest opposition to a hierarchy of evidence
+* Emphasise the role that power relations play in what is counted as evidence
+
+
+]
+
+.footnote[*Piddington, G., MacKillop, E., &amp; Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy &amp; Politics, 52(2), 239-258.*]
+
+---
+
+class: inverse, middle
+
+# II. Sources of Quantitative Child Welfare Data
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sources of Quantitative Child Welfare Data
+
+* **Municipal/national administrative data over time**
+  * E.g. explore-education-statistics.service.gov.uk; sotkanet.fi
+  * Often open data, can be downloaded without any special permissions or license requests.
+  * Can be combined with other municipal-level data quite easily to develop research studies.
+* .grey[Child/household-level administrative data]
+* .grey[Survey data]
+
+]
+
+.pull-right[
+
+.circle-mask[
+
+&lt;img src="images/sources.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sources of Quantitative Child Welfare Data
+
+* .grey[Municipal/national administrative data over time]
+* **Child/household-level administrative data**
+  * e.g. ndacan.acf.hhs.gov; echild.ac.uk
+  * Requires extensive access permissions &amp; secure infrastructure, but no risk of ecological fallacy
+  * Can be requested to be linked with other forms of individual/household administrative data e.g. housing records
+* .grey[Survey data]
+
+]
+
+.pull-right[
+
+.circle-mask[
+
+&lt;img src="images/ncand-pass.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sources of Quantitative Child Welfare Data
+
+* .grey[Municipal/national administrative data over time]
+* .grey[Child/household-level administrative data]
+* **Survey data**
+  * [SLAITS](https://archive.cdc.gov/www_cdc_gov/nchs/slaits/nscnc.htm); childhealthdata.org (NSCH); [NSCAW](https://acf.gov/opre/project/national-survey-child-and-adolescent-well-being-nscaw-1997-2014-and-2015-2024); [LSYPE2](https://ons.metadata.works/browser/dataset/1405106/0?tab=descriptiveMetadata)
+  * Often fairly straightforward access permissions.
+  * Almost exclusively United States data; some possible linkage with existing surveys elsewhere.
+
+]
+
+.pull-right[
+
+.circle-mask[
+
+&lt;img src="images/Screenshot 2026-05-08 at 10.35.53.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+
+---
+
+class: middle
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Sources of Quantitative Child Welfare Data
+
+Search article databases for "**Cohort Profile**"s for information on what data might be suitable for your projects.
+
+
+
+]
+
+.pull-right[
+
+.bg-white.b--lightest-blue.ba.bw2.br3.shadow-5.ph4[
+&lt;img src="images/Screenshot 2026-05-08 at 10.53.50.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+class: inverse, middle
+
+# III. Case study&lt;br&gt;Multilevel modelling approaches for local variation and causal analysis
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are welfare inequalities the same everywhere?
+
+In most countries, child welfare services &amp; social care operates at a **local or municipal level**. Children's experiences of social care **will be more similar if they live in the same locality/municipality**. Measures of children's social care and poverty of the same locality/municipality over time will be more similar than measure between different municipalities.
+
+This introduces a statistical problem of non-independence of errors ([Jones, et al. 2013](https://www.researchgate.net/profile/Kelvyn-Jones/publication/252146040_Do_multilevel_models_ever_give_different_results/links/0deec51f290d08078d000000/Do-multilevel-models-ever-give-different-results)).
+
+More importantly, we lose valuable information about how child welfare inequalities exist in the real world.
+
+This can be corrected by using **multilevel models**. 
+
+
+]
+
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-6-1.png" width="550" height="550" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are welfare inequalities the same everywhere?
+
+* Create a multilevel model where the relationship between predictor (e.g. income) and outcome (e.g. child welfare intervention) are **not single values, but unique values for each municipality/locality/country**.
+
+* These are expressed as **random intercepts** and **random slopes**.
+
+* **Random intercepts** represent group-level differences in the outcome
+
+* **Random slopes** represent variation in the extent to which predictor(s) are associated with the outcome
+
+]
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-7-1.png" width="550" height="550" /&gt;
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are welfare inequalities the same everywhere?
+
+* Create a multilevel model where the relationship between predictor (e.g. income) and outcome (e.g. child welfare intervention) are **not single values, but unique values for each municipality/locality/country**.
+
+* These are expressed as **random intercepts** and **random slopes**.
+
+* **Random intercepts** represent group-level differences in the outcome
+
+* **Random slopes** represent variation in the extent to which predictor(s) are associated with the outcome
+
+]
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-8-1.png" width="550" height="550" /&gt;
+]
+
+---
+
+class: inverse, middle
+
+# Exercise
+
+* Go to [ipse.calumwebb.co.uk](https://ipse.calumwebb.co.uk/)
+* Click on the "Interactive App" menu item
+* Load the interactive Shiny application: https://webb.shinyapps.io/ipse/ 
+* Explore how the role of changes in preventative services funding has a different predicted impact depending on the city/county in England.
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are the differences between cities/countries more important than differences within those cities/countries?
+
+An increasingly important objective when using multilevel models is separating the relationships at the group level (*between effects*) from those at the individual level (*within effects*).
+
+* Does it matter more if you are born into a city that is poor  or a neighbourhood that is poor? Or are both equally important?
+* Does living in a poor neighbourhood matter more if you live in a rich city? (The Inverse Intervention Law, [Webb, et al. 2020](https://www.sciencedirect.com/science/article/pii/S0190740919312344?casa_token=cLRElHALg5sAAAAA:yN156Ggr_QZhpVxrsEcd8wHYCkVeTQ0okKP5gxh7EmNaVvI8Q7IVYC7OzW0DWnRtxrLbG0TzvQ))
+* Do services have a bigger impact in some places than others? ([Webb, C. 2025](https://ipse.calumwebb.co.uk/))
+
+In extreme cases, a failure to do this can lead to **Simpson's Paradox**.
+
+]
+
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-9-1.png" width="550" height="550" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are the differences between cities/countries more important than differences within those cities/countries?
+
+An increasingly important objective when using multilevel models is separating the relationships at the group level (*between effects*) from those at the individual level (*within effects*).
+
+* Does it matter more if you are born into a city that is poor  or a neighbourhood that is poor? Or are both equally important?
+* Does living in a poor neighbourhood matter more if you live in a rich city? (The Inverse Intervention Law, [Webb, et al. 2020](https://www.sciencedirect.com/science/article/pii/S0190740919312344?casa_token=cLRElHALg5sAAAAA:yN156Ggr_QZhpVxrsEcd8wHYCkVeTQ0okKP5gxh7EmNaVvI8Q7IVYC7OzW0DWnRtxrLbG0TzvQ))
+* Do services have a bigger impact in some places than others? ([Webb, C. 2025](https://ipse.calumwebb.co.uk/))
+
+In extreme cases, a failure to do this can lead to **Simpson's Paradox**.
+
+]
+
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-10-1.png" width="550" height="550" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are the differences between cities/countries more important than differences within those cities/countries?
+
+**Within** and **between** disaggregation of effects (sometimes called a Within-between model) is done within a multilevel model by doing the following:
+
+* Adding the **group means** for each predictor variable to your data as a new variable, that is `\(\bar{X}\)`
+* Adding **group mean centered** versions for each predictor variable as new variables, that is `\(X - \bar{X}\)`
+* Including both the group means and the group mean centered versions of the variable in your multilevel model
+
+]
+
+
+.pull-right[
+
+&lt;img src="ntnu-quants_files/figure-html/unnamed-chunk-11-1.png" width="550" height="550" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are the differences between cities/countries more important than differences within those cities/countries?
+
+**Within** and **between** disaggregation of effects (sometimes called a Within-between model) is done within a multilevel model by doing the following:
+
+* Adding the **group means** for each predictor variable to your data as a new variable, that is `\(\bar{X}\)`
+* Adding **group mean centered** versions for each predictor variable as new variables, that is `\(X - \bar{X}\)`
+* Including both the group means and the group mean centered versions of the variable in your multilevel model
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.bg-white.b--lightest-blue.ba.bw2.br3.shadow-5.ph4[
+&lt;img src="images/Screenshot 2026-05-08 at 14.05.33.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Are the differences between cities/countries more important than differences within those cities/countries?
+
+**Within** and **between** disaggregation of effects (sometimes called a Within-between model) is done within a multilevel model by doing the following:
+
+* Adding the **group means** for each predictor variable to your data as a new variable, that is `\(\bar{X}\)`
+* Adding **group mean centered** versions for each predictor variable as new variables, that is `\(X - \bar{X}\)`
+* Including both the group means and the group mean centered versions of the variable in your multilevel model
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td colspan="2"&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td colspan="2"&gt;Care Rate&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;OLS&lt;/td&gt;&lt;td&gt;Within-Between Model&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Poverty&lt;/td&gt;&lt;td&gt;-0.208&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Poverty Between&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.440&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Poverty Within&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.207&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;54.867&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;60.641&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;400&lt;/td&gt;&lt;td&gt;400&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.057&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan="2" style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Real world examples
+
+* Bennett, D.L., Schlüter, D.K., Melis, G., Bywaters, P., Alexiou, A., Barr, B., Wickham, S. and Taylor-Robinson, D., 2022. **Child poverty and children entering care in England, 2015–20: a longitudinal ecological study at the local area level.** *The Lancet Public Health*, 7(6), pp.e496-e503.
+
+&lt;img src="images/Screenshot 2026-05-08 at 16.05.14.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+&lt;br&gt;
+.bg-white.b--lightest-blue.ba.bw2.br3.shadow-5.ph4[
+&lt;img src="images/Screenshot 2026-05-08 at 14.14.10.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Real world examples
+
+* Webb, C., Zhu, N., Hietamäki, J., Toikko, T. (2026). **Local Income Inequality and Child Welfare Notifications and Interventions in Finland**. *Not yet published*.
+
+&lt;img src="images/Screenshot 2026-05-08 at 16.27.06.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.bg-white.b--lightest-blue.ba.bw2.br3.shadow-5.ph4[
+
+&lt;img src="images/Screenshot 2026-05-08 at 16.18.41.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+## Where can I learn these methods?
+
+**Free**
+* Bristol University's LEMMA Course: https://www.cmm.bris.ac.uk/lemma/ 
+* Bell, A. An Introduction to Multilevel Modelling. Sheffield, UK: White Rose Social Sciences Doctoral Training Centre. Youtube. [link](https://www.youtube.com/watch?v=_7sp2-aJFUI)
+
+**Paid Books/Courses**
+* [Essex Summer School (2 week course)](https://essexsummerschool.com/course/ess-2026-course-list/3b/)
+* [Robson, K., &amp; Pevalin, D. (2015). Multilevel modeling in plain language. London, Sage.](https://methods.sagepub.com/book/mono/multilevel-modeling-in-plain-language/toc#_)
+* [Snijders, T. A., &amp; Bosker, R. (2011). Multilevel analysis: An introduction to basic and advanced multilevel modeling. London: Sage](https://uk.sagepub.com/en-gb/eur/multilevel-analysis/book234191)
+
+]
+
+.pull-right[
+**Useful papers**
+* [Bell, A., Fairbrother, M., &amp; Jones, K. (2019). Fixed and random effects models: making an informed choice. Quality &amp; quantity, 53(2), 1051-1074.](https://link.springer.com/article/10.1007/s11135-018-0802-x)
+* [Bell, A., Jones, K., &amp; Fairbrother, M. (2018). Understanding and misunderstanding group mean centering: A commentary on Kelley et al.’s dangerous practice. Quality &amp; quantity, 52(5), 2031-2036.](https://link.springer.com/article/10.1007/s11135-017-0593-5)
+* [Brown, V. A. (2021). An introduction to linear mixed-effects modeling in R. Advances in Methods and Practices in Psychological Science, 4(1), 2515245920960351.](https://journals.sagepub.com/doi/full/10.1177/2515245920960351)
+* [Evans, C. R., Leckie, G., Subramanian, S. V., Bell, A., &amp; Merlo, J. (2024). A tutorial for conducting intersectional multilevel analysis of individual heterogeneity and discriminatory accuracy (MAIHDA). SSM-population health, 26, 101664.](https://www.sciencedirect.com/science/article/pii/S235282732400065X)
+* [Yaremych, H. E., Preacher, K. J., &amp; Hedeker, D. (2023). Centering categorical predictors in multilevel models: Best practices and interpretation. Psychological methods, 28(3), 613.](https://www.ovid.com/journals/plmet/abstract/10.1037/met0000434~centering-categorical-predictors-in-multilevel-models-best)
+]
+
+---
+
+class: inverse, middle
+
+# Any questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #131E2990;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
