@@ -28,7 +28,7 @@ background-size: contain
 
 Make a pdf using:
 
-decktape generic --key=ArrowRight --load-pause 1800 --slides '1-31' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000 "ntnu-quants.html" ntnu-quantitative-approaches-cwi.pdf
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-41' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 40000 "ntnu-quants.html" ntnu-quantitative-approaches-cwi.pdf
 
 ----->
 
@@ -536,6 +536,178 @@ Moraene Roberts (1953—2020) was an activist, campaigner, poet & researcher who
 
 
 ]
+
+
+
+---
+
+class: hide-logo
+background-image: url("images/beige_bg.png")
+background-position: center
+background-size: contain
+
+# Intersectionality and Child Welfare Interventions
+
+```{r, echo = FALSE, fig.align='center'}
+
+knitr::include_graphics("images/cla_infog.png")
+
+```
+
+---
+
+class: middle
+
+# The Social Gradient by Ethnic Population
+
+.pull-left[
+
+```{r ethsg_2, dev="svg", echo = FALSE, fig.width=4.5, fig.height=4.5, out.width = 450, out.height = 450, dpi = 350, fig.cap="Source: <a href='https://doi.org/10.1016/j.childyouth.2020.105299' style='color:white;text-decoration:underline'>Webb, et al. 2020</a>"}
+
+library(formattable)
+
+intercept_white <- 3.737
+slope_white <- 1.359
+intercept_blafr <- 3.737 + 0.244
+slope_blafr <- 1.359 + -1.23
+x <- seq(-1, 1, 0.1)
+
+line_white <- intercept_white + slope_white * x
+line_blafr <- intercept_blafr + slope_blafr * x
+
+
+ggplot() +
+  geom_line(aes(x = x, y = exp(line_white)), size = 3, alpha = 0.8) +
+  geom_line(aes(x = x, y = exp(line_blafr)), size = 3, alpha = 0.8, col = tuos_purple) +
+  annotate("text", x = c(0, 1), y = exp(line_white[c(10, 21)]) * 0.8, label = round(exp(line_white[c(10, 21)]), 0), size = 4) +
+  annotate("text", x = c(-1), y = exp(line_white[c(1)]) +15, label = round(exp(line_white[c(1)]), 0), size = 4) +
+  annotate("text", x = c(-1, 0, 1), y = exp(line_blafr[c(1, 10, 21)]) +15, label = round(exp(line_blafr[c(1, 10, 21)]), 0), size = 4, col = "#7d7d83") +
+  annotate("text", x = 0, y = 150, hjust = 0, label = "White British", size = 5) +
+  annotate("text", x = 0.35, y = 25, hjust = 0, label = "Black African", size = 5, col = tuos_purple) +
+  annotate("text", x = c(-1, 0, 1), y = -15, hjust = c(0, 0.5, 1), label = c("Low\nDeprivation", "Middle\nDeprivation", "High\nDeprivation"), size = 3) +
+  ylim(c(-20,180)) +
+  ylab("Predicted MSOA CLA Rate") +
+  xlab("") +
+  theme(panel.border = element_blank(), panel.background = element_rect(color = NA),
+        axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+
+```
+
+]
+
+.pull-right[
+
+.footnote[Webb, C., Bywaters, P., Scourfield, J., Davidson, G., & Bunting, L. (2020). Cuts both ways: Ethnicity, poverty, and the social gradient in child welfare interventions. Children and Youth Services Review, 117, 105299.]
+
+<br><br><br>
+
+The social gradient for the .green[White British] MSOA child populations in the representative CWIP sample was .green[around 3.9] - much larger than the social gradient for the entire population on average.
+
+By contrast, the social gradient for the .green[Black African] MSOA child populations was .green[around 1.14], which was not statistically significant. This means that the .green[intervention rates did not differ significantly as deprivation increased].
+
+]
+
+---
+
+class: middle
+
+# The Social Gradient by Ethnic Population
+
+.pull-left[
+
+```{r ethsg_3.3, dev="svg", echo = FALSE, fig.width=4.5, fig.height=4.5, out.width = 450, out.height = 450, dpi = 350, fig.cap="Source: <a href='https://doi.org/10.1016/j.childyouth.2020.105299' style='color:white;text-decoration:underline'>Webb, et al. 2020</a>"}
+
+intercept_white <- 3.737
+slope_white <- 1.359
+intercept_mh <- 3.737 + 0.965
+slope_mh <- 1.359 + -0.352
+x <- seq(-1, 1, 0.1)
+
+line_white <- intercept_white + slope_white * x
+line_mh <- intercept_mh + slope_mh * x
+
+
+ggplot() +
+  geom_segment(aes(x = -0.95, xend = -0.95, y = exp(line_mh[1]) - 5, yend = exp(line_white[1]) + 5), col = "white", size = 1, fill = "white", lty =2) +
+  geom_segment(aes(x = 0.95, xend = 0.95, y = exp(line_mh[21]) - 40, yend = exp(line_white[21]) + 20), col = "white", size = 1, fill = "white", lty =2) +
+  geom_line(aes(x = x, y = exp(line_white)), size = 3, alpha = 0.8) +
+  geom_line(aes(x = x, y = exp(line_mh)), size = 3, alpha = 0.8, col = tuos_purple) +
+  annotate("text", x = c(0, 1), y = exp(line_white[c(10, 21)]) * 0.7, label = round(exp(line_white[c(10, 21)]), 0), size = 4) +
+  annotate("text", x = c(-1.05), y = exp(line_white[c(1)]), label = round(exp(line_white[c(1)]), 0), size = 4) +
+  annotate("text", x = c(-1, 0, 1), y = exp(line_mh[c(1, 10, 21)]) + 35, label = round(exp(line_mh[c(1, 10, 21)]), 0), size = 4, col = tuos_purple) +
+  annotate("text", x = 0.35, y = 40, hjust = 0, label = "White British", size = 5) +
+  annotate("text", x = -0.5, y = 250, hjust = 0, label = "Mixed Heritage (Other)", size = 5, col = tuos_purple) +
+  annotate("text", x = c(-1, 0, 1), y = -15, hjust = c(0, 0.5, 1), label = c("Low\nDeprivation", "Middle\nDeprivation", "High\nDeprivation"), size = 3) +
+  # annotate("text", x = -0.85, y = 30, label = '"4"*phantom(":1")', parse = T, col = "#C81D39", size = 6) +
+  # annotate("text", x = -0.85, y = 30, label = 'phantom("4")*":1"', parse = T, col = "white", size = 6) +
+  #   annotate("text", x = 0.8, y = 85, label = '"2.7"*phantom(":1")', parse = T, col = "white", size = 6) +
+  # annotate("text", x = 0.8, y = 85, label = 'phantom("2.7")*":1"', parse = T, col = "#C81D39", size = 6) +
+  ylim(c(-20,350)) +
+  ylab("Predicted MSOA CLA Rate") +
+  xlab("") +
+  # dark_theme_minimal() +
+  theme(panel.border = element_blank(), panel.background = element_rect(color = NA),
+        axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+
+```
+
+]
+
+.pull-right[
+
+.footnote[Webb, C., Bywaters, P., Scourfield, J., Davidson, G., & Bunting, L. (2020). Cuts both ways: Ethnicity, poverty, and the social gradient in child welfare interventions. Children and Youth Services Review, 117, 105299.]
+
+<br><br>
+
+Across the spectrum of deprivation, the 'Mixed Heritage (Other)' population has .green[significantly higher rates of being in care], and a .green[significant social gradient]. They face the sharp end of the racial inequalities and socioeconomic inequalities we see in child welfare interventions.
+
+Mixed Heritage is the .green[fastest growing ethnic population in the UK]. Yet our analyses rarely consider the inequalities they face - .green[they are often excluded] from analyses because the category is so broad.
+
+]
+
+---
+
+<br>
+
+# Social Gradients in CLA rates for 11 English Ethnic Groups
+
+```{r, echo=FALSE, width = "100%", fig.cap="Source: <a href='https://doi.org/10.1016/j.childyouth.2020.105299'>Webb, et al. 2020</a>", fig.align='center'}
+
+customGreen0 = "#DeF7E9"
+customGreen = "#71CA97"
+customRed = "#ff7f7f"
+
+sg_data <- tibble::tribble(
+                    ~eth_group, ~social_gradient, ~sig, ~diff_to_wb,
+                  "White British",             3.89,   "Yes",                  "-",
+              "Asian Bangladeshi",             1.01,    "No",                "Yes",
+                   "Asian Indian",             1.13,    "No",                "Yes",
+                "Asian Pakistani",             2.22,   "Yes",                 "No",
+                  "Black African",             1.14,    "No",                "Yes",
+                "Black Caribbean",             1.88,   "Yes",                "Yes",
+                    "Black Other",             0.96,    "No",                "Yes",
+                    "Mixed Other",             2.74,   "Yes",                 "No",
+            "Mixed White & Asian",                3,   "Yes",                 "No",
+    "Mixed White & Black African",             1.63,    "No",                "Yes",
+  "Mixed White & Black Caribbean",             2.08,   "Yes",                "Yes"
+  ) %>%
+  rename(`Ethnic Group` = eth_group, `Social Gradient` = social_gradient,
+         `Significant?` = sig, `Sig. Diff to W.B.` = diff_to_wb) %>%
+  data.table::as.data.table(.)
+
+formattable(sg_data, align =c("l", "r", "r", "r"),
+            list(
+              `Social Gradient` = color_tile("transparent", customGreen))
+            )
+
+
+
+```
+
+
+
 
 ---
 
