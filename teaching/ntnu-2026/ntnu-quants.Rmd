@@ -440,6 +440,103 @@ class: inverse, middle
 
 .footnote[*Piddington, G., MacKillop, E., & Downe, J. (2024). Do policy actors have different views of what constitutes evidence in policymaking?. Policy & Politics, 52(2), 239-258.*]
 
+
+---
+
+class: middle, inverse
+
+# The odds of any given man in the poorest 10% of neighbourhoods in England dying in 2017 were 1.63 times higher than a man in the richest 10% of neighbourhoods. 1.54 times higher for women.
+
+.right[[Banks, et al. 2021](https://ifs.org.uk/news/socioeconomic-inequalities-mortality-were-growing-adults-pre-pandemic-falling-young-children)]
+
+---
+
+class: middle, inverse
+
+# The age-standardised incidence rate of Lung Cancer is 2.5 times higher in the poorest 20% of neighbourhoods in England than it is in the richest 20% of neighbourhoods. 
+
+.right[[Cancer Research UK, 2025](https://www.cancerresearchuk.org/sites/default/files/cancer_in_the_uk_2025_socioeconomic_deprivation.pdf)]
+
+---
+
+class: middle, inverse
+
+# People in the poorest 10% of neighbourhoods in England are 2.3 times as likely to be diagnosed with Type 2 Diabetes, 1.6 times as likely to be diagnosed with Anxiety and Depression, and 2.5 times as likely to be diagnosed with chronic pain, when compared to people in the richest 10% of neighbourhoods.
+
+.right[[The Health Foundation, 2025](https://www.health.org.uk/evidence-hub/health-inequalities/inequalities-in-specific-health-conditions-by-deprivation-decile)]
+
+---
+
+class: middle, inverse
+
+# How big are the inequalities in child welfare?
+
+---
+
+class: middle
+
+## Children in the poorest 10% of neighbourhoods in England are >10 times as likely to be on a child protection plan or in care than the least poor 10%
+
+.center[
+```{r bywaters2020child, fig.align="left", echo=FALSE, warning=FALSE, out.width="100%", out.height=420, fig.cap="Data from Bywaters, et al. <a href = https://pure.hud.ac.uk/en/publications/the-child-welfare-inequalities-project-final-report>2020</a>"}
+
+library(plotly)
+
+cwi_rates <- tibble(depr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                    cpp = c(9, 14, 21, 23, 32, 35, 47, 51, 71, 113, 1, 5, 8, 13, 17, 33, 39, 55, 74, 114),
+                    cla = c(12, 14, 23, 29, 29, 40, 55, 67, 88, 133, 7, 12, 16, 22, 31, 39, 54, 63, 108, 165),
+                    country = c(rep("England", 10), rep("Wales", 10)))
+
+cwi_plot <- cwi_rates %>%
+  filter(country == "England") %>%
+  pivot_longer(cpp:cla, names_to = "Intervention", values_to = "rate") %>%
+  mutate(
+    Intervention = ifelse(Intervention == "cla", "In Care (CLA)", "CPP")
+  ) %>%
+  ggplot() +
+  geom_col(aes(x = as.factor(depr), y = rate, group = Intervention, fill = Intervention), position = "dodge") +
+    geom_text(aes(x = as.factor(depr), y = rate + 2, group = Intervention,  label = rate, colour = Intervention), stat = "identity", position = position_dodge(width = 1), size = 4, fontface = "bold") +
+  ggtitle(str_wrap("", 80)) +
+  scale_fill_manual(values = c(tuos_purple, tuos_blue)) +
+  scale_colour_manual(values = c(tuos_purple, tuos_blue)) +
+  ylab("Intervention Rate per 10,000 Children") +
+  xlab("Deprivation Decile of Neighbourhoods (10 = Most Deprived)") +
+  ggeasy::easy_add_legend_title("Intervention") +
+  #theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+ratesplot <- ggplotly(cwi_plot, tooltip = "") %>% plotly::config(displayModeBar = F)
+
+ratesplot
+
+# widgetframe::frameWidget(ratesplot) #403 errors on deployment?
+
+# knitr::include_graphics("images/cpp_graph.gif")
+
+```
+]
+
+---
+
+.pull-left-big[
+
+# <br>
+.bg-white.b--gold.ba.bw2.br3.shadow-5.ph4[
+<iframe width="810" height="400" src="https://www.youtube.com/embed/Zf2x3zMfKWk?start=94&end=157&rel=0" title="ThinkIn Family Separation - ATD Fourth World" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+]
+
+]
+
+.pull-right-small[
+
+# <br><br><br><br><br><br><br>
+
+<br>
+Moraene Roberts (1953—2020) was an activist, campaigner, poet & researcher who worked with the charity ATD Fourth World. You can read a tribute to her work and life on the [ATD Fourth World UK website](https://atd-uk.org/2020/01/15/moraene-roberts-campaigning-with-a-banner-made-of-silk/). 
+
+
+]
+
 ---
 
 class: inverse, middle
