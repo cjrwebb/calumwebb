@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis testing &amp; confidence intervals</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr Calum Webb" />
+    <meta name="date" content="2026-05-18" />
+    <script src="ppe-nhst-ci_files/header-attrs/header-attrs.js"></script>
+    <link href="ppe-nhst-ci_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/tile-view/tile-view.js"></script>
+    <link href="ppe-nhst-ci_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="ppe-nhst-ci_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/panelset/panelset.js"></script>
+    <script src="ppe-nhst-ci_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="ppe-nhst-ci_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/clipboard/clipboard.min.js"></script>
+    <link href="ppe-nhst-ci_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/shareon/shareon.min.js"></script>
+    <link href="ppe-nhst-ci_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="ppe-nhst-ci_files/mark.js/mark.min.js"></script>
+    <link href="ppe-nhst-ci_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="ppe-nhst-ci_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: middle, title
+background-size: contain
+
+&lt;!----- 
+
+Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-77' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 80000 "ppe-nhst-ci.html" NHST-CIs-Slides.pdf
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-2' --size '1216x684' --url-load-timeout 80000 --page-load-timeout 80000 "ppe-nhst-ci.html" NHST-CIs-Slide-1.pdf
+
+-----&gt;
+
+
+&lt;br&gt;&lt;br&gt;
+
+# Hypothesis Testing &amp; Confidence Intervals
+#### EDC108: Principles in Politics, Philosophy and Economics
+
+&lt;br&gt;&lt;br&gt;
+
+**Dr. Calum Webb**&lt;br&gt;
+Sheffield Methods Institute, the University of Sheffield&lt;br&gt;
+[c.j.webb@sheffield.ac.uk](mailto:c.j.webb@sheffield.ac.uk)
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 180px;
+height: 128px;
+z-index: 0;
+background-image: url(header/smi-logo-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:2em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #F8F8F8;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+
+---
+
+class: middle
+
+## Learning Objectives
+
+.panelset[
+
+.panel[.panel-name[What will I learn?]
+
+By the end of this week you will:
+
+* Be able to explain why we test hypotheses in the empirical quantitative research in the social sciences
+
+* Describe the essential statistical ideas of the normal distribution and central limit theorem that underlie null hypothesis significance testing and confidence intervals
+
+* Conduct a null hypothesis significance test by using a test statistic and a p-value using real world data
+
+* Construct and correctly interpret a 95% confidence interval using real world data
+
+
+]
+
+.panel[.panel-name[How does this week fit into my course?]
+
+* The vast majority of quantitative research in economics, political science, and the sciences more broadly makes use of hypothesis testing. Confidence intervals are considered the gold standard, and are mandatory in some fields (e.g. health research). This week will help you understand the findings of that research.
+
+* In your dissertation, you will be expected to have an element of original empirical research, which for many people will be an analysis of data including the use of NHST and CIs. 
+
+
+]
+
+
+]
+
+???
+
+Two statistical concepts:
+- Normal distribution, standard deviation and the Empirical Rule
+- Central limit theorem (use income as an example)
+Keep these two ideas in mind
+
+- Null hypothesis significance testing
+- Dice game
+- Purpose is generalisation
+
+- How does it work?
+- Correlation and ANOVA games
+
+- When can we use it and when can we not?
+- Johnson picture
+
+Confidence intervals
+- Definition
+- Calculation
+- Exercise/practice
+- Why might we use it?
+-- Post-hoc comparison
+-- Comparing effect size
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-1-1.png" width="500" height="500" /&gt;
+
+]]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+The **mean** of a distribution represents the most frequent response, and, in a true normal distribution, this is represented by 50% of the data being below the mean and 50% of the data being above the mean.
+
+`$$\bar{x} = \frac{\sum_1^n{x_i}}{n}$$`
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-2-1.png" width="500" height="500" /&gt;
+
+]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+The **standard deviation** of a normal distribution represents how spread out from the mean the data is (how dispersed it is). 
+
+It is calculated as:
+
+`$$s = \sqrt{\frac{\sum_i^n{(x_i-\bar{x})^2}}{n-1}}$$`
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-3-1.png" width="500" height="500" /&gt;
+
+]
+]
+
+
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+**The Empirical Rule** is that, when data are normally distributed, **68% of the data** will be within 1 standard deviation of the mean...
+
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-4-1.png" width="500" height="500" /&gt;
+
+]
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+**The Empirical Rule** is that, when data are normally distributed, **68% of the data** will be within 1 standard deviation of the mean...
+
+**95%** of the data will be within around 2 standard deviations of the mean (actually ~1.96 standard deviations)...
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-5-1.png" width="500" height="500" /&gt;
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+**The Empirical Rule** is that, when data are normally distributed, **68% of the data** will be within 1 standard deviation of the mean...
+
+**95%** of the data will be within around 2 standard deviations of the mean (actually ~1.96 standard deviations)...
+
+And **99.9%** of the data will be within around 3 standard deviations of the mean.
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-6-1.png" width="500" height="500" /&gt;
+
+]]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+## Normal Distribution, Standard Deviation &amp; the Empirical Rule
+
+A variable with a **normal distribution** is characterised by a "bell shaped curve"; this shape of distribution is quite common in data.
+
+**The Empirical Rule** is that, when data are normally distributed, **68% of the data** will be within 1 standard deviation of the mean...
+
+**95%** of the data will be within around 2 standard deviations of the mean (actually ~1.96 standard deviations)...
+
+And **99.9%** of the data will be within around 3 standard deviations of the mean.
+
+This is true **even when the data are quite far from a normal distribution**.
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;br&gt;&lt;br&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-7-1.png" width="500" height="500" /&gt;
+
+]]
+
+
+---
+
+class: inverse, middle
+
+.pull-left[
+
+# Practice
+
+Given the following statements, how would you describe the distribution of the following datasets given their means and standard deviations.
+
+**Notes**:
+
+* To calculate the mean, add up all of the observations, and then divide by the total number of observations.
+
+`$$\bar{x} = \frac{\sum_1^n{x_i}}{n}$$`
+
+* To calculate the standard deviation, subtract each observation from the mean and square the result. Afterwards, sum up all of the observations. Then, divide them by the total number of observations minus 1. Then, take the square root of the result. 
+
+`$$s = \sqrt{\frac{\sum_i^n{(x_i-\bar{x})^2}}{n-1}}$$`
+
+* The Empirical Rule: 68% within 1 standard deviation, 95% of data within 2 standard deviations, 99.9% within 3 standard deviations.
+
+]
+
+
+.pull-right[
+
+# Questions:
+
+* Q1: A sample of students' ages is normally distributed. The mean age of the students is 22. The standard deviation for students' ages is 1.5. Between which two ages would we expect 95% of students to be?
+
+* Q2: A sample of hourly wages is normally distributed, with a mean wage of £14 per hour and a standard deviation of £3.20 per hour. You find that a new person has a wage of £20.40 per hour. Approximately what percentage of people in your sample would you expect to be earning more than this?
+
+* Given the following data on the number of times people have voted in the last 10 years, describe the distribution using the mean and standard deviation:
+
+`$$X = 2, 3, 4, 5, 5, 6, 7, 8$$`
+]
+
+---
+
+class: inverse, middle
+
+.pull-left[
+
+# Questions:
+
+* Q1: A sample of students' ages is normally distributed. The mean age of the students is 22. The standard deviation for students' ages is 1.5. Between which two ages would we expect 95% of students to be?
+
+* Q2: A sample of hourly wages is normally distributed, with a mean wage of £14 per hour and a standard deviation of £3.20 per hour. You find that a new person has a wage of £20.40 per hour. Approximately what percentage of people in your sample would you expect to be earning more than this?
+
+* Given the following data on the number of times people have voted in the last 10 years, describe the distribution using the mean and standard deviation:
+
+`$$X = 2, 3, 4, 5, 5, 6, 7, 8$$`
+]
+
+.pull-right[
+
+# Answers
+
+* A1: We would expect 95% of students' ages to fall between 19 years old and 25 years old.
+
+`$$Lower = 22 - 2*1.5=25\newline Upper = 22 + 2*1.5=25$$`
+* A2: We would expect less than 2.5% of people in the sample to be earning more than £20.40 per hour.&lt;br&gt;The 95% range of earnings is `\(£14-2*£3.20=£7.60\)` to `\(£14+2*£3.20=£20.40\)`. Because half of the remainder of the distribution is equally below the central 95% range and half is above the central 95% range, only 2.5% of the sample earn more than £20.40.
+
+
+
+]
+
+---
+
+class: inverse, middle
+
+.pull-left[
+
+# Questions:
+
+* Q1: A sample of students' ages is normally distributed. The mean age of the students is 22. The standard deviation for students' ages is 1.5. Between which two ages would we expect 95% of students to be?
+
+* Q2: A sample of hourly wages is normally distributed, with a mean wage of £14 per hour and a standard deviation of £3.20 per hour. You find that a new person has a wage of £20.40 per hour. Approximately what percentage of people in your sample would you expect to be earning more than this?
+
+* Given the following data on the number of times people have voted in the last 10 years, describe the distribution using the mean and standard deviation:
+
+`$$X = 2, 3, 4, 5, 5, 6, 7, 8$$`
+]
+
+.pull-right[
+
+# Answers
+
+* A3: The calculation is as follows:
+
+`$$n=8\newline\bar{X}=\frac{2+3+4+5+5+6+7+8}{8}=5\newline\\
+s = (2-5)^2+(3-5)^2+(4-5)^2+(5-5)^2+...\newline\\ ...(5-5)^2+(6-5)^2+(7-5)^2+(8-5)^2\newline\\
+s = -3^2 + -2^2 + -1^2 + 0^2 + 0^2 + 1^2 + 2^2 + 3^2\newline\\
+s = 9+4+1+0+0+1+4+9 = 28\newline\\
+s = \frac{28}{(8-1)} = 4\newline\\
+s = \sqrt{4} = 2$$`
+
+* The average person in the sample voted 5 times in the last ten years, with a standard deviation of 2 voting occurances. This means we would expect 68% of people to have voted between 3 and 7 times in the last ten years.
+
+]
+
+
+---
+
+class: inverse, middle
+
+# Why do we care so much about the normal distribution?
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-8-1.png" width="500" height="500" /&gt;
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## Many distributions are not normal, and the mean and standard deviation are not good ways of describing them.
+
+This is especially the case in the social sciences and in much of economics, so why is the normal distribution and empirical rule so important?
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-9-1.png" width="500" height="500" /&gt;
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+&lt;img src="images/mean-app.png" width="80%" /&gt;
+]
+
+.center[[webb.shinyapps.io/mean-clt-app/](https://webb.shinyapps.io/mean-clt-app/)]
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# The Central Limit Theorem
+
+The **Central Limit Theorem** is the name given to the phenomenon that any sequence of scaled sums (e.g. mean, correlation, regression coefficient) of samples of a variable will converge to a normal distribution.
+
+In other words, if we took many, many, samples and plotted them, we would expect them to be normally distributed.
+
+Because it is normally distributed, we can make inferences about the probability of certain values (because of the Empirical Rule) in the population.
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-11-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+.pull-left[
+.center[
+### Are children more likely to live in deprived neighbourhoods in the North of England or in the South of England?
+]
+.center[
+&lt;img src="images/qr-anova.png" width="80%" /&gt;
+]
+.center[[webb.shinyapps.io/anova-sig/](https://webb.shinyapps.io/anova-sig/)]
+
+]
+
+.pull-right[
+.center[
+### Are children living in more deprived neighbourhoods more or less likely to smoke cigarettes at age 15?
+]
+.center[
+&lt;img src="images/qr-cor.png" width="80%" /&gt;
+]
+.center[[webb.shinyapps.io/cor-sig/](https://webb.shinyapps.io/cor-sig/)]
+
+]
+
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# What about if we only have one sample?
+
+It's often not feasible or desirable to go out and collect many, many samples from the entire population in order to make a general statement.
+
+Instead, we can estimate what the standard deviation of many samples of the summary statistic would likely be for that sample size using the **standard error**. We assume the specific summary statistic we got from our sample came from around the middle of the hypothetical distribution, because that is what is most likely.
+
+`$$SE = \frac{\sigma}{\sqrt{N}}$$`
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-14-1.png" width="500" height="500" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+## Null Hypothesis Significance Testing
+
+In all kinds of science, it is common to test a null hypothesis using statistical methods. 
+
+The null hypothesis is **what we would expect if there was no positive or negative difference**, for example, no difference between two groups (mean difference = 0), no correlation (Pearson's R = 0), no linear relationship (B = 0), or no difference between observed and expected scores. 
+
+As we have seen, we can use the characteristics of the central limit theorem and the normal distribution to calculate percentages which reflect **the probability of observing a summary statistic of that magnitude.**
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;div class="figure"&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-15-1.png" alt="Less than a 0.0001% probability that Public sector is paid more than Private sector in the population." width="500" height="400" /&gt;
+&lt;p class="caption"&gt;Less than a 0.0001% probability that Public sector is paid more than Private sector in the population.&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+## Null Hypothesis Significance Testing
+
+In all kinds of science, it is common to test a null hypothesis using statistical methods. 
+
+The null hypothesis is **what we would expect if there was no positive or negative difference**, for example, no difference between two groups (mean difference = 0), no correlation (Pearson's R = 0), no linear relationship (B = 0), or no difference between observed and expected scores. 
+
+As we have seen, we can use the characteristics of the central limit theorem and the normal distribution to calculate percentages which reflect **the probability of observing a summary statistic of that magnitude.**
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;div class="figure"&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-16-1.png" alt="Less than an 8.7% probability that Public sector is paid more than Private sector in the population." width="500" height="400" /&gt;
+&lt;p class="caption"&gt;Less than an 8.7% probability that Public sector is paid more than Private sector in the population.&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;
+
+## Null Hypothesis Significance Testing
+
+.grey[In all kinds of science, it is common to test a null hypothesis using statistical methods. 
+
+The null hypothesis is what we would expect if there was no positive or negative difference, for example, no difference between two groups (mean difference = 0), no correlation (Pearson's R = 0), no linear relationship (B = 0), or no difference between observed and expected scores. 
+
+As we have seen, we can use the characteristics of the central limit theorem and the normal distribution to calculate percentages which reflect the probability of observing a summary statistic of that magnitude.]
+
+**How low should the probability (p-value) be before we reject the null hypothesis?**
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;div class="figure"&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-17-1.png" alt="Less than an 8.7% probability that Public sector is paid more than Private sector in the population." width="500" height="400" /&gt;
+&lt;p class="caption"&gt;Less than an 8.7% probability that Public sector is paid more than Private sector in the population.&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+---
+
+&lt;br&gt;&lt;br&gt;
+.pull-left[
+
+# Hypothesis testing
+
+We can express how unlikely we were to get results as difference to what we would expect under the null hypothesis using **inferential statistics**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data (t-test, chi-square test, z-test). The differences don't matter much for our purposes; they use the same underlying statistical theory.
+
+* An inferential statistic gives us a __p-value__.
+* The p-value tells us the probability of seeing the kind of results we got __if the null hypothesis is the best explanation for the distribution of the data in the population__.
+* In our previous example, the p-value would be 0.087
+
+]
+
+--
+
+.pull-right[
+
+In applied statistics, we compare our p-value with a pre-chosen '__critical value__' (sometimes called *alpha*) below which we decide to reject the null hypothesis. 
+
+* Conventionally, our critical value, **below which we reject the null hypothesis**, is __0.05__.
+
+]
+
+
+---
+
+&lt;br&gt;&lt;br&gt;
+.pull-left[
+
+# Hypothesis testing
+
+We can express how unlikely we were to get results as difference to what we would expect under the null hypothesis using **inferential statistics**.
+
+There are many different kinds of inferential statistics and tests we can use for different hypotheses and kinds of relationships in data (t-test, chi-square test, z-test). The differences don't matter much for our purposes; they use the same underlying statistical theory.
+
+* An inferential statistic gives us a __p-value__.
+* The p-value tells us the probability of seeing the kind of results we got __if the null hypothesis is the best explanation for the distribution of the data in the population__.
+* In our previous example, the p-value would be 0.087
+
+]
+
+.pull-right[
+
+In applied statistics, we compare our p-value with a pre-chosen '__critical value__' (sometimes called *alpha*) below which we decide to reject the null hypothesis. 
+
+* Conventionally, our critical value, **below which we reject the null hypothesis**, is __0.05__.
+
+There is no strong reason why 5% is used in the social sciences, and sometimes 10%, 1% or 0.1% are used instead, but it can depend on the following:
+  * What are the risks if we set our critical value too high and incorrectly reject the null hypothesis? __(Type I error; false positive)__
+  * What are the risks if we set our critical value too low and incorrectly fail to reject the null hypothesis? __(Type II error; false negative)__
+  
+5%, or 0.05, is often seen as a good compromise between these two risks.
+
+]
+
+
+---
+
+class: inverse, middle
+
+# Inferential statistics help us quantify the confidence we have in a hypothesis based on how likely we would expect to see the results we got if it were accurate.
+
+
+---
+
+class: middle
+
+## When should we use inferential statistics in social research?
+
+* When we wish to make generalisations beyond our sample of data to a wider population.
+
+---
+class: middle
+
+## When can we use inferential statistics in social research?
+
+* When our data __does not violate any of the assumptions made about it__ by the tests (e.g. bivariate normal distrubution).
+
+--
+
+* When our sample is __proportionally representative__ of the population we wish to generalise to.
+
+--
+
+* The easiest way to know a sample is proportionally representative of the population is by finding out how the sample was collected. If it is **randomly selected** (a random sample), it is likely to be representative of the population because __every 'thing' in the sample had an equal chance of being selected__.
+
+--
+
+* However, __this is quite difficult to achieve with human beings__ — they are not like machine sensors and do some of the following things:
+  * Ignore your invitations to join the sample
+  * Refuse to answer questions
+  * Withdraw from the study
+  * Die
+  * And other things.
+
+
+---
+
+class: inverse, middle
+
+
+# Sampling methods
+
+Whether our data are a representative sample of a larger population often depends on the *sampling method*
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+
+---
+
+# Opportunity sampling (60% of pixels)
+
+.center[
+&lt;img src="images/opportunity-sample-600-600-60pc.png" alt="The picture shows an older man and woman in a park. The man is pointing at something not shown on the right side of the screen. The image has a dashed border around it which shows that some of the total picture is not visible to the viewer (around 40% of it)." width="770" height="502" /&gt;
+]
+
+---
+
+# Population
+
+.center[
+&lt;img src="images/base-img.jpg" alt="The picture from before has now been expanded. It now shows the woman and man on the left hand side and the former British Prime Minister Boris Johnson on the right hand side. The man is pointing at the former prime minister in an accusatory way. The prime minister was previously obscured because the sample of the picture did not include him." width="770" height="502" /&gt;
+]
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+--
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+
+---
+
+# Random sampling (60% of pixels)
+
+.center[
+&lt;img src="images/random-sample-60pc.png" alt="The image is the same as the previous picture in the park: two people stand pointing at the former British prime minister. However, now the image is fuzzy because 60% of the pixels have been selected at random. While it is still easy to roughly make out the 'whole picture', some of the details might be fuzzy - but they are not missing." width="770" height="502" /&gt;
+]
+
+---
+
+# Random sampling (30% of pixels)
+
+.center[
+&lt;img src="images/random-sample-30pc.png" alt="The image now includes a sample of only 30% of the pixels. Even though the image is much grainier than before, the random sampling of pixels still seems to do a good job of helping us infer what the overall image is showing." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+
+---
+
+# Random sampling (with non-response)
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-1.png" alt="The image now shows what would happen if one part of the image is less likely to respond to the random selection than another. In the left hand side of the image, the two people are shown in a high degree of clarity as a large number of pixels has been selected. On the right hand side of the image, where the former Prime Minister stands, there are hardly any pixels shown at all. As a result, the left hand side of the image is much clearer than the right hand side." width="770" height="502" /&gt;
+]
+
+---
+
+# Random sampling (with non-response)
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-2.png" alt="The image is the same as the previous image but now includes the caption '50% more likely than average to respond to a survey' on the left hand side and '80% less likely than average to respond to a survey' on the right hand side." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+* __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-3.png" alt="The image shows the result of a sample of pixels where the left hand side is 50% more likely to respond and the right hand side is 80% less likely to respond. Now an additional caption on the left hand side reads: 'send out only 2/3rds of the surveys than random sampling dictates would be needed for a sample of 60%' and an additional caption on the right hand side reads 'send out five times the number of surveys than random sampling dictates would be needed for a sample of 60%'" width="770" height="502" /&gt;
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-4.png" alt="The left hand side and the right hand side are now closer to being in the same level of clarity, but there is still less clarity on the right hand side of the image compared to the left. The caption on the left hand side reads: 3/4s as many surveys sent out. The caption on the right hand side reads: 3 times as many surveys sent out." width="770" height="502" /&gt;
+]
+
+---
+
+## Stratified random sampling (with non-response adjustment)
+
+.center[
+&lt;img src="images/stratefied-1.5-0.2-5.png" alt="The left hand side and the right hand side are now displayed in about the same level of clarity. The caption on the left hand side reads: 2/3rds as many surveys sent out. The caption on the right hand side reads: 5 times as many surveys sent out." width="770" height="502" /&gt;
+]
+
+
+---
+
+class: middle
+
+# Sampling methods
+
+&lt;br&gt;
+
+* __Volunteer or opportunity sampling__: the sample is chosen based on who is available to take part in the study (e.g. advertising an online survey; selecting people off the street)
+  * Very unlikely to be representative of a population you want to generalise to — what about people without internet access? Or who aren't in close vicinity?&lt;br&gt;
+
+* __Simple random sampling__: the sample is chosen truly at random from a population sampling frame (e.g. randomly mailing surveys to or visiting addresses on record)
+  * Ignores the fact that some people in the population may be more prone to non-response than others/participation bias ([Berg, 2010](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1691967)).&lt;br&gt;
+
+* __Stratified random sampling__: important demographic categories are first chosen (strata), and then participants are randomly sampled from within those categories (usually proportional to the percentage of the entire population they make up derived from, e.g. a census)
+  * Who decides which demographic categories are meaningful and should be strata and who decides which are unimportant?
+  
+  
+---
+
+class: middle
+
+# _Post-hoc_ adjustment for representativeness
+
+* __Sample weighting__: researchers calculate 'survey weights' which can be used to 're-balance' each observation so that the overall sample proportionally matches the population of interest.
+
+--
+
+  * For example, __imagine we wanted a representative sample of England &amp; Wales.__
+
+--
+
+  * __Approximately 5%__ of people in England &amp; Wales live in Wales.
+
+--
+
+  * We used a stratified sampling method to __survey 1,000 people__ in England and Wales. Ideally, we want 950 English respondents and 50 Welsh respondents.
+
+--
+
+  * However, we ended up with 100 Welsh respondents and 900 English.
+
+--
+
+  * We could count each of those Welsh respondents as only 0.5 of a respondent, and every one of the English respondents as 1.055 of a respondent to "re-balance" our sample to be proportionate to the population.
+  
+--
+
+In reality this process is far more complicated but that's the basic jist of it! In reality, survey data will come with weights already calculated. You can apply them in analysis using the [`survey` package](https://cran.r-project.org/web/packages/survey/survey.pdf) in `R`, but this is more something to worry about for a PhD project. For now, don't worry about weighting data.
+  
+
+---
+
+class: middle
+
+# _Post-hoc_ adjustment for representativeness&lt;br&gt;(Non-response)
+
+We can also have a scenario where we get a proportionally representative sample from our population, but then __not all of this sample respond to all questions or have data for all variables__ (e.g. some might refuse). This would mean that some analyses will end up 'unbalanced' due to this __missing data__ (usually coded as `NA` in `R`) when it is removed.
+
+--
+
+* Multiple ways of dealing with missing data: most common are *listwise* and *pairwise* deletion — where entire observations are deleted if they have missing data in a variable of interest. __This unbalances our sample__.
+
+--
+
+* However, we can try to **impute** missing data — e.g. fill in all of the missing values with our 'best guess' of what it would have been based on responses from respondents who are the most similar to them.
+
+--
+
+* Some methods have specific procedures for handling missing data (e.g. FIML).
+
+--
+
+__Imputation__ and __maximum likelihood__ is too complex a topic to cover here, but is something to be aware of if you are doing a quantitative PhD.
+
+
+
+---
+
+class: inverse, middle
+
+
+# Inference in experimental designs
+
+
+---
+
+class: middle
+
+# Inference in experimental designs
+
+If your research uses an **experimental** design (e.g. a survey experiment or a randomised controlled trial), you are usually aiming to test the significant differences between the groups *within* your sample. You might try and make your sample representative, but this is often difficult due to cost.
+
+--
+
+This is handled through **a priori randomisation** of conditions (randomly assigning participants to either 'treatment' or 'control' conditions). Because the __assignment is random__, statistical significance/inferential statistics can be used to generalise to the group who participated in the study as a whole. 
+
+--
+
+In other words, inferential statistics can be used to determine __whether the difference between the 'treatment' group and 'control' group would have been different to what would be expected under the null hypothesis if the groups were reverse, or if the random assignment was different__. 
+
+---
+
+class: middle
+background-color: white
+
+.center[
+&lt;img src="images/experiment-1.png" alt="The picture shows a scatterplot of a random spread of three different types of shapes, all of which are across five different colours. There is no order to or sorting of the points." width="65%" /&gt;
+]
+
+---
+
+class: middle
+background-color: white
+
+.center[
+&lt;img src="images/experiment-2.png" alt="A line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="65%" /&gt;
+]
+
+
+---
+
+class: middle
+background-color: white
+
+.center[
+&lt;img src="images/experiment-3.png" alt="A different line is now drawn through the points of random shapes and colours. There are an approximately equal number of points on either side of the line." width="65%" /&gt;
+]
+
+---
+
+class: middle
+background-color: white
+
+.center[
+&lt;img src="images/experiment-random-split-2.png" alt="The points are now sorted into those on the 'control' side of the line and those on the 'experiment' side of the line. They have also been sorted into colour and shape.  The random split has resulted in 5 cross shaped points being in the control group and 7 cross shaped points being in the experimental group. 6 square shaped points are in the control group and 7 are in the experimental group. 7 triangles are in the control group and 5 are in the experimental group. 6 circles are in the control group and 7 are in the experimental group. The colours are also fairly evenly represented in both the control group and experimental group. There are 4 green points in both the control and experimental groups. Both groups have at least three of all of the 7 possible colours." width="90%" /&gt;
+]
+
+
+---
+
+class: inverse, middle
+
+# Evaluate the following statements:
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; We tested the effects of Drug A and Drug B on life expectancy. Drug A significantly increased the average life expectancy of participants (p &lt; 0.05), when compared to a placebo drug. Drug B also significantly increased the average life expectancy of the participants (p &lt; 0.05).
+
+
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.center[
+&lt;img src="images/icons8-pills.svg" width="70%" /&gt;
+]
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; We tested the effects of Drug A and Drug B on life expectancy. Drug A significantly increased the average life expectancy of participants (p &lt; 0.05), when compared to a placebo drug. Drug B also significantly increased the average life expectancy of the participants (p &lt; 0.05).
+
+&lt;hr&gt;
+
+&gt; We tested the effects of Drug A and Drug B on life expectancy. Drug A significantly increased the average life expectancy of participants (p &lt; 0.05) with a 95% confidence interval of +1.1 to +2.4 years, when compared to a placebo drug. Drug B also significantly increased the average life expectancy of the participants (p &lt; 0.05) with a 95% confidence interval of +4.3 year to +6.7 years.
+
+
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.center[
+&lt;img src="images/icons8-pills.svg" width="70%" /&gt;
+]
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; We tested the effects of Drug A and Drug B on life expectancy. Drug A significantly increased the average life expectancy of participants (p &lt; 0.05), when compared to a placebo drug. Drug B also significantly increased the average life expectancy of the participants (p &lt; 0.05).
+
+&lt;hr&gt;
+
+&gt; We tested the effects of Drug A and Drug B on life expectancy. Drug A significantly increased the average life expectancy of participants (p &lt; 0.05) with a 95% confidence interval of +1.1 to +2.4 years, when compared to a placebo drug. Drug B also significantly increased the average life expectancy of the participants (p &lt; 0.05) with a 95% confidence interval of +4.3 year to +6.7 years.
+
+* What can we do with the second statement that we can't with the first?
+
+
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.center[
+&lt;img src="images/icons8-pills.svg" width="70%" /&gt;
+]
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Confidence intervals
+
+A **confidence interval** is a range of values that is likely to contain the true value (summary statistic, such as a mean or regression coefficient) over many repeated samples.
+
+Typically, a 95% confidence interval is used. A 95% confidence interval is interpreted as "in 100 repeated trials/studies using the same method, the true value would be expected to be found in 95% of them". The size of the effect (the mean, the correlation, the regression coefficient), is therefore likely to be within the interval.
+
+It **does not mean** that the probability of the true value being within the interval is 95%. (If you want that interpretation, you need to use *Bayesian statistics*)
+
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-34-1.png" alt="A graph shows the 95% Confidence Intervals of a series of studies. The confidence intervals that contain the true value are coloured in purple while the confidence intervals that do not are coloured in red. 94 of the 100 lines are coloured in purple." width="500" height="500" /&gt;
+
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Calculating confidence intervals
+
+Luckily, you already know how to calculate confidence intervals, because we've done it together already several times today!
+
+To calculate a 95% confidence interval (which is standard), we do the following:
+* For the lower bound, calculate the estimate minus 1.96 times the standard error.
+* For the upper bound, calculate the estimate plus 1.96 times the standard error.
+
+For 90%, we would use 1.645 instead of 1.96. For 99% we would use 2.58.
+
+]
+
+--
+
+.pull-right[
+&lt;br&gt;
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;Equivalised Income&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Age&lt;/td&gt;&lt;td&gt;55.46&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(22.83)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Sex (ref: Male)&lt;/td&gt;&lt;td&gt;-1,826.88&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(719.09)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Marital Status (ref: Unmarried)&lt;/td&gt;&lt;td&gt;1,845.20&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(733.87)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Employment status (Ref: unemployed)&lt;/td&gt;&lt;td&gt;18,338.05&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(809.99)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Intercept&lt;/td&gt;&lt;td&gt;20,082.21&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1,503.51)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;6,692&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.09&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Calculating confidence intervals
+
+* For the lower bound, calculate the estimate minus 1.96 times the standard error.
+* For the upper bound, calculate the estimate plus 1.96 times the standard error.
+
+Let's calculate a confidence interval for the effect of a 1 year increase in age on predicted income together.
+
+Then, I want you to calculate a 95% confidence interval for the effect of being a woman (relative to a man) in the sample and a 95% confidence interval for the effect of being married (relative to unmarried).
+
+]
+
+.pull-right[
+&lt;br&gt;
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;Equivalised Income&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Age&lt;/td&gt;&lt;td&gt;55.46&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(22.83)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Sex (ref: Male)&lt;/td&gt;&lt;td&gt;-1,826.88&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(719.09)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Marital Status (ref: Unmarried)&lt;/td&gt;&lt;td&gt;1,845.20&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(733.87)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Employment status (Ref: unemployed)&lt;/td&gt;&lt;td&gt;18,338.05&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(809.99)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Intercept&lt;/td&gt;&lt;td&gt;20,082.21&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1,503.51)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;6,692&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.09&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Calculating confidence intervals
+
+* For the lower bound, calculate the estimate minus 1.96 times the standard error.
+* For the upper bound, calculate the estimate plus 1.96 times the standard error.
+
+Let's calculate a confidence interval for the effect of a 1 year increase in age on predicted income together.
+
+Then, I want you to calculate a 95% confidence interval for the effect of being a woman (relative to a man) in the sample and a 95% confidence interval for the effect of being married (relative to unmarried).
+
+]
+
+.pull-right[
+&lt;br&gt;
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;Equivalised Income&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Age&lt;/td&gt;&lt;td&gt;55.46&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(10.72, 100.21)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Sex (ref: Male)&lt;/td&gt;&lt;td&gt;-1,826.88&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(-3,236.28, -417.48)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Marital Status (ref: Unmarried)&lt;/td&gt;&lt;td&gt;1,845.20&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(406.84, 3,283.57)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Employment status (Ref: unemployed)&lt;/td&gt;&lt;td&gt;18,338.05&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(16,750.49, 19,925.60)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Intercept&lt;/td&gt;&lt;td&gt;20,082.21&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(17,135.38, 23,029.04)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;6,692&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.09&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+.pull-left-small[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Forest Plots
+
+Confidence intervals are often also presented visually, in the form of, for example, a forest plot. On the right is a typical forest plot of the kind we would usually expect in journal articles.
+
+This forest plot was made using the `summata` package in R.
+
+]
+
+.pull-right-big[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="ppe-nhst-ci_files/figure-html/unnamed-chunk-38-1.png" width="100%" /&gt;
+
+]
+
+---
+
+class: middle
+
+.pull-left[
+
+# In the computer lab
+
+We will be learning how to calculate confidence intervals using some of the commands that are built into Stata.
+
+]
+
+.pull-right[
+
+# Thanks for your time today. Any questions?
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "sealed": false,
+  "ratio": "16:9",
+  "self_contained": true,
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<style>
+.my-header {
+	background-color: #440099;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 70px;
+	width: 100%;
+	text-align: left;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="my-header"></div>';
+  });
+</script>
+
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
