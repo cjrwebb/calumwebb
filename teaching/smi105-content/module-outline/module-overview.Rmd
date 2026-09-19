@@ -50,7 +50,9 @@ __Module Leader__: Dr. Calum Webb (c.j.webb@sheffield.ac.uk)
 
 <br>
 
-__Time & Location__: <br>**Lecture** 10:00-10:50 in Lowe Memorial LT 03 in the Management School (**Tuesdays**, Weeks 1-12) <br>**Workshop** 13:00-14:50 in The Wave, Computer room 01 (cap. 80), Breakdown 1 (**Thursdays** Week 1-12). Check your timetable on iSheffield and your emails/the announcement page on Blackboard for details of any changes to your timetable.
+__Time & Location__: <br>**Lecture** 10:00-10:50 in Lowe Memorial LT 03 in the Management School (**Tuesdays**, Weeks 1-12) <br>**Workshop** 13:00-14:50 in The Wave, Computer room 01 (**Thursdays** Week 1-12). 
+
+Check your timetable on iSheffield and your emails/the announcement page on Blackboard for details of any changes.
 
 <br>
 
@@ -122,7 +124,7 @@ outline <- tibble(
               "Publishing a data visualisation",
               "Maps",
               "Guest lecture",
-              "Visualising Networks",
+              "Data Visualisation as a Political Act: Past & Present",
               "Best practice for whom?",
               "Wrapping up and assessment preparation"),
   `Workshop` = c("Introduction to ggplot2",

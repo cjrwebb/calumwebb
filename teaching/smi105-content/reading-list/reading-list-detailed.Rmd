@@ -218,9 +218,9 @@ Core tasks:
 
 * Before workshop: Work through the task at the end of the workshop handout for week 8
 
-### Week 10: Visualising Networks and Using SQL
+### Week 10: Data Visualisation as a Political Act: Past & Present, Visualising Networks and Using SQL
 
-**Lecture**: In the lecture, we'll talk about types of data that cannot be represented through simple mapping onto axes, using the example of networks. We will talk about the challenges of visualising networks and how the choices and decisions that we need to make when we visualise the data, including the kinds of algorithms we use to organise data and the way we conceptualise "connections" between people or things. 
+**Lecture**: In the lecture, we'll talk about the use of data visualisation as a political act. I'll tell you about two historical examples of the use of data visualisation by W.E.B. Du Bois and Florence Nightingale, and the impact that their use of data visualisation had in the context of the times they were living in. We'll finish by talking about a more recent example by Boehnert as a basis for using data visualisation for challenging established political narratives. 
 
 **Workshop**: We'll be graphing some networks in R but with a twist! This week we'll be using SQL and RMarkdown to read our data into R.
 
@@ -228,8 +228,8 @@ Core tasks:
 
 Core tasks:
 
-* **Before lecture**: Read *Talking Ties: Reflecting on Network Visualisation and Qualitative Interviewing* [https://journals.sagepub.com/doi/10.5153/sro.3404](https://journals.sagepub.com/doi/10.5153/sro.3404)
-* **Before workshop**: Complete the tasks from the previous week's workshop.
+* **Before lecture**: Read [*Data Visualisation does Political Things* by Joanna Boehnert](https://dl.designresearchsociety.org/drs-conference-papers/drs2016/researchpapers/175/)
+* **Before workshop**: Read *Talking Ties: Reflecting on Network Visualisation and Qualitative Interviewing* [https://journals.sagepub.com/doi/10.5153/sro.3404](https://journals.sagepub.com/doi/10.5153/sro.3404). Complete the tasks from the previous week's workshop.
 
 
 ### Week 11: Best practice for whom?
