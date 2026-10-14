@@ -4,7 +4,7 @@
     <title>EDC459: Week 5 — Causality</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2026-03-19" />
+    <meta name="date" content="2026-10-14" />
     <script src="week-05-causality_files/header-attrs/header-attrs.js"></script>
     <link href="week-05-causality_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-05-causality_files/tile-view/tile-view.js"></script>
@@ -270,7 +270,7 @@ background-color: white
 
 .center[
 
-&lt;img src="images/figure_2.png" width="100%" /&gt;
+&lt;img src="images/figure_2.png" alt="" width="100%" /&gt;
 
 ]
 
@@ -281,7 +281,7 @@ background-color: white
 
 .center[
 
-&lt;img src="images/IMG_4238.JPG" width="90%" /&gt;
+&lt;img src="images/IMG_4238.JPG" alt="" width="90%" /&gt;
 
 *Source: Dr. Jennifer Kwan @jkwan_md*
 
@@ -354,7 +354,7 @@ Please now fill out the following form: https://forms.gle/sigw2jprMohiaBZM8
 
 .pull-right[
 
-&lt;img src="images/qr-ex-1.png" width="85%" /&gt;
+&lt;img src="images/qr-ex-1.png" alt="" width="85%" /&gt;
 
 ]
 
@@ -382,7 +382,7 @@ Event code: **AXXIZJ**
 
 .pull-right[
 
-&lt;img src="images/wooclap-SMI606-w5-1.png" width="85%" /&gt;
+&lt;img src="images/wooclap-SMI606-w5-1.png" alt="" width="85%" /&gt;
 
 
 
@@ -418,7 +418,7 @@ background-color: white
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;img src="images/dag-example.png" width="85%" /&gt;
+&lt;img src="images/dag-example.png" alt="" width="85%" /&gt;
 
 *Directed Acyclic Graph example by [Malcolm Barrett](https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html)*
 
@@ -437,7 +437,7 @@ background-color: white
 # DAGS: The Total Effect (Estimand)
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-7-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-7-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[We start with the thing we want to estimate (our estimand), in this case the strength of the association between a person's secondary school outcomes and their university degree classification.]
 
@@ -449,7 +449,7 @@ background-color: white
 # DAGS: Confounders and the Direct Effect
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-8-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-8-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[We know that there will be certain confounders in our data: things that influence both the predictor/cause (Prior Education) and the outcome/effect (Degree Classification). We need to control for these things to get an unbiased estimate of the effect. For example, here, we might want to only include people who studied the same subjects.]
 
@@ -461,7 +461,7 @@ background-color: white
 # DAGS: Pipes, Direct and Indirect Effects
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-9-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-9-1.png" alt="" width="1200" height="350" /&gt;
 
 .center["Pipes" occur when the effects of the 'cause' operates through some mechanism(s), for example, the effect of prior education on degree outcome is partially mediated through prior education teaching more effective study skills. You may or may not want to condition effects based on mediators.]
 
@@ -472,7 +472,7 @@ background-color: white
 # DAGS: "Blocked" Pipes: Post-treatment Bias
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-10-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-10-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[We can also imagine some of these pipes being 'blockers' rather than mediators — test scores will obviously dictate degree classification and may fully mediate prior education, so conditioning on test scores as well as degree classification would incorrectly negate any effect of prior education.]
 
@@ -483,7 +483,7 @@ background-color: white
 # DAGS: Collider Bias
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-11-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-11-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[Collider bias is an often overlooked source of bias that occurs where the relationship between a cause and an outcome is conditioned on something that is a common consequence of both; e.g. here past educational performance will likely impact a person's self-rated academic ability.]
 
@@ -497,7 +497,7 @@ background-color: white
 
 
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-13-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-13-1.png" alt="" width="100%" /&gt;
 
 
 ---
@@ -508,7 +508,7 @@ class: middle
 
 # Collider Bias
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-14-1.png" alt="" width="100%" /&gt;
 
 ---
 
@@ -517,7 +517,7 @@ background-color: white
 
 # Collider Bias
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-15-1.png" alt="" width="100%" /&gt;
 
 
 ---
@@ -526,7 +526,7 @@ background-color: white
 
 # Collider Bias
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-16-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-16-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[What can happen when we have a collider that determines selection?]
 
@@ -547,13 +547,13 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-18-1.png" width="450" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-18-1.png" alt="" width="450" height="350" /&gt;
 
 ]
 
 .pull-right[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-19-1.png" width="450" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-19-1.png" alt="" width="450" height="350" /&gt;
 
 ]
 
@@ -567,12 +567,12 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-20-1.png" width="450" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-20-1.png" alt="" width="450" height="350" /&gt;
 
 ]
 
 .pull-right[
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-21-1.png" width="450" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-21-1.png" alt="" width="450" height="350" /&gt;
 ]
 
 .center[But when only including currently open restaurants...]
@@ -584,7 +584,7 @@ background-color: white
 
 # DAGS: Putting it all together
 
-&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-22-1.png" width="1200" height="350" /&gt;
+&lt;img src="week-05-causality_files/figure-html/unnamed-chunk-22-1.png" alt="" width="1200" height="350" /&gt;
 
 .center[You can follow the rules of '*do*-calculus' to create adjustment sets to find out what kinds of confounding variables you should condition on to identify the total and/or direct effects; the model and findings can then be developed, and their causal claims challenged.]
 
@@ -998,7 +998,7 @@ class: middle
 
 #### Is our data a sample or is it the entire population?
 
-* If the data is of the entire population of interest inference (p-values) **are usually not meaningful** because we have nothing larger than our sample we can generalise to.
+* If the data is of the entire population of interest inference (p-values) **are usually not meaningful** because we have nothing larger than our sample we can generalise to ([Alexander, 2015](https://link.springer.com/article/10.1186/s12982-015-0029-4), [Western &amp; Jackman, 2013](https://www.cambridge.org/core/journals/american-political-science-review/article/abs/bayesian-inference-for-comparative-research/DACABB8D7566E6C8FFF9D559C17512B7?utm_campaign=shareaholic&amp;utm_medium=copy_link&amp;utm_source=bookmark)).
 
 --
 
