@@ -4,7 +4,7 @@
     <title>EDC459: Week 3 — Relationships between Variables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Calum Webb" />
-    <meta name="date" content="2025-09-17" />
+    <meta name="date" content="2026-10-14" />
     <script src="week-03-relationships-between-variables_files/header-attrs/header-attrs.js"></script>
     <link href="week-03-relationships-between-variables_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="week-03-relationships-between-variables_files/tile-view/tile-view.js"></script>
@@ -49,6 +49,12 @@
 
 class: middle
 background-size: contain
+
+&lt;!----- Make a pdf using:
+
+decktape generic --key=ArrowRight --load-pause 1800 --slides '1-77' --size '1216x684'  "week-03-relationships-between-variables/slides/week-03-relationships-between-variables.html" week-03-relationships-between-variables/slides/week-03-relationships-between-variables.pdf
+
+-----&gt;
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -189,8 +195,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-a9d8442d712c2934c5d5" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-a9d8442d712c2934c5d5">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-59b44f51e74bde4abd91" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-59b44f51e74bde4abd91">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -201,8 +207,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-9bfbfd60ce55b82745dd" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-9bfbfd60ce55b82745dd">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f632c02929658fdef4ab" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-f632c02929658fdef4ab">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -214,8 +220,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-829868bcd80db854ddc7" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-829868bcd80db854ddc7">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-60d55154e63d6b706ae6" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-60d55154e63d6b706ae6">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Heatmap/<br>Bivariate Bar Chart<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -223,7 +229,7 @@ class: middle
 background-color: white
 
 .center[
-&lt;img src="images/diamonds-bar.jpg" width="90%" /&gt;
+&lt;img src="images/diamonds-bar.jpg" alt="" width="90%" /&gt;
 ]
 
 ---
@@ -234,7 +240,7 @@ background-color: white
 .center[
 &lt;br&gt;
 
-&lt;img src="images/jb_plot1_rates.png" width="85%" /&gt;
+&lt;img src="images/jb_plot1_rates.png" alt="" width="85%" /&gt;
 ]
 
 ---
@@ -275,7 +281,7 @@ ssa %&gt;%
 
 .pull-right[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-8-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-8-1.png" alt="" width="550" height="500" /&gt;
 
 
 ]
@@ -314,7 +320,7 @@ ssa %&gt;%
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-10-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-10-1.png" alt="" width="550" height="500" /&gt;
 ]
 
 
@@ -528,7 +534,7 @@ Now we can plot the results. Note that with this kind of data format, where ggpl
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-20-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-20-1.png" alt="" width="550" height="500" /&gt;
 ]
 
 ---
@@ -566,7 +572,7 @@ Finally, we can add some custom labels and formatting changes to make our plot l
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-22-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-22-1.png" alt="" width="550" height="500" /&gt;
 ]
 
 
@@ -578,7 +584,7 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-23-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-23-1.png" alt="" width="550" height="550" /&gt;
 
 ]
 
@@ -745,7 +751,7 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-31-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-31-1.png" alt="" width="550" height="550" /&gt;
 
 ]
 
@@ -778,7 +784,7 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-33-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-33-1.png" alt="" width="550" height="550" /&gt;
 
 ]
 
@@ -814,7 +820,7 @@ background-color: white
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-35-1.png" width="550" height="550" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-35-1.png" alt="" width="550" height="550" /&gt;
 
 ]
 
@@ -855,8 +861,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-50c70e730a1dae7f38b9" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-50c70e730a1dae7f38b9">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8727c7e56b8086f83f46" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-8727c7e56b8086f83f46">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Contingency Table +<br>Cramer's V<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1369,8 +1375,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-f6f80fb2a8be05914998" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-f6f80fb2a8be05914998">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> <strong>Spearman's Rho/<br>Contingency Table<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bdaab53a2b5d63251894" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-bdaab53a2b5d63251894">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> <strong>Spearman's Rho/<br>Contingency Table<\/strong> <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -1536,8 +1542,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-1daf2b7907d080763bfe" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-1daf2b7907d080763bfe">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-453ddb180eb4b1d384fe" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-453ddb180eb4b1d384fe">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Boxplot/<br>Ridgeplot<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1611,7 +1617,7 @@ ssa %&gt;%
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-59-1.png" width="1000" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-59-1.png" alt="" width="1000" height="500" /&gt;
 
 ---
 
@@ -1642,7 +1648,7 @@ ssa %&gt;%
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-61-1.png" width="500" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-61-1.png" alt="" width="500" height="500" /&gt;
 
 ]
 
@@ -1652,7 +1658,7 @@ ssa %&gt;%
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-62-1.png" width="1000" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-62-1.png" alt="" width="1000" height="500" /&gt;
 
 ---
 
@@ -1684,7 +1690,7 @@ ssa %&gt;%
 ]
 
 .pull-right[
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-64-1.png" width="500" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-64-1.png" alt="" width="500" height="500" /&gt;
 
 ]
 
@@ -1694,8 +1700,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-d293bcc4f3619fa56127" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-d293bcc4f3619fa56127">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-da77b7fd446b82f87789" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-da77b7fd446b82f87789">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> <strong>Mean/<br>Median Difference<\/strong> <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1787,7 +1793,7 @@ class: middle, inverse
 &lt;br&gt;
 
 .center[
-&lt;img src="images/political-compass.png" width="40%" /&gt;
+&lt;img src="images/political-compass.png" alt="" width="40%" /&gt;
 ]
 
 ---
@@ -1828,8 +1834,8 @@ class: middle
 
 ## Visualisations for Exploring Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-2ad23307826017b20b1e" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-2ad23307826017b20b1e">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> <strong>Scatterplot/<br>Hex Bin Plot<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a8ba9c8ee443de9df8a8" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-a8ba9c8ee443de9df8a8">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> <strong>Scatterplot/<br>Hex Bin Plot<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1837,7 +1843,7 @@ class: middle
 
 &lt;br&gt;
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-73-1.png" width="1000" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-73-1.png" alt="" width="1000" height="500" /&gt;
 
 ---
 
@@ -1847,7 +1853,7 @@ class: middle
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-74-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-74-1.png" alt="" width="550" height="500" /&gt;
 
 ]
 
@@ -1871,7 +1877,7 @@ ssa %&gt;%
 
 .pull-left[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-76-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-76-1.png" alt="" width="550" height="500" /&gt;
 
 ]
 
@@ -1918,7 +1924,7 @@ ssa %&gt;%
 
 .pull-right[
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-79-1.png" width="550" height="500" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-79-1.png" alt="" width="550" height="500" /&gt;
 
 ]
 
@@ -1928,8 +1934,8 @@ class: middle
 
 ## Descriptive Statistics for Describing Relationships (Dependence) Between Variables
 
-<div id="htmlwidget-e7a70953eab49d85adff" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-e7a70953eab49d85adff">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson's R or<br>Spearman's Rho<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c7ab4341845bdc2b3987" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-c7ab4341845bdc2b3987">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> <strong>Pearson's R or<br>Spearman's Rho<\/strong> <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1987,7 +1993,7 @@ background-color: white
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;img src="images/correl-ex.svg" width="100%" /&gt;
+&lt;img src="images/correl-ex.svg" alt="" width="100%" /&gt;
 
 ---
 
@@ -2044,7 +2050,7 @@ ggplot() +
   )
 ```
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-85-1.png" width="400" height="400" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-85-1.png" alt="" width="400" height="400" /&gt;
 
 ]
 
@@ -2060,7 +2066,7 @@ ggplot() +
   )
 ```
 
-&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-86-1.png" width="400" height="400" /&gt;
+&lt;img src="week-03-relationships-between-variables_files/figure-html/unnamed-chunk-86-1.png" alt="" width="400" height="400" /&gt;
 
 ]
 
@@ -2070,8 +2076,8 @@ class: middle
 
 ## Summary
 
-<div id="htmlwidget-4224688c8710dbb0707f" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-4224688c8710dbb0707f">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-825017a6e47d9252a3fe" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-825017a6e47d9252a3fe">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Contingency Table +<br>Cramer's V <\/td>\n   <td style=\"text-align:right;\"> Spearman's Rho/<br>Contingency Table <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Mean/<br>Median Difference <\/td>\n   <td style=\"text-align:right;\"> Pearson's R or<br>Spearman's Rho <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -2079,8 +2085,8 @@ class: middle
 
 ## Summary
 
-<div id="htmlwidget-c6aaac901e33edf71250" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
-<script type="application/json" data-for="htmlwidget-c6aaac901e33edf71250">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-df93c1613ae3d581c4d9" class="formattable_widget html-widget" style="width:100%;height:252px;" width="100%" height="252"></div>
+<script type="application/json" data-for="htmlwidget-df93c1613ae3d581c4d9">{"x":{"html":"<table class=\"table table-condensed\">\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Variable Type <\/th>\n   <th style=\"text-align:right;\"> Nominal <\/th>\n   <th style=\"text-align:right;\"> Ordinal <\/th>\n   <th style=\"text-align:right;\"> Continuous <\/th>\n  <\/tr>\n <\/thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Nominal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Ordinal   <\/span> <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\"> Heatmap/<br>Bivariate Bar Chart <\/td>\n   <td style=\"text-align:right;\">  <\/td>\n  <\/tr>\n  <tr>\n   <td style=\"text-align:right;\"> <span style=\"font-weight: bold\">Continuous<\/span> <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Boxplot/<br>Ridgeplot <\/td>\n   <td style=\"text-align:right;\"> Scatterplot/<br>Hex Bin Plot <\/td>\n  <\/tr>\n<\/tbody>\n<\/table>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
